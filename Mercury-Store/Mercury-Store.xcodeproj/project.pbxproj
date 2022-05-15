@@ -1,0 +1,640 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C4CDB90C2830E31D0000519A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDB90B2830E31D0000519A /* AppDelegate.swift */; };
+		C4CDB90E2830E31D0000519A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDB90D2830E31D0000519A /* SceneDelegate.swift */; };
+		C4CDB9102830E31D0000519A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDB90F2830E31D0000519A /* ViewController.swift */; };
+		C4CDB9132830E31D0000519A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4CDB9112830E31D0000519A /* Main.storyboard */; };
+		C4CDB9162830E31D0000519A /* Mercury_Store.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C4CDB9142830E31D0000519A /* Mercury_Store.xcdatamodeld */; };
+		C4CDB9182830E3210000519A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4CDB9172830E3210000519A /* Assets.xcassets */; };
+		C4CDB91B2830E3210000519A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4CDB9192830E3210000519A /* LaunchScreen.storyboard */; };
+		C4CDB9262830E3220000519A /* Mercury_StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDB9252830E3220000519A /* Mercury_StoreTests.swift */; };
+		C4CDB9302830E3220000519A /* Mercury_StoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDB92F2830E3220000519A /* Mercury_StoreUITests.swift */; };
+		C4CDB9322830E3220000519A /* Mercury_StoreUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDB9312830E3220000519A /* Mercury_StoreUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C4CDB9222830E3220000519A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4CDB9002830E31D0000519A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C4CDB9072830E31D0000519A;
+			remoteInfo = "Mercury-Store";
+		};
+		C4CDB92C2830E3220000519A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4CDB9002830E31D0000519A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C4CDB9072830E31D0000519A;
+			remoteInfo = "Mercury-Store";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C4CDB9082830E31D0000519A /* Mercury-Store.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mercury-Store.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4CDB90B2830E31D0000519A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C4CDB90D2830E31D0000519A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		C4CDB90F2830E31D0000519A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C4CDB9122830E31D0000519A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C4CDB9152830E31D0000519A /* Mercury_Store.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mercury_Store.xcdatamodel; sourceTree = "<group>"; };
+		C4CDB9172830E3210000519A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C4CDB91A2830E3210000519A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C4CDB91C2830E3210000519A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4CDB9212830E3220000519A /* Mercury-StoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mercury-StoreTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4CDB9252830E3220000519A /* Mercury_StoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mercury_StoreTests.swift; sourceTree = "<group>"; };
+		C4CDB92B2830E3220000519A /* Mercury-StoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mercury-StoreUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4CDB92F2830E3220000519A /* Mercury_StoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mercury_StoreUITests.swift; sourceTree = "<group>"; };
+		C4CDB9312830E3220000519A /* Mercury_StoreUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mercury_StoreUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C4CDB9052830E31D0000519A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4CDB91E2830E3220000519A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4CDB9282830E3220000519A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C4CDB8FF2830E31D0000519A = {
+			isa = PBXGroup;
+			children = (
+				C4CDB90A2830E31D0000519A /* Mercury-Store */,
+				C4CDB9242830E3220000519A /* Mercury-StoreTests */,
+				C4CDB92E2830E3220000519A /* Mercury-StoreUITests */,
+				C4CDB9092830E31D0000519A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C4CDB9092830E31D0000519A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C4CDB9082830E31D0000519A /* Mercury-Store.app */,
+				C4CDB9212830E3220000519A /* Mercury-StoreTests.xctest */,
+				C4CDB92B2830E3220000519A /* Mercury-StoreUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C4CDB90A2830E31D0000519A /* Mercury-Store */ = {
+			isa = PBXGroup;
+			children = (
+				C4CDB93E2830E3280000519A /* Application */,
+				C4CDB90F2830E31D0000519A /* ViewController.swift */,
+				C4CDB9112830E31D0000519A /* Main.storyboard */,
+				C4CDB91C2830E3210000519A /* Info.plist */,
+				C4CDB9142830E31D0000519A /* Mercury_Store.xcdatamodeld */,
+				C4CDB93F2830E3300000519A /* Resources */,
+			);
+			path = "Mercury-Store";
+			sourceTree = "<group>";
+		};
+		C4CDB9242830E3220000519A /* Mercury-StoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				C4CDB9252830E3220000519A /* Mercury_StoreTests.swift */,
+			);
+			path = "Mercury-StoreTests";
+			sourceTree = "<group>";
+		};
+		C4CDB92E2830E3220000519A /* Mercury-StoreUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C4CDB92F2830E3220000519A /* Mercury_StoreUITests.swift */,
+				C4CDB9312830E3220000519A /* Mercury_StoreUITestsLaunchTests.swift */,
+			);
+			path = "Mercury-StoreUITests";
+			sourceTree = "<group>";
+		};
+		C4CDB93E2830E3280000519A /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				C4CDB90B2830E31D0000519A /* AppDelegate.swift */,
+				C4CDB90D2830E31D0000519A /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		C4CDB93F2830E3300000519A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C4CDB9172830E3210000519A /* Assets.xcassets */,
+				C4CDB9192830E3210000519A /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C4CDB9072830E31D0000519A /* Mercury-Store */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4CDB9352830E3220000519A /* Build configuration list for PBXNativeTarget "Mercury-Store" */;
+			buildPhases = (
+				C4CDB9042830E31D0000519A /* Sources */,
+				C4CDB9052830E31D0000519A /* Frameworks */,
+				C4CDB9062830E31D0000519A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Mercury-Store";
+			productName = "Mercury-Store";
+			productReference = C4CDB9082830E31D0000519A /* Mercury-Store.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C4CDB9202830E3220000519A /* Mercury-StoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4CDB9382830E3220000519A /* Build configuration list for PBXNativeTarget "Mercury-StoreTests" */;
+			buildPhases = (
+				C4CDB91D2830E3220000519A /* Sources */,
+				C4CDB91E2830E3220000519A /* Frameworks */,
+				C4CDB91F2830E3220000519A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C4CDB9232830E3220000519A /* PBXTargetDependency */,
+			);
+			name = "Mercury-StoreTests";
+			productName = "Mercury-StoreTests";
+			productReference = C4CDB9212830E3220000519A /* Mercury-StoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C4CDB92A2830E3220000519A /* Mercury-StoreUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4CDB93B2830E3220000519A /* Build configuration list for PBXNativeTarget "Mercury-StoreUITests" */;
+			buildPhases = (
+				C4CDB9272830E3220000519A /* Sources */,
+				C4CDB9282830E3220000519A /* Frameworks */,
+				C4CDB9292830E3220000519A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C4CDB92D2830E3220000519A /* PBXTargetDependency */,
+			);
+			name = "Mercury-StoreUITests";
+			productName = "Mercury-StoreUITests";
+			productReference = C4CDB92B2830E3220000519A /* Mercury-StoreUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C4CDB9002830E31D0000519A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					C4CDB9072830E31D0000519A = {
+						CreatedOnToolsVersion = 13.3;
+					};
+					C4CDB9202830E3220000519A = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = C4CDB9072830E31D0000519A;
+					};
+					C4CDB92A2830E3220000519A = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = C4CDB9072830E31D0000519A;
+					};
+				};
+			};
+			buildConfigurationList = C4CDB9032830E31D0000519A /* Build configuration list for PBXProject "Mercury-Store" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C4CDB8FF2830E31D0000519A;
+			productRefGroup = C4CDB9092830E31D0000519A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C4CDB9072830E31D0000519A /* Mercury-Store */,
+				C4CDB9202830E3220000519A /* Mercury-StoreTests */,
+				C4CDB92A2830E3220000519A /* Mercury-StoreUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C4CDB9062830E31D0000519A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4CDB91B2830E3210000519A /* LaunchScreen.storyboard in Resources */,
+				C4CDB9182830E3210000519A /* Assets.xcassets in Resources */,
+				C4CDB9132830E31D0000519A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4CDB91F2830E3220000519A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4CDB9292830E3220000519A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C4CDB9042830E31D0000519A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4CDB9102830E31D0000519A /* ViewController.swift in Sources */,
+				C4CDB9162830E31D0000519A /* Mercury_Store.xcdatamodeld in Sources */,
+				C4CDB90C2830E31D0000519A /* AppDelegate.swift in Sources */,
+				C4CDB90E2830E31D0000519A /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4CDB91D2830E3220000519A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4CDB9262830E3220000519A /* Mercury_StoreTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4CDB9272830E3220000519A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4CDB9322830E3220000519A /* Mercury_StoreUITestsLaunchTests.swift in Sources */,
+				C4CDB9302830E3220000519A /* Mercury_StoreUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C4CDB9232830E3220000519A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C4CDB9072830E31D0000519A /* Mercury-Store */;
+			targetProxy = C4CDB9222830E3220000519A /* PBXContainerItemProxy */;
+		};
+		C4CDB92D2830E3220000519A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C4CDB9072830E31D0000519A /* Mercury-Store */;
+			targetProxy = C4CDB92C2830E3220000519A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C4CDB9112830E31D0000519A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C4CDB9122830E31D0000519A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C4CDB9192830E3210000519A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C4CDB91A2830E3210000519A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C4CDB9332830E3220000519A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C4CDB9342830E3220000519A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C4CDB9362830E3220000519A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KF6D478446;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Mercury-Store/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iti.Mercury-Store";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C4CDB9372830E3220000519A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KF6D478446;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Mercury-Store/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iti.Mercury-Store";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C4CDB9392830E3220000519A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KF6D478446;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iti.Mercury-StoreTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mercury-Store.app/Mercury-Store";
+			};
+			name = Debug;
+		};
+		C4CDB93A2830E3220000519A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KF6D478446;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iti.Mercury-StoreTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mercury-Store.app/Mercury-Store";
+			};
+			name = Release;
+		};
+		C4CDB93C2830E3220000519A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KF6D478446;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iti.Mercury-StoreUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Mercury-Store";
+			};
+			name = Debug;
+		};
+		C4CDB93D2830E3220000519A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KF6D478446;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iti.Mercury-StoreUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Mercury-Store";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C4CDB9032830E31D0000519A /* Build configuration list for PBXProject "Mercury-Store" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4CDB9332830E3220000519A /* Debug */,
+				C4CDB9342830E3220000519A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4CDB9352830E3220000519A /* Build configuration list for PBXNativeTarget "Mercury-Store" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4CDB9362830E3220000519A /* Debug */,
+				C4CDB9372830E3220000519A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4CDB9382830E3220000519A /* Build configuration list for PBXNativeTarget "Mercury-StoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4CDB9392830E3220000519A /* Debug */,
+				C4CDB93A2830E3220000519A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4CDB93B2830E3220000519A /* Build configuration list for PBXNativeTarget "Mercury-StoreUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4CDB93C2830E3220000519A /* Debug */,
+				C4CDB93D2830E3220000519A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C4CDB9142830E31D0000519A /* Mercury_Store.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C4CDB9152830E31D0000519A /* Mercury_Store.xcdatamodel */,
+			);
+			currentVersion = C4CDB9152830E31D0000519A /* Mercury_Store.xcdatamodel */;
+			path = Mercury_Store.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = C4CDB9002830E31D0000519A /* Project object */;
+}
