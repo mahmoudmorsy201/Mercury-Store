@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		035E3920F87D2B89B291F6E5 /* Pods_Mercury_StoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD37DD7F10F2C3895E4F3A /* Pods_Mercury_StoreTests.framework */; };
+		4D9E24D7283778FD00619DF3 /* CategoriesCollectionsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9E24D6283778FD00619DF3 /* CategoriesCollectionsExtension.swift */; };
+		4D9E24DD28377F4900619DF3 /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9E24DB28377F4900619DF3 /* CategoryItem.swift */; };
+		4D9E24DE28377F4900619DF3 /* CategoryItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D9E24DC28377F4900619DF3 /* CategoryItem.xib */; };
+		82AEDF66E4BA3BEB264D77EF /* Pods_Mercury_Store.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5804B2B0A5F154E82246530A /* Pods_Mercury_Store.framework */; };
+		8E2742D2F2FA7350BB6B6A71 /* Pods_Mercury_Store_Mercury_StoreUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5BD467AEE14BEF00DA9A996 /* Pods_Mercury_Store_Mercury_StoreUITests.framework */; };
 		C4C08B7B2832076B00364704 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C08B7A2832076B00364704 /* HomeModel.swift */; };
 		C4C08B7D2832077800364704 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C08B7C2832077800364704 /* HomeViewModel.swift */; };
 		C4C08B84283207B100364704 /* CategoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C08B83283207B100364704 /* CategoryModels.swift */; };
@@ -68,6 +74,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0DDBDDF894CEFB5FD366F8E9 /* Pods-Mercury-StoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-StoreTests.release.xcconfig"; path = "Target Support Files/Pods-Mercury-StoreTests/Pods-Mercury-StoreTests.release.xcconfig"; sourceTree = "<group>"; };
+		2781832BB8302BA499C60989 /* Pods-Mercury-Store-Mercury-StoreUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-Store-Mercury-StoreUITests.release.xcconfig"; path = "Target Support Files/Pods-Mercury-Store-Mercury-StoreUITests/Pods-Mercury-Store-Mercury-StoreUITests.release.xcconfig"; sourceTree = "<group>"; };
+		490F32E1757B0D981653B97B /* Pods-Mercury-Store-Mercury-StoreUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-Store-Mercury-StoreUITests.debug.xcconfig"; path = "Target Support Files/Pods-Mercury-Store-Mercury-StoreUITests/Pods-Mercury-Store-Mercury-StoreUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4D9E24D6283778FD00619DF3 /* CategoriesCollectionsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionsExtension.swift; sourceTree = "<group>"; };
+		4D9E24DB28377F4900619DF3 /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
+		4D9E24DC28377F4900619DF3 /* CategoryItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryItem.xib; sourceTree = "<group>"; };
+		537E4A2BCA05C1F673E7E5BF /* Pods-Mercury-StoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-StoreTests.debug.xcconfig"; path = "Target Support Files/Pods-Mercury-StoreTests/Pods-Mercury-StoreTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5804B2B0A5F154E82246530A /* Pods_Mercury_Store.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mercury_Store.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DE7036323BBB45729C13061 /* Pods-Mercury-Store.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-Store.release.xcconfig"; path = "Target Support Files/Pods-Mercury-Store/Pods-Mercury-Store.release.xcconfig"; sourceTree = "<group>"; };
+		B2CD37DD7F10F2C3895E4F3A /* Pods_Mercury_StoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mercury_StoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4C08B7A2832076B00364704 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		C4C08B7C2832077800364704 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		C4C08B83283207B100364704 /* CategoryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModels.swift; sourceTree = "<group>"; };
@@ -113,6 +129,8 @@
 		C4CDB9562831FF300000519A /* DeepLinkCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkCoordinator.swift; sourceTree = "<group>"; };
 		C4CDB9582832022E0000519A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C4CDB9592832022E0000519A /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		C5BD467AEE14BEF00DA9A996 /* Pods_Mercury_Store_Mercury_StoreUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mercury_Store_Mercury_StoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3A520A9E6C557A9B051D361 /* Pods-Mercury-Store.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-Store.debug.xcconfig"; path = "Target Support Files/Pods-Mercury-Store/Pods-Mercury-Store.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82AEDF66E4BA3BEB264D77EF /* Pods_Mercury_Store.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				035E3920F87D2B89B291F6E5 /* Pods_Mercury_StoreTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,12 +154,54 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E2742D2F2FA7350BB6B6A71 /* Pods_Mercury_Store_Mercury_StoreUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0BFBA8946642B0A589B7EE03 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F3A520A9E6C557A9B051D361 /* Pods-Mercury-Store.debug.xcconfig */,
+				8DE7036323BBB45729C13061 /* Pods-Mercury-Store.release.xcconfig */,
+				490F32E1757B0D981653B97B /* Pods-Mercury-Store-Mercury-StoreUITests.debug.xcconfig */,
+				2781832BB8302BA499C60989 /* Pods-Mercury-Store-Mercury-StoreUITests.release.xcconfig */,
+				537E4A2BCA05C1F673E7E5BF /* Pods-Mercury-StoreTests.debug.xcconfig */,
+				0DDBDDF894CEFB5FD366F8E9 /* Pods-Mercury-StoreTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		4D9E24D5283778D400619DF3 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4D9E24D6283778FD00619DF3 /* CategoriesCollectionsExtension.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		4D9E24D828377B9100619DF3 /* customsCells */ = {
+			isa = PBXGroup;
+			children = (
+				4D9E24DB28377F4900619DF3 /* CategoryItem.swift */,
+				4D9E24DC28377F4900619DF3 /* CategoryItem.xib */,
+			);
+			path = customsCells;
+			sourceTree = "<group>";
+		};
+		98BF397C63194C86A6BA490E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5804B2B0A5F154E82246530A /* Pods_Mercury_Store.framework */,
+				C5BD467AEE14BEF00DA9A996 /* Pods_Mercury_Store_Mercury_StoreUITests.framework */,
+				B2CD37DD7F10F2C3895E4F3A /* Pods_Mercury_StoreTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C4C08B7E2832077F00364704 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +233,8 @@
 		C4C08B812832079E00364704 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4D9E24D828377B9100619DF3 /* customsCells */,
+				4D9E24D5283778D400619DF3 /* extensions */,
 				C4C08B8F28320CCB00364704 /* CategoryViewController.swift */,
 				C4C08B9028320CCB00364704 /* CategoryViewController.xib */,
 			);
@@ -315,6 +379,8 @@
 				C4CDB9242830E3220000519A /* Mercury-StoreTests */,
 				C4CDB92E2830E3220000519A /* Mercury-StoreUITests */,
 				C4CDB9092830E31D0000519A /* Products */,
+				0BFBA8946642B0A589B7EE03 /* Pods */,
+				98BF397C63194C86A6BA490E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -454,6 +520,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C4CDB9352830E3220000519A /* Build configuration list for PBXNativeTarget "Mercury-Store" */;
 			buildPhases = (
+				2B2BA422768719A0650728CC /* [CP] Check Pods Manifest.lock */,
 				C4CDB9042830E31D0000519A /* Sources */,
 				C4CDB9052830E31D0000519A /* Frameworks */,
 				C4CDB9062830E31D0000519A /* Resources */,
@@ -471,6 +538,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C4CDB9382830E3220000519A /* Build configuration list for PBXNativeTarget "Mercury-StoreTests" */;
 			buildPhases = (
+				D5ED4B58E86F11FBA60D1E1C /* [CP] Check Pods Manifest.lock */,
 				C4CDB91D2830E3220000519A /* Sources */,
 				C4CDB91E2830E3220000519A /* Frameworks */,
 				C4CDB91F2830E3220000519A /* Resources */,
@@ -489,6 +557,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C4CDB93B2830E3220000519A /* Build configuration list for PBXNativeTarget "Mercury-StoreUITests" */;
 			buildPhases = (
+				C2105DC2A04FB59477E7B771 /* [CP] Check Pods Manifest.lock */,
 				C4CDB9272830E3220000519A /* Sources */,
 				C4CDB9282830E3220000519A /* Frameworks */,
 				C4CDB9292830E3220000519A /* Resources */,
@@ -557,6 +626,7 @@
 				C4CDB9182830E3210000519A /* Assets.xcassets in Resources */,
 				C4CDB95B2832022E0000519A /* HomeViewController.xib in Resources */,
 				C4C08BA1283216EC00364704 /* ShoppingCartViewController.xib in Resources */,
+				4D9E24DE28377F4900619DF3 /* CategoryItem.xib in Resources */,
 				C4C08BBE28321D5A00364704 /* SearchViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -576,6 +646,75 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2B2BA422768719A0650728CC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Mercury-Store-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C2105DC2A04FB59477E7B771 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Mercury-Store-Mercury-StoreUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D5ED4B58E86F11FBA60D1E1C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Mercury-StoreTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C4CDB9042830E31D0000519A /* Sources */ = {
@@ -599,6 +738,7 @@
 				C4CDB9572831FF300000519A /* DeepLinkCoordinator.swift in Sources */,
 				C4CDB90C2830E31D0000519A /* AppDelegate.swift in Sources */,
 				C4C08B7D2832077800364704 /* HomeViewModel.swift in Sources */,
+				4D9E24D7283778FD00619DF3 /* CategoriesCollectionsExtension.swift in Sources */,
 				C4C08B7B2832076B00364704 /* HomeModel.swift in Sources */,
 				C4C08B8C283207E200364704 /* CategoryBaseCoordinator.swift in Sources */,
 				C4C08B9B283216C100364704 /* ShoppingCartModel.swift in Sources */,
@@ -612,6 +752,7 @@
 				C4C08BA0283216EC00364704 /* ShoppingCartViewController.swift in Sources */,
 				C4C08BA52832172D00364704 /* ShoppingCartCoordinator.swift in Sources */,
 				C4CDB95A2832022E0000519A /* HomeViewController.swift in Sources */,
+				4D9E24DD28377F4900619DF3 /* CategoryItem.swift in Sources */,
 				C4C08BB428321A7900364704 /* ProfileBaseCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -776,6 +917,7 @@
 		};
 		C4CDB9362830E3220000519A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3A520A9E6C557A9B051D361 /* Pods-Mercury-Store.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -803,6 +945,7 @@
 		};
 		C4CDB9372830E3220000519A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8DE7036323BBB45729C13061 /* Pods-Mercury-Store.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -830,6 +973,7 @@
 		};
 		C4CDB9392830E3220000519A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 537E4A2BCA05C1F673E7E5BF /* Pods-Mercury-StoreTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -850,6 +994,7 @@
 		};
 		C4CDB93A2830E3220000519A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DDBDDF894CEFB5FD366F8E9 /* Pods-Mercury-StoreTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -870,6 +1015,7 @@
 		};
 		C4CDB93C2830E3220000519A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 490F32E1757B0D981653B97B /* Pods-Mercury-Store-Mercury-StoreUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -888,6 +1034,7 @@
 		};
 		C4CDB93D2830E3220000519A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2781832BB8302BA499C60989 /* Pods-Mercury-Store-Mercury-StoreUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

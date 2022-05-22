@@ -9,7 +9,14 @@ import UIKit
 
 class CategoryViewController: UIViewController,CategoryBaseCoordinated {
     var coordinator: CategoryBaseCoordinator?
-    
+    let cateBackgroundIMG : UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(named:"categories_background")
+        iv.contentMode = .scaleAspectFill
+        iv.alpha = 0.5
+        return iv
+    }()
+    @IBOutlet weak var categoriesCollectionView: UICollectionView!
     init(coordinator: CategoryBaseCoordinator) {
         super.init(nibName: nil, bundle: nil)
         self.coordinator = coordinator
@@ -22,10 +29,11 @@ class CategoryViewController: UIViewController,CategoryBaseCoordinated {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        let nib = UINib(nibName: "CategoryItem", bundle: nil)
+        categoriesCollectionView.register(nib, forCellWithReuseIdentifier: CategoryItem.identifier)
+        categoriesCollectionView.delegate = self
+        categoriesCollectionView.dataSource = self
+        categoriesCollectionView.backgroundView = cateBackgroundIMG
     }
-
-
-
 }
 
