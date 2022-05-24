@@ -23,8 +23,7 @@ enum HomeScreen {
 }
 
 enum CategoryScreen {
-    case initialScreen
-    case productsScreen
+    
 }
 
 enum ShoppingCartScreen {
