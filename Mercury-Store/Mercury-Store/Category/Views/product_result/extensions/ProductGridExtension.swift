@@ -23,4 +23,5 @@ extension ProductResultViewController : UICollectionViewDelegate, UICollectionVi
         let collectionViewSize = collectionView.frame.size.width - padding
         return CGSize(width: collectionViewSize/2, height: 250)
     }
+    
 }

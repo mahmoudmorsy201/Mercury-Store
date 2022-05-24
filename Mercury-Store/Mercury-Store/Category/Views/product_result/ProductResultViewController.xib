@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductResultViewController" customModule="Mercury_Store" customModuleProvider="target">
             <connections>
+                <outlet property="productCollectionView" destination="oMi-wA-4Jk" id="yiD-zo-nDN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,9 +19,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="oMi-wA-4Jk">
-                    <rect key="frame" x="13" y="141" width="390" height="721"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="oMi-wA-4Jk">
+                    <rect key="frame" x="0.0" y="127" width="414" height="735"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zQl-1V-VdS">
                         <size key="itemSize" width="128" height="128"/>
@@ -69,9 +69,13 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="oMi-wA-4Jk" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="5uo-kd-hqM"/>
+                <constraint firstItem="oMi-wA-4Jk" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="83" id="Fcu-UV-15P"/>
                 <constraint firstItem="2Do-xk-bgB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Q3T-jp-eak"/>
                 <constraint firstItem="2Do-xk-bgB" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="25" id="RMf-4Q-LFn"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2Do-xk-bgB" secondAttribute="trailing" id="RN2-Z2-g3f"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="oMi-wA-4Jk" secondAttribute="trailing" id="m15-AO-3Q3"/>
+                <constraint firstItem="oMi-wA-4Jk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ud0-CZ-qft"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="98.4375"/>
         </view>
