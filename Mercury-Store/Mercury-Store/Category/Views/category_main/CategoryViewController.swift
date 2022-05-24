@@ -9,6 +9,7 @@ import UIKit
 
 class CategoryViewController: UIViewController,CategoryBaseCoordinated {
     var coordinator: CategoryBaseCoordinator?
+    
     let cateBackgroundIMG : UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named:"categories_background")
@@ -20,7 +21,7 @@ class CategoryViewController: UIViewController,CategoryBaseCoordinated {
     init(coordinator: CategoryBaseCoordinator) {
         super.init(nibName: nil, bundle: nil)
         self.coordinator = coordinator
-        title = "Category"
+        title = "Categories"
     }
     
     required init?(coder: NSCoder) {
@@ -35,5 +36,6 @@ class CategoryViewController: UIViewController,CategoryBaseCoordinated {
         categoriesCollectionView.dataSource = self
         categoriesCollectionView.backgroundView = cateBackgroundIMG
     }
+    
 }
 
