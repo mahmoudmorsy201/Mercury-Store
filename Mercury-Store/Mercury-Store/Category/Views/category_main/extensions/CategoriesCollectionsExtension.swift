@@ -21,10 +21,9 @@ extension CategoryViewController : UICollectionViewDelegate, UICollectionViewDat
     {
         let padding: CGFloat =  10
         let collectionViewSize = collectionView.frame.size.width - padding
-        return CGSize(width: collectionViewSize/2, height: 250)
+        return CGSize(width: collectionViewSize/2, height: 200)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("selected Item At ")
         coordinator?.moveTo(flow: .category(.productsScreen), userData: nil)
     }
 }
