@@ -10,7 +10,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Mercury_Store" customModuleProvider="target">
             <connections>
-                <outlet property="homeActivityIndicator" destination="KpV-iX-GPo" id="KJC-hM-g5F"/>
                 <outlet property="homeTableView" destination="C8u-Qn-fso" id="bzU-0W-dv3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,21 +23,12 @@
                     <rect key="frame" x="0.0" y="52" width="414" height="810"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="KpV-iX-GPo">
-                    <rect key="frame" x="157" y="398" width="100" height="100"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="100" id="9YR-hL-R9u"/>
-                        <constraint firstAttribute="height" constant="100" id="MK1-Xy-vcc"/>
-                    </constraints>
-                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="KpV-iX-GPo" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="MyU-f4-ogp"/>
                 <constraint firstItem="C8u-Qn-fso" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="TAg-dB-2Ni"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="C8u-Qn-fso" secondAttribute="bottom" id="aK3-xQ-Cmi"/>
-                <constraint firstItem="KpV-iX-GPo" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="cqd-wz-COn"/>
                 <constraint firstItem="C8u-Qn-fso" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="oaD-vx-pMu"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="C8u-Qn-fso" secondAttribute="trailing" id="tBV-PI-9g3"/>
             </constraints>

@@ -57,12 +57,3 @@ final class BrandsViewModel: BrandsViewModelType {
     
     
 }
-
-//struct BrandsViewModel {
-//    let brands = BehaviorSubject<[Brand]> (value: [])
-//    let homeScreenProvider: HomeScreenProvider = HomeScreenAPI()
-//
-//    init(brands: [Brand]) {
-//        self.brands.onNext(brands)
-//    }
-//}

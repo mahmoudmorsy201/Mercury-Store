@@ -10,29 +10,17 @@ import RxSwift
 struct HomeViewModel {
     let items = BehaviorSubject<[HomeTableViewSection]>(value: [
         .LogoSection(items: [
-            .LogoTableViewItem(title: "LogoTest2")
+            .LogoTableViewItem
         ]),
         .CategoriesSection(items: [
-            .CategoriesCell(categoryItem: [
-                CategoryItem(name: "Men", imageName: "tshirt.fill"),
-                CategoryItem(name: "Women", imageName: "tshirt.fill"),
-                CategoryItem(name: "Kid", imageName: "tshirt.fill"),
-                CategoryItem(name: "Sale", imageName: "tshirt.fill")
-            ])
+            .CategoriesCell
         ]),
         .BannerSection(items: [
-            .BannerTableViewItem(imageName: "of1")
+            .BannerTableViewItem
         ]),
 
         .BrandsSection(items: [
-            .BrandsCell(brands: [
-                Brand(name: "Addidas", imageName: "of2"),
-                Brand(name: "Addidas", imageName: "of2"),
-                Brand(name: "Addidas", imageName: "of2"),
-                Brand(name: "Addidas", imageName: "of2"),
-                Brand(name: "Addidas", imageName: "of2"),
-                Brand(name: "Addidas", imageName: "of2")
-            ])
+            .BrandsCell
         ])
     ])
     

@@ -11,20 +11,24 @@ struct LogoModel {
     let imageLogo: String
 }
 
-struct CategoryModel {
-    let items: [CategoryItem]
-}
 
 struct CategoryItem {
     let name: String
     let imageName: String
+    let colorHex: String
 }
 
-struct BrandModel {
-    let brands: [Brand]
+struct Banneritem {
+    let bannerImage: String
 }
 
-struct Brand {
-    let name: String
-    let imageName: String
+struct BannerItemsConst {
+    static let bannersArray: [String] = [
+        "of1",
+        "of2",
+        "of3",
+        "of4",
+        "of5"
+    ]
 }
+

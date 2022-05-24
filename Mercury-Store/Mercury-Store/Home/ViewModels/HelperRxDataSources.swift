@@ -8,10 +8,10 @@
 import RxDataSources
 
 enum HomeTableViewItem {
-    case LogoTableViewItem(title: String)
-    case CategoriesCell(categoryItem: [CategoryItem])
-    case BannerTableViewItem(imageName: String)
-    case BrandsCell(brands: [Brand])
+    case LogoTableViewItem
+    case CategoriesCell
+    case BannerTableViewItem
+    case BrandsCell
 }
 
 enum HomeTableViewSection {
@@ -62,32 +62,31 @@ struct HomeDataSource {
     static func dataSource() -> DataSource<HomeTableViewSection> {
         return  .init(configureCell: { dataSource, tableView, indexPath, item -> UITableViewCell in
             switch dataSource[indexPath] {
-            case .LogoTableViewItem(title: let title):
+            case .LogoTableViewItem:
                 
                 guard let logoCell = tableView.dequeueReusableCell(withIdentifier: LogoTableViewCell.reuseIdentifier(), for: indexPath) as? LogoTableViewCell else {
                     fatalError("Couldn't dequeue logo cell")
                 }
                 
-                logoCell.logoImageName = title
-                
                 return logoCell
-            case .CategoriesCell(categoryItem: let categoryItem):
+            case .CategoriesCell:
                 guard let categoriesCell = tableView.dequeueReusableCell(withIdentifier: CategoriesTableViewCell.reuseIdentifier(), for: indexPath) as? CategoriesTableViewCell else {
-                    fatalError("Couldn't dequeue logo cell")
+                    fatalError("Couldn't dequeue categories cell")
                 }
                 
-                categoriesCell.viewModel = CategoriesViewModel(categories: categoryItem)
+                categoriesCell.viewModel = CategoriesViewModel()
+                
                 return categoriesCell
-            case .BannerTableViewItem(imageName: let imageName):
+            case .BannerTableViewItem:
                 guard let bannerCell = tableView.dequeueReusableCell(withIdentifier: BannerTableViewCell.reuseIdentifier(), for: indexPath) as? BannerTableViewCell else {
-                    fatalError("Couldn't dequeue logo cell")
+                    fatalError("Couldn't dequeue banner cell")
                 }
-                bannerCell.bannerImageName = imageName
                 
+                bannerCell.viewModel = BannerViewModel()
                 return bannerCell
             case .BrandsCell:
                 guard let brandsCell = tableView.dequeueReusableCell(withIdentifier: BrandsTableViewCell.reuseIdentifier(), for: indexPath) as? BrandsTableViewCell else {
-                    fatalError("Couldn't dequeue logo cell")
+                    fatalError("Couldn't dequeue brands cell")
                 }
                 let brandProvider: BrandsProvider = HomeScreenAPI()
                 brandsCell.viewModel = BrandsViewModel(brandsProvider: brandProvider)

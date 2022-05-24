@@ -10,7 +10,6 @@
 		70E327F9F08636314A8DD26A /* Pods_Mercury_Store.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C880061057CCC78DAAE9EE6 /* Pods_Mercury_Store.framework */; };
 		A4D6FC575525A7F2691B99B3 /* Pods_Mercury_Store_Mercury_StoreUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 743FC4C89A6185F7C482B1C0 /* Pods_Mercury_Store_Mercury_StoreUITests.framework */; };
 		C411D7B72838A1B1000E9ACF /* HelperRxDataSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C411D7B62838A1B1000E9ACF /* HelperRxDataSources.swift */; };
-		C411D7B92838ABEA000E9ACF /* LogoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C411D7B82838ABEA000E9ACF /* LogoViewModel.swift */; };
 		C49A1D3A28333D800081F874 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A1D3828333D800081F874 /* CategoriesCollectionViewCell.swift */; };
 		C49A1D3B28333D800081F874 /* CategoriesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C49A1D3928333D800081F874 /* CategoriesCollectionViewCell.xib */; };
 		C49A1D3D283349D30081F874 /* TableConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A1D3C283349D30081F874 /* TableConfigurator.swift */; };
@@ -77,8 +76,11 @@
 		C4CFBA57283BAB09009C2840 /* SdWebImage+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA56283BAB09009C2840 /* SdWebImage+UIImage.swift */; };
 		C4CFBA5B283BB583009C2840 /* BrandsCollectionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA5A283BB582009C2840 /* BrandsCollectionResponse.swift */; };
 		C4CFBA63283BCF32009C2840 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA62283BCF32009C2840 /* APIError.swift */; };
-		C4CFBA65283BD353009C2840 /* ParsingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA64283BD353009C2840 /* ParsingError.swift */; };
 		C4CFBA67283BD605009C2840 /* HomeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA66283BD605009C2840 /* HomeClient.swift */; };
+		C4CFBA71283C1914009C2840 /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA6F283C1914009C2840 /* BannerCollectionViewCell.swift */; };
+		C4CFBA72283C1914009C2840 /* BannerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4CFBA70283C1914009C2840 /* BannerCollectionViewCell.xib */; };
+		C4CFBA76283C21EF009C2840 /* BannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA75283C21EF009C2840 /* BannerViewModel.swift */; };
+		C4CFBA78283C2414009C2840 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA77283C2414009C2840 /* HelperFunctions.swift */; };
 		C4E6718C2839E7BD000572A7 /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6718B2839E7BD000572A7 /* CategoriesViewModel.swift */; };
 		C4E6718F2839E99F000572A7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6718E2839E99F000572A7 /* Extensions.swift */; };
 		C6F173010C8667A10E27C5FD /* Pods_Mercury_StoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65483F0BCEDE1CF28D6B5977 /* Pods_Mercury_StoreTests.framework */; };
@@ -112,7 +114,6 @@
 		743FC4C89A6185F7C482B1C0 /* Pods_Mercury_Store_Mercury_StoreUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mercury_Store_Mercury_StoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95853295D36B3E1098E3E9CC /* Pods-Mercury-Store-Mercury-StoreUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-Store-Mercury-StoreUITests.debug.xcconfig"; path = "Target Support Files/Pods-Mercury-Store-Mercury-StoreUITests/Pods-Mercury-Store-Mercury-StoreUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C411D7B62838A1B1000E9ACF /* HelperRxDataSources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperRxDataSources.swift; sourceTree = "<group>"; };
-		C411D7B82838ABEA000E9ACF /* LogoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoViewModel.swift; sourceTree = "<group>"; };
 		C49A1D3828333D800081F874 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		C49A1D3928333D800081F874 /* CategoriesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesCollectionViewCell.xib; sourceTree = "<group>"; };
 		C49A1D3C283349D30081F874 /* TableConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableConfigurator.swift; sourceTree = "<group>"; };
@@ -183,8 +184,11 @@
 		C4CFBA56283BAB09009C2840 /* SdWebImage+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SdWebImage+UIImage.swift"; sourceTree = "<group>"; };
 		C4CFBA5A283BB582009C2840 /* BrandsCollectionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandsCollectionResponse.swift; sourceTree = "<group>"; };
 		C4CFBA62283BCF32009C2840 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
-		C4CFBA64283BD353009C2840 /* ParsingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingError.swift; sourceTree = "<group>"; };
 		C4CFBA66283BD605009C2840 /* HomeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeClient.swift; sourceTree = "<group>"; };
+		C4CFBA6F283C1914009C2840 /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
+		C4CFBA70283C1914009C2840 /* BannerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerCollectionViewCell.xib; sourceTree = "<group>"; };
+		C4CFBA75283C21EF009C2840 /* BannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerViewModel.swift; sourceTree = "<group>"; };
+		C4CFBA77283C2414009C2840 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		C4E6718B2839E7BD000572A7 /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
 		C4E6718E2839E99F000572A7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -284,7 +288,6 @@
 			children = (
 				C4C04EE128333278002EC367 /* LogoTableViewCell.swift */,
 				C4C04EE228333278002EC367 /* LogoTableViewCell.xib */,
-				C411D7B82838ABEA000E9ACF /* LogoViewModel.swift */,
 			);
 			path = LogoCell;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 		C4C04EDF283316B3002EC367 /* BannerCell */ = {
 			isa = PBXGroup;
 			children = (
+				C4CFBA6E283C18F6009C2840 /* BannerCollectionViewCell */,
 				C4C04EE52833328A002EC367 /* BannerTableViewCell.swift */,
 				C4C04EE62833328A002EC367 /* BannerTableViewCell.xib */,
 			);
@@ -600,6 +604,7 @@
 				C411D7B62838A1B1000E9ACF /* HelperRxDataSources.swift */,
 				C4E6718B2839E7BD000572A7 /* CategoriesViewModel.swift */,
 				C4BA734C2839FC5C00A5F3AB /* BrandsViewModel.swift */,
+				C4CFBA75283C21EF009C2840 /* BannerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -641,6 +646,15 @@
 			path = Response;
 			sourceTree = "<group>";
 		};
+		C4CFBA6E283C18F6009C2840 /* BannerCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				C4CFBA6F283C1914009C2840 /* BannerCollectionViewCell.swift */,
+				C4CFBA70283C1914009C2840 /* BannerCollectionViewCell.xib */,
+			);
+			path = BannerCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		C4E6718D2839E995000572A7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -648,7 +662,7 @@
 				C4BA73452839ED1400A5F3AB /* ShadowView.swift */,
 				C4CFBA47283B9F6C009C2840 /* JSONDecoder+AlmofireResponse.swift */,
 				C4CFBA56283BAB09009C2840 /* SdWebImage+UIImage.swift */,
-				C4CFBA64283BD353009C2840 /* ParsingError.swift */,
+				C4CFBA77283C2414009C2840 /* HelperFunctions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -797,6 +811,7 @@
 				C4CDB95B2832022E0000519A /* HomeViewController.xib in Resources */,
 				C4C08BA1283216EC00364704 /* ShoppingCartViewController.xib in Resources */,
 				C4BA734B2839F8BF00A5F3AB /* BrandsCollectionViewCell.xib in Resources */,
+				C4CFBA72283C1914009C2840 /* BannerCollectionViewCell.xib in Resources */,
 				C4C08BBE28321D5A00364704 /* SearchViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -931,7 +946,6 @@
 				C4CDB9482831F3340000519A /* MainCoordinator.swift in Sources */,
 				C4C08B94283212D900364704 /* AppAppearance.swift in Sources */,
 				C4C08B9D283216D000364704 /* ShoppingCartViewModel.swift in Sources */,
-				C411D7B92838ABEA000E9ACF /* LogoViewModel.swift in Sources */,
 				C4BA734A2839F8BF00A5F3AB /* BrandsCollectionViewCell.swift in Sources */,
 				C4BA73462839ED1400A5F3AB /* ShadowView.swift in Sources */,
 				C4C08BB228321A6F00364704 /* ProfileViewModel.swift in Sources */,
@@ -939,7 +953,6 @@
 				C4C04EEB28333299002EC367 /* BrandsTableViewCell.swift in Sources */,
 				C4AEE956283A14460025EDB5 /* URLRequestBuilder.swift in Sources */,
 				C4C04EE328333278002EC367 /* LogoTableViewCell.swift in Sources */,
-				C4CFBA65283BD353009C2840 /* ParsingError.swift in Sources */,
 				C4CDB9162830E31D0000519A /* Mercury_Store.xcdatamodeld in Sources */,
 				C4C08BAC28321A5700364704 /* ProfileModel.swift in Sources */,
 				C4CDB9442831F2A00000519A /* Coordinator.swift in Sources */,
@@ -961,14 +974,17 @@
 				C4E6718F2839E99F000572A7 /* Extensions.swift in Sources */,
 				C4AEE959283A1FA30025EDB5 /* Constants.swift in Sources */,
 				C4C08B7D2832077800364704 /* HomeViewModel.swift in Sources */,
+				C4CFBA78283C2414009C2840 /* HelperFunctions.swift in Sources */,
 				C4CFBA63283BCF32009C2840 /* APIError.swift in Sources */,
 				C4CFBA57283BAB09009C2840 /* SdWebImage+UIImage.swift in Sources */,
 				C4C08B7B2832076B00364704 /* HomeModel.swift in Sources */,
 				C4C08B8C283207E200364704 /* CategoryBaseCoordinator.swift in Sources */,
 				C4CFBA3F283B98E4009C2840 /* ApplicationEnviroment.swift in Sources */,
 				C4C08B9B283216C100364704 /* ShoppingCartModel.swift in Sources */,
+				C4CFBA71283C1914009C2840 /* BannerCollectionViewCell.swift in Sources */,
 				C4CDB9462831F2F10000519A /* MainBaseCoordinator.swift in Sources */,
 				C4CFBA5B283BB583009C2840 /* BrandsCollectionResponse.swift in Sources */,
+				C4CFBA76283C21EF009C2840 /* BannerViewModel.swift in Sources */,
 				C4C08BA32832172200364704 /* ShoppingCartBaseCoordinator.swift in Sources */,
 				C4C08B8A283207CB00364704 /* CategoryViewModel.swift in Sources */,
 				C4C08B84283207B100364704 /* CategoryModels.swift in Sources */,

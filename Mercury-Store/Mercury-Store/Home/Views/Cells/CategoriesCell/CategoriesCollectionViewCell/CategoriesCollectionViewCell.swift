@@ -19,7 +19,8 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
                 return
             }
             categoryName.text = category.name
-            categoryImageView.image = UIImage(systemName: category.imageName)
+            categoryImageView.image = UIImage(named: category.imageName)
+            containerViewForCategoryImageView.backgroundColor = hexStringToUIColor(hex: category.colorHex).withAlphaComponent(0.5)
         }
     }
     
@@ -31,7 +32,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     
     private func setupCell() {
         containerViewForCategoryImageView.makeCircularView()
-        containerViewForCategoryImageView.backgroundColor = .green
+        
         
     }
 
