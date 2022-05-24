@@ -77,7 +77,6 @@
 		C4CFBA57283BAB09009C2840 /* SdWebImage+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA56283BAB09009C2840 /* SdWebImage+UIImage.swift */; };
 		C4CFBA5B283BB583009C2840 /* BrandsCollectionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA5A283BB582009C2840 /* BrandsCollectionResponse.swift */; };
 		C4CFBA63283BCF32009C2840 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA62283BCF32009C2840 /* APIError.swift */; };
-		C4CFBA65283BD353009C2840 /* ParsingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA64283BD353009C2840 /* ParsingError.swift */; };
 		C4CFBA67283BD605009C2840 /* HomeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA66283BD605009C2840 /* HomeClient.swift */; };
 		C4E6718C2839E7BD000572A7 /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6718B2839E7BD000572A7 /* CategoriesViewModel.swift */; };
 		C4E6718F2839E99F000572A7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6718E2839E99F000572A7 /* Extensions.swift */; };
@@ -183,7 +182,6 @@
 		C4CFBA56283BAB09009C2840 /* SdWebImage+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SdWebImage+UIImage.swift"; sourceTree = "<group>"; };
 		C4CFBA5A283BB582009C2840 /* BrandsCollectionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandsCollectionResponse.swift; sourceTree = "<group>"; };
 		C4CFBA62283BCF32009C2840 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
-		C4CFBA64283BD353009C2840 /* ParsingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingError.swift; sourceTree = "<group>"; };
 		C4CFBA66283BD605009C2840 /* HomeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeClient.swift; sourceTree = "<group>"; };
 		C4E6718B2839E7BD000572A7 /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
 		C4E6718E2839E99F000572A7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -648,7 +646,6 @@
 				C4BA73452839ED1400A5F3AB /* ShadowView.swift */,
 				C4CFBA47283B9F6C009C2840 /* JSONDecoder+AlmofireResponse.swift */,
 				C4CFBA56283BAB09009C2840 /* SdWebImage+UIImage.swift */,
-				C4CFBA64283BD353009C2840 /* ParsingError.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -939,7 +936,6 @@
 				C4C04EEB28333299002EC367 /* BrandsTableViewCell.swift in Sources */,
 				C4AEE956283A14460025EDB5 /* URLRequestBuilder.swift in Sources */,
 				C4C04EE328333278002EC367 /* LogoTableViewCell.swift in Sources */,
-				C4CFBA65283BD353009C2840 /* ParsingError.swift in Sources */,
 				C4CDB9162830E31D0000519A /* Mercury_Store.xcdatamodeld in Sources */,
 				C4C08BAC28321A5700364704 /* ProfileModel.swift in Sources */,
 				C4CDB9442831F2A00000519A /* Coordinator.swift in Sources */,
