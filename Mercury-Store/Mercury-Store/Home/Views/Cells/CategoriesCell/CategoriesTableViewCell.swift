@@ -31,7 +31,7 @@ class CategoriesTableViewCell: UITableViewCell {
     
     private let disposeBag = DisposeBag()
     
-    var viewModel: CategoriesViewModel! {
+    var viewModel: CategoriesViewModel? {
         didSet {
             self.configure()
         }
@@ -45,11 +45,12 @@ extension CategoriesTableViewCell {
     private func bindCollectionView() {
         categoriesCollectionView.dataSource = nil
         categoriesCollectionView.delegate = nil
-        viewModel.categroies
-            .bind(to: categoriesCollectionView.rx.items(cellIdentifier: CategoriesCollectionViewCell.reuseIdentifier(), cellType: CategoriesCollectionViewCell.self)) {indexPath, item , cell in
+        viewModel?.categories
+            .drive(categoriesCollectionView.rx.items(cellIdentifier: CategoriesCollectionViewCell.reuseIdentifier(), cellType: CategoriesCollectionViewCell.self)) {indexPath, item , cell in
                 cell.category = item
             }
             .disposed(by: disposeBag)
+        viewModel?.getCategories()
     }
 }
 

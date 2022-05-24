@@ -1,0 +1,6 @@
+framework module Pods_Mercury_Store_Mercury_StoreUITests {
+  umbrella header "Pods-Mercury-Store-Mercury-StoreUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

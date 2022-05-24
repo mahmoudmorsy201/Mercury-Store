@@ -39,7 +39,7 @@ extension UIView {
         self.layer.cornerRadius = self.layer.bounds.width / 2
         self.clipsToBounds = true
         self.layer.borderColor = UIColor.darkGray.cgColor
-        self.layer.borderWidth = 1.0
+        //self.layer.borderWidth = 1.0
     }
     
     func makeCorners(corners: UIRectCorner , radius: CGFloat) {
@@ -67,6 +67,8 @@ extension UIView {
     
     
 }
+
+
 
 
 

@@ -11,45 +11,45 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BannerTableViewCell" rowHeight="227" id="KGk-i7-Jjw" customClass="BannerTableViewCell" customModule="Mercury_Store" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="511" height="227"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="227"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="511" height="227"/>
+                <rect key="frame" x="0.0" y="0.0" width="414" height="227"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XnT-oh-OZx">
-                        <rect key="frame" x="12" y="4" width="487" height="219"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="of5" translatesAutoresizingMaskIntoConstraints="NO" id="9lK-3W-hIa">
-                                <rect key="frame" x="0.0" y="0.0" width="487" height="219"/>
-                            </imageView>
-                        </subviews>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="oAe-a0-cXW">
+                        <rect key="frame" x="12" y="12" width="390" height="203"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="9lK-3W-hIa" firstAttribute="top" secondItem="XnT-oh-OZx" secondAttribute="top" id="DnN-VN-s1O"/>
-                            <constraint firstAttribute="trailing" secondItem="9lK-3W-hIa" secondAttribute="trailing" id="b2e-Ds-yrA"/>
-                            <constraint firstItem="9lK-3W-hIa" firstAttribute="leading" secondItem="XnT-oh-OZx" secondAttribute="leading" id="cED-yi-Yfy"/>
-                            <constraint firstAttribute="bottom" secondItem="9lK-3W-hIa" secondAttribute="bottom" id="qug-8d-5HS"/>
-                        </constraints>
-                    </view>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="DTo-qU-om8">
+                            <size key="itemSize" width="414" height="180"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                    <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="InN-yb-y0c">
+                        <rect key="frame" x="12" y="177" width="390" height="26"/>
+                    </pageControl>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="XnT-oh-OZx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="MNC-NC-65l"/>
-                    <constraint firstAttribute="trailing" secondItem="XnT-oh-OZx" secondAttribute="trailing" constant="12" id="TeP-5K-1Kh"/>
-                    <constraint firstAttribute="bottom" secondItem="XnT-oh-OZx" secondAttribute="bottom" constant="4" id="jf7-Z6-lqR"/>
-                    <constraint firstItem="XnT-oh-OZx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="tKx-io-sAf"/>
+                    <constraint firstAttribute="trailing" secondItem="InN-yb-y0c" secondAttribute="trailing" constant="12" id="0rC-9s-2Us"/>
+                    <constraint firstItem="oAe-a0-cXW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="Elv-8s-xdP"/>
+                    <constraint firstAttribute="trailing" secondItem="oAe-a0-cXW" secondAttribute="trailing" constant="12" id="LAv-f8-lTZ"/>
+                    <constraint firstItem="oAe-a0-cXW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="QIH-Bl-Dg3"/>
+                    <constraint firstItem="InN-yb-y0c" firstAttribute="bottom" secondItem="oAe-a0-cXW" secondAttribute="bottom" constant="-12" id="bOh-XD-Ucv"/>
+                    <constraint firstItem="InN-yb-y0c" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="cDX-uj-q0c"/>
+                    <constraint firstAttribute="bottom" secondItem="oAe-a0-cXW" secondAttribute="bottom" constant="12" id="yGb-wa-KlY"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="bannerImageView" destination="9lK-3W-hIa" id="oYd-2s-Lcw"/>
-                <outlet property="containerViewForBannerImageView" destination="XnT-oh-OZx" id="tTb-6J-rYV"/>
+                <outlet property="bannerCollectionView" destination="oAe-a0-cXW" id="WwE-FO-RtI"/>
+                <outlet property="bannerImageViewPageControl" destination="InN-yb-y0c" id="hq4-Rh-e8g"/>
             </connections>
-            <point key="canvasLocation" x="129.71014492753625" y="159.04017857142856"/>
+            <point key="canvasLocation" x="-56.521739130434788" y="159.70982142857142"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="of5" width="476" height="294"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
