@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoriesCollectionViewCell" id="xlt-OS-jVq" customClass="CategoriesCollectionViewCell" customModule="Mercury_Store" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Fu-pc-OrJ">
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ub4-BR-oCn">
+                                <rect key="frame" x="37.5" y="37.5" width="75" height="75"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tshirt.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="cZd-wd-6xs">
+                                        <rect key="frame" x="19" y="18.5" width="37.5" height="38"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="cZd-wd-6xs" firstAttribute="centerY" secondItem="Ub4-BR-oCn" secondAttribute="centerY" id="6gA-GZ-tur"/>
+                                    <constraint firstItem="cZd-wd-6xs" firstAttribute="height" secondItem="Ub4-BR-oCn" secondAttribute="height" multiplier="0.5" id="DSE-IV-YBM"/>
+                                    <constraint firstItem="cZd-wd-6xs" firstAttribute="centerX" secondItem="Ub4-BR-oCn" secondAttribute="centerX" id="Opi-5M-Uit"/>
+                                    <constraint firstItem="cZd-wd-6xs" firstAttribute="width" secondItem="Ub4-BR-oCn" secondAttribute="width" multiplier="0.5" id="PZ0-pp-KBq"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwn-MV-DSC">
+                                <rect key="frame" x="54" y="120.5" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ub4-BR-oCn" firstAttribute="centerX" secondItem="6Fu-pc-OrJ" secondAttribute="centerX" id="1bY-u5-Vop"/>
+                            <constraint firstItem="Ub4-BR-oCn" firstAttribute="centerY" secondItem="6Fu-pc-OrJ" secondAttribute="centerY" id="96D-kd-hYk"/>
+                            <constraint firstItem="Ub4-BR-oCn" firstAttribute="width" secondItem="6Fu-pc-OrJ" secondAttribute="width" multiplier="0.5" id="E5q-Mh-5wE"/>
+                            <constraint firstAttribute="bottom" secondItem="hwn-MV-DSC" secondAttribute="bottom" constant="9" id="QJZ-54-uir"/>
+                            <constraint firstItem="hwn-MV-DSC" firstAttribute="top" secondItem="Ub4-BR-oCn" secondAttribute="bottom" constant="8" id="h8N-Su-n6i"/>
+                            <constraint firstItem="hwn-MV-DSC" firstAttribute="centerX" secondItem="6Fu-pc-OrJ" secondAttribute="centerX" id="vnY-1N-zsT"/>
+                            <constraint firstItem="Ub4-BR-oCn" firstAttribute="height" secondItem="6Fu-pc-OrJ" secondAttribute="height" multiplier="0.5" id="yeh-gf-Hw1"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="1bO-sz-Cg8"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="6Fu-pc-OrJ" secondAttribute="bottom" id="4Jd-Xs-q4D"/>
+                <constraint firstItem="6Fu-pc-OrJ" firstAttribute="leading" secondItem="xlt-OS-jVq" secondAttribute="leading" id="R78-3e-6wf"/>
+                <constraint firstAttribute="trailing" secondItem="6Fu-pc-OrJ" secondAttribute="trailing" id="Uwg-bJ-3YZ"/>
+                <constraint firstItem="6Fu-pc-OrJ" firstAttribute="top" secondItem="xlt-OS-jVq" secondAttribute="top" id="v9R-hV-qSI"/>
+            </constraints>
+            <size key="customSize" width="146" height="135"/>
+            <connections>
+                <outlet property="categoryImageView" destination="cZd-wd-6xs" id="Ps8-OB-BRV"/>
+                <outlet property="categoryName" destination="hwn-MV-DSC" id="tAV-sR-YwM"/>
+                <outlet property="containerViewForCategoriesCollectionViewCell" destination="6Fu-pc-OrJ" id="YOu-3T-JRA"/>
+                <outlet property="containerViewForCategoryImageView" destination="Ub4-BR-oCn" id="1IA-CE-KHA"/>
+            </connections>
+            <point key="canvasLocation" x="207.24637681159422" y="68.303571428571431"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="tshirt.fill" catalog="system" width="128" height="99"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -20,6 +20,27 @@
 		4DA4706C283CF75500596595 /* EmptyMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA4706B283CF75500596595 /* EmptyMessage.swift */; };
 		82AEDF66E4BA3BEB264D77EF /* Pods_Mercury_Store.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5804B2B0A5F154E82246530A /* Pods_Mercury_Store.framework */; };
 		8E2742D2F2FA7350BB6B6A71 /* Pods_Mercury_Store_Mercury_StoreUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5BD467AEE14BEF00DA9A996 /* Pods_Mercury_Store_Mercury_StoreUITests.framework */; };
+		70E327F9F08636314A8DD26A /* Pods_Mercury_Store.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C880061057CCC78DAAE9EE6 /* Pods_Mercury_Store.framework */; };
+		A4D6FC575525A7F2691B99B3 /* Pods_Mercury_Store_Mercury_StoreUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 743FC4C89A6185F7C482B1C0 /* Pods_Mercury_Store_Mercury_StoreUITests.framework */; };
+		C411D7B72838A1B1000E9ACF /* HelperRxDataSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C411D7B62838A1B1000E9ACF /* HelperRxDataSources.swift */; };
+		C411D7B92838ABEA000E9ACF /* LogoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C411D7B82838ABEA000E9ACF /* LogoViewModel.swift */; };
+		C49A1D3A28333D800081F874 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A1D3828333D800081F874 /* CategoriesCollectionViewCell.swift */; };
+		C49A1D3B28333D800081F874 /* CategoriesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C49A1D3928333D800081F874 /* CategoriesCollectionViewCell.xib */; };
+		C49A1D3D283349D30081F874 /* TableConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A1D3C283349D30081F874 /* TableConfigurator.swift */; };
+		C4AEE956283A14460025EDB5 /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AEE955283A14460025EDB5 /* URLRequestBuilder.swift */; };
+		C4AEE959283A1FA30025EDB5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AEE958283A1FA30025EDB5 /* Constants.swift */; };
+		C4BA73462839ED1400A5F3AB /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BA73452839ED1400A5F3AB /* ShadowView.swift */; };
+		C4BA734A2839F8BF00A5F3AB /* BrandsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BA73482839F8BF00A5F3AB /* BrandsCollectionViewCell.swift */; };
+		C4BA734B2839F8BF00A5F3AB /* BrandsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BA73492839F8BF00A5F3AB /* BrandsCollectionViewCell.xib */; };
+		C4BA734D2839FC5C00A5F3AB /* BrandsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BA734C2839FC5C00A5F3AB /* BrandsViewModel.swift */; };
+		C4C04EE328333278002EC367 /* LogoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C04EE128333278002EC367 /* LogoTableViewCell.swift */; };
+		C4C04EE428333278002EC367 /* LogoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4C04EE228333278002EC367 /* LogoTableViewCell.xib */; };
+		C4C04EE72833328A002EC367 /* BannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C04EE52833328A002EC367 /* BannerTableViewCell.swift */; };
+		C4C04EE82833328A002EC367 /* BannerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4C04EE62833328A002EC367 /* BannerTableViewCell.xib */; };
+		C4C04EEB28333299002EC367 /* BrandsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C04EE928333299002EC367 /* BrandsTableViewCell.swift */; };
+		C4C04EEC28333299002EC367 /* BrandsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4C04EEA28333299002EC367 /* BrandsTableViewCell.xib */; };
+		C4C04EEF283332AD002EC367 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C04EED283332AD002EC367 /* CategoriesTableViewCell.swift */; };
+		C4C04EF0283332AD002EC367 /* CategoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4C04EEE283332AD002EC367 /* CategoriesTableViewCell.xib */; };
 		C4C08B7B2832076B00364704 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C08B7A2832076B00364704 /* HomeModel.swift */; };
 		C4C08B7D2832077800364704 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C08B7C2832077800364704 /* HomeViewModel.swift */; };
 		C4C08B84283207B100364704 /* CategoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C08B83283207B100364704 /* CategoryModels.swift */; };
@@ -61,6 +82,18 @@
 		C4CDB9572831FF300000519A /* DeepLinkCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDB9562831FF300000519A /* DeepLinkCoordinator.swift */; };
 		C4CDB95A2832022E0000519A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDB9582832022E0000519A /* HomeViewController.swift */; };
 		C4CDB95B2832022E0000519A /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4CDB9592832022E0000519A /* HomeViewController.xib */; };
+		C4CFBA3F283B98E4009C2840 /* ApplicationEnviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA3E283B98E4009C2840 /* ApplicationEnviroment.swift */; };
+		C4CFBA41283B993E009C2840 /* Servers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA40283B993E009C2840 /* Servers.swift */; };
+		C4CFBA44283B9B5A009C2840 /* HomeScreenAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA43283B9B5A009C2840 /* HomeScreenAPIs.swift */; };
+		C4CFBA46283B9D32009C2840 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA45283B9D32009C2840 /* Service.swift */; };
+		C4CFBA48283B9F6C009C2840 /* JSONDecoder+AlmofireResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA47283B9F6C009C2840 /* JSONDecoder+AlmofireResponse.swift */; };
+		C4CFBA57283BAB09009C2840 /* SdWebImage+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA56283BAB09009C2840 /* SdWebImage+UIImage.swift */; };
+		C4CFBA5B283BB583009C2840 /* BrandsCollectionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA5A283BB582009C2840 /* BrandsCollectionResponse.swift */; };
+		C4CFBA63283BCF32009C2840 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA62283BCF32009C2840 /* APIError.swift */; };
+		C4CFBA67283BD605009C2840 /* HomeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFBA66283BD605009C2840 /* HomeClient.swift */; };
+		C4E6718C2839E7BD000572A7 /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6718B2839E7BD000572A7 /* CategoriesViewModel.swift */; };
+		C4E6718F2839E99F000572A7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6718E2839E99F000572A7 /* Extensions.swift */; };
+		C6F173010C8667A10E27C5FD /* Pods_Mercury_StoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65483F0BCEDE1CF28D6B5977 /* Pods_Mercury_StoreTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +114,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+
 		0DDBDDF894CEFB5FD366F8E9 /* Pods-Mercury-StoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-StoreTests.release.xcconfig"; path = "Target Support Files/Pods-Mercury-StoreTests/Pods-Mercury-StoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		2781832BB8302BA499C60989 /* Pods-Mercury-Store-Mercury-StoreUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-Store-Mercury-StoreUITests.release.xcconfig"; path = "Target Support Files/Pods-Mercury-Store-Mercury-StoreUITests/Pods-Mercury-Store-Mercury-StoreUITests.release.xcconfig"; sourceTree = "<group>"; };
 		490F32E1757B0D981653B97B /* Pods-Mercury-Store-Mercury-StoreUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-Store-Mercury-StoreUITests.debug.xcconfig"; path = "Target Support Files/Pods-Mercury-Store-Mercury-StoreUITests/Pods-Mercury-Store-Mercury-StoreUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -98,6 +132,34 @@
 		5804B2B0A5F154E82246530A /* Pods_Mercury_Store.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mercury_Store.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE7036323BBB45729C13061 /* Pods-Mercury-Store.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-Store.release.xcconfig"; path = "Target Support Files/Pods-Mercury-Store/Pods-Mercury-Store.release.xcconfig"; sourceTree = "<group>"; };
 		B2CD37DD7F10F2C3895E4F3A /* Pods_Mercury_StoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mercury_StoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18891F1E7F7C989CC0ABBB4A /* Pods-Mercury-Store.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-Store.release.xcconfig"; path = "Target Support Files/Pods-Mercury-Store/Pods-Mercury-Store.release.xcconfig"; sourceTree = "<group>"; };
+		1C880061057CCC78DAAE9EE6 /* Pods_Mercury_Store.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mercury_Store.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		35B5C42BB6557CDF1AD2E6AE /* Pods-Mercury-Store-Mercury-StoreUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-Store-Mercury-StoreUITests.release.xcconfig"; path = "Target Support Files/Pods-Mercury-Store-Mercury-StoreUITests/Pods-Mercury-Store-Mercury-StoreUITests.release.xcconfig"; sourceTree = "<group>"; };
+		3D3553E78E829DC9F7F0B80E /* Pods-Mercury-StoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-StoreTests.release.xcconfig"; path = "Target Support Files/Pods-Mercury-StoreTests/Pods-Mercury-StoreTests.release.xcconfig"; sourceTree = "<group>"; };
+		43BFE9847A43A78AD5387540 /* Pods-Mercury-Store.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-Store.debug.xcconfig"; path = "Target Support Files/Pods-Mercury-Store/Pods-Mercury-Store.debug.xcconfig"; sourceTree = "<group>"; };
+		5B035032FD47AF57FEEEC3EA /* Pods-Mercury-StoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-StoreTests.debug.xcconfig"; path = "Target Support Files/Pods-Mercury-StoreTests/Pods-Mercury-StoreTests.debug.xcconfig"; sourceTree = "<group>"; };
+		65483F0BCEDE1CF28D6B5977 /* Pods_Mercury_StoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mercury_StoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		743FC4C89A6185F7C482B1C0 /* Pods_Mercury_Store_Mercury_StoreUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mercury_Store_Mercury_StoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		95853295D36B3E1098E3E9CC /* Pods-Mercury-Store-Mercury-StoreUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-Store-Mercury-StoreUITests.debug.xcconfig"; path = "Target Support Files/Pods-Mercury-Store-Mercury-StoreUITests/Pods-Mercury-Store-Mercury-StoreUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C411D7B62838A1B1000E9ACF /* HelperRxDataSources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperRxDataSources.swift; sourceTree = "<group>"; };
+		C411D7B82838ABEA000E9ACF /* LogoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoViewModel.swift; sourceTree = "<group>"; };
+		C49A1D3828333D800081F874 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
+		C49A1D3928333D800081F874 /* CategoriesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesCollectionViewCell.xib; sourceTree = "<group>"; };
+		C49A1D3C283349D30081F874 /* TableConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableConfigurator.swift; sourceTree = "<group>"; };
+		C4AEE955283A14460025EDB5 /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
+		C4AEE958283A1FA30025EDB5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C4BA73452839ED1400A5F3AB /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		C4BA73482839F8BF00A5F3AB /* BrandsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandsCollectionViewCell.swift; sourceTree = "<group>"; };
+		C4BA73492839F8BF00A5F3AB /* BrandsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrandsCollectionViewCell.xib; sourceTree = "<group>"; };
+		C4BA734C2839FC5C00A5F3AB /* BrandsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandsViewModel.swift; sourceTree = "<group>"; };
+		C4C04EE128333278002EC367 /* LogoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoTableViewCell.swift; sourceTree = "<group>"; };
+		C4C04EE228333278002EC367 /* LogoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogoTableViewCell.xib; sourceTree = "<group>"; };
+		C4C04EE52833328A002EC367 /* BannerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerTableViewCell.swift; sourceTree = "<group>"; };
+		C4C04EE62833328A002EC367 /* BannerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerTableViewCell.xib; sourceTree = "<group>"; };
+		C4C04EE928333299002EC367 /* BrandsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandsTableViewCell.swift; sourceTree = "<group>"; };
+		C4C04EEA28333299002EC367 /* BrandsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrandsTableViewCell.xib; sourceTree = "<group>"; };
+		C4C04EED283332AD002EC367 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
+		C4C04EEE283332AD002EC367 /* CategoriesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesTableViewCell.xib; sourceTree = "<group>"; };
 		C4C08B7A2832076B00364704 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		C4C08B7C2832077800364704 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		C4C08B83283207B100364704 /* CategoryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModels.swift; sourceTree = "<group>"; };
@@ -145,6 +207,17 @@
 		C4CDB9592832022E0000519A /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		C5BD467AEE14BEF00DA9A996 /* Pods_Mercury_Store_Mercury_StoreUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mercury_Store_Mercury_StoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3A520A9E6C557A9B051D361 /* Pods-Mercury-Store.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-Store.debug.xcconfig"; path = "Target Support Files/Pods-Mercury-Store/Pods-Mercury-Store.debug.xcconfig"; sourceTree = "<group>"; };
+		C4CFBA3E283B98E4009C2840 /* ApplicationEnviroment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationEnviroment.swift; sourceTree = "<group>"; };
+		C4CFBA40283B993E009C2840 /* Servers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Servers.swift; sourceTree = "<group>"; };
+		C4CFBA43283B9B5A009C2840 /* HomeScreenAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenAPIs.swift; sourceTree = "<group>"; };
+		C4CFBA45283B9D32009C2840 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		C4CFBA47283B9F6C009C2840 /* JSONDecoder+AlmofireResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+AlmofireResponse.swift"; sourceTree = "<group>"; };
+		C4CFBA56283BAB09009C2840 /* SdWebImage+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SdWebImage+UIImage.swift"; sourceTree = "<group>"; };
+		C4CFBA5A283BB582009C2840 /* BrandsCollectionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandsCollectionResponse.swift; sourceTree = "<group>"; };
+		C4CFBA62283BCF32009C2840 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		C4CFBA66283BD605009C2840 /* HomeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeClient.swift; sourceTree = "<group>"; };
+		C4E6718B2839E7BD000572A7 /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
+		C4E6718E2839E99F000572A7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82AEDF66E4BA3BEB264D77EF /* Pods_Mercury_Store.framework in Frameworks */,
+				70E327F9F08636314A8DD26A /* Pods_Mercury_Store.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				035E3920F87D2B89B291F6E5 /* Pods_Mercury_StoreTests.framework in Frameworks */,
+				C6F173010C8667A10E27C5FD /* Pods_Mercury_StoreTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E2742D2F2FA7350BB6B6A71 /* Pods_Mercury_Store_Mercury_StoreUITests.framework in Frameworks */,
+				A4D6FC575525A7F2691B99B3 /* Pods_Mercury_Store_Mercury_StoreUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +336,95 @@
 				B2CD37DD7F10F2C3895E4F3A /* Pods_Mercury_StoreTests.framework */,
 			);
 			name = Frameworks;
+		C49A1D3728333AC70081F874 /* CategoriesCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				C49A1D3828333D800081F874 /* CategoriesCollectionViewCell.swift */,
+				C49A1D3928333D800081F874 /* CategoriesCollectionViewCell.xib */,
+			);
+			path = CategoriesCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		C4AEE954283A142F0025EDB5 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				C4CFBA59283BB572009C2840 /* Response */,
+				C4CFBA42283B9B2E009C2840 /* HomeScreen */,
+				C4AEE957283A196F0025EDB5 /* Base */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		C4AEE957283A196F0025EDB5 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C4AEE955283A14460025EDB5 /* URLRequestBuilder.swift */,
+				C4AEE958283A1FA30025EDB5 /* Constants.swift */,
+				C4CFBA3E283B98E4009C2840 /* ApplicationEnviroment.swift */,
+				C4CFBA40283B993E009C2840 /* Servers.swift */,
+				C4CFBA45283B9D32009C2840 /* Service.swift */,
+				C4CFBA62283BCF32009C2840 /* APIError.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		C4BA73472839F8A300A5F3AB /* BrandsCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				C4BA73482839F8BF00A5F3AB /* BrandsCollectionViewCell.swift */,
+				C4BA73492839F8BF00A5F3AB /* BrandsCollectionViewCell.xib */,
+			);
+			path = BrandsCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		C4C04EDC2833164B002EC367 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C4C04EE0283316E6002EC367 /* BrandsCell */,
+				C4C04EDF283316B3002EC367 /* BannerCell */,
+				C4C04EDE283316A3002EC367 /* LogoCell */,
+				C4C04EDD28331653002EC367 /* CategoriesCell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		C4C04EDD28331653002EC367 /* CategoriesCell */ = {
+			isa = PBXGroup;
+			children = (
+				C49A1D3728333AC70081F874 /* CategoriesCollectionViewCell */,
+				C4C04EED283332AD002EC367 /* CategoriesTableViewCell.swift */,
+				C4C04EEE283332AD002EC367 /* CategoriesTableViewCell.xib */,
+			);
+			path = CategoriesCell;
+			sourceTree = "<group>";
+		};
+		C4C04EDE283316A3002EC367 /* LogoCell */ = {
+			isa = PBXGroup;
+			children = (
+				C4C04EE128333278002EC367 /* LogoTableViewCell.swift */,
+				C4C04EE228333278002EC367 /* LogoTableViewCell.xib */,
+				C411D7B82838ABEA000E9ACF /* LogoViewModel.swift */,
+			);
+			path = LogoCell;
+			sourceTree = "<group>";
+		};
+		C4C04EDF283316B3002EC367 /* BannerCell */ = {
+			isa = PBXGroup;
+			children = (
+				C4C04EE52833328A002EC367 /* BannerTableViewCell.swift */,
+				C4C04EE62833328A002EC367 /* BannerTableViewCell.xib */,
+			);
+			path = BannerCell;
+			sourceTree = "<group>";
+		};
+		C4C04EE0283316E6002EC367 /* BrandsCell */ = {
+			isa = PBXGroup;
+			children = (
+				C4BA73472839F8A300A5F3AB /* BrandsCollectionViewCell */,
+				C4C04EE928333299002EC367 /* BrandsTableViewCell.swift */,
+				C4C04EEA28333299002EC367 /* BrandsTableViewCell.xib */,
+			);
+			path = BrandsCell;
 			sourceTree = "<group>";
 		};
 		C4C08B7E2832077F00364704 /* Category */ = {
@@ -440,6 +605,8 @@
 				C4CDB9092830E31D0000519A /* Products */,
 				0BFBA8946642B0A589B7EE03 /* Pods */,
 				98BF397C63194C86A6BA490E /* Frameworks */,
+				F98153F9895FB7A132FCE878 /* Pods */,
+				FB0D35CE4FB9AAE732CECC64 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -456,6 +623,8 @@
 		C4CDB90A2830E31D0000519A /* Mercury-Store */ = {
 			isa = PBXGroup;
 			children = (
+				C4AEE954283A142F0025EDB5 /* Network */,
+				C4E6718D2839E995000572A7 /* Utils */,
 				C4C08BA628321A2C00364704 /* Profile */,
 				C4C08B952832168D00364704 /* ShoppingCart */,
 				C4C08B7E2832077F00364704 /* Category */,
@@ -550,6 +719,10 @@
 			isa = PBXGroup;
 			children = (
 				C4C08B7C2832077800364704 /* HomeViewModel.swift */,
+				C49A1D3C283349D30081F874 /* TableConfigurator.swift */,
+				C411D7B62838A1B1000E9ACF /* HelperRxDataSources.swift */,
+				C4E6718B2839E7BD000572A7 /* CategoriesViewModel.swift */,
+				C4BA734C2839FC5C00A5F3AB /* BrandsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -557,6 +730,7 @@
 		C4CDB94C2831F6AF0000519A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C4C04EDC2833164B002EC367 /* Cells */,
 				C4C08BB828321D2300364704 /* Favourite */,
 				C4C08BB728321D1900364704 /* Search */,
 				C4CDB9582832022E0000519A /* HomeViewController.swift */,
@@ -573,6 +747,57 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		C4CFBA42283B9B2E009C2840 /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C4CFBA43283B9B5A009C2840 /* HomeScreenAPIs.swift */,
+				C4CFBA66283BD605009C2840 /* HomeClient.swift */,
+			);
+			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		C4CFBA59283BB572009C2840 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				C4CFBA5A283BB582009C2840 /* BrandsCollectionResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		C4E6718D2839E995000572A7 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C4E6718E2839E99F000572A7 /* Extensions.swift */,
+				C4BA73452839ED1400A5F3AB /* ShadowView.swift */,
+				C4CFBA47283B9F6C009C2840 /* JSONDecoder+AlmofireResponse.swift */,
+				C4CFBA56283BAB09009C2840 /* SdWebImage+UIImage.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		F98153F9895FB7A132FCE878 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				43BFE9847A43A78AD5387540 /* Pods-Mercury-Store.debug.xcconfig */,
+				18891F1E7F7C989CC0ABBB4A /* Pods-Mercury-Store.release.xcconfig */,
+				95853295D36B3E1098E3E9CC /* Pods-Mercury-Store-Mercury-StoreUITests.debug.xcconfig */,
+				35B5C42BB6557CDF1AD2E6AE /* Pods-Mercury-Store-Mercury-StoreUITests.release.xcconfig */,
+				5B035032FD47AF57FEEEC3EA /* Pods-Mercury-StoreTests.debug.xcconfig */,
+				3D3553E78E829DC9F7F0B80E /* Pods-Mercury-StoreTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FB0D35CE4FB9AAE732CECC64 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1C880061057CCC78DAAE9EE6 /* Pods_Mercury_Store.framework */,
+				743FC4C89A6185F7C482B1C0 /* Pods_Mercury_Store_Mercury_StoreUITests.framework */,
+				65483F0BCEDE1CF28D6B5977 /* Pods_Mercury_StoreTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -581,9 +806,11 @@
 			buildConfigurationList = C4CDB9352830E3220000519A /* Build configuration list for PBXNativeTarget "Mercury-Store" */;
 			buildPhases = (
 				2B2BA422768719A0650728CC /* [CP] Check Pods Manifest.lock */,
+				15ED3C78EC87A21824FDD220 /* [CP] Check Pods Manifest.lock */,
 				C4CDB9042830E31D0000519A /* Sources */,
 				C4CDB9052830E31D0000519A /* Frameworks */,
 				C4CDB9062830E31D0000519A /* Resources */,
+				A0ACC20335C0EB2319572618 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -599,6 +826,7 @@
 			buildConfigurationList = C4CDB9382830E3220000519A /* Build configuration list for PBXNativeTarget "Mercury-StoreTests" */;
 			buildPhases = (
 				D5ED4B58E86F11FBA60D1E1C /* [CP] Check Pods Manifest.lock */,
+				7667E1CD1EE87D922C2B00B7 /* [CP] Check Pods Manifest.lock */,
 				C4CDB91D2830E3220000519A /* Sources */,
 				C4CDB91E2830E3220000519A /* Frameworks */,
 				C4CDB91F2830E3220000519A /* Resources */,
@@ -618,9 +846,11 @@
 			buildConfigurationList = C4CDB93B2830E3220000519A /* Build configuration list for PBXNativeTarget "Mercury-StoreUITests" */;
 			buildPhases = (
 				C2105DC2A04FB59477E7B771 /* [CP] Check Pods Manifest.lock */,
+				DE6229ED788AE16B1051E8D8 /* [CP] Check Pods Manifest.lock */,
 				C4CDB9272830E3220000519A /* Sources */,
 				C4CDB9282830E3220000519A /* Frameworks */,
 				C4CDB9292830E3220000519A /* Resources */,
+				F77C3C08FEE8903E836FB6FA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -681,13 +911,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4C08BB028321A6400364704 /* ProfileViewController.xib in Resources */,
+				C4C04EEC28333299002EC367 /* BrandsTableViewCell.xib in Resources */,
 				C4C08B9228320CCB00364704 /* CategoryViewController.xib in Resources */,
+				C4C04EE82833328A002EC367 /* BannerTableViewCell.xib in Resources */,
+				C4C04EE428333278002EC367 /* LogoTableViewCell.xib in Resources */,
+				C4C04EF0283332AD002EC367 /* CategoriesTableViewCell.xib in Resources */,
 				C4CDB91B2830E3210000519A /* LaunchScreen.storyboard in Resources */,
 				C4CDB9182830E3210000519A /* Assets.xcassets in Resources */,
+				C49A1D3B28333D800081F874 /* CategoriesCollectionViewCell.xib in Resources */,
 				C4CDB95B2832022E0000519A /* HomeViewController.xib in Resources */,
 				C4C08BA1283216EC00364704 /* ShoppingCartViewController.xib in Resources */,
 				4D9E24DE28377F4900619DF3 /* CategoryItem.xib in Resources */,
 				4D209BE3283C3CAF006A15C8 /* ProductCell.xib in Resources */,
+				C4BA734B2839F8BF00A5F3AB /* BrandsCollectionViewCell.xib in Resources */,
 				C4C08BBE28321D5A00364704 /* SearchViewController.xib in Resources */,
 				4D209BDB283C13A6006A15C8 /* ProductResultViewController.xib in Resources */,
 			);
@@ -711,6 +947,7 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 		2B2BA422768719A0650728CC /* [CP] Check Pods Manifest.lock */ = {
+		15ED3C78EC87A21824FDD220 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -733,6 +970,7 @@
 			showEnvVarsInLog = 0;
 		};
 		C2105DC2A04FB59477E7B771 /* [CP] Check Pods Manifest.lock */ = {
+		7667E1CD1EE87D922C2B00B7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -748,6 +986,7 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Mercury-Store-Mercury-StoreUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Mercury-StoreTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -755,6 +994,24 @@
 			showEnvVarsInLog = 0;
 		};
 		D5ED4B58E86F11FBA60D1E1C /* [CP] Check Pods Manifest.lock */ = {
+		A0ACC20335C0EB2319572618 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mercury-Store/Pods-Mercury-Store-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mercury-Store/Pods-Mercury-Store-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Mercury-Store/Pods-Mercury-Store-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE6229ED788AE16B1051E8D8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -770,10 +1027,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Mercury-StoreTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Mercury-Store-Mercury-StoreUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F77C3C08FEE8903E836FB6FA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mercury-Store-Mercury-StoreUITests/Pods-Mercury-Store-Mercury-StoreUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mercury-Store-Mercury-StoreUITests/Pods-Mercury-Store-Mercury-StoreUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Mercury-Store-Mercury-StoreUITests/Pods-Mercury-Store-Mercury-StoreUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -783,29 +1058,51 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4C04EE72833328A002EC367 /* BannerTableViewCell.swift in Sources */,
 				C4C08BBD28321D5A00364704 /* SearchViewController.swift in Sources */,
+				C4CFBA41283B993E009C2840 /* Servers.swift in Sources */,
 				C4CDB9482831F3340000519A /* MainCoordinator.swift in Sources */,
 				C4C08B94283212D900364704 /* AppAppearance.swift in Sources */,
 				C4C08B9D283216D000364704 /* ShoppingCartViewModel.swift in Sources */,
 				4D209BE2283C3CAF006A15C8 /* ProductCell.swift in Sources */,
+				C411D7B92838ABEA000E9ACF /* LogoViewModel.swift in Sources */,
+				C4BA734A2839F8BF00A5F3AB /* BrandsCollectionViewCell.swift in Sources */,
+				C4BA73462839ED1400A5F3AB /* ShadowView.swift in Sources */,
 				C4C08BB228321A6F00364704 /* ProfileViewModel.swift in Sources */,
 				C4CDB9512831F6FA0000519A /* HomeCoordinator.swift in Sources */,
+				C4C04EEB28333299002EC367 /* BrandsTableViewCell.swift in Sources */,
+				C4AEE956283A14460025EDB5 /* URLRequestBuilder.swift in Sources */,
+				C4C04EE328333278002EC367 /* LogoTableViewCell.swift in Sources */,
 				C4CDB9162830E31D0000519A /* Mercury_Store.xcdatamodeld in Sources */,
 				C4C08BAC28321A5700364704 /* ProfileModel.swift in Sources */,
 				C4CDB9442831F2A00000519A /* Coordinator.swift in Sources */,
 				C4C08BB628321A8400364704 /* ProfileCoordinator.swift in Sources */,
 				C4CDB9552831FF130000519A /* DeepLinkBaseCoordinator.swift in Sources */,
 				C4CDB94F2831F6D20000519A /* HomeBaseCoordinator.swift in Sources */,
+				C4BA734D2839FC5C00A5F3AB /* BrandsViewModel.swift in Sources */,
+				C4CFBA48283B9F6C009C2840 /* JSONDecoder+AlmofireResponse.swift in Sources */,
+				C49A1D3D283349D30081F874 /* TableConfigurator.swift in Sources */,
 				C4C08B8E283207F200364704 /* CategoryCoordinator.swift in Sources */,
 				C4C08BAF28321A6400364704 /* ProfileViewController.swift in Sources */,
 				C4CDB9572831FF300000519A /* DeepLinkCoordinator.swift in Sources */,
+				C4CFBA44283B9B5A009C2840 /* HomeScreenAPIs.swift in Sources */,
+				C49A1D3A28333D800081F874 /* CategoriesCollectionViewCell.swift in Sources */,
+				C4CFBA46283B9D32009C2840 /* Service.swift in Sources */,
 				C4CDB90C2830E31D0000519A /* AppDelegate.swift in Sources */,
+				C4E6718C2839E7BD000572A7 /* CategoriesViewModel.swift in Sources */,
+				C4C04EEF283332AD002EC367 /* CategoriesTableViewCell.swift in Sources */,
+				C4E6718F2839E99F000572A7 /* Extensions.swift in Sources */,
+				C4AEE959283A1FA30025EDB5 /* Constants.swift in Sources */,
 				C4C08B7D2832077800364704 /* HomeViewModel.swift in Sources */,
 				4D9E24D7283778FD00619DF3 /* CategoriesCollectionsExtension.swift in Sources */,
+				C4CFBA63283BCF32009C2840 /* APIError.swift in Sources */,
+				C4CFBA57283BAB09009C2840 /* SdWebImage+UIImage.swift in Sources */,
 				C4C08B7B2832076B00364704 /* HomeModel.swift in Sources */,
 				C4C08B8C283207E200364704 /* CategoryBaseCoordinator.swift in Sources */,
+				C4CFBA3F283B98E4009C2840 /* ApplicationEnviroment.swift in Sources */,
 				C4C08B9B283216C100364704 /* ShoppingCartModel.swift in Sources */,
 				C4CDB9462831F2F10000519A /* MainBaseCoordinator.swift in Sources */,
+				C4CFBA5B283BB583009C2840 /* BrandsCollectionResponse.swift in Sources */,
 				C4C08BA32832172200364704 /* ShoppingCartBaseCoordinator.swift in Sources */,
 				4D209BDA283C13A6006A15C8 /* ProductResultViewController.swift in Sources */,
 				4DA4706C283CF75500596595 /* EmptyMessage.swift in Sources */,
@@ -816,6 +1113,8 @@
 				C4CDB90E2830E31D0000519A /* SceneDelegate.swift in Sources */,
 				C4C08B9128320CCB00364704 /* CategoryViewController.swift in Sources */,
 				C4C08BA0283216EC00364704 /* ShoppingCartViewController.swift in Sources */,
+				C4CFBA67283BD605009C2840 /* HomeClient.swift in Sources */,
+				C411D7B72838A1B1000E9ACF /* HelperRxDataSources.swift in Sources */,
 				C4C08BA52832172D00364704 /* ShoppingCartCoordinator.swift in Sources */,
 				C4CDB95A2832022E0000519A /* HomeViewController.swift in Sources */,
 				4D209BDE283C3787006A15C8 /* ProductGridExtension.swift in Sources */,
@@ -985,6 +1284,7 @@
 		C4CDB9362830E3220000519A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F3A520A9E6C557A9B051D361 /* Pods-Mercury-Store.debug.xcconfig */;
+			baseConfigurationReference = 43BFE9847A43A78AD5387540 /* Pods-Mercury-Store.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1013,6 +1313,7 @@
 		C4CDB9372830E3220000519A /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8DE7036323BBB45729C13061 /* Pods-Mercury-Store.release.xcconfig */;
+			baseConfigurationReference = 18891F1E7F7C989CC0ABBB4A /* Pods-Mercury-Store.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1041,6 +1342,7 @@
 		C4CDB9392830E3220000519A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 537E4A2BCA05C1F673E7E5BF /* Pods-Mercury-StoreTests.debug.xcconfig */;
+			baseConfigurationReference = 5B035032FD47AF57FEEEC3EA /* Pods-Mercury-StoreTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1062,6 +1364,7 @@
 		C4CDB93A2830E3220000519A /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0DDBDDF894CEFB5FD366F8E9 /* Pods-Mercury-StoreTests.release.xcconfig */;
+			baseConfigurationReference = 3D3553E78E829DC9F7F0B80E /* Pods-Mercury-StoreTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1083,6 +1386,7 @@
 		C4CDB93C2830E3220000519A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 490F32E1757B0D981653B97B /* Pods-Mercury-Store-Mercury-StoreUITests.debug.xcconfig */;
+			baseConfigurationReference = 95853295D36B3E1098E3E9CC /* Pods-Mercury-Store-Mercury-StoreUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1102,6 +1406,7 @@
 		C4CDB93D2830E3220000519A /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2781832BB8302BA499C60989 /* Pods-Mercury-Store-Mercury-StoreUITests.release.xcconfig */;
+			baseConfigurationReference = 35B5C42BB6557CDF1AD2E6AE /* Pods-Mercury-Store-Mercury-StoreUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

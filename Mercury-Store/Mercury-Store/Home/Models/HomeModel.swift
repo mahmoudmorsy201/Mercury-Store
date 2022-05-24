@@ -6,3 +6,25 @@
 //
 
 import Foundation
+
+struct LogoModel {
+    let imageLogo: String
+}
+
+struct CategoryModel {
+    let items: [CategoryItem]
+}
+
+struct CategoryItem {
+    let name: String
+    let imageName: String
+}
+
+struct BrandModel {
+    let brands: [Brand]
+}
+
+struct Brand {
+    let name: String
+    let imageName: String
+}

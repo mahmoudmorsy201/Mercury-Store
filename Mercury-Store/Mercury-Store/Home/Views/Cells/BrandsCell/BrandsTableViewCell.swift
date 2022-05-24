@@ -1,0 +1,64 @@
+//
+//  BrandsTableViewCell.swift
+//  Mercury-Store
+//
+//  Created by mac hub on 17/05/2022.
+//
+
+import UIKit
+import RxSwift
+
+class BrandsTableViewCell: UITableViewCell {
+    
+    
+    @IBOutlet weak private var containerViewForBrandsCollectionView: UIView!
+    
+    @IBOutlet weak private var brandsCollectionView: UICollectionView! {
+        didSet {
+            brandsCollectionView.register(UINib(nibName: BrandsCollectionViewCell.reuseIdentifier(), bundle: nil), forCellWithReuseIdentifier: BrandsCollectionViewCell.reuseIdentifier())
+        }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupCell()
+    }
+    
+    private func setupCell() {
+        self.contentView.applyShaow()
+        self.containerViewForBrandsCollectionView.makeCorners(corners: [.topRight , .topLeft], radius: 30)
+        self.containerViewForBrandsCollectionView.layer.borderWidth = 2.0
+        self.containerViewForBrandsCollectionView.layer.borderColor = UIColor.gray.cgColor
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
+    private let disposeBag = DisposeBag()
+    
+    var viewModel: BrandsViewModel! {
+        didSet {
+            self.configure()
+        }
+    }
+    
+}
+
+extension BrandsTableViewCell {
+    private func bindCollectionView() {
+        brandsCollectionView.dataSource = nil
+        brandsCollectionView.delegate = nil
+        
+        viewModel.brands.drive(brandsCollectionView.rx.items(cellIdentifier: BrandsCollectionViewCell.reuseIdentifier(), cellType: BrandsCollectionViewCell.self)) {index, item, cell in
+            cell.brandItem = item
+            
+        }.disposed(by: disposeBag)
+    }
+}
+
+extension BrandsTableViewCell {
+    private func configure() {
+        self.bindCollectionView()
+    }
+}
