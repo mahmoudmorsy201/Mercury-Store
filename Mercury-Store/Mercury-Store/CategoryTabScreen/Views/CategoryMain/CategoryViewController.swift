@@ -9,7 +9,7 @@ import UIKit
 
 class CategoryViewController: UIViewController,CategoryBaseCoordinated {
     var coordinator: CategoryBaseCoordinator?
-    
+    //just to push
     let cateBackgroundIMG : UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named:"categories_background")
