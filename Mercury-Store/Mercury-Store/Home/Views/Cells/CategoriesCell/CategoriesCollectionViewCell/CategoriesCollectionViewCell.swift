@@ -13,7 +13,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak private var categoryName: UILabel!
     @IBOutlet weak private var containerViewForCategoryImageView: UIView!
     
-    var category: CategoryItem? {
+    var category: CategoryDataItem? {
         didSet {
             guard let category = category else {
                 return

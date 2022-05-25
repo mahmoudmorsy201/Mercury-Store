@@ -9,18 +9,18 @@ import RxSwift
 import RxCocoa
 
 protocol CategoriesViewModelType {
-    var categories: Driver<[CategoryItem]> { get}
+    var categories: Driver<[CategoryDataItem]> { get}
 }
 
 final class CategoriesViewModel: CategoriesViewModelType {
-    private var categoriesSubject: PublishSubject = PublishSubject<[CategoryItem]>()
-    var categories: Driver<[CategoryItem]>
+    private var categoriesSubject: PublishSubject = PublishSubject<[CategoryDataItem]>()
+    var categories: Driver<[CategoryDataItem]>
     
-    private var categoriesArray: [CategoryItem] = [
-        CategoryItem(name: "Men", imageName: "Men", colorHex: "#642CA9"),
-        CategoryItem(name: "Women", imageName: "Women", colorHex: "#FF36AB"),
-        CategoryItem(name: "Kids", imageName: "Kids", colorHex: "#FF74D4"),
-        CategoryItem(name: "Sale", imageName: "Sale", colorHex: "#FEB&DE")
+    private var categoriesArray: [CategoryDataItem] = [
+        CategoryDataItem(name: "Men", imageName: "Men", colorHex: "#642CA9"),
+        CategoryDataItem(name: "Women", imageName: "Women", colorHex: "#FF36AB"),
+        CategoryDataItem(name: "Kids", imageName: "Kids", colorHex: "#FF74D4"),
+        CategoryDataItem(name: "Sale", imageName: "Sale", colorHex: "#FEB&DE")
     ]
     
     init() {

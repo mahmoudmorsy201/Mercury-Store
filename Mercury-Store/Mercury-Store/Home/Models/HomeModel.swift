@@ -12,7 +12,7 @@ struct LogoModel {
 }
 
 
-struct CategoryItem {
+struct CategoryDataItem {
     let name: String
     let imageName: String
     let colorHex: String
