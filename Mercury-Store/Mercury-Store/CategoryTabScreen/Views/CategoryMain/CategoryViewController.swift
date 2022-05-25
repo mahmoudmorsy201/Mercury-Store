@@ -8,6 +8,7 @@
 import UIKit
 
 class CategoryViewController: UIViewController,CategoryBaseCoordinated {
+    
     var coordinator: CategoryBaseCoordinator?
     //just to push
     let cateBackgroundIMG : UIImageView = {
@@ -17,7 +18,9 @@ class CategoryViewController: UIViewController,CategoryBaseCoordinated {
         iv.alpha = 0.5
         return iv
     }()
-    @IBOutlet weak var categoriesCollectionView: UICollectionView!
+    
+    @IBOutlet var categoriesCollectionView: UICollectionView!
+    
     init(coordinator: CategoryBaseCoordinator) {
         super.init(nibName: nil, bundle: nil)
         self.coordinator = coordinator

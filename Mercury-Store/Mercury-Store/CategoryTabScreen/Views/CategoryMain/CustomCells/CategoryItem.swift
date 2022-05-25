@@ -6,7 +6,6 @@
 //
 
 import UIKit
-
 class CategoryItem: UICollectionViewCell {
     static let identifier = "CategoryItem"
     override func awakeFromNib() {
