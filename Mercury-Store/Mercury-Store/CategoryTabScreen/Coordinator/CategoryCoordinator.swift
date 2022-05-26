@@ -21,9 +21,9 @@ class CategoryCoordinator: CategoryBaseCoordinator {
     
     func moveTo(flow: AppFlow, userData: [String : Any]?) {
         switch flow {
-        case .category(_):
+        case .category(let screen):
             navigationRootViewController?.popToRootViewController(animated: true)
-            handleCategoryFlow(for: .productsScreen)
+            handleCategoryFlow(for: screen)
             break
         default:
             parentCoordinator?.moveTo(flow: flow, userData: userData)
@@ -39,6 +39,9 @@ class CategoryCoordinator: CategoryBaseCoordinator {
              resetToRoot(animated: false)
          case .productsScreen:
              showCategoryProducts()
+
+         case .filterProductScreen:
+             showFilterProducts()
          }
      }
      
@@ -47,6 +50,11 @@ class CategoryCoordinator: CategoryBaseCoordinator {
          navigationRootViewController?.pushViewController(ProductResultViewController(coordinator: self), animated: false)
 
      }
+    private func showFilterProducts() {
+        resetToRoot(animated: false)
+        navigationRootViewController?.pushViewController(FilterViewController(_coordinator: self), animated: false)
+
+    }
     /*
      private func handleGoToThirdScreen() {
          resetToRoot(animated: false)

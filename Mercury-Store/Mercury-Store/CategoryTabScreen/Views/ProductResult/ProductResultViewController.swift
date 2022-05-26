@@ -15,6 +15,9 @@ class ProductResultViewController: UIViewController , CategoryBaseCoordinated{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCollectionView()
+    }
+    func setupCollectionView(){
         let nib = UINib(nibName: "ProductCell", bundle: nil)
         productCollectionView.register(nib, forCellWithReuseIdentifier: ProductCell.identifier)
         productCollectionView.dataSource = self
@@ -26,6 +29,9 @@ class ProductResultViewController: UIViewController , CategoryBaseCoordinated{
         title = "Categoryx Products"
     }
     
+    @IBAction func filterAction(_ sender: Any) {
+        coordinator?.moveTo(flow: .category(.filterProductScreen), userData: nil)
+    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
