@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="orderDetailsCell" id="KGk-i7-Jjw" customClass="OrderDetailsCell" customModule="Mercury_Store" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="355" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="355" height="150"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VrH-w4-8tG" userLabel="order Name">
+                        <rect key="frame" x="8" y="30" width="339" height="42"/>
+                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ES-Xq-Sb2" userLabel="order price">
+                        <rect key="frame" x="8" y="91" width="339" height="21"/>
+                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="8ES-Xq-Sb2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="0Vr-5o-ScP"/>
+                    <constraint firstItem="8ES-Xq-Sb2" firstAttribute="top" secondItem="VrH-w4-8tG" secondAttribute="bottom" constant="19" id="JSf-fq-b0Q"/>
+                    <constraint firstItem="VrH-w4-8tG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="VzC-mF-Ooe"/>
+                    <constraint firstAttribute="trailing" secondItem="VrH-w4-8tG" secondAttribute="trailing" constant="8" id="Zcg-XV-Ras"/>
+                    <constraint firstAttribute="trailing" secondItem="8ES-Xq-Sb2" secondAttribute="trailing" constant="8" id="bM3-q6-GCv"/>
+                    <constraint firstAttribute="bottom" secondItem="8ES-Xq-Sb2" secondAttribute="bottom" constant="38" id="h8q-bP-xPi"/>
+                    <constraint firstItem="VrH-w4-8tG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="qKO-Mf-Pjy"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="orderName" destination="VrH-w4-8tG" id="VGC-Nx-Tfd"/>
+                <outlet property="orderPrice" destination="8ES-Xq-Sb2" id="rBb-R5-rjh"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="98"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -32,7 +32,16 @@ enum ShoppingCartScreen {
 }
 
 enum ProfileScreen {
-    
+    case intialScreen
+    case guestScreen
+    case loginScreen
+    case registerScreen
+    case myOrdersScreen
+    case myWishlistScreen
+    case myAddressesScreen
+    case aboutScreen
+    case shoppingCartScreen
+    case logoutScreen
 }
 
 class MainCoordinator: MainBaseCoordinator {
@@ -81,7 +90,7 @@ class MainCoordinator: MainBaseCoordinator {
         case .shoppingCart:
             goToShoppingCartFlow(flow)
         case .profile:
-            break
+            goToProfileFlow(flow)
         }
     }
     
@@ -100,6 +109,11 @@ class MainCoordinator: MainBaseCoordinator {
     private func goToShoppingCartFlow(_ flow: AppFlow) {
         shoppingCartCoordinator.moveTo(flow: flow, userData: nil)
         (rootViewController as? UITabBarController)?.selectedIndex = 2
+    }
+    
+    private func goToProfileFlow(_ flow: AppFlow) {
+        profileCoordinator.moveTo(flow: flow, userData: nil)
+        (rootViewController as? UITabBarController)?.selectedIndex = 3
     }
      
     
