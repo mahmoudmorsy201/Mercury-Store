@@ -16,37 +16,32 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Order num1 created at 23/5/2022" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQw-Fa-sUh">
-                        <rect key="frame" x="50" y="25" width="243" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order num1 created at 23/5/2022" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQw-Fa-sUh">
+                        <rect key="frame" x="83" y="24" width="248" height="20.5"/>
                         <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLQ-2C-RzA" userLabel="price">
-                        <rect key="frame" x="50" y="88" width="315" height="27"/>
+                        <rect key="frame" x="181.5" y="86.5" width="51.5" height="27"/>
                         <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="22"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWh-X4-D2Z" userLabel="paid">
-                        <rect key="frame" x="82" y="110" width="250" height="32"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWh-X4-D2Z" userLabel="paid">
+                        <rect key="frame" x="182.5" y="125.5" width="49.5" height="25"/>
                         <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="21"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="oQw-Fa-sUh" secondAttribute="bottom" constant="82" id="6h0-pa-HXC"/>
-                    <constraint firstItem="oQw-Fa-sUh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="25" id="7qC-BO-SE8"/>
-                    <constraint firstAttribute="bottom" secondItem="bLQ-2C-RzA" secondAttribute="bottom" constant="45" id="BZc-OH-Pzd"/>
-                    <constraint firstAttribute="trailing" secondItem="oQw-Fa-sUh" secondAttribute="trailing" constant="49" id="DBo-HP-ANA"/>
-                    <constraint firstAttribute="trailing" secondItem="bLQ-2C-RzA" secondAttribute="trailing" constant="49" id="KBV-hJ-JpA"/>
-                    <constraint firstAttribute="bottom" secondItem="RWh-X4-D2Z" secondAttribute="bottom" constant="7" id="RJi-YQ-T9m"/>
-                    <constraint firstItem="RWh-X4-D2Z" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="SEB-Sx-Kc9"/>
-                    <constraint firstItem="bLQ-2C-RzA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="50" id="Sqp-Zz-tIu"/>
-                    <constraint firstItem="RWh-X4-D2Z" firstAttribute="firstBaseline" secondItem="bLQ-2C-RzA" secondAttribute="baseline" constant="36.5" id="cv0-V7-kcJ"/>
-                    <constraint firstItem="oQw-Fa-sUh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="50" id="huh-tJ-CDO"/>
-                    <constraint firstItem="RWh-X4-D2Z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="62" id="yLz-6e-F76"/>
+                    <constraint firstItem="RWh-X4-D2Z" firstAttribute="top" secondItem="bLQ-2C-RzA" secondAttribute="bottom" constant="12" id="Dfn-An-dlG"/>
+                    <constraint firstItem="oQw-Fa-sUh" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="YK9-Iy-9lP"/>
+                    <constraint firstItem="bLQ-2C-RzA" firstAttribute="centerX" secondItem="oQw-Fa-sUh" secondAttribute="centerX" id="a2r-s6-Zuy"/>
+                    <constraint firstItem="RWh-X4-D2Z" firstAttribute="centerX" secondItem="bLQ-2C-RzA" secondAttribute="centerX" id="aQc-Y3-eWs"/>
+                    <constraint firstItem="oQw-Fa-sUh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="qEs-ga-Q8S"/>
+                    <constraint firstItem="bLQ-2C-RzA" firstAttribute="top" secondItem="oQw-Fa-sUh" secondAttribute="bottom" constant="42" id="xP8-Wg-EsY"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -55,7 +50,7 @@
                 <outlet property="paid" destination="RWh-X4-D2Z" id="YHp-KJ-NdO"/>
                 <outlet property="price" destination="bLQ-2C-RzA" id="iZt-2I-3Li"/>
             </connections>
-            <point key="canvasLocation" x="131.8840579710145" y="97.767857142857139"/>
+            <point key="canvasLocation" x="367" y="82"/>
         </tableViewCell>
     </objects>
 </document>

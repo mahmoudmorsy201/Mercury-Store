@@ -19,13 +19,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="about" translatesAutoresizingMaskIntoConstraints="NO" id="cIp-aL-GGh">
-                    <rect key="frame" x="87" y="44" width="240" height="181"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="181" id="TRh-DG-WQZ"/>
-                    </constraints>
+                    <rect key="frame" x="103.5" y="56" width="207" height="233"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvK-SD-cag">
-                    <rect key="frame" x="20" y="250" width="374" height="334"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvK-SD-cag">
+                    <rect key="frame" x="20" y="331" width="374" height="143"/>
                     <string key="text">Mercury Application that presents products from different vendors and enables the authenticated users to add/remove products to/from their shopping carts and complete the whole shopping cycle online through the app</string>
                     <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="20"/>
                     <nil key="textColor"/>
@@ -35,13 +32,12 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="cIp-aL-GGh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="87" id="BJ7-j5-fkI"/>
-                <constraint firstItem="qvK-SD-cag" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="KZo-qu-G5j"/>
-                <constraint firstItem="qvK-SD-cag" firstAttribute="top" secondItem="cIp-aL-GGh" secondAttribute="bottom" constant="25" id="Sse-ex-U23"/>
-                <constraint firstItem="cIp-aL-GGh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Vz3-cd-zAd"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qvK-SD-cag" secondAttribute="trailing" constant="20" id="c3x-bx-67U"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cIp-aL-GGh" secondAttribute="trailing" constant="87" id="tOD-3q-mc3"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="qvK-SD-cag" secondAttribute="bottom" constant="278" id="vYM-P6-MNZ"/>
+                <constraint firstItem="cIp-aL-GGh" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.5" id="2Ju-UA-D7b"/>
+                <constraint firstItem="cIp-aL-GGh" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="32q-ib-VDL"/>
+                <constraint firstItem="qvK-SD-cag" firstAttribute="top" secondItem="cIp-aL-GGh" secondAttribute="bottom" constant="42" id="IoT-jR-B64"/>
+                <constraint firstItem="qvK-SD-cag" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="d4M-EC-qyf"/>
+                <constraint firstAttribute="trailing" secondItem="qvK-SD-cag" secondAttribute="trailing" constant="20" id="l4c-Gw-rtM"/>
+                <constraint firstItem="cIp-aL-GGh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="12" id="rpJ-up-SEE"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="97.767857142857139"/>
         </view>
