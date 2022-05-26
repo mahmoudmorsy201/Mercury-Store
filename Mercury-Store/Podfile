@@ -5,7 +5,7 @@ target 'Mercury-Store' do
 
   # Pods for Mercury-Store
   #Code Style
-  pod 'SwiftLint'
+  pod 'SwiftLint', '0.47.1'
   
   #Reactive libirary
   pod 'RxSwift', '6.5.0'
@@ -13,10 +13,10 @@ target 'Mercury-Store' do
   pod 'RxDataSources', '~> 5.0'
   
   #Netowrk
-  pod 'Alamofire'
+  pod 'Alamofire', '5.6.1'
   
   #Image download
-  pod 'SDWebImage'
+  pod 'SDWebImage', '5.12.5'
   
 
   target 'Mercury-StoreTests' do
