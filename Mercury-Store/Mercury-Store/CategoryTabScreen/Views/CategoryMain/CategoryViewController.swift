@@ -33,12 +33,32 @@ class CategoryViewController: UIViewController,CategoryBaseCoordinated {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCollection()
+    }
+    private func setupCollection(){
         let nib = UINib(nibName: "CategoryItem", bundle: nil)
         categoriesCollectionView.register(nib, forCellWithReuseIdentifier: CategoryItem.identifier)
         categoriesCollectionView.delegate = self
         categoriesCollectionView.dataSource = self
         categoriesCollectionView.backgroundView = cateBackgroundIMG
     }
-    
 }
-
+extension CategoryViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryItem.identifier , for: indexPath) as! CategoryItem
+        return cell
+        }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
+        let padding: CGFloat =  20
+        let collectionViewSize = collectionView.frame.size.width - padding
+        return CGSize(width: collectionViewSize/2, height: 200)
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        coordinator?.moveTo(flow: .category(.productsScreen), userData: nil)
+    }
+}

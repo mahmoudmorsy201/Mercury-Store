@@ -19,54 +19,46 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kKN-H1-iAM">
-                    <rect key="frame" x="4" y="145" width="406" height="717"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="WrM-ut-rj8">
-                        <size key="itemSize" width="206" height="206"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kKN-H1-iAM">
+                    <rect key="frame" x="4" y="235" width="406" height="627"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="1" id="WrM-ut-rj8">
+                        <size key="itemSize" width="150" height="180"/>
+                        <size key="headerReferenceSize" width="4" height="12"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="2" minY="10" maxX="2" maxY="10"/>
+                        <inset key="sectionInset" minX="4" minY="10" maxX="4" maxY="10"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s1P-HL-z94">
-                    <rect key="frame" x="0.0" y="44" width="414" height="89.5"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2VJ-vp-2m4">
-                            <rect key="frame" x="0.0" y="0.0" width="138" height="89.5"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="women"/>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zAJ-Js-8S6">
-                            <rect key="frame" x="138" y="0.0" width="138" height="89.5"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="men"/>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZd-rS-jgk">
-                            <rect key="frame" x="276" y="0.0" width="138" height="89.5"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="kids"/>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" red="0.98984760049999998" green="0.98984760049999998" blue="0.98984760049999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </stackView>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="iE5-4k-n0e">
+                    <rect key="frame" x="0.0" y="44" width="414" height="90.5"/>
+                    <color key="backgroundColor" red="0.83067909971200715" green="0.9530200553050463" blue="0.9737698333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <segments>
+                        <segment title="" image="Women"/>
+                        <segment title="" image="Men"/>
+                        <segment title="" image="Kids"/>
+                        <segment title="" image="Sale"/>
+                    </segments>
+                </segmentedControl>
             </subviews>
             <viewLayoutGuide key="safeArea" id="jwd-cu-XDQ"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="s1P-HL-z94" firstAttribute="top" secondItem="jwd-cu-XDQ" secondAttribute="top" id="0r8-So-mSZ"/>
-                <constraint firstItem="s1P-HL-z94" firstAttribute="height" secondItem="5aK-I4-mHF" secondAttribute="height" multiplier="1:10" id="2LE-jC-i8w"/>
-                <constraint firstItem="kKN-H1-iAM" firstAttribute="height" secondItem="5aK-I4-mHF" secondAttribute="height" multiplier="8:10" id="Oj4-f4-QVv"/>
+                <constraint firstItem="iE5-4k-n0e" firstAttribute="leading" secondItem="jwd-cu-XDQ" secondAttribute="leading" id="0on-0U-TDr"/>
+                <constraint firstItem="iE5-4k-n0e" firstAttribute="height" secondItem="5aK-I4-mHF" secondAttribute="height" multiplier="1:10" id="6s6-r2-bcG"/>
+                <constraint firstItem="iE5-4k-n0e" firstAttribute="top" secondItem="jwd-cu-XDQ" secondAttribute="top" id="ED9-j4-wZ8"/>
+                <constraint firstItem="kKN-H1-iAM" firstAttribute="height" secondItem="5aK-I4-mHF" secondAttribute="height" multiplier="7:10" id="Oj4-f4-QVv"/>
                 <constraint firstItem="jwd-cu-XDQ" firstAttribute="trailing" secondItem="kKN-H1-iAM" secondAttribute="trailing" constant="4" id="P0Y-Iw-PCz"/>
-                <constraint firstItem="s1P-HL-z94" firstAttribute="leading" secondItem="jwd-cu-XDQ" secondAttribute="leading" id="SDu-gd-vtb"/>
+                <constraint firstItem="jwd-cu-XDQ" firstAttribute="trailing" secondItem="iE5-4k-n0e" secondAttribute="trailing" id="PsO-Os-n4I"/>
                 <constraint firstItem="kKN-H1-iAM" firstAttribute="leading" secondItem="jwd-cu-XDQ" secondAttribute="leading" constant="4" id="eX4-g6-qhg"/>
-                <constraint firstItem="jwd-cu-XDQ" firstAttribute="trailing" secondItem="s1P-HL-z94" secondAttribute="trailing" id="fHI-fa-hSq"/>
                 <constraint firstItem="jwd-cu-XDQ" firstAttribute="bottom" secondItem="kKN-H1-iAM" secondAttribute="bottom" id="j6i-oD-laz"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="98.4375"/>
         </view>
     </objects>
     <resources>
+        <image name="Kids" width="532" height="300"/>
+        <image name="Men" width="133.66667175292969" height="75.333335876464844"/>
+        <image name="Sale" width="578" height="378"/>
+        <image name="Women" width="369" height="329"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -13,6 +13,9 @@ class CategoryItem: UICollectionViewCell {
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupCell()
+    }
+    func setupCell(){
         self.layer.cornerRadius = 15.0
         self.layer.borderWidth = 2.0
         self.layer.shadowColor = UIColor.black.cgColor
@@ -21,7 +24,6 @@ class CategoryItem: UICollectionViewCell {
         self.layer.shadowOpacity = 1
         self.layer.masksToBounds = false
     }
-    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
