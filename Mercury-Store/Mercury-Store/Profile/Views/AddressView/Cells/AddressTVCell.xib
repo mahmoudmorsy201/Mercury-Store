@@ -18,13 +18,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKG-Dv-OiT">
-                        <rect key="frame" x="16" y="14" width="42.5" height="21.5"/>
+                        <rect key="frame" x="16" y="31" width="259" height="21.5"/>
                         <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfi-gt-Tpk">
-                        <rect key="frame" x="300" y="9" width="43" height="31"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfi-gt-Tpk">
+                        <rect key="frame" x="291" y="26" width="45" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="45" id="cRF-ih-FV8"/>
+                        </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain">
                             <imageReference key="image" image="pencil" catalog="system" symbolScale="large"/>
@@ -32,11 +35,11 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="bfi-gt-Tpk" firstAttribute="leading" relation="lessThanOrEqual" secondItem="HKG-Dv-OiT" secondAttribute="trailing" id="8v9-PU-GMw"/>
-                    <constraint firstItem="bfi-gt-Tpk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="9Hd-Ka-yHr"/>
-                    <constraint firstItem="HKG-Dv-OiT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="W93-4B-DHo"/>
-                    <constraint firstAttribute="trailing" secondItem="bfi-gt-Tpk" secondAttribute="trailing" constant="16" id="lbO-7N-rWU"/>
-                    <constraint firstItem="HKG-Dv-OiT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="xdL-wz-9Qu"/>
+                    <constraint firstAttribute="trailing" secondItem="bfi-gt-Tpk" secondAttribute="trailing" constant="16" id="0P3-VT-J1A"/>
+                    <constraint firstItem="bfi-gt-Tpk" firstAttribute="centerY" secondItem="HKG-Dv-OiT" secondAttribute="centerY" id="F2w-sJ-xad"/>
+                    <constraint firstItem="HKG-Dv-OiT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="T7p-oT-Ozj"/>
+                    <constraint firstItem="bfi-gt-Tpk" firstAttribute="leading" secondItem="HKG-Dv-OiT" secondAttribute="trailing" constant="16" id="k5F-bz-D3a"/>
+                    <constraint firstItem="HKG-Dv-OiT" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kdy-k5-VaF"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

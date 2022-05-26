@@ -150,8 +150,8 @@
                         <constraint firstAttribute="trailing" secondItem="RNi-9K-WBA" secondAttribute="trailing" id="vdr-hg-DL7"/>
                     </constraints>
                 </stackView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="address" translatesAutoresizingMaskIntoConstraints="NO" id="MND-TO-TMA">
-                    <rect key="frame" x="94" y="44" width="222" height="92"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="address" translatesAutoresizingMaskIntoConstraints="NO" id="MND-TO-TMA">
+                    <rect key="frame" x="16" y="44" width="382" height="92"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PDl-cy-Gfx">
                     <rect key="frame" x="16" y="756.5" width="382" height="35.5"/>
