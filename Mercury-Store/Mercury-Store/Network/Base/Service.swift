@@ -18,7 +18,7 @@ extension DataResponse {
         guard let _ = self.error else {
             return Errors.unKnown
         }
-        return AFError.responseSerializationFailed(reason: AFError.ResponseSerializationFailureReason.inputDataNil)
+        return AFError.responseSerializationFailed(reason: AFError.ResponseSerializationFailureReason.inputDataNilOrZeroLength)
     }
     
 }
@@ -26,7 +26,7 @@ extension DataResponse {
 class NetworkService<T: Codable> {
     class func execute(_ urlRequest: URLRequestConvertible) -> Observable<T> {
         return Observable<T>.create { observer in
-            let request = Alamofire.request(urlRequest).responseData { (response) in
+            let request = AF.request(urlRequest).responseData { (response) in
                 
                 switch response.result {
                 case .success(let data):
