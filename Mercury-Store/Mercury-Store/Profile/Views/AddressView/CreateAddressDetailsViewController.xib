@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateAddressDetailsViewController" customModule="Mercury_Store" customModuleProvider="target">
+            <connections>
+                <outlet property="AddressTxt" destination="mLp-3p-nf7" id="vkC-Vp-leh"/>
+                <outlet property="addAddressBtn" destination="PDl-cy-Gfx" id="nWo-B9-Jhp"/>
+                <outlet property="cityTxt" destination="yAv-8q-3KS" id="ZoW-AK-gnL"/>
+                <outlet property="countryTxt" destination="65C-bU-wEg" id="cdN-6w-zNu"/>
+                <outlet property="phoneTxt" destination="RNi-9K-WBA" id="vwd-uK-V7C"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="zUA-pu-5ac">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adding Your Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b92-DD-bPG">
+                    <rect key="frame" x="16" y="144" width="382" height="25"/>
+                    <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="21"/>
+                    <color key="textColor" systemColor="systemGrayColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="jhu-Tq-Ban">
+                    <rect key="frame" x="16" y="210" width="382" height="63.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vzb-BB-kKK">
+                            <rect key="frame" x="0.0" y="0.0" width="62.5" height="21.5"/>
+                            <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="18"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Egypt" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="65C-bU-wEg">
+                            <rect key="frame" x="0.0" y="42.5" width="382" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelColor">
+                                    <color key="value" systemColor="tintColor"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="activeBorderColor">
+                                    <color key="value" systemColor="systemGrayColor"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="65C-bU-wEg" secondAttribute="trailing" id="p0w-fs-Q9P"/>
+                        <constraint firstItem="Vzb-BB-kKK" firstAttribute="top" secondItem="jhu-Tq-Ban" secondAttribute="top" id="u1n-BL-ftQ"/>
+                        <constraint firstItem="65C-bU-wEg" firstAttribute="leading" secondItem="jhu-Tq-Ban" secondAttribute="leading" id="u6h-uK-a0Z"/>
+                        <constraint firstItem="Vzb-BB-kKK" firstAttribute="leading" secondItem="jhu-Tq-Ban" secondAttribute="leading" id="wDe-bh-QWZ"/>
+                    </constraints>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="IO5-WB-Ntw">
+                    <rect key="frame" x="16" y="308.5" width="382" height="62.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yw-Ws-sgb">
+                            <rect key="frame" x="0.0" y="0.0" width="31.5" height="21.5"/>
+                            <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="18"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yAv-8q-3KS">
+                            <rect key="frame" x="0.0" y="41.5" width="382" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelColor">
+                                    <color key="value" systemColor="tintColor"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="activeBorderColor">
+                                    <color key="value" systemColor="systemGrayColor"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="yAv-8q-3KS" secondAttribute="trailing" id="PfI-0z-AbZ"/>
+                        <constraint firstItem="yAv-8q-3KS" firstAttribute="leading" secondItem="IO5-WB-Ntw" secondAttribute="leading" id="ecg-kl-ZaF"/>
+                        <constraint firstItem="8yw-Ws-sgb" firstAttribute="top" secondItem="IO5-WB-Ntw" secondAttribute="top" id="ivE-hH-deQ"/>
+                        <constraint firstItem="8yw-Ws-sgb" firstAttribute="leading" secondItem="IO5-WB-Ntw" secondAttribute="leading" id="rgj-4E-zzg"/>
+                    </constraints>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="m4N-rc-Fcb">
+                    <rect key="frame" x="16" y="406" width="382" height="62.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tkQ-vV-G5m">
+                            <rect key="frame" x="0.0" y="0.0" width="61.5" height="21.5"/>
+                            <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="18"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mLp-3p-nf7">
+                            <rect key="frame" x="0.0" y="41.5" width="382" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelColor">
+                                    <color key="value" systemColor="tintColor"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="activeBorderColor">
+                                    <color key="value" systemColor="systemGrayColor"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="mLp-3p-nf7" secondAttribute="trailing" id="SJX-8E-2K6"/>
+                        <constraint firstItem="mLp-3p-nf7" firstAttribute="leading" secondItem="m4N-rc-Fcb" secondAttribute="leading" id="f2m-Zo-VDJ"/>
+                        <constraint firstAttribute="bottom" secondItem="mLp-3p-nf7" secondAttribute="bottom" id="kJX-By-Ifr"/>
+                        <constraint firstItem="tkQ-vV-G5m" firstAttribute="leading" secondItem="m4N-rc-Fcb" secondAttribute="leading" id="t6o-Fk-wjJ"/>
+                        <constraint firstItem="tkQ-vV-G5m" firstAttribute="top" secondItem="m4N-rc-Fcb" secondAttribute="top" id="vzi-5W-xgf"/>
+                    </constraints>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ggg-e1-wH8">
+                    <rect key="frame" x="16" y="503.5" width="382" height="62.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ghh-k6-tBN">
+                            <rect key="frame" x="0.0" y="0.0" width="49.5" height="21.5"/>
+                            <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="18"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RNi-9K-WBA">
+                            <rect key="frame" x="0.0" y="41.5" width="382" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="phonePad"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelColor">
+                                    <color key="value" systemColor="tintColor"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="activeBorderColor">
+                                    <color key="value" systemColor="systemGrayColor"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="RNi-9K-WBA" secondAttribute="bottom" id="4tj-h9-HdE"/>
+                        <constraint firstItem="Ghh-k6-tBN" firstAttribute="leading" secondItem="ggg-e1-wH8" secondAttribute="leading" id="aDr-uq-wAd"/>
+                        <constraint firstItem="RNi-9K-WBA" firstAttribute="leading" secondItem="ggg-e1-wH8" secondAttribute="leading" id="ecF-oQ-qOg"/>
+                        <constraint firstItem="Ghh-k6-tBN" firstAttribute="top" secondItem="ggg-e1-wH8" secondAttribute="top" id="f6k-fd-hMs"/>
+                        <constraint firstAttribute="trailing" secondItem="RNi-9K-WBA" secondAttribute="trailing" id="vdr-hg-DL7"/>
+                    </constraints>
+                </stackView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="address" translatesAutoresizingMaskIntoConstraints="NO" id="MND-TO-TMA">
+                    <rect key="frame" x="94" y="44" width="222" height="92"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PDl-cy-Gfx">
+                    <rect key="frame" x="16" y="756.5" width="382" height="35.5"/>
+                    <color key="backgroundColor" red="0.25530508159999998" green="0.7320202589" blue="0.76225239040000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Add Address">
+                        <fontDescription key="titleFontDescription" name="Optima-Bold" family="Optima" pointSize="18"/>
+                        <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="didPressedOnAddAddress:" destination="-1" eventType="touchUpInside" id="pCc-HC-N3X"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vTS-l4-pkC"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="vTS-l4-pkC" firstAttribute="bottom" secondItem="PDl-cy-Gfx" secondAttribute="bottom" constant="70" id="8dS-BD-gd4"/>
+                <constraint firstItem="vTS-l4-pkC" firstAttribute="trailing" secondItem="PDl-cy-Gfx" secondAttribute="trailing" constant="16" id="A6I-uM-rbg"/>
+                <constraint firstItem="vTS-l4-pkC" firstAttribute="trailing" secondItem="ggg-e1-wH8" secondAttribute="trailing" constant="16" id="BVn-lb-8XC"/>
+                <constraint firstItem="vTS-l4-pkC" firstAttribute="trailing" secondItem="jhu-Tq-Ban" secondAttribute="trailing" constant="16" id="GmG-ye-c8F"/>
+                <constraint firstItem="vTS-l4-pkC" firstAttribute="trailing" secondItem="b92-DD-bPG" secondAttribute="trailing" constant="16" id="HhU-O4-Nds"/>
+                <constraint firstItem="b92-DD-bPG" firstAttribute="top" secondItem="MND-TO-TMA" secondAttribute="bottom" constant="8" symbolic="YES" id="IvT-rC-y86"/>
+                <constraint firstItem="IO5-WB-Ntw" firstAttribute="top" secondItem="jhu-Tq-Ban" secondAttribute="bottom" constant="35" id="JUS-yf-5fP"/>
+                <constraint firstItem="b92-DD-bPG" firstAttribute="leading" secondItem="vTS-l4-pkC" secondAttribute="leading" constant="16" id="N73-Wp-oQr"/>
+                <constraint firstItem="jhu-Tq-Ban" firstAttribute="top" secondItem="b92-DD-bPG" secondAttribute="bottom" constant="41" id="OFo-kF-M5z"/>
+                <constraint firstItem="ggg-e1-wH8" firstAttribute="leading" secondItem="vTS-l4-pkC" secondAttribute="leading" constant="16" id="P9B-Ai-RS6"/>
+                <constraint firstItem="jhu-Tq-Ban" firstAttribute="leading" secondItem="vTS-l4-pkC" secondAttribute="leading" constant="16" id="PWl-1v-drx"/>
+                <constraint firstItem="b92-DD-bPG" firstAttribute="top" secondItem="zUA-pu-5ac" secondAttribute="top" constant="144" id="RP5-mB-VE3"/>
+                <constraint firstItem="vTS-l4-pkC" firstAttribute="trailing" secondItem="m4N-rc-Fcb" secondAttribute="trailing" constant="16" id="UzF-iN-lHp"/>
+                <constraint firstItem="m4N-rc-Fcb" firstAttribute="leading" secondItem="vTS-l4-pkC" secondAttribute="leading" constant="16" id="fY1-Cc-WrN"/>
+                <constraint firstItem="IO5-WB-Ntw" firstAttribute="leading" secondItem="vTS-l4-pkC" secondAttribute="leading" constant="16" id="geS-s6-Ln6"/>
+                <constraint firstItem="m4N-rc-Fcb" firstAttribute="top" secondItem="IO5-WB-Ntw" secondAttribute="bottom" constant="35" id="lO2-cD-4MF"/>
+                <constraint firstItem="MND-TO-TMA" firstAttribute="leading" secondItem="vTS-l4-pkC" secondAttribute="leading" constant="16" id="pmC-h5-uGt"/>
+                <constraint firstItem="ggg-e1-wH8" firstAttribute="top" secondItem="m4N-rc-Fcb" secondAttribute="bottom" constant="35" id="puL-JU-qKb"/>
+                <constraint firstItem="PDl-cy-Gfx" firstAttribute="leading" secondItem="vTS-l4-pkC" secondAttribute="leading" constant="16" id="t8y-GP-Na0"/>
+                <constraint firstItem="vTS-l4-pkC" firstAttribute="trailing" secondItem="MND-TO-TMA" secondAttribute="trailing" constant="16" id="uYJ-f6-Tka"/>
+                <constraint firstItem="vTS-l4-pkC" firstAttribute="trailing" secondItem="IO5-WB-Ntw" secondAttribute="trailing" constant="16" id="vLa-4D-ozf"/>
+                <constraint firstItem="MND-TO-TMA" firstAttribute="top" secondItem="vTS-l4-pkC" secondAttribute="top" id="ylC-I7-utC"/>
+            </constraints>
+            <point key="canvasLocation" x="1384" y="-765"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="address" width="256" height="256"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
