@@ -10,6 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShoppingCartViewController" customModule="Mercury_Store" customModuleProvider="target">
             <connections>
+                <outlet property="proceedToCheckoutBtn" destination="ioa-vz-9sk" id="CqQ-dE-CRI"/>
+                <outlet property="shoppingCartTableView" destination="TpL-0z-g1M" id="Olz-js-rG8"/>
+                <outlet property="totalPriceLabel" destination="xCd-fC-aG4" id="8s5-PB-cLT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,20 +21,62 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shopping Cart Tab" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Du-4T-g9H">
-                    <rect key="frame" x="71.5" y="427.5" width="271.5" height="41"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ORS-Er-yhq">
+                    <rect key="frame" x="0.0" y="68" width="414" height="80"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Total Price:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVd-EH-Syz">
+                            <rect key="frame" x="12" y="24" width="134" height="32"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EGP 1200" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCd-fC-aG4">
+                            <rect key="frame" x="158" y="28" width="244" height="24"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                            <color key="textColor" red="0.3604836166" green="0.70115709299999995" blue="0.75295150280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="XVd-EH-Syz" firstAttribute="centerY" secondItem="ORS-Er-yhq" secondAttribute="centerY" id="58y-Hl-P3z"/>
+                        <constraint firstAttribute="height" constant="80" id="Uqv-Rp-pzM"/>
+                        <constraint firstItem="xCd-fC-aG4" firstAttribute="centerY" secondItem="XVd-EH-Syz" secondAttribute="centerY" id="b0f-3l-I7R"/>
+                        <constraint firstAttribute="trailing" secondItem="xCd-fC-aG4" secondAttribute="trailing" constant="12" id="fHr-gb-8bR"/>
+                        <constraint firstItem="xCd-fC-aG4" firstAttribute="leading" secondItem="XVd-EH-Syz" secondAttribute="trailing" constant="12" id="jPt-5G-MxU"/>
+                        <constraint firstItem="XVd-EH-Syz" firstAttribute="leading" secondItem="ORS-Er-yhq" secondAttribute="leading" constant="12" id="oIP-Sf-Fbb"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="TpL-0z-g1M">
+                    <rect key="frame" x="0.0" y="152" width="414" height="594"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ioa-vz-9sk">
+                    <rect key="frame" x="12" y="770" width="390" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Cav-Dj-Dcn"/>
+                    </constraints>
+                    <color key="tintColor" red="0.3921568627" green="0.17254901959999999" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="PROCEED TO CHEEKOUT" cornerStyle="capsule"/>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="3Du-4T-g9H" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="UaS-E6-ZAI"/>
-                <constraint firstItem="3Du-4T-g9H" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="gvQ-qA-doy"/>
+                <constraint firstItem="ORS-Er-yhq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Myv-EZ-BUN"/>
+                <constraint firstItem="ORS-Er-yhq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="TfI-Ba-YsP"/>
+                <constraint firstItem="ioa-vz-9sk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="Zzu-2V-ia5"/>
+                <constraint firstItem="TpL-0z-g1M" firstAttribute="top" secondItem="ORS-Er-yhq" secondAttribute="bottom" constant="4" id="cI0-8u-YGp"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ioa-vz-9sk" secondAttribute="trailing" constant="12" id="deT-3B-YQt"/>
+                <constraint firstItem="ORS-Er-yhq" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="kLd-OZ-JWM"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ioa-vz-9sk" secondAttribute="bottom" constant="42" id="nka-5n-8t5"/>
+                <constraint firstItem="ioa-vz-9sk" firstAttribute="top" secondItem="TpL-0z-g1M" secondAttribute="bottom" constant="24" id="q1s-wY-Zzg"/>
+                <constraint firstItem="TpL-0z-g1M" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="tkF-pC-q9p"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TpL-0z-g1M" secondAttribute="trailing" id="usZ-KA-haO"/>
+                <constraint firstItem="ioa-vz-9sk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vUl-6o-te5"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="99"/>
+            <point key="canvasLocation" x="137.68115942028987" y="98.4375"/>
         </view>
     </objects>
     <resources>
