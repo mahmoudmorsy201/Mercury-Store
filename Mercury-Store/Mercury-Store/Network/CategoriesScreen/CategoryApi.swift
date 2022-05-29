@@ -10,7 +10,7 @@ import Alamofire
 
 enum CategoryScreenAPIs: URLRequestBuilder {
     case getCategories
-    case getProducts
+    case getProducts(Int)
 }
 
 extension CategoryScreenAPIs {
@@ -19,7 +19,7 @@ extension CategoryScreenAPIs {
         case .getCategories:
             return Constants.Pathes.Categories.brandsList
         case .getProducts:
-            return Constants.Pathes.ProductsCategory.productCategoriesList(categoryID: 395727732965)
+            return Constants.Pathes.Products.productList
         }
     }
 }
@@ -29,8 +29,8 @@ extension CategoryScreenAPIs {
         switch self {
         case .getCategories:
             return [:]
-        case .getProducts:
-            return ["categoryID":395727732965]
+        case .getProducts(let  value):
+            return ["collection_id": value]
         }
     }
 }

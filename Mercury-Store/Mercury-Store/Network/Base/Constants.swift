@@ -18,11 +18,6 @@ struct Constants {
         struct Categories {
             public static let brandsList = "/smart_collections.json"
         }
-        struct ProductsCategory{
-            public static func productCategoriesList(categoryID:Int)->String{
-                return "/products.json??collection_id=\(categoryID)"
-            }
-        }
     }
     
     struct Keys {

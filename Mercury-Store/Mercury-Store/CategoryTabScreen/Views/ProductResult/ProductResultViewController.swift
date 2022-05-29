@@ -23,9 +23,9 @@ class ProductResultViewController: UIViewController , CategoryBaseCoordinated{
     func setupCollectionView(){
         let nib = UINib(nibName: "ProductCell", bundle: nil)
         productCollectionView.register(nib, forCellWithReuseIdentifier: ProductCell.identifier)
-//        viewModel.products.drive(productCollectionView.rx.items(cellIdentifier: ProductCell.identifier, cellType: ProductCell.self)){index , element , cell in
-//            cell.configure(item: element)
-//        }
+        viewModel?.products.drive(productCollectionView.rx.items(cellIdentifier: ProductCell.identifier, cellType: ProductCell.self)){index , element , cell in
+            cell.configure(item: element)
+        }
         productCollectionView.delegate = self
     }
     init(coordinator: CategoryBaseCoordinator ,collection: [String:Any]) {
