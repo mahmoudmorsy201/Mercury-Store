@@ -65,35 +65,34 @@ class ShoppingCartViewController: UIViewController, ShoppingCartCoordinated {
             refreshControl.rx.controlEvent(.valueChanged).delay(.seconds(2), scheduler: MainScheduler.instance).asObservable()
         )
         
-        let input = Input(
-            value: value,
-            delete: delete,
-            add: addInput
+        let input = ShoppingCartInput(
+            increaseAndDecreaseQuantity: value,
+            deleteInput: delete,
+            getNewData: addInput
         )
         
-        let viewModel = ViewModel(input, refreshTask: self.repo.refreshValues)
+        let viewModel = ShoppingCartViewModel(input, refreshTask: self.repo.refreshValues)
     
-        viewModel.counters.drive(shoppingCartTableView.rx.items(cellIdentifier: ShoppingCartTableViewCell.reuseIdentifier(), cellType: ShoppingCartTableViewCell.self)) {
+        viewModel.dataFromDB.drive(shoppingCartTableView.rx.items(cellIdentifier: ShoppingCartTableViewCell.reuseIdentifier(), cellType: ShoppingCartTableViewCell.self)) {
             index, element , cell in
             cell.shoppingItem = element
             cell.configure { input in
-                let vm = CellViewModel(input, initialValue: element)
-                // Remember the value property tracks the current value of the counter
-                vm.value
-                    .map { (id: element.id, value: $0) } // tell the main view model which counter's value this is
+                let vm = ShoppingCartCellViewModel(input, initialValue: element)
+                vm.quantityObservable
+                    .map { (id: element.id, value: $0) }
                     .bind(to: value)
                     .disposed(by: cell.disposeBag)
                 
                 vm.delete
-                    .map { element.id } // tell the main view model which counter should be deleted
+                    .map { element.id }
                     .bind(to: delete)
                     .disposed(by: cell.disposeBag)
-                return vm // han
+                return vm
             }
             
         }.disposed(by: disposeBag)
         
-        viewModel.counters
+        viewModel.dataFromDB
             .map { _ in false}
             .drive(refreshControl.rx.isRefreshing)
             .disposed(by: disposeBag)

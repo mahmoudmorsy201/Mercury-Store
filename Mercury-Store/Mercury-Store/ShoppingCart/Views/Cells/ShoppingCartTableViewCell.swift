@@ -67,19 +67,26 @@ class ShoppingCartTableViewCell: UITableViewCell {
         self.productImageCart.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
     }
     
-    func configure(with factory: @escaping (CellInput) -> CellViewModel) {
+    func configure(with factory: @escaping (ShoppingCartCellInput) -> ShoppingCartCellViewModel) {
         // create the input object
         
-        let input = CellInput(
-            plus: increaseQuntityBtn.rx.tap.asObservable(),
-            minus: decreaseQuantityBtn.rx.tap.asObservable(),
-            delete: deleteBtn.rx.tap.asObservable()
+        let input = ShoppingCartCellInput(
+            increaseBtn: increaseQuntityBtn.rx.tap.asObservable(),
+            decreaseBtn: decreaseQuantityBtn.rx.tap.asObservable(),
+            deleteBtnObservable: deleteBtn.rx.tap.asObservable()
         )
         // create the view model from the factory
         let viewModel = factory(input)
         // bind the view model's label property to the label
-        viewModel.label
+        viewModel.quantityLabelObservable
             .bind(to: quantityLabel.rx.text)
+            .disposed(by: disposeBag)
+        viewModel.plusBtnObservable
+            .bind(to: increaseQuntityBtn.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        viewModel.minusBtnObservable
+            .bind(to: decreaseQuantityBtn.rx.isEnabled)
             .disposed(by: disposeBag)
     }
     
@@ -88,71 +95,3 @@ class ShoppingCartTableViewCell: UITableViewCell {
         disposeBag = DisposeBag()
     }
 }
-
-struct CellInput {
-    let plus: Observable<Void>
-    let minus: Observable<Void>
-    let delete: Observable<Void>
-}
-
-struct CellViewModel {
-    let label: Observable<String>
-    let value: Observable<Int>
-    let delete: Observable<Void>
-}
-
-extension CellViewModel {
-    init(_ input: CellInput, initialValue: ShoppingCartItem) {
-        let add = input.plus.map { 1 }// plus adds one to the value
-        let subtract = input.minus.map { -1 }// minus subtracts one
-        
-        value = Observable.merge(add,subtract)
-            .scan(initialValue.quantity, accumulator: +)
-            .filter{$0 > 0}
-        
-        
-        
-        
-        label = value
-            .map {"\($0)"}
-        
-        delete = input.delete
-    }
-}
-
-struct CartCellViewModel {
-    var image: String
-    var name: String
-    var price: String
-    var count: String
-    let product: ShoppingCartItem
-    init(usingModel model: ShoppingCartItem) {
-        self.product = model
-        self.image = model.imageName
-        self.name = model.productName
-        self.price = "\(model.productPrice)"
-        self.count = "\(model.quantity)"
-    }
-}
-
-extension Int {
-    var decimalCurrency: Double {
-        return Double(self) / 100.0
-    }
-    
-    var decimalCurrencyString: String {
-        let locale = Locale.current
-        let numberFormatter = NumberFormatter()
-        numberFormatter.currencyCode = locale.currencyCode
-        numberFormatter.locale = locale
-        numberFormatter.minimumFractionDigits = 2
-        numberFormatter.maximumFractionDigits = 2
-        guard let value = numberFormatter.string(from: NSNumber(value: decimalCurrency)) else { fatalError("Could not format decimal currency: \( decimalCurrency)") }
-        guard let symbol = locale.currencySymbol else { fatalError("Could not find currency symbol for locale: \(locale)") }
-        return "\(symbol)\(value)"
-    }
-}
-
-
-    
-    

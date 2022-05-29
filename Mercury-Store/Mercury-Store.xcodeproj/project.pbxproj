@@ -124,6 +124,7 @@
 		C4F46918283FFD6700DB2EF0 /* ShoppingCartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F46916283FFD6600DB2EF0 /* ShoppingCartTableViewCell.swift */; };
 		C4F46919283FFD6700DB2EF0 /* ShoppingCartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4F46917283FFD6600DB2EF0 /* ShoppingCartTableViewCell.xib */; };
 		C4F469232843CBEB00DB2EF0 /* ShoppingCartRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F469222843CBEA00DB2EF0 /* ShoppingCartRepository.swift */; };
+		C4F469252844383600DB2EF0 /* ShoppingCartCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F469242844383600DB2EF0 /* ShoppingCartCellViewModel.swift */; };
 		C6F173010C8667A10E27C5FD /* Pods_Mercury_StoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65483F0BCEDE1CF28D6B5977 /* Pods_Mercury_StoreTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -273,6 +274,7 @@
 		C4F46916283FFD6600DB2EF0 /* ShoppingCartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartTableViewCell.swift; sourceTree = "<group>"; };
 		C4F46917283FFD6600DB2EF0 /* ShoppingCartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShoppingCartTableViewCell.xib; sourceTree = "<group>"; };
 		C4F469222843CBEA00DB2EF0 /* ShoppingCartRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartRepository.swift; sourceTree = "<group>"; };
+		C4F469242844383600DB2EF0 /* ShoppingCartCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -653,6 +655,7 @@
 			isa = PBXGroup;
 			children = (
 				C4C08B9C283216D000364704 /* ShoppingCartViewModel.swift */,
+				C4F469242844383600DB2EF0 /* ShoppingCartCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1315,6 +1318,7 @@
 				C4CFBA76283C21EF009C2840 /* BannerViewModel.swift in Sources */,
 				C4951232283EEB6800E313EB /* CategoryViewController.swift in Sources */,
 				C4C08BA32832172200364704 /* ShoppingCartBaseCoordinator.swift in Sources */,
+				C4F469252844383600DB2EF0 /* ShoppingCartCellViewModel.swift in Sources */,
 				C4C08BC028321D8F00364704 /* SearchViewModel.swift in Sources */,
 				C4CDB90E2830E31D0000519A /* SceneDelegate.swift in Sources */,
 				02E712A5283FBDCA005726B3 /* WishListCell.swift in Sources */,
