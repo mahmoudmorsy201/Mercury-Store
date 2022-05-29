@@ -20,7 +20,6 @@
 //   }
 
 import Foundation
-import Alamofire
 
 // MARK: - SmartCollection
 struct SmartCollection: Codable {

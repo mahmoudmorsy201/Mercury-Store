@@ -23,7 +23,7 @@ class CategoryCoordinator: CategoryBaseCoordinator {
         switch flow {
         case .category(let screen):
             navigationRootViewController?.popToRootViewController(animated: true)
-            handleCategoryFlow(for: screen)
+            handleCategoryFlow(for: screen, userData: userData)
             break
         default:
             parentCoordinator?.moveTo(flow: flow, userData: userData)
@@ -38,16 +38,15 @@ class CategoryCoordinator: CategoryBaseCoordinator {
          case .initialScreen:
              resetToRoot(animated: false)
          case .productsScreen:
-             showCategoryProducts()
-
+             showCategoryProducts(userData: userData ?? nil)
          case .filterProductScreen:
              showFilterProducts()
          }
      }
      
-     private func showCategoryProducts() {
+     private func showCategoryProducts(userData:[String:Any]?) {
          resetToRoot(animated: false)
-         navigationRootViewController?.pushViewController(ProductResultViewController(coordinator: self), animated: false)
+         navigationRootViewController?.pushViewController(ProductResultViewController(coordinator: self, collection: userData!) , animated: false)
 
      }
     private func showFilterProducts() {
@@ -55,17 +54,7 @@ class CategoryCoordinator: CategoryBaseCoordinator {
         navigationRootViewController?.pushViewController(FilterViewController(_coordinator: self), animated: false)
 
     }
-    /*
-     private func handleGoToThirdScreen() {
-         resetToRoot(animated: false)
-         navigationRootViewController?.pushViewController(SecondScreen(coordinator: self), animated: false)
-         navigationRootViewController?.pushViewController(ThirdScreen(coordinator: self), animated: false)
-     }
-     */
-    
-    
-    
-    
+ 
     @discardableResult
     func resetToRoot(animated: Bool) -> Self {
         navigationRootViewController?.popToRootViewController(animated: animated)

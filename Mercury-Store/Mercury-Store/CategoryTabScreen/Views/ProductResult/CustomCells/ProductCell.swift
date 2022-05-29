@@ -32,8 +32,10 @@ class ProductCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    public func configure(){
-        //to configure cell data here
+    public func configure(item:Product){
+        ImageDownloaderHelper.imageDownloadHelper(productIMG, item.image.src)
+        productName.text = item.title
+        productPrice.text = item.variants[0].price
     }
 
 }

@@ -8,24 +8,39 @@
 import UIKit
 class CategoryItem: UICollectionViewCell {
     static let identifier = "CategoryItem"
+    
+    @IBOutlet weak var containerViewForCategoriesCollectionViewCell: UIView!
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var image: UIImageView!
+    var item:SmartCollectionElement?
+    var cellClickAction:( (_ item:SmartCollectionElement)->() )?
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupCell()
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupCell()
     }
-    func setupCell(){
-        self.layer.cornerRadius = 15.0
-        self.layer.borderWidth = 2.0
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOffset = CGSize(width: 0, height: 0)
-        self.layer.shadowRadius = 5.0
-        self.layer.shadowOpacity = 1
-        self.layer.masksToBounds = false
-    }
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    public func config(item:SmartCollectionElement){
+        self.item = item
+        ImageDownloaderHelper.imageDownloadHelper(image, item.image.src)
+        title.text = item.title
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        containerViewForCategoriesCollectionViewCell.addGestureRecognizer(tap)
+    }
     
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        guard let cellClickAction = cellClickAction else {
+            return
+        }
+        cellClickAction(self.item!)
+    }
+    private func setupCell() {
+        containerViewForCategoriesCollectionViewCell.applyShadow(cornerRadius: 12)
+        image.applyShadow(cornerRadius: 8)
+    }
 }

@@ -1,6 +1,0 @@
-framework module Pods_Mercury_Store {
-  umbrella header "Pods-Mercury-Store-umbrella.h"
-
-  export *
-  module * { export * }
-}
