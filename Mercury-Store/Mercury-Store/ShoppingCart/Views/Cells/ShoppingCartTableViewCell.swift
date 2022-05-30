@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 
 class ShoppingCartTableViewCell: UITableViewCell {
     @IBOutlet weak private var containerViewForProductImage: UIView!
@@ -30,8 +28,6 @@ class ShoppingCartTableViewCell: UITableViewCell {
     @IBOutlet weak private var decreaseQuantityBtn: UIButton!
     
     @IBOutlet weak var deleteBtn: UIButton!
-    
-    var disposeBag: DisposeBag = DisposeBag()
     
     var shoppingItem: ShoppingCartItem? {
         didSet {
@@ -67,31 +63,9 @@ class ShoppingCartTableViewCell: UITableViewCell {
         self.productImageCart.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
     }
     
-    func configure(with factory: @escaping (ShoppingCartCellInput) -> ShoppingCartCellViewModel) {
-        // create the input object
-        
-        let input = ShoppingCartCellInput(
-            increaseBtn: increaseQuntityBtn.rx.tap.asObservable(),
-            decreaseBtn: decreaseQuantityBtn.rx.tap.asObservable(),
-            deleteBtnObservable: deleteBtn.rx.tap.asObservable()
-        )
-        // create the view model from the factory
-        let viewModel = factory(input)
-        // bind the view model's label property to the label
-        viewModel.quantityLabelObservable
-            .bind(to: quantityLabel.rx.text)
-            .disposed(by: disposeBag)
-        viewModel.plusBtnObservable
-            .bind(to: increaseQuntityBtn.rx.isEnabled)
-            .disposed(by: disposeBag)
-        
-        viewModel.minusBtnObservable
-            .bind(to: decreaseQuantityBtn.rx.isEnabled)
-            .disposed(by: disposeBag)
-    }
+    
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        disposeBag = DisposeBag()
     }
 }

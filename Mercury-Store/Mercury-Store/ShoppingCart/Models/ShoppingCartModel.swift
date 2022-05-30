@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import RxDataSources
 
 struct ShoppingCartItem {
     let id = UUID()
