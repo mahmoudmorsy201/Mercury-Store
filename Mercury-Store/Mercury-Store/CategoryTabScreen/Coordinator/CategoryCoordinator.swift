@@ -41,6 +41,8 @@ class CategoryCoordinator: CategoryBaseCoordinator {
              showCategoryProducts(userData: userData ?? nil)
          case .filterProductScreen:
              showFilterProducts()
+         case .productDetailScreen:
+             productDetails(userData: userData ?? nil)
          }
      }
      
@@ -53,6 +55,9 @@ class CategoryCoordinator: CategoryBaseCoordinator {
         resetToRoot(animated: false)
         navigationRootViewController?.pushViewController(FilterViewController(_coordinator: self), animated: false)
 
+    }
+    private func productDetails(userData:[String:Any]?){
+        navigationRootViewController?.pushViewController(ProductDetailsViewController(coordinator: self, product: userData! ), animated: false)
     }
  
     @discardableResult

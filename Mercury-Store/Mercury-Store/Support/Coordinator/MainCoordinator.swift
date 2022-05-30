@@ -26,6 +26,7 @@ enum CategoryScreen {
     case initialScreen
     case productsScreen
     case filterProductScreen
+    case productDetailScreen
 }
 
 enum ShoppingCartScreen {

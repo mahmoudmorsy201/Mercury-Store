@@ -24,6 +24,9 @@ class ProductResultViewController: UIViewController , CategoryBaseCoordinated{
         let nib = UINib(nibName: "ProductCell", bundle: nil)
         productCollectionView.register(nib, forCellWithReuseIdentifier: ProductCell.identifier)
         viewModel?.products.drive(productCollectionView.rx.items(cellIdentifier: ProductCell.identifier, cellType: ProductCell.self)){index , element , cell in
+            cell.cellClickAction =  { (item) in
+                self.coordinator?.moveTo(flow: .category(.productDetailScreen), userData: ["product":item])
+            }
             cell.configure(item: element)
         }
         productCollectionView.delegate = self

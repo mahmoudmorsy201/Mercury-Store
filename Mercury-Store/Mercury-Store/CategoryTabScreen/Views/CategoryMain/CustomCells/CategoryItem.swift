@@ -41,6 +41,5 @@ class CategoryItem: UICollectionViewCell {
     }
     private func setupCell() {
         containerViewForCategoriesCollectionViewCell.applyShadow(cornerRadius: 12)
-        image.applyShadow(cornerRadius: 8)
     }
 }
