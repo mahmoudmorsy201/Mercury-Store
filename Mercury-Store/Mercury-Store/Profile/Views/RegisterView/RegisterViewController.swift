@@ -7,15 +7,20 @@
 
 import UIKit
 import TextFieldEffects
+import RxCocoa
+import RxSwift
+
 class RegisterViewController: UIViewController,ProfileCoordinated{
     
+    private let registerViewModel = RegisterViewModel()
+    private let disposeBag = DisposeBag ()
     @IBOutlet weak var firstNameTextField: AkiraTextField!
-    
     @IBOutlet weak var lastNameTextField: AkiraTextField!
     @IBOutlet weak var emailTextField: AkiraTextField!
     @IBOutlet weak var passwordTextField: AkiraTextField!
     @IBOutlet weak var confirmPasswordTextField: AkiraTextField!
     @IBOutlet weak var loginLabel: UILabel!
+    @IBOutlet weak var signUpBtn: UIButton!
     var coordinator: ProfileBaseCoordinator?
     init(coordinator: ProfileBaseCoordinator) {
         super.init(nibName: nil, bundle: nil)
@@ -30,8 +35,16 @@ class RegisterViewController: UIViewController,ProfileCoordinated{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        firstNameTextField.becomeFirstResponder()
+        firstNameTextField.rx.text.map{ $0 ?? ""}.bind(to:registerViewModel.firstnameTextPublishSubject).disposed(by: disposeBag)
+        lastNameTextField.rx.text.map{ $0 ?? ""}.bind(to:registerViewModel.lastnameTextPublishSubject).disposed(by: disposeBag)
+        emailTextField.rx.text.map{ $0 ?? ""}.bind(to:registerViewModel.emailTextPublishSubject).disposed(by: disposeBag)
+        passwordTextField.rx.text.map{ $0 ?? ""}.bind(to:registerViewModel.passwordTextPublishSubject).disposed(by: disposeBag)
+        confirmPasswordTextField.rx.text.map{ $0 ?? ""}.bind(to:registerViewModel.confirmpasswordTextPublishSubject).disposed(by: disposeBag)
+        registerViewModel.isValid().bind(to: signUpBtn.rx.isEnabled).disposed(by: disposeBag)
+        registerViewModel.isValid().map{$0 ? 1: 1.0}.bind(to: signUpBtn.rx.alpha).disposed(by: disposeBag)
+       
+        
     }
 
 
@@ -45,8 +58,8 @@ class RegisterViewController: UIViewController,ProfileCoordinated{
     }
     */
     @IBAction func signUp(_ sender: Any) {
-        
-    coordinator?.moveTo(flow: .profile(.registerScreen), userData: nil)
+    print("Tapped Login Button")
+    coordinator?.moveTo(flow: .profile(.intialScreen), userData: nil)
 
     }
     

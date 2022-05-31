@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="Mercury_Store" customModuleProvider="target">
             <connections>
                 <outlet property="emailTextField" destination="T3z-FH-pKU" id="3Hv-Vr-do2"/>
+                <outlet property="loginButton" destination="ePb-Bf-omj" id="WEr-wr-eiM"/>
                 <outlet property="passwordTextField" destination="2Yc-Q3-KUG" id="vsD-ab-wfi"/>
                 <outlet property="signupLabel" destination="ye9-Ub-Epu" id="n9E-Pb-PeO"/>
             </connections>
