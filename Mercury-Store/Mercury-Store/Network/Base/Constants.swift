@@ -16,7 +16,7 @@ struct Constants {
             public static let brandsList = "/smart_collections.json"
         }
         struct Categories {
-            public static let brandsList = "/smart_collections.json"
+            public static let mainCategoryList = "/custom_collections.json"
         }
     }
     

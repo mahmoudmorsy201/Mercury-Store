@@ -19,8 +19,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kKN-H1-iAM">
-                    <rect key="frame" x="4" y="235" width="406" height="627"/>
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kKN-H1-iAM">
+                    <rect key="frame" x="8" y="128" width="398" height="734"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="1" id="WrM-ut-rj8">
                         <size key="itemSize" width="150" height="180"/>
                         <size key="headerReferenceSize" width="4" height="12"/>
@@ -29,8 +29,11 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="iE5-4k-n0e">
-                    <rect key="frame" x="0.0" y="44" width="414" height="90.5"/>
+                    <rect key="frame" x="8" y="56" width="398" height="57"/>
                     <color key="backgroundColor" red="0.83067909971200715" green="0.9530200553050463" blue="0.9737698333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="ztl-AT-i8o"/>
+                    </constraints>
                     <segments>
                         <segment title="" image="Women"/>
                         <segment title="" image="Men"/>
@@ -42,13 +45,12 @@
             <viewLayoutGuide key="safeArea" id="jwd-cu-XDQ"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="iE5-4k-n0e" firstAttribute="leading" secondItem="jwd-cu-XDQ" secondAttribute="leading" id="0on-0U-TDr"/>
-                <constraint firstItem="iE5-4k-n0e" firstAttribute="height" secondItem="5aK-I4-mHF" secondAttribute="height" multiplier="1:10" id="6s6-r2-bcG"/>
-                <constraint firstItem="iE5-4k-n0e" firstAttribute="top" secondItem="jwd-cu-XDQ" secondAttribute="top" id="ED9-j4-wZ8"/>
-                <constraint firstItem="kKN-H1-iAM" firstAttribute="height" secondItem="5aK-I4-mHF" secondAttribute="height" multiplier="7:10" id="Oj4-f4-QVv"/>
-                <constraint firstItem="jwd-cu-XDQ" firstAttribute="trailing" secondItem="kKN-H1-iAM" secondAttribute="trailing" constant="4" id="P0Y-Iw-PCz"/>
-                <constraint firstItem="jwd-cu-XDQ" firstAttribute="trailing" secondItem="iE5-4k-n0e" secondAttribute="trailing" id="PsO-Os-n4I"/>
-                <constraint firstItem="kKN-H1-iAM" firstAttribute="leading" secondItem="jwd-cu-XDQ" secondAttribute="leading" constant="4" id="eX4-g6-qhg"/>
+                <constraint firstItem="iE5-4k-n0e" firstAttribute="leading" secondItem="jwd-cu-XDQ" secondAttribute="leading" constant="8" id="0on-0U-TDr"/>
+                <constraint firstItem="iE5-4k-n0e" firstAttribute="top" secondItem="jwd-cu-XDQ" secondAttribute="top" constant="12" id="ED9-j4-wZ8"/>
+                <constraint firstItem="jwd-cu-XDQ" firstAttribute="trailing" secondItem="kKN-H1-iAM" secondAttribute="trailing" constant="8" id="P0Y-Iw-PCz"/>
+                <constraint firstItem="jwd-cu-XDQ" firstAttribute="trailing" secondItem="iE5-4k-n0e" secondAttribute="trailing" constant="8" id="PsO-Os-n4I"/>
+                <constraint firstItem="kKN-H1-iAM" firstAttribute="top" secondItem="iE5-4k-n0e" secondAttribute="bottom" constant="16" id="YCX-ew-Ifw"/>
+                <constraint firstItem="kKN-H1-iAM" firstAttribute="leading" secondItem="jwd-cu-XDQ" secondAttribute="leading" constant="8" id="eX4-g6-qhg"/>
                 <constraint firstItem="jwd-cu-XDQ" firstAttribute="bottom" secondItem="kKN-H1-iAM" secondAttribute="bottom" id="j6i-oD-laz"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="98.4375"/>

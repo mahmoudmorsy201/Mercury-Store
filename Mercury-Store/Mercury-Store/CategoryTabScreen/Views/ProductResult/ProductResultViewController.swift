@@ -34,7 +34,7 @@ class ProductResultViewController: UIViewController , CategoryBaseCoordinated{
     init(coordinator: CategoryBaseCoordinator ,collection: [String:Any]) {
         super.init(nibName: nil, bundle: nil)
         self.coordinator = coordinator
-        let category:SmartCollectionElement = collection["collection"] as! SmartCollectionElement
+        let category:CustomCollection = collection["collection"] as! CustomCollection
         title = "\(category.title) Products"
         self.viewModel = CategoryProductsScreenViewModel(categoryID: category.id)
     }

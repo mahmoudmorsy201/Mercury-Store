@@ -42,7 +42,8 @@ class CategoryViewController: UIViewController,CategoryBaseCoordinated {
     private func setupCollection(){
         let nib = UINib(nibName: "CategoryItem", bundle: nil)
         categoriesCollectionView.register(nib, forCellWithReuseIdentifier: CategoryItem.identifier)
-        viewModel.brands.drive(categoriesCollectionView.rx.items(cellIdentifier: CategoryItem.identifier, cellType: CategoryItem.self)){ index , element , cell in
+        viewModel.categories.drive(categoriesCollectionView.rx.items(cellIdentifier: CategoryItem.identifier, cellType: CategoryItem.self)){ index , element , cell in
+            print(element)
             cell.config(item: element)
             cell.cellClickAction =  { (item) in
                 self.coordinator?.moveTo(flow: .category(.productsScreen), userData: ["collection":item])

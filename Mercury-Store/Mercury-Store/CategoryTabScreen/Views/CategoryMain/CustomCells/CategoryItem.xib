@@ -16,10 +16,10 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Jgh-Sm-SVH">
-                        <rect key="frame" x="0.0" y="0.0" width="150" height="180"/>
+                        <rect key="frame" x="12" y="12" width="126" height="156"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQ3-yv-zTl">
-                                <rect key="frame" x="0.0" y="135" width="150" height="45"/>
+                                <rect key="frame" x="0.0" y="117" width="126" height="39"/>
                                 <attributedString key="attributedText">
                                     <fragment content="category">
                                         <attributes>
@@ -32,7 +32,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" translatesAutoresizingMaskIntoConstraints="NO" id="gLo-Sl-pBa">
-                                <rect key="frame" x="0.0" y="0.0" width="150" height="135"/>
+                                <rect key="frame" x="0.0" y="0.0" width="126" height="117"/>
                                 <color key="tintColor" red="0.55096346650000005" green="0.56842634410000004" blue="0.55908442199999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                         </subviews>
@@ -51,10 +51,10 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="Jgh-Sm-SVH" firstAttribute="leading" secondItem="EQK-ue-B07" secondAttribute="leading" id="4c1-Ll-F4g"/>
-                <constraint firstItem="Jgh-Sm-SVH" firstAttribute="top" secondItem="EQK-ue-B07" secondAttribute="top" id="KKr-XW-8a3"/>
-                <constraint firstAttribute="bottom" secondItem="Jgh-Sm-SVH" secondAttribute="bottom" id="YQc-MQ-liW"/>
-                <constraint firstAttribute="trailing" secondItem="Jgh-Sm-SVH" secondAttribute="trailing" id="aD5-GY-tUl"/>
+                <constraint firstItem="Jgh-Sm-SVH" firstAttribute="leading" secondItem="EQK-ue-B07" secondAttribute="leading" constant="12" id="4c1-Ll-F4g"/>
+                <constraint firstItem="Jgh-Sm-SVH" firstAttribute="top" secondItem="EQK-ue-B07" secondAttribute="top" constant="12" id="KKr-XW-8a3"/>
+                <constraint firstAttribute="bottom" secondItem="Jgh-Sm-SVH" secondAttribute="bottom" constant="12" id="YQc-MQ-liW"/>
+                <constraint firstAttribute="trailing" secondItem="Jgh-Sm-SVH" secondAttribute="trailing" constant="12" id="aD5-GY-tUl"/>
             </constraints>
             <connections>
                 <outlet property="containerViewForCategoriesCollectionViewCell" destination="Jgh-Sm-SVH" id="sfp-dc-Ufn"/>

@@ -12,8 +12,8 @@ class CategoryItem: UICollectionViewCell {
     @IBOutlet weak var containerViewForCategoriesCollectionViewCell: UIView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var image: UIImageView!
-    var item:SmartCollectionElement?
-    var cellClickAction:( (_ item:SmartCollectionElement)->() )?
+    var item:CustomCollection?
+    var cellClickAction:( (_ item:CustomCollection)->() )?
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCell()
@@ -25,9 +25,9 @@ class CategoryItem: UICollectionViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    public func config(item:SmartCollectionElement){
+    public func config(item:CustomCollection){
         self.item = item
-        ImageDownloaderHelper.imageDownloadHelper(image, item.image.src)
+        ImageDownloaderHelper.imageDownloadHelper(image, item.image?.src ?? "")
         title.text = item.title
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         containerViewForCategoriesCollectionViewCell.addGestureRecognizer(tap)
