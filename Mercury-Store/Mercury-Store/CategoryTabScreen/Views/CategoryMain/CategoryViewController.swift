@@ -15,6 +15,7 @@ class CategoryViewController: UIViewController,CategoryBaseCoordinated {
     private let viewModel = CategoriesScreenViewModel()
     var coordinator: CategoryBaseCoordinator?
     //just to push
+    @IBOutlet weak var mainCategoryItems: UITableView!
     let cateBackgroundIMG : UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named:"categories_background")
@@ -38,19 +39,46 @@ class CategoryViewController: UIViewController,CategoryBaseCoordinated {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollection()
+        initTableView()
     }
-    private func setupCollection(){
-        let nib = UINib(nibName: "CategoryItem", bundle: nil)
-        categoriesCollectionView.register(nib, forCellWithReuseIdentifier: CategoryItem.identifier)
-        viewModel.categories.drive(categoriesCollectionView.rx.items(cellIdentifier: CategoryItem.identifier, cellType: CategoryItem.self)){ index , element , cell in
-            print(element)
+    
+}
+
+extension CategoryViewController :UITableViewDelegate{
+    func initTableView(){
+        let nib = UINib(nibName: "MainCategoryCellTableViewCell", bundle: nil)
+        mainCategoryItems.separatorStyle = .none
+        mainCategoryItems.register(nib, forCellReuseIdentifier: MainCategoryCellTableViewCell.identifier)
+        mainCategoryItems.delegate = self
+        setupReactiveMainCategoryTableData()
+    }
+    func deselectAllRows(selectedIndex:Int ,animated: Bool) {
+//        guard let selectedRows = mainCategoryItems.indexPathForSelectedRow else { return }
+//        selectedRows.forEach { index in
+//
+//        }
+        for index in 0 ... mainCategoryItems.numberOfRows(inSection: 0)-1{
+            if(index != selectedIndex){
+                let indexPath = IndexPath(row: index, section: 0)
+                let cell = mainCategoryItems.cellForRow(at: indexPath) as! MainCategoryCellTableViewCell
+                cell.cellContainerView.backgroundColor = .white
+            }
+        }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.deselectAllRows( selectedIndex : indexPath.row ,animated: true)
+        //print("cell row is: \(indexPath.row) cell section is \(indexPath.section)")
+        let cell = tableView.cellForRow(at: indexPath) as! MainCategoryCellTableViewCell
+        cell.cellContainerView.backgroundColor = .blue
+        cell.isSelected = true
+    }
+    func setupReactiveMainCategoryTableData(){
+        viewModel.categories.drive(mainCategoryItems.rx.items(cellIdentifier: MainCategoryCellTableViewCell.identifier, cellType: MainCategoryCellTableViewCell.self)){ index , element , cell in
             cell.config(item: element)
             cell.cellClickAction =  { (item) in
-                self.coordinator?.moveTo(flow: .category(.productsScreen), userData: ["collection":item])
+               // self.coordinator?.moveTo(flow: .category(.productsScreen), userData: ["collection":item])
             }
         }.disposed(by: disposeBag)
-        categoriesCollectionView.delegate = self
-        categoriesCollectionView.backgroundView = cateBackgroundIMG
     }
 }
 extension CategoryViewController : UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
@@ -59,5 +87,18 @@ extension CategoryViewController : UICollectionViewDelegate, UICollectionViewDel
         let padding: CGFloat =  20
         let collectionViewSize = collectionView.frame.size.width - padding
         return CGSize(width: collectionViewSize/2, height: 200)
+    }
+    
+    func setupCollection(){
+        let nib = UINib(nibName: "CategoryItem", bundle: nil)
+        categoriesCollectionView.register(nib, forCellWithReuseIdentifier: CategoryItem.identifier)
+        viewModel.categories.drive(categoriesCollectionView.rx.items(cellIdentifier: CategoryItem.identifier, cellType: CategoryItem.self)){ index , element , cell in
+            cell.config(item: element)
+            cell.cellClickAction =  { (item) in
+                self.coordinator?.moveTo(flow: .category(.productsScreen), userData: ["collection":item])
+            }
+        }.disposed(by: disposeBag)
+        categoriesCollectionView.delegate = self
+        categoriesCollectionView.backgroundView = cateBackgroundIMG
     }
 }

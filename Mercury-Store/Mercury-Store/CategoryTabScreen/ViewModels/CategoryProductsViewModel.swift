@@ -45,7 +45,6 @@ final class CategoryProductsScreenViewModel: CategoryProductsScreenViewModelType
             .subscribe {[weak self] (result) in
                 self?.isLoadingSubject.accept(false)
                 self?.categorySubject.accept(result.products)
-                print(result.products.count)
             } onError: {[weak self] (error) in
                 self?.isLoadingSubject.accept(false)
                 self?.errorSubject.accept(error.localizedDescription)

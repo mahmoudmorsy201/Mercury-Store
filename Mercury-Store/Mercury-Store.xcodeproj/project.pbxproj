@@ -14,6 +14,8 @@
 		4D17769E283FB27000B0E726 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D17769C283FB27000B0E726 /* FilterViewController.swift */; };
 		4D17769F283FB27000B0E726 /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D17769D283FB27000B0E726 /* FilterViewController.xib */; };
 		4D21DF212846A35400582E43 /* CustomCollectionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D21DF202846A35400582E43 /* CustomCollectionResponse.swift */; };
+		4D21DF242846DE5A00582E43 /* MainCategoryCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D21DF222846DE5A00582E43 /* MainCategoryCellTableViewCell.swift */; };
+		4D21DF252846DE5A00582E43 /* MainCategoryCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D21DF232846DE5A00582E43 /* MainCategoryCellTableViewCell.xib */; };
 		4DBDBC2C2840316E00714391 /* CategoryApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDBC2B2840316E00714391 /* CategoryApi.swift */; };
 		4DBDBC2E28405E4300714391 /* CategoriesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDBC2D28405E4300714391 /* CategoriesClient.swift */; };
 		70E327F9F08636314A8DD26A /* Pods_Mercury_Store.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C880061057CCC78DAAE9EE6 /* Pods_Mercury_Store.framework */; };
@@ -131,6 +133,8 @@
 		4D17769C283FB27000B0E726 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		4D17769D283FB27000B0E726 /* FilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterViewController.xib; sourceTree = "<group>"; };
 		4D21DF202846A35400582E43 /* CustomCollectionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionResponse.swift; sourceTree = "<group>"; };
+		4D21DF222846DE5A00582E43 /* MainCategoryCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCategoryCellTableViewCell.swift; sourceTree = "<group>"; };
+		4D21DF232846DE5A00582E43 /* MainCategoryCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCategoryCellTableViewCell.xib; sourceTree = "<group>"; };
 		4DBDBC2B2840316E00714391 /* CategoryApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryApi.swift; sourceTree = "<group>"; };
 		4DBDBC2D28405E4300714391 /* CategoriesClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesClient.swift; sourceTree = "<group>"; };
 		5B035032FD47AF57FEEEC3EA /* Pods-Mercury-StoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-StoreTests.debug.xcconfig"; path = "Target Support Files/Pods-Mercury-StoreTests/Pods-Mercury-StoreTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -330,6 +334,8 @@
 			children = (
 				C4951238283EEC9C00E313EB /* CategoryItem.swift */,
 				C4951239283EEC9C00E313EB /* CategoryItem.xib */,
+				4D21DF222846DE5A00582E43 /* MainCategoryCellTableViewCell.swift */,
+				4D21DF232846DE5A00582E43 /* MainCategoryCellTableViewCell.xib */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -904,6 +910,7 @@
 				C4951233283EEB6800E313EB /* CategoryViewController.xib in Resources */,
 				C4C08BB028321A6400364704 /* ProfileViewController.xib in Resources */,
 				C4C04EEC28333299002EC367 /* BrandsTableViewCell.xib in Resources */,
+				4D21DF252846DE5A00582E43 /* MainCategoryCellTableViewCell.xib in Resources */,
 				C4C04EE82833328A002EC367 /* BannerTableViewCell.xib in Resources */,
 				C4C04EE428333278002EC367 /* LogoTableViewCell.xib in Resources */,
 				C4C04EF0283332AD002EC367 /* CategoriesTableViewCell.xib in Resources */,
@@ -1090,6 +1097,7 @@
 				C4C08B7D2832077800364704 /* HomeViewModel.swift in Sources */,
 				C4CFBA78283C2414009C2840 /* HelperFunctions.swift in Sources */,
 				C4CFBA63283BCF32009C2840 /* APIError.swift in Sources */,
+				4D21DF242846DE5A00582E43 /* MainCategoryCellTableViewCell.swift in Sources */,
 				C4CFBA57283BAB09009C2840 /* SdWebImage+UIImage.swift in Sources */,
 				C4C08B7B2832076B00364704 /* HomeModel.swift in Sources */,
 				C4CFBA3F283B98E4009C2840 /* ApplicationEnviroment.swift in Sources */,
