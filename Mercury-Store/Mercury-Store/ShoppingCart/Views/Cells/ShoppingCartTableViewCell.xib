@@ -56,6 +56,9 @@
                                         <color key="tintColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="minus.square" catalog="system"/>
+                                        <connections>
+                                            <action selector="decrementButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ewV-zz-OY1"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XW9-cL-15W">
                                         <rect key="frame" x="46.5" y="0.0" width="7.5" height="31"/>
@@ -68,6 +71,9 @@
                                         <color key="tintColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="plus.square" catalog="system"/>
+                                        <connections>
+                                            <action selector="incrementButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="uAr-DJ-2Jm"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.8265446254185268" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -80,6 +86,9 @@
                                 <color key="tintColor" systemColor="systemRedColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system"/>
+                                <connections>
+                                    <action selector="deleteButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="6Ft-bA-lMg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -111,9 +120,9 @@
             <connections>
                 <outlet property="containerViewForProductImage" destination="kaa-qD-izY" id="ETe-MY-k40"/>
                 <outlet property="containerViewForShoppingCartCell" destination="Mrm-2R-kFn" id="tXb-bh-oCB"/>
-                <outlet property="decreaseQuantityBtn" destination="VUp-QN-3ek" id="Jrj-Vo-Yp2"/>
-                <outlet property="deleteBtn" destination="PSJ-kF-Bcj" id="ceF-uD-xfM"/>
-                <outlet property="increaseQuntityBtn" destination="JzI-Hc-z2n" id="Fus-RU-fBC"/>
+                <outlet property="decrementQuantityButton" destination="VUp-QN-3ek" id="Kvn-kM-H1Z"/>
+                <outlet property="deleteButton" destination="PSJ-kF-Bcj" id="ZPU-Qi-3Dq"/>
+                <outlet property="incrementQuantityButton" destination="JzI-Hc-z2n" id="Krd-AS-No1"/>
                 <outlet property="productImageCart" destination="nHc-yf-BNJ" id="d8k-xf-nua"/>
                 <outlet property="productNameCart" destination="VMC-FO-fzb" id="45u-8T-CMZ"/>
                 <outlet property="productPriceCart" destination="QHi-tn-Hgi" id="3Ce-JN-lxk"/>

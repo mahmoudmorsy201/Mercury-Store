@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShoppingCartViewController" customModule="Mercury_Store" customModuleProvider="target">
             <connections>
+                <outlet property="checkoutBottom" destination="nka-5n-8t5" id="JLH-n1-CNH"/>
                 <outlet property="proceedToCheckoutBtn" destination="ioa-vz-9sk" id="CqQ-dE-CRI"/>
                 <outlet property="shoppingCartTableView" destination="TpL-0z-g1M" id="Olz-js-rG8"/>
                 <outlet property="totalPriceLabel" destination="xCd-fC-aG4" id="8s5-PB-cLT"/>

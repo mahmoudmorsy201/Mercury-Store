@@ -7,16 +7,11 @@
 
 import Foundation
 
-struct ShoppingCartCellViewModel {
-    let imageName: String
-    let productName: String
-    var productPrice: Int
-    var quantity: Int = 1
-    
-    init(usingModel model: ShoppingCartItem) {
-        self.imageName = model.imageName
-        self.productName = model.productName
-        self.productPrice = model.productPrice
-        self.quantity = model.quantity
-    }
+struct CartCellViewModel {
+    let row: CartRow
+    var product: CartProduct! { row.products.first }
+    var image: String? { product?.productImage }
+    var name: String? { product?.productName }
+    var price: String? { "\(row.rowTotal)" }
+    var count: String { "\(row.products.count)" }
 }
