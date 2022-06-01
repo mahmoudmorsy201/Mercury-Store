@@ -16,9 +16,17 @@ class RegisterViewModel{
     let confirmpasswordTextPublishSubject = PublishSubject<String>()
     
     func isValid() -> Observable<Bool> {
-        return Observable.combineLatest( emailTextPublishSubject.asObservable(), passwordTextPublishSubject.asObservable(),firstnameTextPublishSubject.asObservable(),lastnameTextPublishSubject.asObservable(),confirmpasswordTextPublishSubject.asObservable()).map{ email,password,firstname,lastname,confirmpassword in
-            return email.count > 3 && password.count > 3 && firstname.count > 3 && lastname.count > 3 && confirmpassword.count > 3
-        }.startWith(false)
+        return Observable.combineLatest(
+                emailTextPublishSubject.asObservable(),
+                passwordTextPublishSubject.asObservable(),
+                firstnameTextPublishSubject.asObservable(),
+                lastnameTextPublishSubject.asObservable(),
+                confirmpasswordTextPublishSubject.asObservable()
+            ).map{ email, password, firstname, lastname, confirmPassword in
+                return [email, password, firstname, lastname, confirmPassword]
+                    .filter { $0.count > 3 }
+                    .isEmpty
+            }.startWith(false)
     }
     
 }

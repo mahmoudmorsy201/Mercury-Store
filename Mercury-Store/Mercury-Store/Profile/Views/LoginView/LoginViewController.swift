@@ -34,12 +34,36 @@ class LoginViewController: UIViewController,ProfileCoordinated {
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.becomeFirstResponder()
-        emailTextField.rx.text.map{ $0 ?? ""}.bind(to:loginViewModel.emailTextPublishSubject).disposed(by: disposeBag)
-        passwordTextField.rx.text.map{ $0 ?? ""}.bind(to:loginViewModel.passwordTextPublishSubject).disposed(by: disposeBag)
-        loginViewModel.isValid().bind(to: loginButton.rx.isEnabled).disposed(by: disposeBag)
-        loginViewModel.isValid().map{$0 ? 1: 1.0}.bind(to: loginButton.rx.alpha).disposed(by: disposeBag)
-
-        }
+        bindTextToViewModel()
+        observeViewModelOnValid()
+    }
+    
+    func bindTextToViewModel() {
+        emailTextField
+            .rx.text
+            .map { $0 ?? "" }
+            .bind(to: loginViewModel.emailTextPublishSubject)
+            .disposed(by: disposeBag)
+        
+        passwordTextField
+            .rx.text
+            .map { $0 ?? "" }
+            .bind(to: loginViewModel.passwordTextPublishSubject)
+            .disposed(by: disposeBag)
+    }
+    
+    func observeViewModelOnValid() {
+        loginViewModel
+            .isValid()
+            .bind(to: loginButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        loginViewModel
+            .isValid()
+            .map{ $0 ? 1 : 1.0 }
+            .bind(to: loginButton.rx.alpha)
+            .disposed(by: disposeBag)
+    }
     @IBAction func loginPressed(_ sender: Any) {
         
         print("Tapped Login Button")

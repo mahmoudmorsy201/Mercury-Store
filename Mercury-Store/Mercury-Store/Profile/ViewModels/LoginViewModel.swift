@@ -14,8 +14,11 @@ class LoginViewModel {
     let passwordTextPublishSubject = PublishSubject<String>()
     
     func isValid() -> Observable<Bool> {
-        return Observable.combineLatest( emailTextPublishSubject.asObservable(), passwordTextPublishSubject.asObservable()).map{ email,password in
-            return email.count > 3 && password.count > 3
+        return Observable.combineLatest(
+              emailTextPublishSubject.asObservable(),
+              passwordTextPublishSubject.asObservable()
+            ).map{ email,password in
+             return email.count > 3 && password.count > 3
         }.startWith(false)
     }
 }

@@ -36,17 +36,20 @@ class RegisterViewController: UIViewController,ProfileCoordinated{
     override func viewDidLoad() {
         super.viewDidLoad()
         firstNameTextField.becomeFirstResponder()
+        bindTextToViewModel()
+        observeViewModelOnValid()
+    }
+    func bindTextToViewModel() {
         firstNameTextField.rx.text.map{ $0 ?? ""}.bind(to:registerViewModel.firstnameTextPublishSubject).disposed(by: disposeBag)
         lastNameTextField.rx.text.map{ $0 ?? ""}.bind(to:registerViewModel.lastnameTextPublishSubject).disposed(by: disposeBag)
         emailTextField.rx.text.map{ $0 ?? ""}.bind(to:registerViewModel.emailTextPublishSubject).disposed(by: disposeBag)
         passwordTextField.rx.text.map{ $0 ?? ""}.bind(to:registerViewModel.passwordTextPublishSubject).disposed(by: disposeBag)
         confirmPasswordTextField.rx.text.map{ $0 ?? ""}.bind(to:registerViewModel.confirmpasswordTextPublishSubject).disposed(by: disposeBag)
+    }
+    func observeViewModelOnValid(){
         registerViewModel.isValid().bind(to: signUpBtn.rx.isEnabled).disposed(by: disposeBag)
         registerViewModel.isValid().map{$0 ? 1: 1.0}.bind(to: signUpBtn.rx.alpha).disposed(by: disposeBag)
-       
-        
     }
-
 
     /*
     // MARK: - Navigation
