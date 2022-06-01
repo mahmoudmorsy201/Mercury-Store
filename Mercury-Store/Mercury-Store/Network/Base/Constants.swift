@@ -15,6 +15,10 @@ struct Constants {
         struct Brands {
             public static let brandsList = "/smart_collections.json"
         }
+        struct Customers {
+            public static let customersList = "/smart_collections.json"
+        }
+        
     }
     
     struct Keys {

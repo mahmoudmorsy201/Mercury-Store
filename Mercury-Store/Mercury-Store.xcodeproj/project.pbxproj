@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		023924282844F73A002F8C50 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023924272844F73A002F8C50 /* LoginViewModel.swift */; };
+		0239242A284500C2002F8C50 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02392429284500C2002F8C50 /* RegisterViewModel.swift */; };
 		02E71276283FB9D5005726B3 /* profileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02E71272283FB9D5005726B3 /* profileCell.xib */; };
 		02E71277283FB9D5005726B3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E71273283FB9D5005726B3 /* ProfileViewController.swift */; };
 		02E71278283FB9D5005726B3 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E71274283FB9D5005726B3 /* ProfileCell.swift */; };
@@ -142,6 +144,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		023924272844F73A002F8C50 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		02392429284500C2002F8C50 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		02E71272283FB9D5005726B3 /* profileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = profileCell.xib; sourceTree = "<group>"; };
 		02E71273283FB9D5005726B3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		02E71274283FB9D5005726B3 /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
@@ -692,6 +696,8 @@
 			isa = PBXGroup;
 			children = (
 				C4C08BB128321A6F00364704 /* ProfileViewModel.swift */,
+				023924272844F73A002F8C50 /* LoginViewModel.swift */,
+				02392429284500C2002F8C50 /* RegisterViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -889,8 +895,8 @@
 				C4C04EDC2833164B002EC367 /* Cells */,
 				C4C08BB828321D2300364704 /* Favourite */,
 				C4C08BB728321D1900364704 /* Search */,
-				C4CDB9582832022E0000519A /* HomeViewController.swift */,
 				C4CDB9592832022E0000519A /* HomeViewController.xib */,
+				C4CDB9582832022E0000519A /* HomeViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1282,6 +1288,7 @@
 				C4CFBA78283C2414009C2840 /* HelperFunctions.swift in Sources */,
 				C4CFBA63283BCF32009C2840 /* APIError.swift in Sources */,
 				C4CFBA57283BAB09009C2840 /* SdWebImage+UIImage.swift in Sources */,
+				0239242A284500C2002F8C50 /* RegisterViewModel.swift in Sources */,
 				C4C08B7B2832076B00364704 /* HomeModel.swift in Sources */,
 				C4CFBA3F283B98E4009C2840 /* ApplicationEnviroment.swift in Sources */,
 				02E71299283FBD8E005726B3 /* MyOrdersViewCell.swift in Sources */,
@@ -1298,6 +1305,7 @@
 				C4C08BC028321D8F00364704 /* SearchViewModel.swift in Sources */,
 				C4CDB90E2830E31D0000519A /* SceneDelegate.swift in Sources */,
 				02E712A5283FBDCA005726B3 /* WishListCell.swift in Sources */,
+				023924282844F73A002F8C50 /* LoginViewModel.swift in Sources */,
 				02E712B0283FBE64005726B3 /* OrderDetailsCell.swift in Sources */,
 				C4C08BA0283216EC00364704 /* ShoppingCartViewController.swift in Sources */,
 				C4CFBA67283BD605009C2840 /* HomeClient.swift in Sources */,

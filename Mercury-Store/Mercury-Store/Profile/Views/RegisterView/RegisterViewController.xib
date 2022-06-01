@@ -16,6 +16,7 @@
                 <outlet property="lastNameTextField" destination="mcK-SE-ZLp" id="dHa-7b-HnK"/>
                 <outlet property="loginLabel" destination="OOi-Ei-R8x" id="zeC-Vr-Bpu"/>
                 <outlet property="passwordTextField" destination="7He-tl-LTR" id="7Rl-hh-UIa"/>
+                <outlet property="signUpBtn" destination="ihm-1h-wl4" id="pDG-X6-xkc"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

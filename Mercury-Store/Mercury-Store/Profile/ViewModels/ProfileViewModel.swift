@@ -10,6 +10,7 @@ import RxCocoa
 
 class ProfileViewModel {
     
+    
     private var _sectionModels: BehaviorSubject<[ProfileSectionModel]> = BehaviorSubject(value: [])
     
     var sectionModels: SharedSequence<DriverSharingStrategy, [ProfileSectionModel]> {
