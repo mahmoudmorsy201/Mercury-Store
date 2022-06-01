@@ -65,7 +65,7 @@ extension CartSection {
     }
 }
 
-extension CartSection: AnimatableSectionModelType {
+extension CartSection: SectionModelType {
     var identity: UUID { uuid }
     var items: [CartRow] { rows }
     

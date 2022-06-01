@@ -98,8 +98,10 @@ class ShoppingCartTableViewCell: UITableViewCell {
 }
 
 extension ShoppingCartTableViewCell {
+    
     func bind(viewModel: CartCellViewModel, incrementObserver: AnyObserver<CartProduct>, decrementObserver: AnyObserver<CartProduct>) {
-        productImageCart.image = UIImage(named:viewModel.image!)
+        guard let image = viewModel.image else {return}
+        productImageCart.image = UIImage(named: image)
         productNameCart.text = viewModel.name
         productPriceCart.text = viewModel.price
         quantityLabel.text = viewModel.count

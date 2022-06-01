@@ -28,6 +28,8 @@ struct CartState {
             return CartState([decrement(product, in: self.sections[0])])
         case .checkout:
             return .empty()
+        case .viewIsLoaded:
+            return CartState([CartSection(CartCoreDataManager.shared.all.map{CartRow(products: [$0])})])
         }
     }
         

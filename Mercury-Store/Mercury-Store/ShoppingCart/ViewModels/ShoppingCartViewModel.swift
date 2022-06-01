@@ -11,11 +11,16 @@ import RxCocoa
 enum CartAction {
     case increment(CartProduct)
     case decrement(CartProduct)
+    case viewIsLoaded
     case checkout
 }
 
+struct CartInput {
+    let viewLoaded: Observable<Void>
+}
+
 struct CartOutput {
-    let cart: Driver<[CartSection]>
+    let cart: Observable<[CartSection]>
     let cartTotal: Observable<String?>
     let cartEmpty: Observable<Bool>
     let checkoutVisible: Observable<(visible: Bool, animated: Bool)>
@@ -27,27 +32,19 @@ struct CartViewModel {
     private let decrementProductSubject = PublishSubject<CartProduct>()
     var incrementProduct: AnyObserver<CartProduct> { incrementProductSubject.asObserver() }
     var decrementProduct: AnyObserver<CartProduct> { decrementProductSubject.asObserver() }
-    private let subject = PublishSubject<[CartSection]>()
-    func fetchDataFromCoreData() {
-        let productsSections = CartCoreDataManager.shared.getDataFromCoreData().map{CartRow(products: [$0])}.map{CartSection([$0])}
-        //cartProductsSubject.onNext(productsSections)
-    }
     
-    init() {
-        
-    }
     
-    func bind() -> CartOutput {
+    func bind(_ input: CartInput) -> CartOutput {
          let cart = Observable
             .merge(
+                input.viewLoaded.map{CartAction.viewIsLoaded},
                 incrementProductSubject.map { CartAction.increment($0) },
                 decrementProductSubject.map { CartAction.decrement($0) })
-            
+        
             .scan(CartState.empty()) { (state, action) in
                 state.execute(action)
             }
             .map { $0.sections }
-            .debug("cart")
             .share()
         
         return CartOutput(
@@ -59,7 +56,7 @@ struct CartViewModel {
     }
         
     func cartTotal() -> (_ cart: [CartSection]) -> String? {
-        { String(describing: $0[safe: 0]?.sectionTotal) }
+        {  String($0[safe: 0]?.sectionTotal ?? 0) }
     }
     
     func cartEmpty() -> (_ cart: [CartSection]) throws -> Bool {
@@ -76,21 +73,3 @@ extension Collection {
         return indices.contains(index) ? self[index] : nil
     }
 }
-
-//extension Int {
-//    var decimalCurrency: Double {
-//        return Double(self) / 100.0
-//    }
-//
-//    var decimalCurrencyString: String {
-//        let locale = Locale.current
-//        let numberFormatter = NumberFormatter()
-//        numberFormatter.currencyCode = locale.currencyCode
-//        numberFormatter.locale = locale
-//        numberFormatter.minimumFractionDigits = 2
-//        numberFormatter.maximumFractionDigits = 2
-//        guard let value = numberFormatter.string(from: NSNumber(value: decimalCurrency)) else { fatalError("Could not format decimal currency: \( decimalCurrency)") }
-//        guard let symbol = locale.currencySymbol else { fatalError("Could not find currency symbol for locale: \(locale)") }
-//        return "\(symbol)\(value)"
-//    }
-//}
