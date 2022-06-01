@@ -41,6 +41,7 @@ class ShoppingCartViewController: UIViewController, ShoppingCartCoordinated {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let inputData = Observable.merge(
             rx.methodInvoked(#selector(viewWillAppear(_:))).map { _ in }
         )
@@ -49,23 +50,31 @@ class ShoppingCartViewController: UIViewController, ShoppingCartCoordinated {
         shoppingCartTableView.rx.setDelegate(self).disposed(by: disposeBag)
         
         let output = viewModel.bind(CartInput(viewLoaded: inputData))
-        output.cart.bind(to: shoppingCartTableView.rx.items(dataSource: dataSource())).disposed(by: disposeBag)
-        output.cartTotal.bind(to: totalPriceLabel.rx.text).disposed(by: disposeBag)
+        
+        output.cart.bind(to: shoppingCartTableView.rx.items(dataSource: dataSource()))
+            .disposed(by: disposeBag)
+        
+        output.cartEmpty.bind(to: shoppingCartTableView.rx.isEmpty(message: "Your cart is empty"))
+            .disposed(by: disposeBag)
+        
+        output.cartTotal.bind(to: totalPriceLabel.rx.text)
+            .disposed(by: disposeBag)
         
     }
 }
 
 extension ShoppingCartViewController {
     
-        private func dataSource() -> RxTableViewSectionedReloadDataSource<CartSection> {
-            .init { datasource, tableView, indexPath, row in
-                let cell: ShoppingCartTableViewCell = tableView.dequeueReusableCell(withIdentifier: ShoppingCartTableViewCell.reuseIdentifier(), for: indexPath) as! ShoppingCartTableViewCell
-                
-                cell.bind(viewModel: CartCellViewModel(row: row),
-                          incrementObserver: self.viewModel.incrementProduct,
-                          decrementObserver: self.viewModel.decrementProduct)
-                return cell
-            }
+    private func dataSource() -> RxTableViewSectionedReloadDataSource<CartSection> {
+        .init { datasource, tableView, indexPath, row in
+            let cell: ShoppingCartTableViewCell = tableView.dequeueReusableCell(withIdentifier: ShoppingCartTableViewCell.reuseIdentifier(), for: indexPath) as! ShoppingCartTableViewCell
+            
+            cell.bind(viewModel: CartCellViewModel(row: row),
+                      incrementObserver: self.viewModel.incrementProduct,
+                      decrementObserver: self.viewModel.decrementProduct,
+                      deleteObserver: self.viewModel.deleteProduct)
+            return cell
+        }
     }
 }
 

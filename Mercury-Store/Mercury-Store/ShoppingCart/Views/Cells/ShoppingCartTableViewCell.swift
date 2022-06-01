@@ -26,25 +26,16 @@ class ShoppingCartTableViewCell: UITableViewCell {
     @IBOutlet weak private var quantityLabel: UILabel!
     
 
-    @IBOutlet weak var incrementQuantityButton: UIButton!
+    @IBOutlet weak private var incrementQuantityButton: UIButton!
     
-    @IBOutlet weak var decrementQuantityButton: UIButton!
+    @IBOutlet weak private var decrementQuantityButton: UIButton!
     
     
-    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak private var deleteButton: UIButton!
     
-    var viewModel: CartProduct? {
-        didSet {
-            guard let viewModel = viewModel else {
-                return
-            }
-            productNameCart.text = viewModel.productName
-            productPriceCart.text = "\(viewModel.productPrice)"
-            productImageCart.image = UIImage(named: viewModel.productName)
-        }
-    }
-    
-
+    var incrementTap: ControlEvent<Void> { self.incrementQuantityButton.rx.tap }
+    var decrementTap: ControlEvent<Void> { self.decrementQuantityButton.rx.tap }
+    var deleteTap: ControlEvent<Void> { self.deleteButton.rx.tap }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -67,27 +58,8 @@ class ShoppingCartTableViewCell: UITableViewCell {
         self.productImageCart.layer.borderWidth = 0.5
         self.productImageCart.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
     }
-    
-    
-    @IBAction func incrementButtonTapped(_ sender: Any) {
         
-        
-    }
-    
-    
-    
-    @IBAction func decrementButtonTapped(_ sender: Any) {
-     
-    }
-    
-    
-    
-    @IBAction func deleteButtonTapped(_ sender: Any) {
-        
-    }
-    
-    var incrementTap: ControlEvent<Void> { self.incrementQuantityButton.rx.tap }
-    var decrementTap: ControlEvent<Void> { self.decrementQuantityButton.rx.tap }
+
     
     private(set) var disposeBag = DisposeBag()
     override func prepareForReuse() {
@@ -99,7 +71,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
 
 extension ShoppingCartTableViewCell {
     
-    func bind(viewModel: CartCellViewModel, incrementObserver: AnyObserver<CartProduct>, decrementObserver: AnyObserver<CartProduct>) {
+    func bind(viewModel: CartCellViewModel, incrementObserver: AnyObserver<CartProduct>, decrementObserver: AnyObserver<CartProduct>, deleteObserver: AnyObserver<CartProduct>) {
         guard let image = viewModel.image else {return}
         productImageCart.image = UIImage(named: image)
         productNameCart.text = viewModel.name
@@ -116,7 +88,10 @@ extension ShoppingCartTableViewCell {
             .bind(to: decrementObserver)
             .disposed(by: disposeBag)
         
-        
+        self.deleteTap
+            .map{ viewModel.product }
+            .bind(to: deleteObserver)
+            .disposed(by: disposeBag)
     }
 }
 

@@ -11,8 +11,9 @@ import RxCocoa
 enum CartAction {
     case increment(CartProduct)
     case decrement(CartProduct)
+    case deleteItem(CartProduct)
     case viewIsLoaded
-    case checkout
+    case proceedToCheckout
 }
 
 struct CartInput {
@@ -30,8 +31,10 @@ struct CartOutput {
 struct CartViewModel {
     private let incrementProductSubject = PublishSubject<CartProduct>()
     private let decrementProductSubject = PublishSubject<CartProduct>()
+    private let deleteProductSubject = PublishSubject<CartProduct>()
     var incrementProduct: AnyObserver<CartProduct> { incrementProductSubject.asObserver() }
     var decrementProduct: AnyObserver<CartProduct> { decrementProductSubject.asObserver() }
+    var deleteProduct: AnyObserver<CartProduct> { deleteProductSubject.asObserver() }
     
     
     func bind(_ input: CartInput) -> CartOutput {
@@ -39,7 +42,9 @@ struct CartViewModel {
             .merge(
                 input.viewLoaded.map{CartAction.viewIsLoaded},
                 incrementProductSubject.map { CartAction.increment($0) },
-                decrementProductSubject.map { CartAction.decrement($0) })
+                decrementProductSubject.map { CartAction.decrement($0) },
+                deleteProductSubject.map { CartAction.deleteItem($0) }
+            )
         
             .scan(CartState.empty()) { (state, action) in
                 state.execute(action)
@@ -56,7 +61,7 @@ struct CartViewModel {
     }
         
     func cartTotal() -> (_ cart: [CartSection]) -> String? {
-        {  String($0[safe: 0]?.sectionTotal ?? 0) }
+        {  "EGP \($0[safe: 0]?.sectionTotal ?? 0)" }
     }
     
     func cartEmpty() -> (_ cart: [CartSection]) throws -> Bool {
@@ -68,8 +73,4 @@ struct CartViewModel {
     }
 }
 
-extension Collection {
-    subscript (safe index: Index) -> Element? {
-        return indices.contains(index) ? self[index] : nil
-    }
-}
+

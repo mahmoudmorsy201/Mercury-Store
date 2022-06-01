@@ -12,6 +12,7 @@ struct CartCellViewModel {
     var product: CartProduct! { row.products.first }
     var image: String? { product?.productImage }
     var name: String? { product?.productName }
-    var price: String? { "\(row.rowTotal)" }
+    var price: String? { "EGP \(row.rowTotal)" }
     var count: String { "\(row.products.count)" }
 }
+
