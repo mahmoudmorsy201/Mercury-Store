@@ -8,20 +8,20 @@
 import UIKit
 
 extension UIImageView {
-    func applyshadowWithCorner(containerView : UIView, cornerRadious : CGFloat){
+    func applyshadowWithCorner(containerView : UIView, cornerRadius : CGFloat){
         containerView.clipsToBounds = false
         containerView.layer.shadowColor = UIColor.black.cgColor
         containerView.layer.borderColor = UIColor.clear.cgColor
         containerView.layer.borderWidth = 1.0
-        containerView.layer.shadowOffset = CGSize(width: 0, height: cornerRadious)
+        containerView.layer.shadowOffset = CGSize(width: 0, height: cornerRadius)
         containerView.layer.shadowRadius = 6.0
         containerView.layer.shadowOpacity = 0.5
-        containerView.layer.cornerRadius = cornerRadious
-        containerView.layer.shadowPath = UIBezierPath(roundedRect: containerView.bounds, cornerRadius: cornerRadious).cgPath
+        containerView.layer.cornerRadius = cornerRadius
+        containerView.layer.shadowPath = UIBezierPath(roundedRect: containerView.bounds, cornerRadius: cornerRadius).cgPath
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.main.scale
         self.clipsToBounds = true
-        self.layer.cornerRadius = cornerRadious
+        self.layer.cornerRadius = cornerRadius
     }
 }
 
