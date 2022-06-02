@@ -8,6 +8,9 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+protocol ShoppingCartNavigationFlow {
+    
+}
 enum CartAction {
     case increment(CartProduct)
     case decrement(CartProduct)
@@ -29,6 +32,7 @@ struct CartOutput {
 
 
 struct CartViewModel {
+    var shoppingCartNavigationFlow: ShoppingCartNavigationFlow!
     private let incrementProductSubject = PublishSubject<CartProduct>()
     private let decrementProductSubject = PublishSubject<CartProduct>()
     private let deleteProductSubject = PublishSubject<CartProduct>()
@@ -71,6 +75,16 @@ struct CartViewModel {
     func checkoutVisible() -> (_ cart: [CartSection]) throws -> (visible: Bool, animated: Bool) {
         { $0[safe: 0]?.rows.count == 0 ? (visible: false, animated: true) : (visible: true, animated: true) }
     }
+}
+
+extension CartViewModel {
+    init(shoppingCartNavigationFlow: ShoppingCartNavigationFlow) {
+        self.shoppingCartNavigationFlow = shoppingCartNavigationFlow
+    }
+}
+
+extension CartViewModel: ShoppingCartNavigationFlow {
+    
 }
 
 

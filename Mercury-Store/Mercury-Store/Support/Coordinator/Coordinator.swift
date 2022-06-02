@@ -7,27 +7,26 @@
 
 import UIKit
 
-protocol FlowCoordinator: AnyObject {
-    var parentCoordinator: MainBaseCoordinator? {get set}
-}
+import Foundation
+import UIKit
 
-protocol Coordinator: FlowCoordinator {
-    var rootViewController: UIViewController { get set }
-    func start() -> UIViewController
-    func moveTo(flow: AppFlow, userData: [String: Any]?)
-    @discardableResult func resetToRoot(animated: Bool) -> Self
+protocol Coordinator : AnyObject {
+    var parentCoordinator: Coordinator? { get set }
+    var children: [Coordinator] { get set }
+    var navigationController : UINavigationController { get set }
+    
+    func start()
 }
 
 extension Coordinator {
-    var navigationRootViewController: UINavigationController? {
-        get {
-            (rootViewController as? UINavigationController)
-        }
-    }
     
-    func resetToRoot(animated: Bool) -> Self {
-        navigationRootViewController?.popToRootViewController(animated: animated)
-        return self
+    func childDidFinish(_ coordinator : Coordinator){
+        for (index, child) in children.enumerated() {
+            if child === coordinator {
+                children.remove(at: index)
+                break
+            }
+        }
     }
 }
 

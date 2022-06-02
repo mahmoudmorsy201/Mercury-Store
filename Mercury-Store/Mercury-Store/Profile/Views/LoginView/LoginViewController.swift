@@ -8,7 +8,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class LoginViewController: UIViewController,ProfileCoordinated {
+class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var signupLabel: UILabel!
@@ -17,20 +17,7 @@ class LoginViewController: UIViewController,ProfileCoordinated {
     
     private let loginViewModel = LoginViewModel()
     private let disposeBag = DisposeBag ()
-    var coordinator: ProfileBaseCoordinator?
-    init(coordinator: ProfileBaseCoordinator) {
-        super.init(nibName: nil, bundle: nil)
-        self.coordinator = coordinator
-        title = "login"
-    }
     
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-   
-   
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.becomeFirstResponder()
@@ -67,10 +54,10 @@ class LoginViewController: UIViewController,ProfileCoordinated {
     @IBAction func loginPressed(_ sender: Any) {
         
         print("Tapped Login Button")
-        coordinator?.moveTo(flow: .profile(.intialScreen), userData: nil)
+        //coordinator?.moveTo(flow: .profile(.intialScreen), userData: nil)
     }
     @IBAction func goToSignUp(_ sender: UIButton) {
-        coordinator?.moveTo(flow: .profile(.registerScreen), userData: nil)
+        //coordinator?.moveTo(flow: .profile(.registerScreen), userData: nil)
 
         
     }

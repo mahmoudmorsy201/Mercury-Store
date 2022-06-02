@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxDataSources
 
-class HomeViewController: UIViewController, HomeBaseCoordinated {
+class HomeViewController: UIViewController {
     
     @IBOutlet weak private var homeActivityIndicator: UIActivityIndicatorView!
     
@@ -23,18 +23,10 @@ class HomeViewController: UIViewController, HomeBaseCoordinated {
         }
     }
     
-    var coordinator: HomeBaseCoordinator?
+    //MARK: Properties
+    private let disposeBag = DisposeBag()
+    var viewModel: HomeViewModel!
     
-    init(coordinator: HomeBaseCoordinator) {
-        super.init(nibName: nil, bundle: nil)
-        self.coordinator = coordinator
-        title = "Home"
-      
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         homeTableView.rx.setDelegate(self)
@@ -51,12 +43,10 @@ class HomeViewController: UIViewController, HomeBaseCoordinated {
     }
     
     @objc func searchBtnTapped() {
-        coordinator?.moveTo(flow: .home(.searchScreen), userData: nil)
+        
     }
     
-    //MARK: Properties
-    private let disposeBag = DisposeBag()
-    private let viewModel = HomeViewModel()
+
 }
 
 extension HomeViewController {

@@ -7,8 +7,8 @@
 
 import UIKit
 
-class ProductResultViewController: UIViewController , CategoryBaseCoordinated{
-    var coordinator: CategoryBaseCoordinator?
+class ProductResultViewController: UIViewController {
+    
     
     @IBOutlet weak var productCollectionView: UICollectionView!
     
@@ -19,15 +19,6 @@ class ProductResultViewController: UIViewController , CategoryBaseCoordinated{
         productCollectionView.register(nib, forCellWithReuseIdentifier: ProductCell.identifier)
         productCollectionView.dataSource = self
         productCollectionView.delegate = self
-    }
-    init(coordinator: CategoryBaseCoordinator) {
-        super.init(nibName: nil, bundle: nil)
-        self.coordinator = coordinator
-        title = "Categoryx Products"
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
 }

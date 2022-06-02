@@ -10,10 +10,10 @@ import TextFieldEffects
 import RxCocoa
 import RxSwift
 
-class RegisterViewController: UIViewController,ProfileCoordinated{
+class RegisterViewController: UIViewController {
     
     private let registerViewModel = RegisterViewModel()
-    private let disposeBag = DisposeBag ()
+    private let disposeBag = DisposeBag()
     @IBOutlet weak var firstNameTextField: AkiraTextField!
     @IBOutlet weak var lastNameTextField: AkiraTextField!
     @IBOutlet weak var emailTextField: AkiraTextField!
@@ -21,18 +21,8 @@ class RegisterViewController: UIViewController,ProfileCoordinated{
     @IBOutlet weak var confirmPasswordTextField: AkiraTextField!
     @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var signUpBtn: UIButton!
-    var coordinator: ProfileBaseCoordinator?
-    init(coordinator: ProfileBaseCoordinator) {
-        super.init(nibName: nil, bundle: nil)
-        self.coordinator = coordinator
-        title = "register"
-    }
     
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         firstNameTextField.becomeFirstResponder()
@@ -51,18 +41,10 @@ class RegisterViewController: UIViewController,ProfileCoordinated{
         registerViewModel.isValid().map{$0 ? 1: 1.0}.bind(to: signUpBtn.rx.alpha).disposed(by: disposeBag)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
     @IBAction func signUp(_ sender: Any) {
     print("Tapped Login Button")
-    coordinator?.moveTo(flow: .profile(.intialScreen), userData: nil)
+    //coordinator?.moveTo(flow: .profile(.intialScreen), userData: nil)
 
     }
     

@@ -8,19 +8,8 @@
 import UIKit
 
 class WishListViewController: UIViewController {
-    var coordinator: ProfileBaseCoordinator?
-    init(coordinator: ProfileBaseCoordinator) {
-        super.init(nibName: nil, bundle: nil)
-        self.coordinator = coordinator
-        title = "myWishlist"
-    }
     
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()

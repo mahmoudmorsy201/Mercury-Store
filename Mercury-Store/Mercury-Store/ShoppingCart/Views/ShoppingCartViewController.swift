@@ -10,7 +10,7 @@ import RxCocoa
 import RxSwift
 import RxDataSources
 
-class ShoppingCartViewController: UIViewController, ShoppingCartCoordinated {
+class ShoppingCartViewController: UIViewController {
     
     @IBOutlet weak private var totalPriceLabel: UILabel!
     
@@ -24,19 +24,8 @@ class ShoppingCartViewController: UIViewController, ShoppingCartCoordinated {
     
     @IBOutlet weak var proceedToCheckoutBtn: UIButton!
     
-    var coordinator: ShoppingCartBaseCoordinator?
-    private let viewModel = CartViewModel()
-    
-    init(coordinator: ShoppingCartBaseCoordinator) {
-        super.init(nibName: nil, bundle: nil)
-        self.coordinator = coordinator
-        title = "Cart"
-
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+  
+    var viewModel = CartViewModel()
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {

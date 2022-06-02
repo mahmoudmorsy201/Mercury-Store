@@ -10,7 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var appCoordinator : ApplicationCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         AppAppearance.setupAppearanceForNavigation()
@@ -18,7 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = MainCoordinator().start()
+        let navigationCon = UINavigationController.init()
+        appCoordinator = ApplicationCoordinator(navigationController: navigationCon)
+        appCoordinator!.start()
+        window?.rootViewController = navigationCon
         window?.makeKeyAndVisible()
     }
 

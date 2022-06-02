@@ -9,38 +9,25 @@ import UIKit
 import RxDataSources
 import RxSwift
 
-class ProfileViewController: UIViewController, ProfileCoordinated{
+class ProfileViewController: UIViewController {
     
-    var coordinator: ProfileBaseCoordinator?
+    
     var viewModel: ProfileViewModel!
     let disposeBag = DisposeBag()
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var userEmail: UILabel!
     
-    init(coordinator: ProfileBaseCoordinator) {
-        super.init(nibName: nil, bundle: nil)
-        self.coordinator = coordinator
-        title = "Profile"
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
        // view.backgroundColor = .lightGray
         configureTableView()
-        configureViewModel()
+      
         configureSectionModel()
         
        // self.tableView.register(UINib(nibName: "ProfileCell", bundle: nil), forCellReuseIdentifier: "cell")
 
-    }
-    private func configureViewModel() {
-       viewModel = ProfileViewModel()
     }
 
     @IBAction func didPressedOnCartButton(_ sender: Any) {
@@ -48,7 +35,7 @@ class ProfileViewController: UIViewController, ProfileCoordinated{
     }
     
     @IBAction func logoutAction(_ sender: Any) {
-        coordinator?.moveTo(flow: .home(.intialScreen), userData: nil)
+        self.viewModel.goToMainTab()
     }
     private func configureSectionModel() {
         // 1
@@ -72,23 +59,24 @@ class ProfileViewController: UIViewController, ProfileCoordinated{
                 default: break
                 }
             }).disposed(by: disposeBag)*/
-        tableView.rx.itemSelected.subscribe(onNext: { IndexPath in
+        tableView.rx.itemSelected.subscribe(onNext: {[weak self] IndexPath in
             switch IndexPath.section{
             case 0:
                 switch IndexPath.row {
                 case 0:
-                    self.coordinator?.moveTo(flow: .profile(.myOrdersScreen), userData: nil)
+                    self?.viewModel.goToMyOrdersScreen()
                 case 1:
-                    self.coordinator?.moveTo(flow: .profile(.myWishlistScreen), userData: nil)
+                    self?.viewModel.goToMyWishListScreen()
+                case 2:
+                    self?.viewModel.goToMyAddressesScreen()
                 default:
-                    self.coordinator?.moveTo(flow: .profile(.myAddressesScreen), userData: nil)
-
-               
-
+                    break
                 }
-            default:
-                self.coordinator?.moveTo(flow: .profile(.aboutScreen), userData: nil)
+            case 1:
+                self?.viewModel.goToAboutUsScreen()
                 
+            default:
+                break
             }
            
             
