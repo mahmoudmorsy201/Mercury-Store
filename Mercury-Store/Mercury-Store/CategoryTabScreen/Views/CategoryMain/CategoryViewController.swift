@@ -86,9 +86,9 @@ extension CategoryViewController : UICollectionViewDelegate, UICollectionViewDel
         let nib = UINib(nibName: "CategoryItem", bundle: nil)
         categoriesCollectionView.register(nib, forCellWithReuseIdentifier: CategoryItem.identifier)
         viewModel.categoryDetails.productTypes.drive(categoriesCollectionView.rx.items(cellIdentifier: CategoryItem.identifier, cellType: CategoryItem.self)){ index , element , cell in
-            cell.config(name: element)
-            cell.cellClickAction =  { (item) in
-                self.coordinator?.moveTo(flow: .category(.productsScreen), userData: ["collection":item])
+            cell.config(name: element , itemId: self.viewModel.categoryDetails.categoryID)
+            cell.cellClickAction =  { (id) in
+                self.coordinator?.moveTo(flow: .category(.productsScreen), userData: ["collection":id])
             }
         }.disposed(by: disposeBag)
         categoriesCollectionView.delegate = self

@@ -14,7 +14,6 @@ protocol CategoryProductsScreenViewModelType {
     var products: Driver<[Product]> { get}
     var error: Driver<String?> { get }
     var categoryID:Int{ get set}
-    var getDestinctType:Bool{get set}
     var productTypes: Driver<[String]>{get}
 }
 
@@ -40,7 +39,6 @@ final class CategoryProductsScreenViewModel: CategoryProductsScreenViewModelType
     private let typesSubject = BehaviorRelay<[String]>(value: [])
     private let isLoadingSubject = BehaviorRelay<Bool>(value: false)
     private let errorSubject = BehaviorRelay<String?>(value: nil)
-    var getDestinctType:Bool = false
     
     init(categoryID:Int) {
         products = categorySubject.asDriver(onErrorJustReturn: [])
@@ -57,12 +55,10 @@ final class CategoryProductsScreenViewModel: CategoryProductsScreenViewModelType
             .observe(on: MainScheduler.asyncInstance)
             .subscribe {[weak self] (result) in
                 self?.isLoadingSubject.accept(false)
-                if(self?.getDestinctType == true){
-                    let types = self?.getProductTypes(items: result.products)
-                    self?.typesSubject.accept(types ?? [])
-                }else{
-                    self?.categorySubject.accept(result.products)
-                }
+                print(result.products.count)
+                self?.categorySubject.accept(result.products)
+                let types = self?.getProductTypes(items: result.products)
+                self?.typesSubject.accept(types ?? [])
             } onError: {[weak self] (error) in
                 self?.isLoadingSubject.accept(false)
                 self?.errorSubject.accept(error.localizedDescription)
@@ -71,7 +67,6 @@ final class CategoryProductsScreenViewModel: CategoryProductsScreenViewModelType
     
     private func getProductTypes(items:[Product])->[String]{
         let types:[String] = items.map { $0.productType.rawValue  }
-        types.unique.forEach{ print($0) }
         return types.unique
     }
     

@@ -13,7 +13,8 @@ class CategoryItem: UICollectionViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var image: UIImageView!
     var item:CustomCollection?
-    var cellClickAction:( (_ item:CustomCollection)->() )?
+    var itemID:Int?
+    var cellClickAction:( (_ item:Int)->() )?
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCell()
@@ -31,9 +32,10 @@ class CategoryItem: UICollectionViewCell {
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         containerViewForCategoriesCollectionViewCell.addGestureRecognizer(tap)
     }
-    public func config(name:String){
+    public func config(name:String , itemId:Int){
         title.text = name
         image.image = UIImage(named: name)
+        self.itemID = itemId
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         containerViewForCategoriesCollectionViewCell.addGestureRecognizer(tap)
     }
@@ -41,7 +43,12 @@ class CategoryItem: UICollectionViewCell {
         guard let cellClickAction = cellClickAction else {
             return
         }
-        cellClickAction(self.item!)
+        if let item = self.item {
+            cellClickAction(item.id)
+        }else{
+            cellClickAction(itemID!)
+        }
+        
     }
     private func setupCell() {
         containerViewForCategoriesCollectionViewCell.applyShadow(cornerRadius: 12)

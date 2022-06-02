@@ -10,7 +10,7 @@ import RxSwift
 class ProductResultViewController: UIViewController , CategoryBaseCoordinated{
     var coordinator: CategoryBaseCoordinator?
     private let disposeBag = DisposeBag()
-    private var CategoryID:Int?
+    private var categoryID:Int?
     var viewModel:CategoryProductsScreenViewModelType?
     @IBOutlet weak var productCollectionView: UICollectionView!
     
@@ -23,6 +23,7 @@ class ProductResultViewController: UIViewController , CategoryBaseCoordinated{
     func setupCollectionView(){
         let nib = UINib(nibName: "ProductCell", bundle: nil)
         productCollectionView.register(nib, forCellWithReuseIdentifier: ProductCell.identifier)
+        viewModel?.categoryID = categoryID!
         viewModel?.products.drive(productCollectionView.rx.items(cellIdentifier: ProductCell.identifier, cellType: ProductCell.self)){index , element , cell in
             cell.cellClickAction =  { (item) in
                 self.coordinator?.moveTo(flow: .category(.productDetailScreen), userData: ["product":item])
@@ -34,9 +35,8 @@ class ProductResultViewController: UIViewController , CategoryBaseCoordinated{
     init(coordinator: CategoryBaseCoordinator ,collection: [String:Any]) {
         super.init(nibName: nil, bundle: nil)
         self.coordinator = coordinator
-        let category:CustomCollection = collection["collection"] as! CustomCollection
-        title = "\(category.title) Products"
-        self.viewModel = CategoryProductsScreenViewModel(categoryID: category.id)
+        categoryID = collection["collection"] as! Int
+        self.viewModel = CategoryProductsScreenViewModel(categoryID: 0)
     }
     
     @IBAction func filterAction(_ sender: Any) {
