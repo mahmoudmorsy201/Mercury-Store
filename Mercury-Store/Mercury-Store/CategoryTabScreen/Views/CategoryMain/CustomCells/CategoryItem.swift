@@ -31,7 +31,12 @@ class CategoryItem: UICollectionViewCell {
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         containerViewForCategoriesCollectionViewCell.addGestureRecognizer(tap)
     }
-    
+    public func config(name:String){
+        title.text = name
+        image.image = UIImage(named: name)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        containerViewForCategoriesCollectionViewCell.addGestureRecognizer(tap)
+    }
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         guard let cellClickAction = cellClickAction else {
             return

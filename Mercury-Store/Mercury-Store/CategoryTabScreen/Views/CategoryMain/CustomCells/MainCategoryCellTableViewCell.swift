@@ -15,16 +15,11 @@ class MainCategoryCellTableViewCell: UITableViewCell {
     var cellClickAction:( (_ item:CustomCollection)->() )?
     override func awakeFromNib() {
         super.awakeFromNib()
-        super.awakeFromNib()
         setupCell()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     public func config(item:CustomCollection){
+        self.item = item
         categoryItem.text = item.title
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         //cellContainerView.addGestureRecognizer(tap)

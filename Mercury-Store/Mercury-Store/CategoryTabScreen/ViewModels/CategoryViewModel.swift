@@ -28,15 +28,16 @@ final class CategoriesScreenViewModel: CategoriesScreenViewModelType {
     var categories: Driver<[CustomCollection]>
     
     var error: Driver<String?>
-    
+    var categoryDetails:CategoryProductsScreenViewModelType
     init() {
         categories = categorySubject.asDriver(onErrorJustReturn: [])
         isLoading = isLoadingSubject.asDriver(onErrorJustReturn: false)
         error = errorSubject.asDriver(onErrorJustReturn: "Somthing went wrong")
+        categoryDetails = CategoryProductsScreenViewModel(categoryID: 0)
+        categoryDetails.getDestinctType = true
         self.fetchData()
     }
     private func fetchData() {
-        print("fetch data")
         self.categorySubject.accept([])
         self.isLoadingSubject.accept(true)
         self.errorSubject.accept(nil)
@@ -45,11 +46,10 @@ final class CategoriesScreenViewModel: CategoriesScreenViewModelType {
                     .subscribe {[weak self] (result) in
                         self?.isLoadingSubject.accept(false)
                         self?.categorySubject.accept(result.customCollections)
-                        print(result)
+                        self?.categoryDetails.categoryID = result.customCollections[0].id
                     } onError: {[weak self] (error) in
                         self?.isLoadingSubject.accept(false)
                         self?.errorSubject.accept(error.localizedDescription)
-                        print(error)
                     }.disposed(by: disposeBag)
     }
     

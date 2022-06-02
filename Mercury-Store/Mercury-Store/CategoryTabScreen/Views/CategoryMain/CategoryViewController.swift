@@ -53,31 +53,24 @@ extension CategoryViewController :UITableViewDelegate{
         setupReactiveMainCategoryTableData()
     }
     func deselectAllRows(selectedIndex:Int ,animated: Bool) {
-//        guard let selectedRows = mainCategoryItems.indexPathForSelectedRow else { return }
-//        selectedRows.forEach { index in
-//
-//        }
         for index in 0 ... mainCategoryItems.numberOfRows(inSection: 0)-1{
+            let indexPath = IndexPath(row: index, section: 0)
             if(index != selectedIndex){
-                let indexPath = IndexPath(row: index, section: 0)
-                let cell = mainCategoryItems.cellForRow(at: indexPath) as! MainCategoryCellTableViewCell
-                cell.cellContainerView.backgroundColor = .white
+                let cell = mainCategoryItems.cellForRow(at: indexPath) as? MainCategoryCellTableViewCell
+                cell?.cellContainerView.backgroundColor = .white
             }
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.deselectAllRows( selectedIndex : indexPath.row ,animated: true)
-        //print("cell row is: \(indexPath.row) cell section is \(indexPath.section)")
         let cell = tableView.cellForRow(at: indexPath) as! MainCategoryCellTableViewCell
         cell.cellContainerView.backgroundColor = .blue
         cell.isSelected = true
+        viewModel.categoryDetails.categoryID = cell.item?.id ?? 0
     }
     func setupReactiveMainCategoryTableData(){
         viewModel.categories.drive(mainCategoryItems.rx.items(cellIdentifier: MainCategoryCellTableViewCell.identifier, cellType: MainCategoryCellTableViewCell.self)){ index , element , cell in
             cell.config(item: element)
-            cell.cellClickAction =  { (item) in
-               // self.coordinator?.moveTo(flow: .category(.productsScreen), userData: ["collection":item])
-            }
         }.disposed(by: disposeBag)
     }
 }
@@ -92,8 +85,8 @@ extension CategoryViewController : UICollectionViewDelegate, UICollectionViewDel
     func setupCollection(){
         let nib = UINib(nibName: "CategoryItem", bundle: nil)
         categoriesCollectionView.register(nib, forCellWithReuseIdentifier: CategoryItem.identifier)
-        viewModel.categories.drive(categoriesCollectionView.rx.items(cellIdentifier: CategoryItem.identifier, cellType: CategoryItem.self)){ index , element , cell in
-            cell.config(item: element)
+        viewModel.categoryDetails.productTypes.drive(categoriesCollectionView.rx.items(cellIdentifier: CategoryItem.identifier, cellType: CategoryItem.self)){ index , element , cell in
+            cell.config(name: element)
             cell.cellClickAction =  { (item) in
                 self.coordinator?.moveTo(flow: .category(.productsScreen), userData: ["collection":item])
             }
