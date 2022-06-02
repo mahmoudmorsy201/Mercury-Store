@@ -1,19 +1,18 @@
 //
-//  ProfileViewController.swift
+//  WishListViewController.swift
 //  Mercury-Store
 //
-//  Created by mac hub on 16/05/2022.
+//  Created by Esraa Khaled   on 23/05/2022.
 //
 
 import UIKit
 
-class ProfileViewController: UIViewController, ProfileCoordinated {
+class WishListViewController: UIViewController {
     var coordinator: ProfileBaseCoordinator?
-    
     init(coordinator: ProfileBaseCoordinator) {
         super.init(nibName: nil, bundle: nil)
         self.coordinator = coordinator
-        title = "Profile"
+        title = "myWishlist"
     }
     
     
@@ -21,9 +20,13 @@ class ProfileViewController: UIViewController, ProfileCoordinated {
         fatalError("init(coder:) has not been implemented")
     }
     
+
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
+
+        // Do any additional setup after loading the view.
+        tableView.register(UINib(nibName: "WishListCell", bundle: nil), forCellReuseIdentifier: "wishListCell")
     }
 
 
