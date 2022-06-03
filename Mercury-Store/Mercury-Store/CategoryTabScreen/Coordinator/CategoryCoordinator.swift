@@ -36,7 +36,7 @@ extension CategoryCoordinator: CategoriesNavigationFlow {
 
 extension CategoryCoordinator: FilteredProductsNavigationFlow {
     func goToProductDetail(with product: Product) {
-        let viewModel = ProductsDetailViewModel(with: self)
+        let viewModel = ProductsDetailViewModel(with: self,product: product)
         let productDetailsVC = ProductDetailsViewController(with: viewModel)
         navigationController.pushViewController(productDetailsVC, animated: true)
     }

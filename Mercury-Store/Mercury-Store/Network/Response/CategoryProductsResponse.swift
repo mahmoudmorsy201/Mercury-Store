@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+
 // MARK: - Welcome
 struct ProductsCategory: Codable {
     let products: [Product]
