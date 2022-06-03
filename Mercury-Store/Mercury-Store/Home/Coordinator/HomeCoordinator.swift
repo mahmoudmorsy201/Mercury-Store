@@ -31,8 +31,10 @@ extension HomeCoordinator: HomeFlowNavigation {
         
     }
     
-    func goToBrandDetails(with brandItem: SmartCollection) {
-        
+    func goToBrandDetails(with brandItem: SmartCollectionElement) {
+        let viewModel = BrandDetailsViewModel(with: brandItem)
+        let brandDetailsVC = BrandDetailViewController(with: viewModel)
+        navigationController.pushViewController(brandDetailsVC, animated: true)
     }
     
     

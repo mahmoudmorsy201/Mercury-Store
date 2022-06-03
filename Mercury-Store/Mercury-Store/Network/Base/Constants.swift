@@ -8,9 +8,11 @@
 import Foundation
 
 struct Constants {
-    struct Pathes {
+    struct Paths {
+        //https://mobile-ismailia.myshopify.com/admin/api/2022-04/collections/395727732965/products.json
         struct Products {
             public static let productList = "/products.json"
+            public static let productsListForBrand = "/collections/{collection_id}/products.json"
         }
         struct Brands {
             public static let brandsList = "/smart_collections.json"

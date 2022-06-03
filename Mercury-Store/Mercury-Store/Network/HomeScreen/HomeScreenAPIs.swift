@@ -9,13 +9,16 @@ import Alamofire
 
 enum HomeScreenAPIs: URLRequestBuilder {
     case getBrands
+    case getProductsForBrand(Int)
 }
 
 extension HomeScreenAPIs {
     var path: String {
         switch self {
         case .getBrands:
-            return Constants.Pathes.Brands.brandsList
+            return Constants.Paths.Brands.brandsList
+        case .getProductsForBrand:
+            return Constants.Paths.Products.productsListForBrand
         }
     }
 }
@@ -25,6 +28,8 @@ extension HomeScreenAPIs {
         switch self {
         case .getBrands:
             return [:]
+        case .getProductsForBrand(let id):
+            return ["collection_id" : id]
         }
     }
 }
@@ -33,6 +38,8 @@ extension HomeScreenAPIs {
     var method: HTTPMethod {
         switch self {
         case .getBrands:
+            return HTTPMethod.get
+        case .getProductsForBrand:
             return HTTPMethod.get
         }
     }

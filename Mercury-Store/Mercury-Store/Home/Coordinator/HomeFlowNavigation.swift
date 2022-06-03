@@ -9,5 +9,5 @@ import Foundation
 
 protocol HomeFlowNavigation: AnyObject {
     func goToCategoriesTab(with itemName: String)
-    func goToBrandDetails(with brandItem: SmartCollection)
+    func goToBrandDetails(with brandItem: SmartCollectionElement)
 }

@@ -11,8 +11,18 @@ protocol BrandsProvider: AnyObject {
     func getBrandsCollection() -> Observable<SmartCollection>
 }
 
+protocol ProductsForBrandProvider: AnyObject {
+    func getProductsForBrand(with id: Int) -> Observable<[Product]>
+}
+
 class HomeScreenAPI: BrandsProvider {
     func getBrandsCollection() -> Observable<SmartCollection> {
-        NetworkService.execute(HomeScreenAPIs.getBrands)
+        NetworkService().execute(HomeScreenAPIs.getBrands)
+    }
+}
+
+extension HomeScreenAPI: ProductsForBrandProvider {
+    func getProductsForBrand(with id: Int) -> Observable<[Product]> {
+        NetworkService().execute(HomeScreenAPIs.getProductsForBrand(id))
     }
 }

@@ -39,7 +39,7 @@ extension HomeViewModel {
     func goToCategoriesTab(with itemName: String) {
         homeFlow.goToCategoriesTab(with: itemName)
     }
-    func goToBrandDetails(with brandItem: SmartCollection) {
+    func goToBrandDetails(with brandItem: SmartCollectionElement) {
         homeFlow.goToBrandDetails(with: brandItem)
     }
 }

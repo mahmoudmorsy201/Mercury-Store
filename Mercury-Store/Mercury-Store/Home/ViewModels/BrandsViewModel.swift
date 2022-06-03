@@ -33,7 +33,7 @@ final class BrandsViewModel: BrandsViewModelType {
     init(brandsProvider: BrandsProvider) {
         brands = brandsSubject.asDriver(onErrorJustReturn: [])
         isLoading = isLoadingSubject.asDriver(onErrorJustReturn: false)
-        error = errorSubject.asDriver(onErrorJustReturn: "Somthing went wrong")
+        error = errorSubject.asDriver(onErrorJustReturn: "Something went wrong")
         self.brandsProvider = brandsProvider
         self.fetchData()
         
