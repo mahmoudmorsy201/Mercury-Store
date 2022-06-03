@@ -7,18 +7,10 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, HomeBaseCoordinated {
-    var coordinator: HomeBaseCoordinator?
+class SearchViewController: UIViewController {
     
-    init(coordinator: HomeBaseCoordinator) {
-        super.init(nibName: nil, bundle: nil)
-        self.coordinator = coordinator
-        title = "Search"
-    }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,15 +18,5 @@ class SearchViewController: UIViewController, HomeBaseCoordinated {
         view.backgroundColor = .brown
     }
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

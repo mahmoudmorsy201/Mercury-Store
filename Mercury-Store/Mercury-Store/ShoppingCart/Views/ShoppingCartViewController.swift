@@ -10,37 +10,35 @@ import RxCocoa
 import RxSwift
 import RxDataSources
 
-class ShoppingCartViewController: UIViewController, ShoppingCartCoordinated {
+class ShoppingCartViewController: UIViewController {
     
     @IBOutlet weak private var totalPriceLabel: UILabel!
-    
     @IBOutlet weak var checkoutBottom: NSLayoutConstraint!
-    
     @IBOutlet weak private var shoppingCartTableView: UITableView! {
         didSet {
             shoppingCartTableView.register(UINib(nibName: ShoppingCartTableViewCell.reuseIdentifier(), bundle: nil), forCellReuseIdentifier: ShoppingCartTableViewCell.reuseIdentifier())
         }
     }
-    
     @IBOutlet weak var proceedToCheckoutBtn: UIButton!
     
-    var coordinator: ShoppingCartBaseCoordinator?
-    private let viewModel = CartViewModel()
+  
+    private var viewModel: CartViewModel?
+    private let disposeBag = DisposeBag()
     
-    init(coordinator: ShoppingCartBaseCoordinator) {
-        super.init(nibName: nil, bundle: nil)
-        self.coordinator = coordinator
-        title = "Cart"
-
+    init(with viewModel: CartViewModel) {
+        super.init(nibName: String(describing: ShoppingCartViewController.self), bundle: nil)
+        self.viewModel = viewModel
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    private let disposeBag = DisposeBag()
+    
+    //MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let viewModel = self.viewModel else {fatalError("Couldn't unwrap viewModel")}
         
         let inputData = Observable.merge(
             rx.methodInvoked(#selector(viewWillAppear(_:))).map { _ in }
@@ -63,21 +61,25 @@ class ShoppingCartViewController: UIViewController, ShoppingCartCoordinated {
     }
 }
 
+//MARK: Private handlers
+
 extension ShoppingCartViewController {
     
     private func dataSource() -> RxTableViewSectionedReloadDataSource<CartSection> {
-        .init { datasource, tableView, indexPath, row in
+        .init {[weak self] datasource, tableView, indexPath, row in
             let cell: ShoppingCartTableViewCell = tableView.dequeueReusableCell(withIdentifier: ShoppingCartTableViewCell.reuseIdentifier(), for: indexPath) as! ShoppingCartTableViewCell
-            
+            guard let `self` = self else {fatalError()}
+            guard let viewModel = self.viewModel else {fatalError("Couldn't unwrap viewModel")}
             cell.bind(viewModel: CartCellViewModel(row: row),
-                      incrementObserver: self.viewModel.incrementProduct,
-                      decrementObserver: self.viewModel.decrementProduct,
-                      deleteObserver: self.viewModel.deleteProduct)
+                      incrementObserver: viewModel.incrementProduct,
+                      decrementObserver: viewModel.decrementProduct,
+                      deleteObserver: viewModel.deleteProduct)
             return cell
         }
     }
 }
 
+//MARK: Delegates
 
 extension ShoppingCartViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -2,28 +2,32 @@
 //  ShoppingCartCoordinator.swift
 //  Mercury-Store
 //
-//  Created by mac hub on 16/05/2022.
+//  Created by mac hub on 02/06/2022.
 //
 
-import Foundation
 import UIKit
 
-
-class ShoppingCartCoordinator: ShoppingCartBaseCoordinator {
-    var parentCoordinator: MainBaseCoordinator?
+class ShoppingCartCoordinator: Coordinator {
     
-    lazy var rootViewController: UIViewController = UIViewController()
+    weak var parentCoordinator: Coordinator?
     
-    func start() -> UIViewController {
-        rootViewController = UINavigationController(rootViewController: ShoppingCartViewController(coordinator: self))
-        return rootViewController
-    }
+    var children: [Coordinator] = []
     
-    func moveTo(flow: AppFlow, userData: [String : Any]?) {
+    var navigationController: UINavigationController
+    
+    func start() {
+        let cartViewModel = CartViewModel(shoppingCartNavigationFlow: self)
         
+        let cartVC = ShoppingCartViewController(with: cartViewModel)
+        
+        navigationController.pushViewController(cartVC, animated: true)
     }
     
-   
-    
+    init(navigationController : UINavigationController) {
+        self.navigationController = navigationController
+    }
+}
+
+extension ShoppingCartCoordinator: ShoppingCartNavigationFlow {
     
 }

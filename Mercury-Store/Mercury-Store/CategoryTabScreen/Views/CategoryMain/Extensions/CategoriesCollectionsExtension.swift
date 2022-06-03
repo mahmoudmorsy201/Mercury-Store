@@ -24,6 +24,6 @@ extension CategoryViewController : UICollectionViewDelegate, UICollectionViewDat
         return CGSize(width: collectionViewSize/2, height: 200)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        coordinator?.moveTo(flow: .category(.productsScreen), userData: nil)
+        //coordinator?.moveTo(flow: .category(.productsScreen), userData: nil)
     }
 }
