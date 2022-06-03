@@ -3,55 +3,68 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryItem" id="EQK-ue-B07" customClass="CategoryItem" customModule="Mercury_Store" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="206" height="206"/>
+            <rect key="frame" x="0.0" y="0.0" width="150" height="180"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="206" height="206"/>
+                <rect key="frame" x="0.0" y="0.0" width="150" height="180"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" translatesAutoresizingMaskIntoConstraints="NO" id="gLo-Sl-pBa">
-                        <rect key="frame" x="0.0" y="0.0" width="206" height="198"/>
-                        <color key="tintColor" red="0.55096346650000005" green="0.56842634410000004" blue="0.55908442199999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQ3-yv-zTl">
-                        <rect key="frame" x="0.0" y="184.5" width="206" height="21.5"/>
-                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
-                        <attributedString key="attributedText">
-                            <fragment content="category">
-                                <attributes>
-                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <font key="NSFont" metaFont="system" size="18"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Jgh-Sm-SVH">
+                        <rect key="frame" x="12" y="12" width="126" height="156"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQ3-yv-zTl">
+                                <rect key="frame" x="0.0" y="117" width="126" height="39"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="category">
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" metaFont="system" size="18"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" translatesAutoresizingMaskIntoConstraints="NO" id="gLo-Sl-pBa">
+                                <rect key="frame" x="0.0" y="0.0" width="126" height="117"/>
+                                <color key="tintColor" red="0.55096346650000005" green="0.56842634410000004" blue="0.55908442199999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94906181099999998" green="0.94898396730000001" blue="0.96945518259999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="gLo-Sl-pBa" secondAttribute="trailing" id="2Z0-IA-ncB"/>
+                            <constraint firstItem="gLo-Sl-pBa" firstAttribute="top" secondItem="Jgh-Sm-SVH" secondAttribute="top" id="Gt3-Ng-5Wv"/>
+                            <constraint firstItem="gLo-Sl-pBa" firstAttribute="leading" secondItem="Jgh-Sm-SVH" secondAttribute="leading" id="MBg-Fn-gXo"/>
+                            <constraint firstItem="bQ3-yv-zTl" firstAttribute="leading" secondItem="Jgh-Sm-SVH" secondAttribute="leading" id="OKu-I9-wvn"/>
+                            <constraint firstItem="bQ3-yv-zTl" firstAttribute="height" secondItem="Jgh-Sm-SVH" secondAttribute="height" multiplier="1:4" id="jrm-cS-pLL"/>
+                            <constraint firstAttribute="trailing" secondItem="bQ3-yv-zTl" secondAttribute="trailing" id="kXJ-3C-Lwg"/>
+                            <constraint firstAttribute="bottom" secondItem="bQ3-yv-zTl" secondAttribute="bottom" id="nWu-PC-EOa"/>
+                            <constraint firstItem="gLo-Sl-pBa" firstAttribute="height" secondItem="Jgh-Sm-SVH" secondAttribute="height" multiplier="3:4" id="oTh-pI-TEa"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="bQ3-yv-zTl" secondAttribute="bottom" id="E5J-Vb-sNc"/>
-                <constraint firstAttribute="trailing" secondItem="gLo-Sl-pBa" secondAttribute="trailing" id="FcI-ih-dI0"/>
-                <constraint firstItem="bQ3-yv-zTl" firstAttribute="leading" secondItem="EQK-ue-B07" secondAttribute="leading" id="GmC-Oi-cXx"/>
-                <constraint firstAttribute="bottom" secondItem="gLo-Sl-pBa" secondAttribute="bottom" constant="8" id="Nri-Md-ufo"/>
-                <constraint firstAttribute="trailing" secondItem="bQ3-yv-zTl" secondAttribute="trailing" id="WVW-YU-21d"/>
-                <constraint firstItem="gLo-Sl-pBa" firstAttribute="leading" secondItem="EQK-ue-B07" secondAttribute="leading" id="a5s-Tf-wwt"/>
-                <constraint firstItem="gLo-Sl-pBa" firstAttribute="top" secondItem="EQK-ue-B07" secondAttribute="top" id="bIq-hC-iJA"/>
+                <constraint firstItem="Jgh-Sm-SVH" firstAttribute="leading" secondItem="EQK-ue-B07" secondAttribute="leading" constant="12" id="4c1-Ll-F4g"/>
+                <constraint firstItem="Jgh-Sm-SVH" firstAttribute="top" secondItem="EQK-ue-B07" secondAttribute="top" constant="12" id="KKr-XW-8a3"/>
+                <constraint firstAttribute="bottom" secondItem="Jgh-Sm-SVH" secondAttribute="bottom" constant="12" id="YQc-MQ-liW"/>
+                <constraint firstAttribute="trailing" secondItem="Jgh-Sm-SVH" secondAttribute="trailing" constant="12" id="aD5-GY-tUl"/>
             </constraints>
+            <connections>
+                <outlet property="containerViewForCategoriesCollectionViewCell" destination="Jgh-Sm-SVH" id="sfp-dc-Ufn"/>
+                <outlet property="image" destination="gLo-Sl-pBa" id="m19-Hf-S11"/>
+                <outlet property="title" destination="bQ3-yv-zTl" id="Mrg-B9-OmK"/>
+            </connections>
             <point key="canvasLocation" x="131.8840579710145" y="98.4375"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="photo" width="128" height="128"/>
-        <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

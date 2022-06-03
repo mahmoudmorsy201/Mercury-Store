@@ -7,6 +7,7 @@
 
 import Alamofire
 import RxSwift
+import Foundation
 
 extension DataResponse {
     
@@ -27,7 +28,6 @@ class NetworkService<T: Codable> {
     class func execute(_ urlRequest: URLRequestConvertible) -> Observable<T> {
         return Observable<T>.create { observer in
             let request = AF.request(urlRequest).responseData { (response) in
-                
                 switch response.result {
                 case .success(let data):
                     do {

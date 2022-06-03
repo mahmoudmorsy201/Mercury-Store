@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CategoryViewController" customModule="Mercury_Store" customModuleProvider="target">
             <connections>
                 <outlet property="categoriesCollectionView" destination="kKN-H1-iAM" id="wtl-0W-jm8"/>
+                <outlet property="mainCategoryItems" destination="yWh-Xo-OvW" id="OX3-CF-Szd"/>
                 <outlet property="view" destination="5aK-I4-mHF" id="wcX-Z3-Nvw"/>
             </connections>
         </placeholder>
@@ -19,49 +20,31 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kKN-H1-iAM">
-                    <rect key="frame" x="4" y="145" width="406" height="717"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="WrM-ut-rj8">
-                        <size key="itemSize" width="206" height="206"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kKN-H1-iAM">
+                    <rect key="frame" x="95.5" y="108" width="310.5" height="754"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="1" id="WrM-ut-rj8">
+                        <size key="itemSize" width="150" height="180"/>
+                        <size key="headerReferenceSize" width="4" height="12"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="2" minY="10" maxX="2" maxY="10"/>
+                        <inset key="sectionInset" minX="4" minY="10" maxX="4" maxY="10"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s1P-HL-z94">
-                    <rect key="frame" x="0.0" y="44" width="414" height="89.5"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2VJ-vp-2m4">
-                            <rect key="frame" x="0.0" y="0.0" width="138" height="89.5"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="women"/>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zAJ-Js-8S6">
-                            <rect key="frame" x="138" y="0.0" width="138" height="89.5"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="men"/>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZd-rS-jgk">
-                            <rect key="frame" x="276" y="0.0" width="138" height="89.5"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="kids"/>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" red="0.98984760049999998" green="0.98984760049999998" blue="0.98984760049999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </stackView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWh-Xo-OvW">
+                    <rect key="frame" x="8" y="108" width="83" height="754"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="jwd-cu-XDQ"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="s1P-HL-z94" firstAttribute="top" secondItem="jwd-cu-XDQ" secondAttribute="top" id="0r8-So-mSZ"/>
-                <constraint firstItem="s1P-HL-z94" firstAttribute="height" secondItem="5aK-I4-mHF" secondAttribute="height" multiplier="1:10" id="2LE-jC-i8w"/>
-                <constraint firstItem="kKN-H1-iAM" firstAttribute="height" secondItem="5aK-I4-mHF" secondAttribute="height" multiplier="8:10" id="Oj4-f4-QVv"/>
-                <constraint firstItem="jwd-cu-XDQ" firstAttribute="trailing" secondItem="kKN-H1-iAM" secondAttribute="trailing" constant="4" id="P0Y-Iw-PCz"/>
-                <constraint firstItem="s1P-HL-z94" firstAttribute="leading" secondItem="jwd-cu-XDQ" secondAttribute="leading" id="SDu-gd-vtb"/>
-                <constraint firstItem="kKN-H1-iAM" firstAttribute="leading" secondItem="jwd-cu-XDQ" secondAttribute="leading" constant="4" id="eX4-g6-qhg"/>
-                <constraint firstItem="jwd-cu-XDQ" firstAttribute="trailing" secondItem="s1P-HL-z94" secondAttribute="trailing" id="fHI-fa-hSq"/>
+                <constraint firstItem="yWh-Xo-OvW" firstAttribute="leading" secondItem="5aK-I4-mHF" secondAttribute="leading" constant="8" id="O9N-yz-f7d"/>
+                <constraint firstItem="jwd-cu-XDQ" firstAttribute="trailing" secondItem="kKN-H1-iAM" secondAttribute="trailing" constant="8" id="P0Y-Iw-PCz"/>
+                <constraint firstItem="kKN-H1-iAM" firstAttribute="top" secondItem="jwd-cu-XDQ" secondAttribute="top" constant="64" id="VbF-ci-m2O"/>
+                <constraint firstItem="yWh-Xo-OvW" firstAttribute="top" secondItem="jwd-cu-XDQ" secondAttribute="top" constant="64" id="dw6-Kd-inI"/>
+                <constraint firstItem="kKN-H1-iAM" firstAttribute="width" secondItem="5aK-I4-mHF" secondAttribute="width" multiplier="3:4" id="hvU-HZ-dMp"/>
                 <constraint firstItem="jwd-cu-XDQ" firstAttribute="bottom" secondItem="kKN-H1-iAM" secondAttribute="bottom" id="j6i-oD-laz"/>
+                <constraint firstItem="yWh-Xo-OvW" firstAttribute="width" secondItem="5aK-I4-mHF" secondAttribute="width" multiplier="1:5" id="kRy-fR-HrH"/>
+                <constraint firstItem="jwd-cu-XDQ" firstAttribute="bottom" secondItem="yWh-Xo-OvW" secondAttribute="bottom" id="sJB-Zx-Imr"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="98.4375"/>
         </view>
