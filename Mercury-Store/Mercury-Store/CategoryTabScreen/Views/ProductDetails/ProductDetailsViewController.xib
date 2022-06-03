@@ -18,6 +18,7 @@
                 <outlet property="productDetailsCollectionView" destination="B4A-aq-mZo" id="CS3-rf-eqA"/>
                 <outlet property="productPriceLabel" destination="gk6-1y-75i" id="0N4-Io-IZV"/>
                 <outlet property="productTitleLabel" destination="4Pi-UZ-Tup" id="ac5-hF-Q2G"/>
+                <outlet property="view" destination="R4V-4j-MZS" id="lm0-2d-uvO"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
