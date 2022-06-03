@@ -53,20 +53,9 @@ class LoginViewController: UIViewController {
     }
     @IBAction func loginPressed(_ sender: Any) {
         
-        print("Tapped Login Button")
-        //coordinator?.moveTo(flow: .profile(.intialScreen), userData: nil)
     }
     @IBAction func goToSignUp(_ sender: UIButton) {
-        //coordinator?.moveTo(flow: .profile(.registerScreen), userData: nil)
-
         
     }
-       
-    }
-
-
-   
     
-   
-    
-
+}

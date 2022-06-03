@@ -6,14 +6,12 @@
 //
 
 import RxSwift
-protocol HomeFlow: AnyObject {
-    func goToCategoriesTab(with itemName: String)
-    func goToBrandDetails(with brandItem: SmartCollection)
-}
+
+
 
 struct HomeViewModel {
     
-    weak var homeFlow: HomeFlow!
+    private weak var homeFlow: HomeFlowNavigation!
     
     let items = BehaviorSubject<[HomeTableViewSection]>(value: [
         .LogoSection(items: [
@@ -30,19 +28,19 @@ struct HomeViewModel {
             .BrandsCell
         ])
     ])
+    let dataSource = HomeDataSource.dataSource()
     
-    init(homeFlow: HomeFlow) {
+    init(homeFlow: HomeFlowNavigation) {
         self.homeFlow = homeFlow
     }
-    
+}
+
+extension HomeViewModel {
     func goToCategoriesTab(with itemName: String) {
         homeFlow.goToCategoriesTab(with: itemName)
     }
     func goToBrandDetails(with brandItem: SmartCollection) {
         homeFlow.goToBrandDetails(with: brandItem)
     }
-    
-    let dataSource = HomeDataSource.dataSource()
 }
-
 

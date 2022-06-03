@@ -12,8 +12,7 @@ import RxSwift
 
 class RegisterViewController: UIViewController {
     
-    private let registerViewModel = RegisterViewModel()
-    private let disposeBag = DisposeBag()
+
     @IBOutlet weak var firstNameTextField: AkiraTextField!
     @IBOutlet weak var lastNameTextField: AkiraTextField!
     @IBOutlet weak var emailTextField: AkiraTextField!
@@ -22,6 +21,8 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var signUpBtn: UIButton!
     
+    private let registerViewModel = RegisterViewModel()
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +44,6 @@ class RegisterViewController: UIViewController {
 
     
     @IBAction func signUp(_ sender: Any) {
-    print("Tapped Login Button")
-    //coordinator?.moveTo(flow: .profile(.intialScreen), userData: nil)
 
     }
     

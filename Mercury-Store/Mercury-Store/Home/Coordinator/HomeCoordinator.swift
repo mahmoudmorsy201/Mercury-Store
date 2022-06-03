@@ -15,26 +15,18 @@ class HomeCoordinator : Coordinator {
     
     var navigationController: UINavigationController
     
-    func start() {
-        print("HomeCoordinator Start")
-        
-        let homeVC = HomeViewController(nibName: String(describing: HomeViewController.self), bundle: nil)
-        
-        homeVC.viewModel = HomeViewModel(homeFlow: self)
-        navigationController.pushViewController(homeVC, animated: true)
-    }
-    
     init(navigationController : UINavigationController) {
         self.navigationController = navigationController
     }
     
-    deinit {
-        print("Deinit home coordinator")
+    func start() {
+        let viewModel = HomeViewModel(homeFlow: self)
+        let homeVC = HomeViewController(with: viewModel)
+        navigationController.pushViewController(homeVC, animated: true)
     }
-    
 }
 
-extension HomeCoordinator: HomeFlow {
+extension HomeCoordinator: HomeFlowNavigation {
     func goToCategoriesTab(with itemName: String) {
         
     }

@@ -20,7 +20,6 @@ class ApplicationCoordinator : Coordinator {
     }
     
     func start() {
-        print("AppCoordinator Start")
        goToHomeTabbar()
     }
     
@@ -29,17 +28,11 @@ class ApplicationCoordinator : Coordinator {
     }
     
     func goToHomeTabbar(){
-        let coordinator = HomeTabBarCoordinator.init(navigationController: navigationController)
+        let coordinator = HomeTabBarCoordinator(navigationController: navigationController)
         children.removeAll()
         
         coordinator.parentCoordinator = self
         
         coordinator.start()
     }
-    
-    deinit {
-        print("AppCoordinator deinit")
-    }
-    
-    
 }

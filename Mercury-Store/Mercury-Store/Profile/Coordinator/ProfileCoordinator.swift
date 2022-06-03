@@ -17,21 +17,17 @@ class ProfileCoordinator: Coordinator {
     
     var navigationController: UINavigationController
     
+    init(navigationController : UINavigationController) {
+        self.navigationController = navigationController
+    }
+    
     func start() {
-        print("Profile Start")
-        
         let profileVC = ProfileViewController(nibName: String(describing: ProfileViewController.self), bundle: nil)
         profileVC.viewModel = ProfileViewModel(profileNavigationFlow: self)
         navigationController.pushViewController(profileVC, animated: true)
     }
     
-    init(navigationController : UINavigationController) {
-        self.navigationController = navigationController
-    }
-    
-    deinit {
-        print("Deinit profile coordinator")
-    }
+
 }
 
 extension ProfileCoordinator: ProfileNavigationFlow {

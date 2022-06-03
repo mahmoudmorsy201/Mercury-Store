@@ -20,12 +20,10 @@ class GuestProfileViewController: UIViewController {
     
     
     @IBAction func navToRegister(_ sender: Any){
-        //coordinator?.moveTo(flow: .profile(.registerScreen), userData: nil)
-
         
     }
     @IBAction func navToLogin(_ sender: Any){
-        //coordinator?.moveTo(flow: .profile(.loginScreen), userData: nil)
+        
     }
     
 }

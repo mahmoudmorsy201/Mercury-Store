@@ -10,18 +10,20 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var appCoordinator : ApplicationCoordinator?
+    private(set) var appCoordinator : ApplicationCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
         AppAppearance.setupAppearanceForNavigation()
         AppAppearance.setupAppearanceForTabbar()
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        let navigationCon = UINavigationController.init()
-        appCoordinator = ApplicationCoordinator(navigationController: navigationCon)
+        let navigationController = UINavigationController()
+        appCoordinator = ApplicationCoordinator(navigationController: navigationController)
         appCoordinator!.start()
-        window?.rootViewController = navigationCon
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 

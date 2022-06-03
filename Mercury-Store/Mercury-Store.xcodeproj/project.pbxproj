@@ -49,6 +49,7 @@
 		C40BD726283EE65E0081E15B /* CategoriesCollectionsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40BD713283E69F20081E15B /* CategoriesCollectionsExtension.swift */; };
 		C40BD727283EE6610081E15B /* ConstantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40BD70D283E69F20081E15B /* ConstantData.swift */; };
 		C40BD729283EE67B0081E15B /* ProductGridExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40BD71D283E69F20081E15B /* ProductGridExtension.swift */; };
+		C410292928498396007045F8 /* HomeFlowNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410292828498396007045F8 /* HomeFlowNavigation.swift */; };
 		C411D7B72838A1B1000E9ACF /* HelperRxDataSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C411D7B62838A1B1000E9ACF /* HelperRxDataSources.swift */; };
 		C4951232283EEB6800E313EB /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4951230283EEB6800E313EB /* CategoryViewController.swift */; };
 		C4951233283EEB6800E313EB /* CategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4951231283EEB6800E313EB /* CategoryViewController.xib */; };
@@ -199,6 +200,7 @@
 		C40BD70D283E69F20081E15B /* ConstantData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantData.swift; sourceTree = "<group>"; };
 		C40BD713283E69F20081E15B /* CategoriesCollectionsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionsExtension.swift; sourceTree = "<group>"; };
 		C40BD71D283E69F20081E15B /* ProductGridExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductGridExtension.swift; sourceTree = "<group>"; };
+		C410292828498396007045F8 /* HomeFlowNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFlowNavigation.swift; sourceTree = "<group>"; };
 		C411D7B62838A1B1000E9ACF /* HelperRxDataSources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperRxDataSources.swift; sourceTree = "<group>"; };
 		C4951230283EEB6800E313EB /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		C4951231283EEB6800E313EB /* CategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryViewController.xib; sourceTree = "<group>"; };
@@ -642,7 +644,6 @@
 		C4C08B952832168D00364704 /* ShoppingCart */ = {
 			isa = PBXGroup;
 			children = (
-				C4CDB94C2831F6AF0000519A /* Views */,
 				C4C08B99283216B300364704 /* Models */,
 				C4C08B98283216A700364704 /* Views */,
 				C4C08B972832169F00364704 /* ViewModels */,
@@ -874,6 +875,7 @@
 		C4CDB9492831F66A0000519A /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C4CDB94C2831F6AF0000519A /* Views */,
 				C4CDB94D2831F6B50000519A /* Models */,
 				C4CDB94B2831F6890000519A /* ViewModels */,
 				C4CDB94A2831F6800000519A /* Coordinator */,
@@ -885,6 +887,7 @@
 			isa = PBXGroup;
 			children = (
 				C4CDB9502831F6FA0000519A /* HomeCoordinator.swift */,
+				C410292828498396007045F8 /* HomeFlowNavigation.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -911,8 +914,7 @@
 				C4CDB9592832022E0000519A /* HomeViewController.xib */,
 				C4CDB9582832022E0000519A /* HomeViewController.swift */,
 			);
-			name = Views;
-			path = ../Home/Views;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		C4CDB94D2831F6B50000519A /* Models */ = {
@@ -1285,6 +1287,7 @@
 				C40BD727283EE6610081E15B /* ConstantData.swift in Sources */,
 				C4CDB9512831F6FA0000519A /* HomeCoordinator.swift in Sources */,
 				C4C04EEB28333299002EC367 /* BrandsTableViewCell.swift in Sources */,
+				C410292928498396007045F8 /* HomeFlowNavigation.swift in Sources */,
 				02E7127E283FBBFE005726B3 /* GuestProfileViewController.swift in Sources */,
 				C4AEE956283A14460025EDB5 /* URLRequestBuilder.swift in Sources */,
 				C4C04EE328333278002EC367 /* LogoTableViewCell.swift in Sources */,

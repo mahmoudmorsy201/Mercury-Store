@@ -25,8 +25,18 @@ class HomeViewController: UIViewController {
     
     //MARK: Properties
     private let disposeBag = DisposeBag()
-    var viewModel: HomeViewModel!
+    private var viewModel: HomeViewModel!
     
+    init(with viewModel: HomeViewModel) {
+        super.init(nibName: String(describing: HomeViewController.self), bundle: nil)
+        self.viewModel = viewModel
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         homeTableView.rx.setDelegate(self)
@@ -51,7 +61,6 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController {
     private func bindTableView() {
-        
         viewModel.items
             .bind(to: homeTableView.rx.items(dataSource: viewModel.dataSource))
             .disposed(by: disposeBag)

@@ -8,7 +8,8 @@
 import Foundation
 import UIKit
 
-
+// MARK: HomeTabBarCoordinator
+//
 final class HomeTabBarCoordinator : Coordinator {
     
     weak var parentCoordinator: Coordinator?
@@ -17,80 +18,64 @@ final class HomeTabBarCoordinator : Coordinator {
     var children: [Coordinator] = []
     
     var navigationController: UINavigationController
-    
-    func start() {
-        print("HomeTabBar Coordinator Init")
-        initializeHomeTabBar()
-    }
-    
-    deinit {
-        print("HomeTabBar Coordinator deinit")
-    }
-
-    
-    func initializeHomeTabBar(){
         
-        let homeNavigationController = UINavigationController()
-        let homeCoordinator = HomeCoordinator.init(navigationController: homeNavigationController)
-        homeCoordinator.parentCoordinator = parentCoordinator
-        
-        let homeItem = UITabBarItem()
-        homeItem.title = "Home"
-        homeItem.image = UIImage.init(systemName: "homekit")
-        homeNavigationController.tabBarItem = homeItem
-        
-        
-        let categoriesNavigationController = UINavigationController()
-        let categoryCoordinator = CategoryCoordinator.init(navigationController: categoriesNavigationController)
-        categoryCoordinator.parentCoordinator = parentCoordinator
-        
-        
-        let categoryItem = UITabBarItem()
-        categoryItem.title = "Category"
-        categoryItem.image = UIImage.init(systemName: "square.grid.2x2.fill")
-        categoriesNavigationController.tabBarItem = categoryItem
-        
-        
-        let cartNavigationController = UINavigationController()
-        let cartCoordinator = ShoppingCartCoordinator.init(navigationController: cartNavigationController)
-        categoryCoordinator.parentCoordinator = parentCoordinator
-        
-        
-        let cartItem = UITabBarItem()
-        cartItem.title = "Cart"
-        cartItem.image = UIImage.init(systemName: "cart.fill")
-        cartNavigationController.tabBarItem = cartItem
-        
-        
-        let profileNavigationController = UINavigationController()
-        let profileCoordinator = ProfileCoordinator.init(navigationController: profileNavigationController)
-        profileCoordinator.parentCoordinator = parentCoordinator
-        
-        let profileItem = UITabBarItem()
-        profileItem.title = "Profile"
-        profileItem.image = UIImage.init(systemName: "person.crop.circle.fill")
-        profileNavigationController.tabBarItem = profileItem
-        
-        
-        mainTabBar.viewControllers = [homeNavigationController, categoriesNavigationController, cartNavigationController,profileNavigationController]
-        
-        navigationController.pushViewController(mainTabBar, animated: true)
-        navigationController.setNavigationBarHidden(true, animated: true)
-        
-        parentCoordinator?.children.append(homeCoordinator)
-        parentCoordinator?.children.append(categoryCoordinator)
-        parentCoordinator?.children.append(cartCoordinator)
-        parentCoordinator?.children.append(profileCoordinator)
-        
-        homeCoordinator.start()
-        categoryCoordinator.start()
-        cartCoordinator.start()
-        profileCoordinator.start()
-    }
-    
     init(navigationController : UINavigationController) {
         self.navigationController = navigationController
         self.mainTabBar = UITabBarController()
     }
+    func start() {
+        initializeHomeTabBar()
+        configureNavController()
+    }
+}
+
+// MARK: Private Handlers
+//
+extension HomeTabBarCoordinator {
+    /// Used to make tabs and main coordinators
+    ///
+    private func initializeHomeTabBar() {
+        let tabs: [TabContent] = [
+            TabContent(title: "Home",
+                       image: UIImage(systemName: "homekit")!,
+                       coordinator: HomeCoordinator(navigationController: UINavigationController()), tag: 0),
+            TabContent(title: "Category",
+                       image: UIImage(systemName: "square.grid.2x2.fill")!,
+                       coordinator: CategoryCoordinator(navigationController: UINavigationController()), tag: 1),
+            TabContent(title: "Cart",
+                       image: UIImage(systemName: "cart.fill")!,
+                       coordinator: ShoppingCartCoordinator(navigationController: UINavigationController()), tag: 2),
+            TabContent(title: "Profile",
+                       image: UIImage(systemName: "person.crop.circle.fill")!,
+                       coordinator: ProfileCoordinator(navigationController: UINavigationController()), tag: 3),
+        ]
+        
+        tabs.forEach { tab in
+            let tabBarItem = UITabBarItem(title: tab.title, image: tab.image, tag: tab.tag)
+            tab.coordinator.navigationController.tabBarItem = tabBarItem
+            tab.coordinator.parentCoordinator = parentCoordinator
+            parentCoordinator?.children.append(tab.coordinator)
+            tab.coordinator.start()
+        }
+        mainTabBar.viewControllers = tabs.map(\.coordinator.navigationController)
+        
+    }
     
+    /// Configure navigation bar appearance
+    ///
+    private func configureNavController() {
+        navigationController.pushViewController(mainTabBar, animated: true)
+        navigationController.setNavigationBarHidden(true, animated: true)
+    }
+}
+
+// MARK: Nested Types
+//
+extension HomeTabBarCoordinator {
+    struct TabContent {
+        let title: String
+        let image: UIImage
+        let coordinator: Coordinator
+        let tag: Int
+    }
 }

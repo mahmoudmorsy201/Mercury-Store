@@ -16,20 +16,15 @@ class ShoppingCartCoordinator: Coordinator {
     var navigationController: UINavigationController
     
     func start() {
-        print("ShoppingCartCoordinator Start")
+        let cartViewModel = CartViewModel(shoppingCartNavigationFlow: self)
         
-        let cartVC = ShoppingCartViewController(nibName: String(describing: ShoppingCartViewController.self), bundle: nil)
+        let cartVC = ShoppingCartViewController(with: cartViewModel)
         
-        cartVC.viewModel = CartViewModel(shoppingCartNavigationFlow: self)
         navigationController.pushViewController(cartVC, animated: true)
     }
     
     init(navigationController : UINavigationController) {
         self.navigationController = navigationController
-    }
-    
-    deinit {
-        print("Deinit ShoppingCartCoordinator")
     }
 }
 
