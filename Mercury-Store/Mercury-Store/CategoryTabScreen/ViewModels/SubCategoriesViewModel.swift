@@ -11,13 +11,12 @@ import UIKit
 
 protocol CategoryProductsScreenViewModelType {
     var isLoading: Driver<Bool> { get }
-    var products: Driver<[Product]> { get}
     var error: Driver<String?> { get }
     var categoryID:Int{ get set}
     var productTypes: Driver<[String]>{get}
 }
 
-final class CategoryProductsScreenViewModel: CategoryProductsScreenViewModelType {
+final class SubCategoriesViewModel: CategoryProductsScreenViewModelType {
     var productTypes: Driver<[String]>
     
     var categoryID: Int{
@@ -28,35 +27,28 @@ final class CategoryProductsScreenViewModel: CategoryProductsScreenViewModelType
     
     var isLoading: Driver<Bool>
     
-    var products: Driver<[Product]>
-    
     var error: Driver<String?>
     
     private let categoryProvider: CategoriesProvider = CategoriesScreenAPI()
     private let disposeBag = DisposeBag()
     
-    private let categorySubject = BehaviorRelay<[Product]>(value: [])
     private let typesSubject = BehaviorRelay<[String]>(value: [])
     private let isLoadingSubject = BehaviorRelay<Bool>(value: false)
     private let errorSubject = BehaviorRelay<String?>(value: nil)
     
     init(categoryID:Int) {
-        products = categorySubject.asDriver(onErrorJustReturn: [])
         productTypes = typesSubject.asDriver(onErrorJustReturn: [])
         isLoading = isLoadingSubject.asDriver(onErrorJustReturn: false)
         error = errorSubject.asDriver(onErrorJustReturn: "Somthing went wrong")
         self.categoryID = categoryID
     }
     private func fetchData() {
-        self.categorySubject.accept([])
         self.isLoadingSubject.accept(true)
         self.errorSubject.accept(nil)
         self.categoryProvider.getCategoryProductsCollection(collectionID: categoryID)
             .observe(on: MainScheduler.asyncInstance)
             .subscribe {[weak self] (result) in
                 self?.isLoadingSubject.accept(false)
-                print(result.products.count)
-                self?.categorySubject.accept(result.products)
                 let types = self?.getProductTypes(items: result.products)
                 self?.typesSubject.accept(types ?? [])
             } onError: {[weak self] (error) in
@@ -64,7 +56,6 @@ final class CategoryProductsScreenViewModel: CategoryProductsScreenViewModelType
                 self?.errorSubject.accept(error.localizedDescription)
             }.disposed(by: disposeBag)
     }
-    
     private func getProductTypes(items:[Product])->[String]{
         let types:[String] = items.map { $0.productType.rawValue  }
         return types.unique

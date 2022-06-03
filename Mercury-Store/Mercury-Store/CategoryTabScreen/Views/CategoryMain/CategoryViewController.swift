@@ -87,8 +87,8 @@ extension CategoryViewController : UICollectionViewDelegate, UICollectionViewDel
         categoriesCollectionView.register(nib, forCellWithReuseIdentifier: CategoryItem.identifier)
         viewModel.categoryDetails.productTypes.drive(categoriesCollectionView.rx.items(cellIdentifier: CategoryItem.identifier, cellType: CategoryItem.self)){ index , element , cell in
             cell.config(name: element , itemId: self.viewModel.categoryDetails.categoryID)
-            cell.cellClickAction =  { (id) in
-                self.coordinator?.moveTo(flow: .category(.productsScreen), userData: ["collection":id])
+            cell.cellClickAction =  { (id, type) in
+                self.coordinator?.moveTo(flow: .category(.productsScreen), userData: ["collection":id , "type": type])
             }
         }.disposed(by: disposeBag)
         categoriesCollectionView.delegate = self

@@ -11,14 +11,14 @@ import Alamofire
 enum CategoryScreenAPIs: URLRequestBuilder {
     case getCategories
     case getProducts(Int)
+    case getFilteredProduct(Int ,String)
 }
-
 extension CategoryScreenAPIs {
     var path: String {
         switch self {
         case .getCategories:
             return Constants.Pathes.Categories.mainCategoryList
-        case .getProducts:
+        case .getProducts , .getFilteredProduct:
             return Constants.Pathes.Products.productList
         }
     }
@@ -29,7 +29,9 @@ extension CategoryScreenAPIs {
         switch self {
         case .getCategories:
             return [:]
-        case .getProducts(let  value):
+        case .getFilteredProduct(let  value, let second):
+            return ["collection_id": value, "ProductType": second]
+        case .getProducts(let value):
             return ["collection_id": value]
         }
     }
@@ -38,9 +40,7 @@ extension CategoryScreenAPIs {
 extension CategoryScreenAPIs {
     var method: HTTPMethod {
         switch self {
-        case .getCategories:
-            return HTTPMethod.get
-        case .getProducts:
+        case .getCategories , .getFilteredProduct(_, _) , .getProducts:
             return HTTPMethod.get
         }
     }

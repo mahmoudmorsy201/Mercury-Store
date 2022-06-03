@@ -10,7 +10,7 @@
 		4D0A27C828440CDD002B17DB /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0A27C628440CDD002B17DB /* ProductDetailsViewController.swift */; };
 		4D0A27C928440CDD002B17DB /* ProductDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D0A27C728440CDD002B17DB /* ProductDetailsViewController.xib */; };
 		4D0B6B2528416CB90092BC45 /* CategoryProductsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0B6B2428416CB90092BC45 /* CategoryProductsResponse.swift */; };
-		4D0B6B2828417D870092BC45 /* CategoryProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0B6B2728417D870092BC45 /* CategoryProductsViewModel.swift */; };
+		4D0B6B2828417D870092BC45 /* SubCategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0B6B2728417D870092BC45 /* SubCategoriesViewModel.swift */; };
 		4D17769E283FB27000B0E726 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D17769C283FB27000B0E726 /* FilterViewController.swift */; };
 		4D17769F283FB27000B0E726 /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D17769D283FB27000B0E726 /* FilterViewController.xib */; };
 		4D21DF212846A35400582E43 /* CustomCollectionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D21DF202846A35400582E43 /* CustomCollectionResponse.swift */; };
@@ -52,6 +52,7 @@
 		4D8E3870284958AD00B22D98 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8E3851284958AC00B22D98 /* AboutUsViewController.swift */; };
 		4D8E3871284958AD00B22D98 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D8E3853284958AC00B22D98 /* LoginViewController.xib */; };
 		4D8E3872284958AD00B22D98 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8E3854284958AC00B22D98 /* LoginViewController.swift */; };
+		4D8E3874284985E900B22D98 /* FilteredProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8E3873284985E900B22D98 /* FilteredProductsViewModel.swift */; };
 		4DBDBC2C2840316E00714391 /* CategoryApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDBC2B2840316E00714391 /* CategoryApi.swift */; };
 		4DBDBC2E28405E4300714391 /* CategoriesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDBC2D28405E4300714391 /* CategoriesClient.swift */; };
 		70E327F9F08636314A8DD26A /* Pods_Mercury_Store.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C880061057CCC78DAAE9EE6 /* Pods_Mercury_Store.framework */; };
@@ -174,7 +175,7 @@
 		4D0A27C628440CDD002B17DB /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
 		4D0A27C728440CDD002B17DB /* ProductDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductDetailsViewController.xib; sourceTree = "<group>"; };
 		4D0B6B2428416CB90092BC45 /* CategoryProductsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryProductsResponse.swift; sourceTree = "<group>"; };
-		4D0B6B2728417D870092BC45 /* CategoryProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryProductsViewModel.swift; sourceTree = "<group>"; };
+		4D0B6B2728417D870092BC45 /* SubCategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoriesViewModel.swift; sourceTree = "<group>"; };
 		4D17769C283FB27000B0E726 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		4D17769D283FB27000B0E726 /* FilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterViewController.xib; sourceTree = "<group>"; };
 		4D21DF202846A35400582E43 /* CustomCollectionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionResponse.swift; sourceTree = "<group>"; };
@@ -210,6 +211,7 @@
 		4D8E3851284958AC00B22D98 /* AboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		4D8E3853284958AC00B22D98 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		4D8E3854284958AC00B22D98 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4D8E3873284985E900B22D98 /* FilteredProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredProductsViewModel.swift; sourceTree = "<group>"; };
 		4DBDBC2B2840316E00714391 /* CategoryApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryApi.swift; sourceTree = "<group>"; };
 		4DBDBC2D28405E4300714391 /* CategoriesClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesClient.swift; sourceTree = "<group>"; };
 		5B035032FD47AF57FEEEC3EA /* Pods-Mercury-StoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-StoreTests.debug.xcconfig"; path = "Target Support Files/Pods-Mercury-StoreTests/Pods-Mercury-StoreTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -357,23 +359,6 @@
 			path = FilterProducts;
 			sourceTree = "<group>";
 		};
-		4D8E3828284958AC00B22D98 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				4D8E3829284958AC00B22D98 /* OrdersView */,
-				4D8E382F284958AC00B22D98 /* OrdersDetailsView */,
-				4D8E3835284958AC00B22D98 /* ProfileView */,
-				4D8E383B284958AC00B22D98 /* RegisterView */,
-				4D8E383E284958AC00B22D98 /* AddressView */,
-				4D8E3846284958AC00B22D98 /* GuestView */,
-				4D8E3849284958AC00B22D98 /* WishListView */,
-				4D8E384F284958AC00B22D98 /* AboutUsView */,
-				4D8E3852284958AC00B22D98 /* LoginView */,
-			);
-			name = Views;
-			path = "Mercury-Store/Profile/Views";
-			sourceTree = "<group>";
-		};
 		4D8E3829284958AC00B22D98 /* OrdersView */ = {
 			isa = PBXGroup;
 			children = (
@@ -473,6 +458,7 @@
 		4D8E3849284958AC00B22D98 /* WishListView */ = {
 			isa = PBXGroup;
 			children = (
+				4D8E3852284958AC00B22D98 /* LoginView */,
 				4D8E384A284958AC00B22D98 /* Cells */,
 				4D8E384D284958AC00B22D98 /* WishListViewController.swift */,
 				4D8E384E284958AC00B22D98 /* WishListViewController.xib */,
@@ -537,7 +523,8 @@
 			isa = PBXGroup;
 			children = (
 				C40BD70B283E69EE0081E15B /* CategoryViewModel.swift */,
-				4D0B6B2728417D870092BC45 /* CategoryProductsViewModel.swift */,
+				4D0B6B2728417D870092BC45 /* SubCategoriesViewModel.swift */,
+				4D8E3873284985E900B22D98 /* FilteredProductsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -780,6 +767,14 @@
 		C4C08BA928321A4300364704 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4D8E383E284958AC00B22D98 /* AddressView */,
+				4D8E3846284958AC00B22D98 /* GuestView */,
+				4D8E384F284958AC00B22D98 /* AboutUsView */,
+				4D8E3849284958AC00B22D98 /* WishListView */,
+				4D8E383B284958AC00B22D98 /* RegisterView */,
+				4D8E3835284958AC00B22D98 /* ProfileView */,
+				4D8E382F284958AC00B22D98 /* OrdersDetailsView */,
+				4D8E3829284958AC00B22D98 /* OrdersView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -829,7 +824,6 @@
 		C4CDB8FF2830E31D0000519A = {
 			isa = PBXGroup;
 			children = (
-				4D8E3828284958AC00B22D98 /* Views */,
 				C4CDB90A2830E31D0000519A /* Mercury-Store */,
 				C4CDB9242830E3220000519A /* Mercury-StoreTests */,
 				C4CDB92E2830E3220000519A /* Mercury-StoreUITests */,
@@ -1377,7 +1371,7 @@
 				4DBDBC2C2840316E00714391 /* CategoryApi.swift in Sources */,
 				C4C04EEF283332AD002EC367 /* CategoriesTableViewCell.swift in Sources */,
 				C4E6718F2839E99F000572A7 /* Extensions.swift in Sources */,
-				4D0B6B2828417D870092BC45 /* CategoryProductsViewModel.swift in Sources */,
+				4D0B6B2828417D870092BC45 /* SubCategoriesViewModel.swift in Sources */,
 				4D8E3870284958AD00B22D98 /* AboutUsViewController.swift in Sources */,
 				C4AEE959283A1FA30025EDB5 /* Constants.swift in Sources */,
 				C4C08B7D2832077800364704 /* HomeViewModel.swift in Sources */,
@@ -1407,6 +1401,7 @@
 				4D0A27C828440CDD002B17DB /* ProductDetailsViewController.swift in Sources */,
 				C4C08BA0283216EC00364704 /* ShoppingCartViewController.swift in Sources */,
 				4D8E3826284956B400B22D98 /* CartCoreDataManager.swift in Sources */,
+				4D8E3874284985E900B22D98 /* FilteredProductsViewModel.swift in Sources */,
 				4DBDBC2E28405E4300714391 /* CategoriesClient.swift in Sources */,
 				C4CFBA67283BD605009C2840 /* HomeClient.swift in Sources */,
 				C411D7B72838A1B1000E9ACF /* HelperRxDataSources.swift in Sources */,

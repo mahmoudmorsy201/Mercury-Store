@@ -33,7 +33,7 @@ final class CategoriesScreenViewModel: CategoriesScreenViewModelType {
         categories = categorySubject.asDriver(onErrorJustReturn: [])
         isLoading = isLoadingSubject.asDriver(onErrorJustReturn: false)
         error = errorSubject.asDriver(onErrorJustReturn: "Somthing went wrong")
-        categoryDetails = CategoryProductsScreenViewModel(categoryID: 0)
+        categoryDetails = SubCategoriesViewModel(categoryID: 0)
         self.fetchData()
     }
     private func fetchData() {

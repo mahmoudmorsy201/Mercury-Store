@@ -12,9 +12,9 @@ class CategoryItem: UICollectionViewCell {
     @IBOutlet weak var containerViewForCategoriesCollectionViewCell: UIView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var image: UIImageView!
-    var item:CustomCollection?
     var itemID:Int?
-    var cellClickAction:( (_ item:Int)->() )?
+    var selectType:String?
+    var cellClickAction:( (_ item:Int ,_ selectedType:String)->() )?
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCell()
@@ -25,17 +25,11 @@ class CategoryItem: UICollectionViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    public func config(item:CustomCollection){
-        self.item = item
-        ImageDownloaderHelper.imageDownloadHelper(image, item.image?.src ?? "")
-        title.text = item.title
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        containerViewForCategoriesCollectionViewCell.addGestureRecognizer(tap)
-    }
     public func config(name:String , itemId:Int){
         title.text = name
         image.image = UIImage(named: name)
         self.itemID = itemId
+        self.selectType = name
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         containerViewForCategoriesCollectionViewCell.addGestureRecognizer(tap)
     }
@@ -43,11 +37,7 @@ class CategoryItem: UICollectionViewCell {
         guard let cellClickAction = cellClickAction else {
             return
         }
-        if let item = self.item {
-            cellClickAction(item.id)
-        }else{
-            cellClickAction(itemID!)
-        }
+        cellClickAction(itemID!, selectType!)
         
     }
     private func setupCell() {
