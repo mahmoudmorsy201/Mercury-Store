@@ -8,10 +8,21 @@
 import RxSwift
 import RxCocoa
 
+protocol ProfileNavigationFlow: AnyObject {
+    func goToMyOrdersScreen()
+    func goToMyWishListScreen()
+    func goToMyAddressesScreen()
+    func goToAboutUsScreen()
+    func goToMainTab()
+}
+
 class ProfileViewModel {
-    
-    
+    weak var profileNavigationFlow: ProfileNavigationFlow!
     private var _sectionModels: BehaviorSubject<[ProfileSectionModel]> = BehaviorSubject(value: [])
+    
+    init(profileNavigationFlow: ProfileNavigationFlow) {
+        self.profileNavigationFlow = profileNavigationFlow
+    }
     
     var sectionModels: SharedSequence<DriverSharingStrategy, [ProfileSectionModel]> {
         return _sectionModels.asDriver(onErrorJustReturn: [])
@@ -31,6 +42,26 @@ class ProfileViewModel {
         
         _sectionModels.onNext(sections)
     }
+}
 
 
+extension ProfileViewModel: ProfileNavigationFlow {
+    
+    func goToMyOrdersScreen() {
+        self.profileNavigationFlow.goToMyOrdersScreen()
+    }
+    
+    func goToMyWishListScreen() {
+        self.profileNavigationFlow.goToMyWishListScreen()
+    }
+    
+    func goToMyAddressesScreen() {
+        self.profileNavigationFlow.goToMyAddressesScreen()
+    }
+    func goToAboutUsScreen() {
+        self.profileNavigationFlow.goToAboutUsScreen()
+    }
+    func goToMainTab() {
+        self.profileNavigationFlow.goToMainTab()
+    }
 }

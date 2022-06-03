@@ -7,16 +7,16 @@
 
 import UIKit
 
-class FilterViewController: UIViewController , CategoryBaseCoordinated{
-    var coordinator: CategoryBaseCoordinator?
+class FilterViewController: UIViewController {
+//    var coordinator: CategoryBaseCoordinator?
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    init(_coordinator: CategoryBaseCoordinator) {
+    init(/*_coordinator: CategoryBaseCoordinator*/) {
         super.init(nibName: nil, bundle: nil)
-        self.coordinator = _coordinator
+        //self.coordinator = _coordinator
         title = "Filter Products"
     }
     

@@ -7,17 +7,17 @@
 
 import UIKit
 
-class ProductDetailsViewController: UIViewController ,CategoryBaseCoordinated{
-    var coordinator: CategoryBaseCoordinator?
+class ProductDetailsViewController: UIViewController{
+    //var coordinator: CategoryBaseCoordinator?
     var product :Product?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-    init(coordinator: CategoryBaseCoordinator ,product: [String:Any] ) {
+    init(/*coordinator: CategoryBaseCoordinator */product: [String:Any] ) {
         super.init(nibName: nil, bundle: nil)
-        self.coordinator = coordinator
+        //self.coordinator = coordinator
         self.product = product["product"] as! Product
         title = self.product?.title
     }

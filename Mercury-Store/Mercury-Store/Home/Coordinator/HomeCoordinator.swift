@@ -7,59 +7,33 @@
 
 import UIKit
 
-class HomeCoordinator: HomeBaseCoordinator {
-    var parentCoordinator: MainBaseCoordinator?
+class HomeCoordinator : Coordinator {
     
-    lazy var rootViewController: UIViewController = UIViewController()
+    weak var parentCoordinator: Coordinator?
     
-    func start() -> UIViewController {
-        rootViewController = UINavigationController(rootViewController: HomeViewController(coordinator: self))
-        return rootViewController
+    var children: [Coordinator] = []
+    
+    var navigationController: UINavigationController
+    
+    init(navigationController : UINavigationController) {
+        self.navigationController = navigationController
     }
     
-    func moveTo(flow: AppFlow, userData: [String : Any]?) {
-        switch flow {
-        case .home(let homeScreen):
-            handleHomeFlow(for: homeScreen, userData: userData)
-        default:
-            parentCoordinator?.moveTo(flow: flow, userData: userData)
-        }
+    func start() {
+        let viewModel = HomeViewModel(homeFlow: self)
+        let homeVC = HomeViewController(with: viewModel)
+        navigationController.pushViewController(homeVC, animated: true)
     }
-    
-    private func handleHomeFlow(for screen: HomeScreen, userData: [String: Any]?) {
-        switch screen {
-        case .intialScreen:
-            navigationRootViewController?.popToRootViewController(animated: true)
-        case .searchScreen:
-            goToSearchScreenWith(title: "Search")
-        case .favouriteScreen:
-            //TODO: call goToFavouriteScreen()
-            break
-        case .productDetailScreen:
-            //TODO: call goToProductDetailScreenWtih(product: Product)
-            break
-        }
+}
+
+extension HomeCoordinator: HomeFlowNavigation {
+    func goToCategoriesTab(with itemName: String) {
         
     }
     
-    func goToSearchScreenWith(title: String) {
-        resetToRoot()
-        navigationRootViewController?.pushViewController(SearchViewController(coordinator: self), animated: false)
+    func goToBrandDetails(with brandItem: SmartCollection) {
+        
     }
-    
-    func goToFavouriteScreen() {
-        //TODO: navigate to favourite screen and push the view controller to the stack
-    }
-    
-    //TODO: Create function goToProductDetailScreenWtih(product: Product) then navigate to it 
-    
-    
-    @discardableResult
-    func resetToRoot() -> Self {
-        navigationRootViewController?.popToRootViewController(animated: false)
-        return self
-    }
-    
     
     
 }

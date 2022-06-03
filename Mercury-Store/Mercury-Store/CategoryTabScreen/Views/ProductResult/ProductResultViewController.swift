@@ -7,8 +7,7 @@
 
 import UIKit
 import RxSwift
-class ProductResultViewController: UIViewController , CategoryBaseCoordinated{
-    var coordinator: CategoryBaseCoordinator?
+class ProductResultViewController: UIViewController {
     private let disposeBag = DisposeBag()
     var viewModel:FilteredProductsViewModelType?
     @IBOutlet weak var productCollectionView: UICollectionView!
@@ -24,22 +23,21 @@ class ProductResultViewController: UIViewController , CategoryBaseCoordinated{
         productCollectionView.register(nib, forCellWithReuseIdentifier: ProductCell.identifier)
         viewModel?.products.drive(productCollectionView.rx.items(cellIdentifier: ProductCell.identifier, cellType: ProductCell.self)){index , element , cell in
             cell.cellClickAction =  { (item) in
-                self.coordinator?.moveTo(flow: .category(.productDetailScreen), userData: ["product":item])
+               // self.coordinator?.moveTo(flow: .category(.productDetailScreen), userData: ["product":item])
             }
             cell.configure(item: element)
         }
         productCollectionView.delegate = self
     }
-    init(coordinator: CategoryBaseCoordinator ,collection: [String:Any]) {
+    init(collection: [String:Any]) {
         super.init(nibName: nil, bundle: nil)
-        self.coordinator = coordinator
         let categoryID = collection["collection"] as! Int
         let productType = collection["type"] as! String
         self.viewModel = FilteredProductsViewModel(categoryID: categoryID, productType: productType)
     }
     
     @IBAction func filterAction(_ sender: Any) {
-        coordinator?.moveTo(flow: .category(.filterProductScreen), userData: nil)
+       // coordinator?.moveTo(flow: .category(.filterProductScreen), userData: nil)
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -10,10 +10,9 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class CategoryViewController: UIViewController,CategoryBaseCoordinated {
+class CategoryViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel = CategoriesScreenViewModel()
-    var coordinator: CategoryBaseCoordinator?
     //just to push
     @IBOutlet weak var mainCategoryItems: UITableView!
     let cateBackgroundIMG : UIImageView = {
@@ -25,16 +24,6 @@ class CategoryViewController: UIViewController,CategoryBaseCoordinated {
     }()
     
     @IBOutlet var categoriesCollectionView: UICollectionView!
-    
-    init(coordinator: CategoryBaseCoordinator) {
-        super.init(nibName: nil, bundle: nil)
-        self.coordinator = coordinator
-        title = "Categories"
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,7 +77,7 @@ extension CategoryViewController : UICollectionViewDelegate, UICollectionViewDel
         viewModel.categoryDetails.productTypes.drive(categoriesCollectionView.rx.items(cellIdentifier: CategoryItem.identifier, cellType: CategoryItem.self)){ index , element , cell in
             cell.config(name: element , itemId: self.viewModel.categoryDetails.categoryID)
             cell.cellClickAction =  { (id, type) in
-                self.coordinator?.moveTo(flow: .category(.productsScreen), userData: ["collection":id , "type": type])
+//                self.coordinator?.moveTo(flow: .category(.productsScreen), userData: ["collection":id , "type": type])
             }
         }.disposed(by: disposeBag)
         categoriesCollectionView.delegate = self
