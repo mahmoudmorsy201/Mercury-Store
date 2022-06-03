@@ -17,6 +17,13 @@ protocol CategoryProductsScreenViewModelType {
 }
 
 final class SubCategoriesViewModel: CategoryProductsScreenViewModelType {
+    private let categoryProvider: CategoriesProvider = CategoriesScreenAPI()
+    private let disposeBag = DisposeBag()
+    
+    private let typesSubject = BehaviorRelay<[String]>(value: [])
+    private let isLoadingSubject = BehaviorRelay<Bool>(value: false)
+    private let errorSubject = BehaviorRelay<String?>(value: nil)
+    
     var productTypes: Driver<[String]>
     
     var categoryID: Int{
@@ -29,17 +36,10 @@ final class SubCategoriesViewModel: CategoryProductsScreenViewModelType {
     
     var error: Driver<String?>
     
-    private let categoryProvider: CategoriesProvider = CategoriesScreenAPI()
-    private let disposeBag = DisposeBag()
-    
-    private let typesSubject = BehaviorRelay<[String]>(value: [])
-    private let isLoadingSubject = BehaviorRelay<Bool>(value: false)
-    private let errorSubject = BehaviorRelay<String?>(value: nil)
-    
     init(categoryID:Int) {
         productTypes = typesSubject.asDriver(onErrorJustReturn: [])
         isLoading = isLoadingSubject.asDriver(onErrorJustReturn: false)
-        error = errorSubject.asDriver(onErrorJustReturn: "Somthing went wrong")
+        error = errorSubject.asDriver(onErrorJustReturn: "Something went wrong")
         self.categoryID = categoryID
     }
     private func fetchData() {

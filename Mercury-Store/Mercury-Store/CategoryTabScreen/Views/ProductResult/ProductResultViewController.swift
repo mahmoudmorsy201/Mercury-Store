@@ -8,41 +8,46 @@
 import UIKit
 import RxSwift
 class ProductResultViewController: UIViewController {
-    private let disposeBag = DisposeBag()
-    var viewModel:FilteredProductsViewModelType?
+
     @IBOutlet weak var productCollectionView: UICollectionView!
     
+    private let disposeBag = DisposeBag()
+    private var viewModel:FilteredProductsViewModelType?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupCollectionView()
-        
-    }
-    func setupCollectionView(){
-        let nib = UINib(nibName: "ProductCell", bundle: nil)
-        productCollectionView.register(nib, forCellWithReuseIdentifier: ProductCell.identifier)
-        viewModel?.products.drive(productCollectionView.rx.items(cellIdentifier: ProductCell.identifier, cellType: ProductCell.self)){index , element , cell in
-            cell.cellClickAction =  { (item) in
-               // self.coordinator?.moveTo(flow: .category(.productDetailScreen), userData: ["product":item])
-            }
-            cell.configure(item: element)
-        }
-        productCollectionView.delegate = self
-    }
-    init(collection: [String:Any]) {
+    init(with viewModel: FilteredProductsViewModelType) {
         super.init(nibName: nil, bundle: nil)
-        let categoryID = collection["collection"] as! Int
-        let productType = collection["type"] as! String
-        self.viewModel = FilteredProductsViewModel(categoryID: categoryID, productType: productType)
-    }
-    
-    @IBAction func filterAction(_ sender: Any) {
-       // coordinator?.moveTo(flow: .category(.filterProductScreen), userData: nil)
+        self.viewModel = viewModel
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: Life cycle
+    //
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupCollectionView()
+        
+    }
+    
+    func setupCollectionView(){
+        let nib = UINib(nibName: "ProductCell", bundle: nil)
+        productCollectionView.register(nib, forCellWithReuseIdentifier: ProductCell.identifier)
+        
+        viewModel?.products.drive(productCollectionView.rx.items(cellIdentifier: ProductCell.identifier, cellType: ProductCell.self)){[weak self] index , element , cell in
+            guard let `self` = self else {fatalError()}
+            cell.cellClickAction =  { (item) in
+                self.viewModel?.goToProductDetail(with: item)
+            }
+            cell.configure(item: element)
+        }.disposed(by: disposeBag)
+        productCollectionView.delegate = self
+    }
+
+    @IBAction func filterAction(_ sender: Any) {
+        self.viewModel?.goToFilteredProductScreen()
+    }
+
 }
 extension ProductResultViewController : UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
@@ -51,6 +56,4 @@ extension ProductResultViewController : UICollectionViewDelegate, UICollectionVi
         let collectionViewSize = collectionView.frame.size.width - padding
         return CGSize(width: collectionViewSize/2, height: 200)
     }
-    
-    
 }

@@ -11,10 +11,12 @@ import RxCocoa
 import RxDataSources
 
 class CategoryViewController: UIViewController {
-    private let disposeBag = DisposeBag()
-    private let viewModel = CategoriesScreenViewModel()
-    //just to push
+    
     @IBOutlet weak var mainCategoryItems: UITableView!
+    
+    
+    @IBOutlet var categoriesCollectionView: UICollectionView!
+    
     let cateBackgroundIMG : UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named:"categories_background")
@@ -23,7 +25,17 @@ class CategoryViewController: UIViewController {
         return iv
     }()
     
-    @IBOutlet var categoriesCollectionView: UICollectionView!
+    private let disposeBag = DisposeBag()
+    private var viewModel: CategoriesScreenViewModel!
+    
+    init(with viewModel: CategoriesScreenViewModel) {
+        super.init(nibName: String(describing: CategoryViewController.self), bundle: nil)
+        self.viewModel = viewModel
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,10 +86,11 @@ extension CategoryViewController : UICollectionViewDelegate, UICollectionViewDel
     func setupCollection(){
         let nib = UINib(nibName: "CategoryItem", bundle: nil)
         categoriesCollectionView.register(nib, forCellWithReuseIdentifier: CategoryItem.identifier)
-        viewModel.categoryDetails.productTypes.drive(categoriesCollectionView.rx.items(cellIdentifier: CategoryItem.identifier, cellType: CategoryItem.self)){ index , element , cell in
+        viewModel.categoryDetails.productTypes.drive(categoriesCollectionView.rx.items(cellIdentifier: CategoryItem.identifier, cellType: CategoryItem.self)){[weak self] index , element , cell in
+            guard let `self` = self else {fatalError()}
             cell.config(name: element , itemId: self.viewModel.categoryDetails.categoryID)
             cell.cellClickAction =  { (id, type) in
-//                self.coordinator?.moveTo(flow: .category(.productsScreen), userData: ["collection":id , "type": type])
+                self.viewModel.gotToProductScreen(with: id, type: type)
             }
         }.disposed(by: disposeBag)
         categoriesCollectionView.delegate = self

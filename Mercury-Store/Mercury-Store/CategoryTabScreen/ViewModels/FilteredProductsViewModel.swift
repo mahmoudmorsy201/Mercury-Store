@@ -14,15 +14,12 @@ protocol FilteredProductsViewModelType {
     var isLoading: Driver<Bool> { get }
     var products: Driver<[Product]> { get}
     var error: Driver<String?> { get }
+    func goToProductDetail(with product: Product)
+    func goToFilteredProductScreen()
 }
 
 final class FilteredProductsViewModel: FilteredProductsViewModelType {
-    var isLoading: Driver<Bool>
-    
-    var products: Driver<[Product]>
-    
-    var error: Driver<String?>
-    
+    private weak var filteredProductsNavigationFlow: FilteredProductsNavigationFlow?
     private let categoryProvider: CategoriesProvider = CategoriesScreenAPI()
     private let disposeBag = DisposeBag()
     
@@ -32,12 +29,21 @@ final class FilteredProductsViewModel: FilteredProductsViewModelType {
     
     private let categoryID:Int
     private let productType:String
-    init(categoryID:Int, productType:String) {
+    
+    var isLoading: Driver<Bool>
+    
+    var products: Driver<[Product]>
+    
+    var error: Driver<String?>
+    
+    init(categoryID:Int, productType:String, filteredProductsNavigationFlow: FilteredProductsNavigationFlow) {
         products = categorySubject.asDriver(onErrorJustReturn: [])
         isLoading = isLoadingSubject.asDriver(onErrorJustReturn: false)
         error = errorSubject.asDriver(onErrorJustReturn: "Somthing went wrong")
         self.categoryID = categoryID
         self.productType = productType
+        print("\(categoryID), \(productType)")
+        self.filteredProductsNavigationFlow = filteredProductsNavigationFlow
     }
     private func fetchData() {
         self.categorySubject.accept([])
@@ -54,4 +60,14 @@ final class FilteredProductsViewModel: FilteredProductsViewModelType {
             }.disposed(by: disposeBag)
     }
     
+}
+
+extension FilteredProductsViewModel {
+    func goToProductDetail(with product: Product) {
+        self.filteredProductsNavigationFlow?.goToProductDetail(with: product)
+    }
+    
+    func goToFilteredProductScreen() {
+        self.filteredProductsNavigationFlow?.goToFilteredProductScreen()
+    }
 }

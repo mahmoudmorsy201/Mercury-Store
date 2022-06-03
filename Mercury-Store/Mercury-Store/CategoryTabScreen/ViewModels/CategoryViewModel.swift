@@ -14,7 +14,9 @@ protocol CategoriesScreenViewModelType {
     var error: Driver<String?> { get }
 }
 
+
 final class CategoriesScreenViewModel: CategoriesScreenViewModelType {
+    private weak var categoriesNavigationFlow:CategoriesNavigationFlow?
     
     private let categoryProvider: CategoriesProvider = CategoriesScreenAPI()
     private let disposeBag = DisposeBag()
@@ -29,7 +31,9 @@ final class CategoriesScreenViewModel: CategoriesScreenViewModelType {
     
     var error: Driver<String?>
     var categoryDetails:CategoryProductsScreenViewModelType
-    init() {
+    
+    init(with categoryFlow: CategoriesNavigationFlow) {
+        self.categoriesNavigationFlow = categoryFlow
         categories = categorySubject.asDriver(onErrorJustReturn: [])
         isLoading = isLoadingSubject.asDriver(onErrorJustReturn: false)
         error = errorSubject.asDriver(onErrorJustReturn: "Somthing went wrong")
@@ -53,4 +57,10 @@ final class CategoriesScreenViewModel: CategoriesScreenViewModelType {
     }
     
     
+}
+
+extension CategoriesScreenViewModel {
+    func gotToProductScreen(with id: Int, type: String) {
+        self.categoriesNavigationFlow?.gotToProductScreen(with: id, type: type)
+    }
 }
