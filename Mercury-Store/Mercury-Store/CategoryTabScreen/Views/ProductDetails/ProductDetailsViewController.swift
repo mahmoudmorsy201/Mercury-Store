@@ -8,18 +8,16 @@
 import UIKit
 
 class ProductDetailsViewController: UIViewController{
-    //var coordinator: CategoryBaseCoordinator?
-    var product :Product?
 
+    private var viewModel: ProductsDetailViewModelType?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-    init(/*coordinator: CategoryBaseCoordinator */product: [String:Any] ) {
+    init(with viewModel: ProductsDetailViewModelType) {
         super.init(nibName: nil, bundle: nil)
-        //self.coordinator = coordinator
-        self.product = product["product"] as! Product
-        title = self.product?.title
+        self.viewModel = viewModel
     }
     
     required init?(coder: NSCoder) {
