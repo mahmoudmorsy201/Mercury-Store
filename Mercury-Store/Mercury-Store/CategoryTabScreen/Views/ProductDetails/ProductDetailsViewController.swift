@@ -13,7 +13,6 @@ class ProductDetailsViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     init(with viewModel: ProductsDetailViewModelType) {
         super.init(nibName: nil, bundle: nil)

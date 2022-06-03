@@ -16,7 +16,7 @@ struct ProductsCategory: Codable {
 struct Product: Codable {
     let id: Int
     let title, bodyHTML, vendor: String
-    let productType: ProductType
+    let productType: String
     let createdAt: Date
     let handle: String
     let updatedAt, publishedAt: Date
@@ -88,11 +88,11 @@ enum Name: String, Codable {
     case size = "Size"
 }
 
-enum ProductType: String, Codable {
-    case accessories = "ACCESSORIES"
-    case shoes = "SHOES"
-    case tShirts = "T-SHIRTS"
-}
+//enum ProductType: String, Codable {
+//    case accessories = "ACCESSORIES"
+//    case shoes = "SHOES"
+//    case tShirts = "T-SHIRTS"
+//}
 
 enum Status: String, Codable {
     case active = "active"
