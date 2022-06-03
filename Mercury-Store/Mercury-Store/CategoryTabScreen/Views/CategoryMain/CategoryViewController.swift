@@ -47,10 +47,13 @@ class CategoryViewController: UIViewController {
 
 extension CategoryViewController :UITableViewDelegate{
     func initTableView(){
+        mainCategoryItems.delegate = nil
+        mainCategoryItems.dataSource = nil
+        mainCategoryItems.rx.setDelegate(self).disposed(by: disposeBag)
+        
         let nib = UINib(nibName: "MainCategoryCellTableViewCell", bundle: nil)
         mainCategoryItems.separatorStyle = .none
         mainCategoryItems.register(nib, forCellReuseIdentifier: MainCategoryCellTableViewCell.identifier)
-        mainCategoryItems.delegate = self
         setupReactiveMainCategoryTableData()
     }
     func deselectAllRows(selectedIndex:Int ,animated: Bool) {
@@ -71,6 +74,9 @@ extension CategoryViewController :UITableViewDelegate{
     }
     func setupReactiveMainCategoryTableData(){
         viewModel.categories.drive(mainCategoryItems.rx.items(cellIdentifier: MainCategoryCellTableViewCell.identifier, cellType: MainCategoryCellTableViewCell.self)){ index , element , cell in
+            if(index == 0){
+                cell.cellContainerView.backgroundColor = .blue
+            }
             cell.config(item: element)
         }.disposed(by: disposeBag)
     }
@@ -84,16 +90,19 @@ extension CategoryViewController : UICollectionViewDelegate, UICollectionViewDel
     }
     
     func setupCollection(){
+        categoriesCollectionView.delegate = nil
+        categoriesCollectionView.dataSource = nil
+        categoriesCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
         let nib = UINib(nibName: "CategoryItem", bundle: nil)
         categoriesCollectionView.register(nib, forCellWithReuseIdentifier: CategoryItem.identifier)
         viewModel.categoryDetails.productTypes.drive(categoriesCollectionView.rx.items(cellIdentifier: CategoryItem.identifier, cellType: CategoryItem.self)){[weak self] index , element , cell in
             guard let `self` = self else {fatalError()}
             cell.config(name: element , itemId: self.viewModel.categoryDetails.categoryID)
-            cell.cellClickAction =  { (id, type) in
-                self.viewModel.gotToProductScreen(with: id, type: type)
-            }
         }.disposed(by: disposeBag)
-        categoriesCollectionView.delegate = self
-        categoriesCollectionView.backgroundView = cateBackgroundIMG
+        
+        categoriesCollectionView.rx.modelSelected(String.self).subscribe(onNext:{ type in
+            let id = self.viewModel.categoryDetails.categoryID
+            self.viewModel.gotToProductScreen(with: id, type: type)
+        }).disposed(by: disposeBag)
     }
 }
