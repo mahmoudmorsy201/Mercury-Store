@@ -30,7 +30,7 @@ extension CategoryScreenAPIs {
         case .getCategories:
             return [:]
         case .getFilteredProduct(let  value, let second):
-            return ["collection_id": value, "ProductType": second]
+            return ["collection_id": value, "product_type": second]
         case .getProducts(let value):
             return ["collection_id": value]
         }

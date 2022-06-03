@@ -57,7 +57,7 @@ final class SubCategoriesViewModel: CategoryProductsScreenViewModelType {
             }.disposed(by: disposeBag)
     }
     private func getProductTypes(items:[Product])->[String]{
-        let types:[String] = items.map { $0.productType.rawValue  }
+        let types:[String] = items.map { $0.productType  }
         return types.unique
     }
     
