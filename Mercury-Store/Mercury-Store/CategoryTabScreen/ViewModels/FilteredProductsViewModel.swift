@@ -42,8 +42,8 @@ final class FilteredProductsViewModel: FilteredProductsViewModelType {
         error = errorSubject.asDriver(onErrorJustReturn: "Somthing went wrong")
         self.categoryID = categoryID
         self.productType = productType
-        print("\(categoryID), \(productType)")
         self.filteredProductsNavigationFlow = filteredProductsNavigationFlow
+        self.fetchData()
     }
     private func fetchData() {
         self.categorySubject.accept([])
@@ -53,6 +53,7 @@ final class FilteredProductsViewModel: FilteredProductsViewModelType {
             .observe(on: MainScheduler.asyncInstance)
             .subscribe {[weak self] (result) in
                 self?.isLoadingSubject.accept(false)
+                print(result.products.count)
                 self?.categorySubject.accept(result.products)
             } onError: {[weak self] (error) in
                 self?.isLoadingSubject.accept(false)
