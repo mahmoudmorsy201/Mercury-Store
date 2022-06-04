@@ -27,24 +27,29 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         firstNameTextField.becomeFirstResponder()
-        bindTextToViewModel()
-        observeViewModelOnValid()
-    }
-    func bindTextToViewModel() {
-        firstNameTextField.rx.text.map{ $0 ?? ""}.bind(to:registerViewModel.firstnameTextPublishSubject).disposed(by: disposeBag)
-        lastNameTextField.rx.text.map{ $0 ?? ""}.bind(to:registerViewModel.lastnameTextPublishSubject).disposed(by: disposeBag)
-        emailTextField.rx.text.map{ $0 ?? ""}.bind(to:registerViewModel.emailTextPublishSubject).disposed(by: disposeBag)
-        passwordTextField.rx.text.map{ $0 ?? ""}.bind(to:registerViewModel.passwordTextPublishSubject).disposed(by: disposeBag)
-        confirmPasswordTextField.rx.text.map{ $0 ?? ""}.bind(to:registerViewModel.confirmpasswordTextPublishSubject).disposed(by: disposeBag)
-    }
-    func observeViewModelOnValid(){
-        registerViewModel.isValid().bind(to: signUpBtn.rx.isEnabled).disposed(by: disposeBag)
-        registerViewModel.isValid().map{$0 ? 1: 1.0}.bind(to: signUpBtn.rx.alpha).disposed(by: disposeBag)
-    }
-
-    
-    @IBAction func signUp(_ sender: Any) {
-
-    }
-    
-}
+        firstNameTextField.becomeFirstResponder()
+               // cosmetics
+               signUpBtn.setTitleColor(.gray, for: .disabled)
+                       // rx
+                       setupBindings()
+                       observeViewModelOnValid()
+           }
+          
+           func setupBindings() {
+                  // 3
+                  // bind textfields to viewModel for validation and process
+               firstNameTextField.rx.text.bind(to:  registerViewModel.firstNameSubject).disposed(by: disposeBag)
+               lastNameTextField.rx.text.bind(to:  registerViewModel.secondNameSubject).disposed(by: disposeBag)
+               emailTextField.rx.text.bind(to:  registerViewModel.emailSubject).disposed(by: disposeBag)
+               passwordTextField.rx.text.bind(to:  registerViewModel.passwordSubject).disposed(by: disposeBag)
+               confirmPasswordTextField.rx.text.bind(to:  registerViewModel.confirmPasswordSubject).disposed(by: disposeBag)
+                  
+              }
+           func observeViewModelOnValid(){
+               // 4
+               // check if form has fulfil conditions to enable submit button
+            registerViewModel.isValidForm.bind(to:  signUpBtn.rx.isEnabled).disposed(by: disposeBag)
+           }
+          
+           
+       }
