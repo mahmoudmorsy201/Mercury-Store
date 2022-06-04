@@ -17,8 +17,12 @@ target 'Mercury-Store' do
   
   #Image download
   pod 'SDWebImage', '5.12.5'
-#pods for textfield effects
+
+ #pods for textfield effects
  pod 'TextFieldEffects'
+
+ #ProgressHud
+ pod 'ProgressHUD'
   
 
   target 'Mercury-StoreTests' do

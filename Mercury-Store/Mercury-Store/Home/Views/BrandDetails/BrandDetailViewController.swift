@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import ProgressHUD
 
 class BrandDetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak private var containerViewForBrandImage: UIView!
@@ -50,6 +51,7 @@ extension BrandDetailViewController {
         setupView()
         showContent()
         bindSelectedItem()
+        bindActivity()
     }
 }
 
@@ -62,6 +64,11 @@ extension BrandDetailViewController {
             cell.item = item
         }.disposed(by: disposeBag)
         viewModel.fetchData()
+    }
+    
+    private func bindActivity() {
+        viewModel.isLoading.drive(ProgressHUD.rx.isAnimating)
+        .disposed(by: disposeBag)
     }
     
     private func bindSelectedItem() {

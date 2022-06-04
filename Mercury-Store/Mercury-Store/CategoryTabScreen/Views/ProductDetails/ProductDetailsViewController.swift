@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+
 class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
     
     @IBOutlet weak var productDescription: UITextView!
