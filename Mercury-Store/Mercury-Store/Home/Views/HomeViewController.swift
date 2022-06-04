@@ -23,30 +23,33 @@ class HomeViewController: UIViewController {
         }
     }
     
-    //MARK: Properties
+    //MARK: - Properties
     private let disposeBag = DisposeBag()
     private var viewModel: HomeViewModel!
     private var brandViewModel: BrandsViewModel!
+    private var categoryViewModel: CategoriesViewModel!
     
-    init(with viewModel: HomeViewModel, and brandViewModel: BrandsViewModel) {
+    init(with viewModel: HomeViewModel, and brandViewModel: BrandsViewModel, categoryViewModel: CategoriesViewModel) {
         super.init(nibName: String(describing: HomeViewController.self), bundle: nil)
         self.viewModel = viewModel
         self.brandViewModel = brandViewModel
+        self.categoryViewModel = categoryViewModel
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: Life Cycle
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        homeTableView.rx.setDelegate(self)
-            .disposed(by: disposeBag)
         createSearchBarButton()
         bindTableView()
+    }
+    
+    private func bindActivity() {
         
-
     }
     
     private func createSearchBarButton() {
@@ -63,6 +66,10 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController {
     private func bindTableView() {
+        homeTableView.delegate = nil
+        homeTableView.dataSource = nil
+        homeTableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
         viewModel.items
             .bind(to: homeTableView.rx.items(dataSource: dataSource()))
             .disposed(by: disposeBag)
@@ -70,6 +77,9 @@ extension HomeViewController {
 }
 
 extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
@@ -103,7 +113,7 @@ extension HomeViewController {
                     fatalError("Couldn't dequeue categories cell")
                 }
                 
-                categoriesCell.viewModel = CategoriesViewModel()
+                categoriesCell.viewModel = self?.categoryViewModel
                 
                 return categoriesCell
             case .BannerTableViewItem:

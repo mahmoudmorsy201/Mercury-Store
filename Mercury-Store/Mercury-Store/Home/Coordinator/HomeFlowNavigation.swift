@@ -8,6 +8,6 @@
 import Foundation
 
 protocol HomeFlowNavigation: AnyObject {
-    func goToCategoriesTab(with itemName: String)
+    func goToFilteredProduct(with id: Int)
     func goToBrandDetails(with brandItem: SmartCollectionElement)
 }

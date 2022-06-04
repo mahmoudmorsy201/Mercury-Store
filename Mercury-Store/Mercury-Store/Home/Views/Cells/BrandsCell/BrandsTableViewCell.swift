@@ -10,7 +10,6 @@ import RxSwift
 
 class BrandsTableViewCell: UITableViewCell {
     
-    
     @IBOutlet weak private var containerViewForBrandsCollectionView: UIView!
     
     @IBOutlet weak private var brandsCollectionView: UICollectionView! {
@@ -25,10 +24,11 @@ class BrandsTableViewCell: UITableViewCell {
     }
     
     private func setupCell() {
-        self.contentView.applyShaow()
+        self.contentView.applyShadow()
         self.containerViewForBrandsCollectionView.makeCorners(corners: [.topRight , .topLeft], radius: 30)
         self.containerViewForBrandsCollectionView.layer.borderWidth = 2.0
         self.containerViewForBrandsCollectionView.layer.borderColor = UIColor.gray.cgColor
+        self.contentView.backgroundColor = .white
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
