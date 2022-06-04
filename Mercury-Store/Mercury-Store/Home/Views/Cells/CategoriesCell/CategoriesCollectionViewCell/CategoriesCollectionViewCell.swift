@@ -20,7 +20,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
             }
             categoryName.text = category.name
             categoryImageView.image = UIImage(named: category.imageName)
-            containerViewForCategoryImageView.backgroundColor = hexStringToUIColor(hex: category.colorHex).withAlphaComponent(0.5)
+            containerViewForCategoryImageView.backgroundColor = UIColor(hexString: category.colorHex)
         }
     }
     

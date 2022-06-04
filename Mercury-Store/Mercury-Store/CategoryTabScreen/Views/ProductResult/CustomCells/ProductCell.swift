@@ -27,7 +27,11 @@ class ProductCell: UICollectionViewCell {
         super.init(coder: coder)
     }
     public func configure(item:Product){
-        ImageDownloaderHelper.imageDownloadHelper(productIMG, item.image.src)
+        guard let url = URL(string: item.image.src) else {
+            return
+        }
+        productIMG.downloadImage(url: url , placeholder: UIImage(named: "placeholder"), imageIndicator: .gray, completion: nil)
+        
         productName.text = "\(item.title) \n\(item.variants[0].price)EGP"
         self.item = item
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))

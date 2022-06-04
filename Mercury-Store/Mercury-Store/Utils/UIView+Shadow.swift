@@ -1,29 +1,11 @@
 //
-//  Extensions.swift
+//  UIView+Shadow.swift
 //  Mercury-Store
 //
 //  Created by mac hub on 22/05/2022.
 //
 
 import UIKit
-
-extension UIImageView {
-    func applyshadowWithCorner(containerView : UIView, cornerRadius : CGFloat){
-        containerView.clipsToBounds = false
-        containerView.layer.shadowColor = UIColor.black.cgColor
-        containerView.layer.borderColor = UIColor.clear.cgColor
-        containerView.layer.borderWidth = 1.0
-        containerView.layer.shadowOffset = CGSize(width: 0, height: cornerRadius)
-        containerView.layer.shadowRadius = 6.0
-        containerView.layer.shadowOpacity = 0.5
-        containerView.layer.cornerRadius = cornerRadius
-        containerView.layer.shadowPath = UIBezierPath(roundedRect: containerView.bounds, cornerRadius: cornerRadius).cgPath
-        self.layer.shouldRasterize = true
-        self.layer.rasterizationScale = UIScreen.main.scale
-        self.clipsToBounds = true
-        self.layer.cornerRadius = cornerRadius
-    }
-}
 
 extension UIView {
     func applyShadow(cornerRadius: CGFloat) {
@@ -39,7 +21,6 @@ extension UIView {
         self.layer.cornerRadius = self.layer.bounds.width / 2
         self.clipsToBounds = true
         self.layer.borderColor = UIColor.darkGray.cgColor
-        //self.layer.borderWidth = 1.0
     }
     
     func makeCorners(corners: UIRectCorner , radius: CGFloat) {
@@ -55,7 +36,7 @@ extension UIView {
         }
     }
     
-    func applyShaow() {
+    func applyShadow() {
         layer.shadowColor = UIColor.gray.cgColor
         layer.shadowOpacity = 0.3
         layer.shadowOffset = .zero
@@ -64,20 +45,4 @@ extension UIView {
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale
     }
-    
-    
 }
-extension Array where Element: Equatable {
-    var unique: [Element] {
-        var uniqueValues: [Element] = []
-        forEach { item in
-            guard !uniqueValues.contains(item) else { return }
-            uniqueValues.append(item)
-        }
-        return uniqueValues
-    }
-}
-
-
-
-

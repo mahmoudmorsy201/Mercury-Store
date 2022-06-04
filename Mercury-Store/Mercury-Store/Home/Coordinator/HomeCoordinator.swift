@@ -8,7 +8,7 @@
 import UIKit
 
 class HomeCoordinator : Coordinator {
-    
+
     weak var parentCoordinator: Coordinator?
     
     var children: [Coordinator] = []
@@ -20,19 +20,49 @@ class HomeCoordinator : Coordinator {
     }
     
     func start() {
-        let viewModel = HomeViewModel(homeFlow: self)
-        let homeVC = HomeViewController(with: viewModel)
+        let brandProvider: BrandsProvider = HomeScreenAPI()
+        let brandViewModel = BrandsViewModel(brandsProvider: brandProvider, homeFlowNavigation: self)
+        let viewModel = HomeViewModel()
+        let categoryViewModel = CategoriesViewModel(with: self)
+        let homeVC = HomeViewController(with: viewModel, and: brandViewModel, categoryViewModel: categoryViewModel)
         navigationController.pushViewController(homeVC, animated: true)
     }
 }
 
 extension HomeCoordinator: HomeFlowNavigation {
-    func goToCategoriesTab(with itemName: String) {
-        
+    func goToFilteredProduct(with id: Int) {
+        let viewModel = FilteredProductsViewModel(categoryID: id, productType: "", filteredProductsNavigationFlow: self)
+        let productResultVC = ProductResultViewController(with: viewModel)
+        navigationController.pushViewController(productResultVC, animated: true)
     }
     
-    func goToBrandDetails(with brandItem: SmartCollection) {
+    func goToBrandDetails(with brandItem: SmartCollectionElement) {
+        let productsForBrandProvider =  HomeScreenAPI()
+        let viewModel = BrandDetailsViewModel(with: brandItem, productsForBrandProvider: productsForBrandProvider, brandDetailsNavigationFlow: self)
+        let brandDetailsVC = BrandDetailViewController(with: viewModel)
+        navigationController.pushViewController(brandDetailsVC, animated: true)
+    }
+}
+extension HomeCoordinator: FilteredProductsNavigationFlow {
+    func goToProductDetail(with product: Product) {
+        let viewModel = ProductsDetailViewModel(with: self,product: product)
+        let productDetailsVC = ProductDetailsViewController(with: viewModel)
+        navigationController.pushViewController(productDetailsVC, animated: true)
+    }
+    
+    func goToFilteredProductScreen() {
         
+    }
+}
+extension HomeCoordinator: ProductDetailsNavigationFlow {
+    
+}
+
+extension HomeCoordinator: BrandDetailsNavigationFlow {
+    func goToProductDetails(with product: Product) {
+        let viewModel = ProductsDetailViewModel(with: self,product: product)
+        let productDetailsVC = ProductDetailsViewController(with: viewModel)
+        navigationController.pushViewController(productDetailsVC, animated: true)
     }
     
     

@@ -24,7 +24,7 @@ struct CustomCollection: Codable {
     let bodyHTML: String?
     let publishedAt: Date
     let sortOrder: String
-    let templateSuffix: JSONNull?
+    let templateSuffix: String?
     let publishedScope, adminGraphqlAPIID: String
     let image: Image?
 

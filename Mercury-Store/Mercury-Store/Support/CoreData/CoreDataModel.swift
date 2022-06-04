@@ -40,13 +40,11 @@ extension CoreDataModel: StorageInputs {
     func getItems(productState:productStates ) -> ([SavedProductItem], Error?) {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entity)
 
-        let firstPredictate = NSPredicate(format: "(\(productCoredataAttr.state.rawValue) == %@) ", 2)
-        let secondPredicate = NSPredicate(format: "(\(productCoredataAttr.state.rawValue) == %@) ", productState.rawValue)
-        let combinedPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [firstPredictate , secondPredicate])
-        fetchRequest.predicate = combinedPredicate
+        fetchRequest.predicate =  NSPredicate(format: "\(productCoredataAttr.state.rawValue) = %@ OR \(productCoredataAttr.state.rawValue)  = %@", argumentArray: [productState.rawValue, 2])
         var resultItems = [SavedProductItem]()
         do {
-            let fetchedItems = try managedObjectContext.fetch(fetchRequest) as! [NSManagedObjectContext]
+            let fetchedItems = try managedObjectContext.fetch(fetchRequest)
+            
             for itemMO in fetchedItems {
                 let tmpItem: SavedProductItem = SavedProductItem(
                     productID: itemMO.value(forKey: productCoredataAttr.id.rawValue) as! Decimal,
@@ -64,7 +62,7 @@ extension CoreDataModel: StorageInputs {
         return (resultItems, nil)
     }
     
-    func insert(item:SavedProductItem) -> (SavedProductItem, Bool) {
+    func insert(item : SavedProductItem) -> (SavedProductItem, Bool) {
         let entityItem = NSEntityDescription.entity(forEntityName: self.entity, in: self.managedObjectContext)!
         let product = NSManagedObject(entity: entityItem, insertInto: self.managedObjectContext)
         product.setValue(item.productID , forKey: productCoredataAttr.id.rawValue)

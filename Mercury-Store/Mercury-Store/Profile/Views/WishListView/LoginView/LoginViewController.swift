@@ -21,41 +21,27 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.becomeFirstResponder()
-        bindTextToViewModel()
-        observeViewModelOnValid()
-    }
-    
-    func bindTextToViewModel() {
-        emailTextField
-            .rx.text
-            .map { $0 ?? "" }
-            .bind(to: loginViewModel.emailTextPublishSubject)
-            .disposed(by: disposeBag)
-        
-        passwordTextField
-            .rx.text
-            .map { $0 ?? "" }
-            .bind(to: loginViewModel.passwordTextPublishSubject)
-            .disposed(by: disposeBag)
-    }
-    
-    func observeViewModelOnValid() {
-        loginViewModel
-            .isValid()
-            .bind(to: loginButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-        
-        loginViewModel
-            .isValid()
-            .map{ $0 ? 1 : 1.0 }
-            .bind(to: loginButton.rx.alpha)
-            .disposed(by: disposeBag)
-    }
-    @IBAction func loginPressed(_ sender: Any) {
-        
-    }
-    @IBAction func goToSignUp(_ sender: UIButton) {
-        
-    }
-    
-}
+        emailTextField.becomeFirstResponder()
+                // cosmetics
+                  loginButton.setTitleColor(.gray, for: .disabled)
+                        // rx
+                        setupBindings()
+                       observeViewModelOnValid()
+            }
+            
+          
+            func setupBindings() {
+                    // 3
+                    // bind textfields to viewModel for validation and process
+                    emailTextField.rx.text.bind(to: loginViewModel.emailSubject).disposed(by: disposeBag)
+                    passwordTextField.rx.text.bind(to: loginViewModel.passwordSubject).disposed(by: disposeBag)
+                    
+                  
+                }
+            func  observeViewModelOnValid(){
+                // 4
+                // check if form has fulfil conditions to enable submit button
+               loginViewModel.isValidForm.bind(to: loginButton.rx.isEnabled).disposed(by: disposeBag)
+            }
+            
+        }
