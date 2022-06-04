@@ -10,7 +10,6 @@ import RxSwift
 
 
 struct HomeViewModel {
-    
     let items = BehaviorSubject<[HomeTableViewSection]>(value: [
         .LogoSection(items: [
             .LogoTableViewItem

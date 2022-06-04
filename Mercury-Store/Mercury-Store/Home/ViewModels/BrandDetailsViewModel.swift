@@ -15,9 +15,16 @@ protocol BrandDetailsViewModelType: AnyObject {
     var productsForBrand: Driver<[Product]> { get }
     var error: Driver<String?> { get }
     func fetchData()
+    func goToProductDetails(with product: Product)
+}
+
+protocol BrandDetailsNavigationFlow: AnyObject {
+    func goToProductDetails(with product: Product)
 }
 
 final class BrandDetailsViewModel: BrandDetailsViewModelType {
+    
+    private weak var brandDetailsNavigationFlow: BrandDetailsNavigationFlow?
     private let productsForBrandProvider: ProductsForBrandProvider
     private let productsForBrandSubject = BehaviorRelay<[Product]>(value: [])
     private let isLoadingSubject = BehaviorRelay<Bool> (value: false)
@@ -34,12 +41,13 @@ final class BrandDetailsViewModel: BrandDetailsViewModelType {
     var error: Driver<String?>
     
     
-    init(with model: SmartCollectionElement, productsForBrandProvider: ProductsForBrandProvider) {
+    init(with model: SmartCollectionElement, productsForBrandProvider: ProductsForBrandProvider,brandDetailsNavigationFlow: BrandDetailsNavigationFlow) {
         productsForBrand = productsForBrandSubject.asDriver(onErrorJustReturn: [])
         isLoading = isLoadingSubject.asDriver(onErrorJustReturn: false)
         error = errorSubject.asDriver(onErrorJustReturn: "Something went wrong")
         self.item = model
         self.productsForBrandProvider = productsForBrandProvider
+        self.brandDetailsNavigationFlow = brandDetailsNavigationFlow
     }
     
     func fetchData() {
@@ -56,6 +64,12 @@ final class BrandDetailsViewModel: BrandDetailsViewModelType {
                 self?.isLoadingSubject.accept(false)
                 self?.errorSubject.accept(error.localizedDescription)
             }.disposed(by: disposeBag)
+    }
+}
+
+extension BrandDetailsViewModel {
+    func goToProductDetails(with product: Product) {
+        self.brandDetailsNavigationFlow?.goToProductDetails(with: product)
     }
 }
 

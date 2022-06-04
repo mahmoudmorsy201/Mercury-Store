@@ -38,7 +38,7 @@ extension HomeCoordinator: HomeFlowNavigation {
     
     func goToBrandDetails(with brandItem: SmartCollectionElement) {
         let productsForBrandProvider =  HomeScreenAPI()
-        let viewModel = BrandDetailsViewModel(with: brandItem, productsForBrandProvider: productsForBrandProvider)
+        let viewModel = BrandDetailsViewModel(with: brandItem, productsForBrandProvider: productsForBrandProvider, brandDetailsNavigationFlow: self)
         let brandDetailsVC = BrandDetailViewController(with: viewModel)
         navigationController.pushViewController(brandDetailsVC, animated: true)
     }
@@ -55,5 +55,15 @@ extension HomeCoordinator: FilteredProductsNavigationFlow {
     }
 }
 extension HomeCoordinator: ProductDetailsNavigationFlow {
+    
+}
+
+extension HomeCoordinator: BrandDetailsNavigationFlow {
+    func goToProductDetails(with product: Product) {
+        let viewModel = ProductsDetailViewModel(with: self,product: product)
+        let productDetailsVC = ProductDetailsViewController(with: viewModel)
+        navigationController.pushViewController(productDetailsVC, animated: true)
+    }
+    
     
 }

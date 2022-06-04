@@ -34,6 +34,7 @@ class HomeViewController: UIViewController {
         self.viewModel = viewModel
         self.brandViewModel = brandViewModel
         self.categoryViewModel = categoryViewModel
+        
     }
     
     required init?(coder: NSCoder) {
@@ -43,12 +44,12 @@ class HomeViewController: UIViewController {
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        homeTableView.rx.setDelegate(self)
-            .disposed(by: disposeBag)
         createSearchBarButton()
         bindTableView()
+    }
+    
+    private func bindActivity() {
         
-
     }
     
     private func createSearchBarButton() {
@@ -65,6 +66,10 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController {
     private func bindTableView() {
+        homeTableView.delegate = nil
+        homeTableView.dataSource = nil
+        homeTableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
         viewModel.items
             .bind(to: homeTableView.rx.items(dataSource: dataSource()))
             .disposed(by: disposeBag)
@@ -72,6 +77,9 @@ extension HomeViewController {
 }
 
 extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
