@@ -18,7 +18,7 @@ extension HomeScreenAPIs {
         case .getBrands:
             return Constants.Paths.Brands.brandsList
         case .getProductsForBrand:
-            return Constants.Paths.Products.productsListForBrand
+            return Constants.Paths.Products.productList
         }
     }
 }

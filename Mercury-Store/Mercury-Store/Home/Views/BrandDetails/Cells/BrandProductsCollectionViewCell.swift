@@ -38,6 +38,7 @@ class BrandProductsCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
+        
     }
 
 }

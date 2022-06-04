@@ -20,8 +20,10 @@ class HomeCoordinator : Coordinator {
     }
     
     func start() {
+        let brandProvider: BrandsProvider = HomeScreenAPI()
+        let brandViewModel = BrandsViewModel(brandsProvider: brandProvider, homeFlowNavigation: self)
         let viewModel = HomeViewModel(homeFlow: self)
-        let homeVC = HomeViewController(with: viewModel)
+        let homeVC = HomeViewController(with: viewModel, and: brandViewModel)
         navigationController.pushViewController(homeVC, animated: true)
     }
 }
@@ -32,7 +34,8 @@ extension HomeCoordinator: HomeFlowNavigation {
     }
     
     func goToBrandDetails(with brandItem: SmartCollectionElement) {
-        let viewModel = BrandDetailsViewModel(with: brandItem)
+        let productsForBrandProvider =  HomeScreenAPI()
+        let viewModel = BrandDetailsViewModel(with: brandItem, productsForBrandProvider: productsForBrandProvider)
         let brandDetailsVC = BrandDetailViewController(with: viewModel)
         navigationController.pushViewController(brandDetailsVC, animated: true)
     }

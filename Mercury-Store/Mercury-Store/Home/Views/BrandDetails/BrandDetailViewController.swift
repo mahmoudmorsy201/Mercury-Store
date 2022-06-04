@@ -14,7 +14,6 @@ class BrandDetailViewController: UIViewController {
     @IBOutlet weak private var brandImageView: UIImageView!
     @IBOutlet weak private var brandTitleLabel: UILabel!
     @IBOutlet weak private var brandBodyHtmlLabel: UILabel!
-    @IBOutlet weak private var brandProductsLabel: UILabel!
     @IBOutlet weak private var productsForBrandCollectionView: UICollectionView! {
         didSet {
             productsForBrandCollectionView.register(UINib(nibName: BrandProductsCollectionViewCell.reuseIdentifier(), bundle: nil), forCellWithReuseIdentifier: BrandProductsCollectionViewCell.reuseIdentifier())
@@ -60,6 +59,7 @@ extension BrandDetailViewController {
         viewModel.productsForBrand.drive(productsForBrandCollectionView.rx.items(cellIdentifier: BrandProductsCollectionViewCell.reuseIdentifier(), cellType: BrandProductsCollectionViewCell.self)) { index, item , cell in
             cell.item = item
         }.disposed(by: disposeBag)
+        viewModel.fetchData()
     }
     
     private func setupView() {
@@ -71,6 +71,5 @@ extension BrandDetailViewController {
         ImageDownloaderHelper.imageDownloadHelper(brandImageView, item.image.src)
         brandTitleLabel.text = item.title
         brandBodyHtmlLabel.text = item.bodyHTML
-        brandProductsLabel.text = "\(item.title) products:"
     }
 }

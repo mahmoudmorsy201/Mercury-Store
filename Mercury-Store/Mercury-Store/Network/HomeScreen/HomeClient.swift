@@ -12,7 +12,7 @@ protocol BrandsProvider: AnyObject {
 }
 
 protocol ProductsForBrandProvider: AnyObject {
-    func getProductsForBrand(with id: Int) -> Observable<[Product]>
+    func getProductsForBrand(with id: Int) -> Observable<ProductsCategory>
 }
 
 class HomeScreenAPI: BrandsProvider {
@@ -22,7 +22,7 @@ class HomeScreenAPI: BrandsProvider {
 }
 
 extension HomeScreenAPI: ProductsForBrandProvider {
-    func getProductsForBrand(with id: Int) -> Observable<[Product]> {
+    func getProductsForBrand(with id: Int) -> Observable<ProductsCategory> {
         NetworkService().execute(HomeScreenAPIs.getProductsForBrand(id))
     }
 }
