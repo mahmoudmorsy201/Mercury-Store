@@ -20,7 +20,10 @@ class BrandsCollectionViewCell: UICollectionViewCell {
             guard let brandItem = brandItem else {
                 return
             }
-            ImageDownloaderHelper.imageDownloadHelper(brandImageView, brandItem.image.src)
+            guard let url = URL(string: brandItem.image.src) else {
+                return
+            }
+            brandImageView.downloadImage(url: url , placeholder: UIImage(named: "placeholder"), imageIndicator: .gray, completion: nil)
             brandNameLabel.text = brandItem.title
         }
     }

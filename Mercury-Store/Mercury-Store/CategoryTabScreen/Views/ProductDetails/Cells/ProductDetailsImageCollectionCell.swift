@@ -19,7 +19,10 @@ class ProductDetailsImageCollectionCell: UICollectionViewCell {
             guard let item = item else {
                 return
             }
-            ImageDownloaderHelper.imageDownloadHelper(productImageDetails, item.src)
+            guard let url = URL(string: item.src) else {
+                return
+            }
+            productImageDetails.downloadImage(url: url , placeholder: UIImage(named: "placeholder"), imageIndicator: .gray, completion: nil)
         }
     }
     override func awakeFromNib() {

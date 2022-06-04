@@ -28,7 +28,10 @@ class BrandProductsCollectionViewCell: UICollectionViewCell {
             guard let item = item else {
                 return
             }
-            ImageDownloaderHelper.imageDownloadHelper(productForBrandImage, item.image.src)
+            guard let url = URL(string: item.image.src) else {
+                return
+            }
+            productForBrandImage.downloadImage(url: url , placeholder: UIImage(named: "placeholder"), imageIndicator: .gray, completion: nil)
             productForBrandName.text = item.title
             productForBrandPrice.text = item.variants[0].price
             

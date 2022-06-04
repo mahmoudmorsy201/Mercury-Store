@@ -68,7 +68,10 @@ extension BrandDetailViewController {
     
     private func showContent() {
         let item = viewModel.item
-        ImageDownloaderHelper.imageDownloadHelper(brandImageView, item.image.src)
+        guard let url = URL(string: item.image.src) else {
+            return
+        }
+        brandImageView.downloadImage(url: url , placeholder: UIImage(named: "placeholder"), imageIndicator: .gray, completion: nil)
         brandTitleLabel.text = item.title
         brandBodyHtmlLabel.text = item.bodyHTML
     }
