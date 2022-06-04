@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import ProgressHUD
 
 class CategoryViewController: UIViewController {
     
@@ -41,12 +42,13 @@ class CategoryViewController: UIViewController {
         super.viewDidLoad()
         setupCollection()
         initTableView()
+        bindActivity()
     }
     
 }
 
 extension CategoryViewController :UITableViewDelegate{
-    func initTableView(){
+    private func initTableView(){
         mainCategoryItems.delegate = nil
         mainCategoryItems.dataSource = nil
         mainCategoryItems.rx.setDelegate(self).disposed(by: disposeBag)
@@ -56,7 +58,7 @@ extension CategoryViewController :UITableViewDelegate{
         mainCategoryItems.register(nib, forCellReuseIdentifier: MainCategoryCellTableViewCell.identifier)
         setupReactiveMainCategoryTableData()
     }
-    func deselectAllRows(selectedIndex:Int ,animated: Bool) {
+    private func deselectAllRows(selectedIndex:Int ,animated: Bool) {
         for index in 0 ... mainCategoryItems.numberOfRows(inSection: 0)-1{
             let indexPath = IndexPath(row: index, section: 0)
             if(index != selectedIndex){
@@ -72,13 +74,18 @@ extension CategoryViewController :UITableViewDelegate{
         cell.isSelected = true
         viewModel.categoryDetails.categoryID = cell.item?.id ?? 0
     }
-    func setupReactiveMainCategoryTableData(){
+    private func setupReactiveMainCategoryTableData(){
         viewModel.categories.drive(mainCategoryItems.rx.items(cellIdentifier: MainCategoryCellTableViewCell.identifier, cellType: MainCategoryCellTableViewCell.self)){ index , element , cell in
             if(index == 0){
                 cell.cellContainerView.backgroundColor = .blue
             }
             cell.config(item: element)
         }.disposed(by: disposeBag)
+    }
+    
+    private func bindActivity() {
+        viewModel.isLoading.drive(ProgressHUD.rx.isAnimating)
+        .disposed(by: disposeBag)
     }
 }
 extension CategoryViewController : UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{

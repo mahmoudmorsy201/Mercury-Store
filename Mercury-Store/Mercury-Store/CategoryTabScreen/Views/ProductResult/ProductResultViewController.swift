@@ -7,6 +7,8 @@
 
 import UIKit
 import RxSwift
+import ProgressHUD
+
 class ProductResultViewController: UIViewController {
 
     @IBOutlet weak var productCollectionView: UICollectionView!
@@ -27,10 +29,11 @@ class ProductResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
+        bindActivity()
         
     }
     
-    func setupCollectionView(){
+    private func setupCollectionView(){
         let nib = UINib(nibName: "ProductCell", bundle: nil)
         productCollectionView.register(nib, forCellWithReuseIdentifier: ProductCell.identifier)
         
@@ -42,6 +45,11 @@ class ProductResultViewController: UIViewController {
             cell.configure(item: element)
         }.disposed(by: disposeBag)
         productCollectionView.delegate = self
+    }
+    
+    private func bindActivity() {
+        viewModel?.isLoading.drive(ProgressHUD.rx.isAnimating)
+        .disposed(by: disposeBag)
     }
 
     @IBAction func filterAction(_ sender: Any) {
