@@ -17,9 +17,9 @@ extension CategoryScreenAPIs {
     var path: String {
         switch self {
         case .getCategories:
-            return Constants.Pathes.Categories.mainCategoryList
+            return Constants.Paths.Categories.mainCategoryList
         case .getProducts , .getFilteredProduct:
-            return Constants.Pathes.Products.productList
+            return Constants.Paths.Products.productList
         }
     }
 }

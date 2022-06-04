@@ -26,10 +26,12 @@ class HomeViewController: UIViewController {
     //MARK: Properties
     private let disposeBag = DisposeBag()
     private var viewModel: HomeViewModel!
+    private var brandViewModel: BrandsViewModel!
     
-    init(with viewModel: HomeViewModel) {
+    init(with viewModel: HomeViewModel, and brandViewModel: BrandsViewModel) {
         super.init(nibName: String(describing: HomeViewController.self), bundle: nil)
         self.viewModel = viewModel
+        self.brandViewModel = brandViewModel
     }
     
     required init?(coder: NSCoder) {
@@ -62,7 +64,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     private func bindTableView() {
         viewModel.items
-            .bind(to: homeTableView.rx.items(dataSource: viewModel.dataSource))
+            .bind(to: homeTableView.rx.items(dataSource: dataSource()))
             .disposed(by: disposeBag)
     }
 }
@@ -81,5 +83,46 @@ extension HomeViewController: UITableViewDelegate {
         default:
             return 150
         }
+    }
+}
+
+extension HomeViewController {
+    typealias DataSource = RxTableViewSectionedReloadDataSource
+    private func dataSource() -> DataSource<HomeTableViewSection> {
+        return  .init(configureCell: {[weak self] dataSource, tableView, indexPath, item -> UITableViewCell in
+            switch dataSource[indexPath] {
+            case .LogoTableViewItem:
+                
+                guard let logoCell = tableView.dequeueReusableCell(withIdentifier: LogoTableViewCell.reuseIdentifier(), for: indexPath) as? LogoTableViewCell else {
+                    fatalError("Couldn't dequeue logo cell")
+                }
+                
+                return logoCell
+            case .CategoriesCell:
+                guard let categoriesCell = tableView.dequeueReusableCell(withIdentifier: CategoriesTableViewCell.reuseIdentifier(), for: indexPath) as? CategoriesTableViewCell else {
+                    fatalError("Couldn't dequeue categories cell")
+                }
+                
+                categoriesCell.viewModel = CategoriesViewModel()
+                
+                return categoriesCell
+            case .BannerTableViewItem:
+                guard let bannerCell = tableView.dequeueReusableCell(withIdentifier: BannerTableViewCell.reuseIdentifier(), for: indexPath) as? BannerTableViewCell else {
+                    fatalError("Couldn't dequeue banner cell")
+                }
+                
+                bannerCell.viewModel = BannerViewModel()
+                return bannerCell
+            case .BrandsCell:
+                guard let brandsCell = tableView.dequeueReusableCell(withIdentifier: BrandsTableViewCell.reuseIdentifier(), for: indexPath) as? BrandsTableViewCell else {
+                    fatalError("Couldn't dequeue brands cell")
+                }
+                brandsCell.viewModel = self?.brandViewModel
+                return brandsCell
+        
+            }
+        },  titleForHeaderInSection: { dataSource, index in
+            return dataSource.sectionModels[index].header
+        })
     }
 }

@@ -15,14 +15,14 @@ protocol CategoriesProvider: AnyObject {
 class CategoriesScreenAPI: CategoriesProvider {
     
     func getCategoryProductsCollection(collectionID:Int) -> Observable<ProductsCategory> {
-        NetworkService.execute(CategoryScreenAPIs.getProducts(collectionID))
+        NetworkService().execute(CategoryScreenAPIs.getProducts(collectionID))
     }
     
     func getCategoriesCollection() -> Observable<MainCstegories> {
-        NetworkService.execute(CategoryScreenAPIs.getCategories)
+        NetworkService().execute(CategoryScreenAPIs.getCategories)
     }
     
     func getFiltredCollectionProductsByType(collectionID:Int ,productType:String) -> Observable<ProductsCategory>{
-        NetworkService.execute(CategoryScreenAPIs.getFilteredProduct(collectionID, productType))
+        NetworkService().execute(CategoryScreenAPIs.getFilteredProduct(collectionID, productType))
     }
 }

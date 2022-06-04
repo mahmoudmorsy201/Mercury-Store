@@ -41,8 +41,7 @@ class BrandsTableViewCell: UITableViewCell {
         didSet {
             self.configure()
         }
-    }
-    
+    }    
 }
 
 extension BrandsTableViewCell {
@@ -55,10 +54,19 @@ extension BrandsTableViewCell {
             
         }.disposed(by: disposeBag)
     }
+    
+    private func bindSelectedItem() {
+        brandsCollectionView.rx.modelSelected(SmartCollectionElement.self).subscribe(onNext:{[weak self] item in
+            guard let `self` = self else {fatalError()}
+            self.viewModel.goToBrandDetails(with: item)
+            
+        }).disposed(by: disposeBag)
+    }
 }
 
 extension BrandsTableViewCell {
     private func configure() {
         self.bindCollectionView()
+        self.bindSelectedItem()
     }
 }

@@ -16,7 +16,7 @@ protocol BrandsViewModelType {
 }
 
 final class BrandsViewModel: BrandsViewModelType {
-    
+    private weak var homeFlowNavigation: (HomeFlowNavigation)?
     private let brandsProvider: BrandsProvider
     private let disposeBag = DisposeBag()
     
@@ -30,13 +30,13 @@ final class BrandsViewModel: BrandsViewModelType {
     
     var error: Driver<String?>
     
-    init(brandsProvider: BrandsProvider) {
+    init(brandsProvider: BrandsProvider,homeFlowNavigation: HomeFlowNavigation) {
         brands = brandsSubject.asDriver(onErrorJustReturn: [])
         isLoading = isLoadingSubject.asDriver(onErrorJustReturn: false)
-        error = errorSubject.asDriver(onErrorJustReturn: "Somthing went wrong")
+        error = errorSubject.asDriver(onErrorJustReturn: "Something went wrong")
         self.brandsProvider = brandsProvider
+        self.homeFlowNavigation = homeFlowNavigation
         self.fetchData()
-        
     }
     
     private func fetchData() {
@@ -54,6 +54,10 @@ final class BrandsViewModel: BrandsViewModelType {
             }.disposed(by: disposeBag)
 
     }
-    
-    
+}
+
+extension BrandsViewModel {
+    func goToBrandDetails(with brandItem: SmartCollectionElement) {
+        homeFlowNavigation?.goToBrandDetails(with: brandItem)
+    }
 }

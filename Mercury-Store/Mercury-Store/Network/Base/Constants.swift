@@ -8,7 +8,7 @@
 import Foundation
 
 struct Constants {
-    struct Pathes {
+    struct Paths {
         struct Products {
             public static let productList = "/products.json"
         }

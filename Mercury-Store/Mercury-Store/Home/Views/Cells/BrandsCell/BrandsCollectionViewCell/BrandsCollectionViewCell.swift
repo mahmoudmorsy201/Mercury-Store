@@ -24,7 +24,7 @@ class BrandsCollectionViewCell: UICollectionViewCell {
             brandNameLabel.text = brandItem.title
         }
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCell()
