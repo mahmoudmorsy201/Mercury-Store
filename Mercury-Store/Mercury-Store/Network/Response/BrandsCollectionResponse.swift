@@ -5,19 +5,6 @@
 //  Created by mac hub on 23/05/2022.
 //
 
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let smartCollection = try? newJSONDecoder().decode(SmartCollection.self, from: jsonData)
-
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseSmartCollection { response in
-//     if let smartCollection = response.result.value {
-//       ...
-//     }
-//   }
 
 import Foundation
 
@@ -30,14 +17,6 @@ struct SmartCollection: Codable {
     }
 }
 
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseSmartCollectionElement { response in
-//     if let smartCollectionElement = response.result.value {
-//       ...
-//     }
-//   }
 
 // MARK: - SmartCollectionElement
 struct SmartCollectionElement: Codable {
@@ -47,7 +26,7 @@ struct SmartCollectionElement: Codable {
     let bodyHTML: String
     let publishedAt: Date
     let sortOrder: SortOrder
-    let templateSuffix: JSONNull?
+    let templateSuffix: String?
     let disjunctive: Bool
     let rules: [Rule]
     let publishedScope: PublishedScope
@@ -68,19 +47,10 @@ struct SmartCollectionElement: Codable {
     }
 }
 
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseImage { response in
-//     if let image = response.result.value {
-//       ...
-//     }
-//   }
-
 // MARK: - Image
 struct Image: Codable {
     let createdAt: Date
-    let alt: JSONNull?
+    let alt: String?
     let width, height: Int
     let src: String
 
@@ -93,15 +63,6 @@ struct Image: Codable {
 enum PublishedScope: String, Codable {
     case web = "web"
 }
-
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseRule { response in
-//     if let rule = response.result.value {
-//       ...
-//     }
-//   }
 
 // MARK: - Rule
 struct Rule: Codable {
@@ -121,34 +82,3 @@ enum Relation: String, Codable {
 enum SortOrder: String, Codable {
     case bestSelling = "best-selling"
 }
-
-// MARK: - Encode/decode helpers
-
-class JSONNull: Codable, Hashable {
-
-    public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
-        return true
-    }
-
-    public var hashValue: Int {
-        return 0
-    }
-
-    public init() {}
-
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if !container.decodeNil() {
-            throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        try container.encodeNil()
-    }
-}
-
-
-
-
