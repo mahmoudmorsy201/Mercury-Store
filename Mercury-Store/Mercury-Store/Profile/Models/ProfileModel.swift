@@ -6,13 +6,22 @@
 //
 
 import Foundation
+extension Encodable {
+  func asDictionary() throws -> [String: Any] {
+    let data = try JSONEncoder().encode(self)
+    guard let dictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] else {
+      throw NSError()
+    }
+    return dictionary
+  }
+}
 
-struct Customers {
+struct Customers :Codable{
     let customers: [Customer]
 }
 
 // MARK: - Customer
-struct Customer  {
+struct Customer :Codable {
     let id: Int?
     let email: String?
     let createdAt, updatedAt: Date?
@@ -27,7 +36,7 @@ struct Customer  {
     let defaultAddress: Address?
 }
 
-struct Address  {
+struct Address :Codable {
     let id, customerID: Int?
     let firstName, lastName: String?
     let address1: String?
