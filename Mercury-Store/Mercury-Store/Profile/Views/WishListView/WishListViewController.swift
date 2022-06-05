@@ -6,27 +6,31 @@
 //
 
 import UIKit
+import RxSwift
 
 class WishListViewController: UIViewController {
     
-    
+    let viewModel:WishListViewModelType = WishListViewModel()
+    let disposeBag = DisposeBag()
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
-        tableView.register(UINib(nibName: "WishListCell", bundle: nil), forCellReuseIdentifier: "wishListCell")
+        tableView.register(UINib(nibName: "WishListCell", bundle: nil), forCellReuseIdentifier: WishListCell.identifier)
+        tableDataSource()
     }
+   
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+}
+extension WishListViewController : UITableViewDelegate{
+    
+    func tableDataSource(){
+        viewModel.getFavouriteItems()
+        viewModel.products.drive(tableView.rx.items(cellIdentifier: WishListCell.identifier , cellType: WishListCell.self)){ index , element , cell in
+                cell.config(item: element)
+            }.disposed(by: disposeBag)
+        }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 165
     }
-    */
-
 }

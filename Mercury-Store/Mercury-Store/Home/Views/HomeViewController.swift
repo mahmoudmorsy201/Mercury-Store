@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxDataSources
+import ProgressHUD
 
 class HomeViewController: UIViewController {
     
@@ -24,6 +25,7 @@ class HomeViewController: UIViewController {
     }
     
     //MARK: - Properties
+    //
     private let disposeBag = DisposeBag()
     private var viewModel: HomeViewModel!
     private var brandViewModel: BrandsViewModel!
@@ -42,14 +44,12 @@ class HomeViewController: UIViewController {
     }
     
     //MARK: - Life Cycle
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
         createSearchBarButton()
         bindTableView()
-    }
-    
-    private func bindActivity() {
-        
+        bindActivity()
     }
     
     private func createSearchBarButton() {
@@ -58,7 +58,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func searchBtnTapped() {
-        
+        viewModel.goToSearchViewController()
     }
     
 
@@ -73,6 +73,10 @@ extension HomeViewController {
         viewModel.items
             .bind(to: homeTableView.rx.items(dataSource: dataSource()))
             .disposed(by: disposeBag)
+    }
+    private func bindActivity() {
+        brandViewModel.isLoading.drive(ProgressHUD.rx.isAnimating)
+        .disposed(by: disposeBag)
     }
 }
 

@@ -22,7 +22,7 @@ class HomeCoordinator : Coordinator {
     func start() {
         let brandProvider: BrandsProvider = HomeScreenAPI()
         let brandViewModel = BrandsViewModel(brandsProvider: brandProvider, homeFlowNavigation: self)
-        let viewModel = HomeViewModel()
+        let viewModel = HomeViewModel(with: self)
         let categoryViewModel = CategoriesViewModel(with: self)
         let homeVC = HomeViewController(with: viewModel, and: brandViewModel, categoryViewModel: categoryViewModel)
         navigationController.pushViewController(homeVC, animated: true)
@@ -41,6 +41,12 @@ extension HomeCoordinator: HomeFlowNavigation {
         let viewModel = BrandDetailsViewModel(with: brandItem, productsForBrandProvider: productsForBrandProvider, brandDetailsNavigationFlow: self)
         let brandDetailsVC = BrandDetailViewController(with: viewModel)
         navigationController.pushViewController(brandDetailsVC, animated: true)
+    }
+    
+    func goToSearchViewController() {
+        let searchViewModel = ProductSearchViewModel()
+        let searchVC = SearchViewController(with: searchViewModel)
+        navigationController.pushViewController(searchVC, animated: true)
     }
 }
 extension HomeCoordinator: FilteredProductsNavigationFlow {

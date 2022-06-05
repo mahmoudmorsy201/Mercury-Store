@@ -88,6 +88,6 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
-
+Pods/Pods.xcodeproj/project.pbxproj
 Pods/
 *.DS_Store

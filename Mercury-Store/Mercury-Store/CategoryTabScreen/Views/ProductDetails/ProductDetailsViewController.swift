@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+
 class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
     
     @IBOutlet weak var productDescription: UITextView!
@@ -15,7 +16,6 @@ class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet weak var productPriceLabel: UILabel!
     @IBOutlet weak var imageControl: UIPageControl!
     @IBOutlet weak var addToCart: UIButton!
-    
     @IBOutlet weak var productImagesCollectionView: UICollectionView! {
         didSet {
             productImagesCollectionView.register(UINib(nibName: ProductDetailsImageCollectionCell.reuseIdentifier(), bundle: nil), forCellWithReuseIdentifier: ProductDetailsImageCollectionCell.reuseIdentifier())
@@ -28,8 +28,6 @@ class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
     private let disposeBag = DisposeBag()
     
     private let collectionViewFrame = ReplaySubject<CGRect>.create(bufferSize: 1)
-    
-
     
     init(with viewModel: ProductsDetailViewModelType) {
         super.init(nibName: nil, bundle: nil)
@@ -95,9 +93,25 @@ extension ProductDetailsViewController  {
         self.bindCollectionView()
         self.bindPageController()
         self.bindCollectionViewToPageControll()
+        self.addToFavourite()
+        self.addToCartTapBinding()
     }
 }
-
+extension ProductDetailsViewController{
+    func addToFavourite(){
+        favoriteBtn.rx.tap.subscribe(onNext: { [weak self] in
+            self?.viewModel?.saveToFavourite()
+        }).disposed(by: disposeBag)
+    }
+}
+extension ProductDetailsViewController{
+    private func addToCartTapBinding(){
+        addToCart.rx.tap.subscribe(onNext: { [weak self] in
+            self?.viewModel?.saveToCart()
+            
+        }).disposed(by: disposeBag)
+    }
+}
 extension ProductDetailsViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0

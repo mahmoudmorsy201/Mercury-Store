@@ -9,7 +9,6 @@ import Foundation
 
 struct Constants {
     
-    public static let productCell = "BrandsCollectionViewCell"
     struct Paths {
         struct Products {
             public static let productList = "/products.json"
