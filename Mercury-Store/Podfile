@@ -18,8 +18,7 @@ target 'Mercury-Store' do
   #Image download
   pod 'SDWebImage', '5.12.5'
 
-  #pods for dropdown
-   pod 'DropDown'
+
  #pods for textfield effects
  pod 'TextFieldEffects'
 
