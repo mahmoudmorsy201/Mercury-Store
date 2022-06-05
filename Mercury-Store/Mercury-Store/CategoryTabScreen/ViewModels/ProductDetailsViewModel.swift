@@ -13,6 +13,7 @@ protocol ProductsDetailViewModelType: AnyObject{
     var product : Product{get}
     var bannerObservable: Driver<[ProductImage]> {get}
     func sendImagesToCollection()
+    func saveToFavourite()
 }
 
 final class ProductsDetailViewModel: ProductsDetailViewModelType {
@@ -29,6 +30,9 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
     }
     func sendImagesToCollection() {
         productImagesSubject.onNext(product.images)
+    }
+    func saveToFavourite(){
+        let data = CoreDataModel.coreDataInstatnce.insert(item: SavedProductItem(productID: Decimal(product.id), productTitle: product.title, productImage: product.image.src , productPrice: Double(product.variants[0].price) ?? 0 , productQTY: 0 , producrState: productStates.favourite.rawValue))
     }
 }
 
