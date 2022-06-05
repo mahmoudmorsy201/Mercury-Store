@@ -44,7 +44,7 @@ extension HomeCoordinator: HomeFlowNavigation {
     }
     
     func goToSearchViewController() {
-        let searchViewModel = ProductSearchViewModel()
+        let searchViewModel = ProductSearchViewModel(searchFlowNavigation: self)
         let searchVC = SearchViewController(with: searchViewModel)
         navigationController.pushViewController(searchVC, animated: true)
     }
@@ -72,4 +72,11 @@ extension HomeCoordinator: BrandDetailsNavigationFlow {
     }
     
     
+}
+extension HomeCoordinator: SearchFlowNavigation{
+    func  goToProductDetailFromSearch(with item:Product){
+        let viewModel = ProductsDetailViewModel(with: self,product: item)
+        let productDetailsVC = ProductDetailsViewController(with: viewModel)
+        navigationController.pushViewController(productDetailsVC, animated: true)
+    }
 }
