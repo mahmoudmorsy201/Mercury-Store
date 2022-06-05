@@ -47,6 +47,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         bindViews()
         bindCollectionView()
+        bindSelectedItem()
     }
     
     private func bindViews() {
@@ -63,6 +64,15 @@ class SearchViewController: UIViewController {
             cell.item = item
             
         }.disposed(by: disposeBag)
+    }
+    
+    private func bindSelectedItem() {
+        productListCollectionView.rx.modelSelected(Product.self).subscribe{ [weak self] item in
+            
+            self?.viewModel.goToProductDetailFromSearch(with: item)
+        }.disposed(by: disposeBag)
+
+        
     }
 }
 

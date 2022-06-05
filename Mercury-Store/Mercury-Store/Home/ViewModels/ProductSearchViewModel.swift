@@ -15,8 +15,12 @@ class ProductSearchViewModel: SearchViewModel<Product> {
     private let productListSubject = PublishSubject<[Product]>()
     private let disposeBag = DisposeBag()
     private var items: [Product] = []
-    init(provider: SearchProvider = SearchClient()) {
+    private weak var searchFlowNavigation : SearchFlowNavigation?
+    
+    init(provider: SearchProvider = SearchClient(),searchFlowNavigation : SearchFlowNavigation) {
         self.provider = provider
+        self.searchFlowNavigation = searchFlowNavigation
+        
     }
     
     func fetchData() {
@@ -46,6 +50,12 @@ class ProductSearchViewModel: SearchViewModel<Product> {
             
             return Disposables.create()
         })
+    }
+    
+    func goToProductDetailFromSearch(with item:Product) {
+        
+        searchFlowNavigation?.goToProductDetailFromSearch(with: item)
+        
     }
 }
 
