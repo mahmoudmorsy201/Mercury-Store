@@ -100,9 +100,21 @@ extension CoreDataModel: StorageInputs {
           }
         return (updateitem , true)
     }
-    
+    func delete(updateitem:SavedProductItem) -> Bool{
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: self.entity)
+        fetchRequest.predicate = NSPredicate(format: "(\(productCoredataAttr.id.rawValue) = %@)", updateitem.productID as CVarArg )
+        do {
+            let fetchedItems = try self.managedObjectContext.fetch(fetchRequest)
+            for object in fetchedItems {
+                self.managedObjectContext.delete(object as! NSManagedObject)
+                }
+            try self.managedObjectContext.save()
+            return true
+        } catch _ as NSError {
+              return false
+          }
+    }
 }
-
 extension CoreDataModel: StorageOutputs {
     var items: Observable<SavedProductItem?> {
         return itemsPrivate.subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))

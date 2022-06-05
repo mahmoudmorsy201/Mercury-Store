@@ -53,7 +53,14 @@ class WishListViewModel:WishListViewModelType{
     }
     
     func deleteItem(item: SavedProductItem) {
-        
+        let state = self.coreDataModel.delete(updateitem: item)
+        if (state) {
+            self.errorSubject.accept(nil)
+            getFavouriteItems()
+        }
+        else {
+            self.errorSubject.accept("Somthing went wrong")
+        }
     }
     
     

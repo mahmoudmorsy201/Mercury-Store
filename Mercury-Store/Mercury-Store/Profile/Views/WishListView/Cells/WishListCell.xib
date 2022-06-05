@@ -60,6 +60,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="deleteItem" destination="tpc-Zu-gzv" id="bdG-nN-8Hx"/>
                 <outlet property="imgView" destination="0cD-H7-Aqa" id="wIp-gJ-l09"/>
                 <outlet property="priceLable" destination="Blb-3J-qdg" id="7ZA-I2-9dE"/>
                 <outlet property="titleLable" destination="EUA-o5-3vd" id="pxJ-m3-D5z"/>

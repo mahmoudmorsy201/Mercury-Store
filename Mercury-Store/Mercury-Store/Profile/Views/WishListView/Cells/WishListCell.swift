@@ -12,7 +12,10 @@ class WishListCell: UITableViewCell {
     
     @IBOutlet weak var titleLable: UILabel!
     
+    @IBOutlet weak var deleteItem: UIButton!
     @IBOutlet weak var priceLable: UILabel!
+    public var deleteCallback:( (_ item:SavedProductItem)->Void)?
+    private var savedItem:SavedProductItem?
     public static let identifier = "WishListCell"
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,13 +23,20 @@ class WishListCell: UITableViewCell {
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     func config(item:SavedProductItem){
         titleLable.text = item.productTitle
         priceLable.text = "\(item.productPrice)EGP"
         imgView.downloadImage(url: URL(string: item.productImage)! , placeholder: UIImage(named: "placeholder"), imageIndicator: .gray , completion: nil)
+        savedItem = item
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        deleteItem.addGestureRecognizer(tap)
+    }
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        guard let deleteCallback = deleteCallback else {
+            return
+        }
+        deleteCallback(savedItem!)
     }
     
 }
