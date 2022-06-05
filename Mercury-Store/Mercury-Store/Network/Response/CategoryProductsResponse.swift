@@ -13,7 +13,9 @@ import Foundation
 struct ProductsCategory: Codable {
     let products: [Product]
 }
-
+struct productElement:Codable{
+    let productElement:Product
+}
 // MARK: - Product
 struct Product: Codable {
     let id: Int

@@ -10,31 +10,96 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="Mercury_Store" customModuleProvider="target">
             <connections>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="filterBtn" destination="g5p-gk-Von" id="Dqd-Ak-Gl7"/>
+                <outlet property="maximumPrice" destination="ltL-bG-RZs" id="mgs-SR-LzF"/>
+                <outlet property="minimumPrice" destination="aHd-0c-wBo" id="Ir6-xS-0vB"/>
+                <outlet property="priceSlider" destination="HG9-7J-hLj" id="O0f-hu-YUU"/>
+                <outlet property="productListCollectionView" destination="IWv-89-XGT" id="4cZ-D7-Wy0"/>
+                <outlet property="productSearchbar" destination="Wtg-W6-n9n" id="fmT-66-Unh"/>
+                <outlet property="sliderPrice" destination="HG9-7J-hLj" id="Gvn-ik-UYz"/>
+                <outlet property="sortBtn" destination="uzy-pe-mFa" id="VWJ-cV-BNe"/>
+                <outlet property="view" destination="Jna-Qs-Pq1" id="7ee-sj-vPU"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view contentMode="scaleToFill" id="Jna-Qs-Pq1">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SearchViewController" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfO-wk-iJX">
-                    <rect key="frame" x="77" y="431.5" width="260" height="33.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Wtg-W6-n9n">
+                    <rect key="frame" x="60" y="56" width="294" height="51"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IWv-89-XGT">
+                    <rect key="frame" x="12" y="161" width="390" height="701"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="w5d-Dd-5PF">
+                        <size key="itemSize" width="180" height="300"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <cells/>
+                </collectionView>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="300" translatesAutoresizingMaskIntoConstraints="NO" id="HG9-7J-hLj">
+                    <rect key="frame" x="58" y="119" width="298" height="31"/>
+                    <color key="tintColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="thumbTintColor" systemColor="labelColor"/>
+                </slider>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHd-0c-wBo">
+                    <rect key="frame" x="19.5" y="125" width="17" height="18"/>
+                    <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5p-gk-Von">
+                    <rect key="frame" x="4" y="62.5" width="48" height="38"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="filter"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzy-pe-mFa">
+                    <rect key="frame" x="359" y="61" width="51" height="41"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="sortByPrice"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ltL-bG-RZs">
+                    <rect key="frame" x="368" y="125" width="33.5" height="18"/>
+                    <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <viewLayoutGuide key="safeArea" id="xbU-A9-aIN"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="PfO-wk-iJX" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="pzf-iz-5Mf"/>
-                <constraint firstItem="PfO-wk-iJX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rbf-sn-37D"/>
+                <constraint firstItem="aHd-0c-wBo" firstAttribute="centerX" secondItem="g5p-gk-Von" secondAttribute="centerX" id="0sg-7f-VgR"/>
+                <constraint firstItem="Wtg-W6-n9n" firstAttribute="leading" secondItem="g5p-gk-Von" secondAttribute="trailing" constant="8" id="3Hc-XR-BvI"/>
+                <constraint firstItem="aHd-0c-wBo" firstAttribute="centerY" secondItem="HG9-7J-hLj" secondAttribute="centerY" id="9AY-B9-BBr"/>
+                <constraint firstItem="g5p-gk-Von" firstAttribute="leading" secondItem="xbU-A9-aIN" secondAttribute="leading" constant="4" id="9Ia-dQ-6Af"/>
+                <constraint firstItem="HG9-7J-hLj" firstAttribute="top" secondItem="Wtg-W6-n9n" secondAttribute="bottom" constant="12" id="Axx-Zn-IU2"/>
+                <constraint firstItem="IWv-89-XGT" firstAttribute="bottom" secondItem="xbU-A9-aIN" secondAttribute="bottom" id="B8a-vP-EaU"/>
+                <constraint firstItem="IWv-89-XGT" firstAttribute="leading" secondItem="xbU-A9-aIN" secondAttribute="leading" constant="12" id="GMA-bm-rOA"/>
+                <constraint firstItem="Wtg-W6-n9n" firstAttribute="top" secondItem="xbU-A9-aIN" secondAttribute="top" constant="12" id="Ilt-on-eSQ"/>
+                <constraint firstItem="ltL-bG-RZs" firstAttribute="centerX" secondItem="uzy-pe-mFa" secondAttribute="centerX" id="NZC-l8-Fcl"/>
+                <constraint firstItem="HG9-7J-hLj" firstAttribute="leading" secondItem="Wtg-W6-n9n" secondAttribute="leading" id="OGd-Ho-Bmx"/>
+                <constraint firstItem="uzy-pe-mFa" firstAttribute="centerY" secondItem="Wtg-W6-n9n" secondAttribute="centerY" id="S2g-vh-pZE"/>
+                <constraint firstItem="HG9-7J-hLj" firstAttribute="trailing" secondItem="Wtg-W6-n9n" secondAttribute="trailing" id="k0r-ov-hlu"/>
+                <constraint firstItem="IWv-89-XGT" firstAttribute="top" secondItem="HG9-7J-hLj" secondAttribute="bottom" constant="12" id="l67-fX-m70"/>
+                <constraint firstItem="g5p-gk-Von" firstAttribute="centerY" secondItem="Wtg-W6-n9n" secondAttribute="centerY" id="mGd-53-jFe"/>
+                <constraint firstItem="ltL-bG-RZs" firstAttribute="centerY" secondItem="HG9-7J-hLj" secondAttribute="centerY" id="nZW-AY-wYL"/>
+                <constraint firstItem="Wtg-W6-n9n" firstAttribute="centerX" secondItem="Jna-Qs-Pq1" secondAttribute="centerX" id="noa-AU-fwc"/>
+                <constraint firstItem="xbU-A9-aIN" firstAttribute="trailing" secondItem="IWv-89-XGT" secondAttribute="trailing" constant="12" id="qkT-0B-REU"/>
+                <constraint firstItem="xbU-A9-aIN" firstAttribute="trailing" secondItem="uzy-pe-mFa" secondAttribute="trailing" constant="4" id="ueN-Cf-QVZ"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="99"/>
+            <point key="canvasLocation" x="-117.39130434782609" y="-1191.2946428571429"/>
         </view>
     </objects>
     <resources>
+        <image name="filter" width="24" height="24"/>
+        <image name="sortByPrice" width="27" height="27"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

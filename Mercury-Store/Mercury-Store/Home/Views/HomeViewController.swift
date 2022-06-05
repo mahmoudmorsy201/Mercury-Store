@@ -12,7 +12,6 @@ import ProgressHUD
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet weak private var homeActivityIndicator: UIActivityIndicatorView!
     
     
     @IBOutlet weak private var homeTableView: UITableView! {
@@ -58,7 +57,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func searchBtnTapped() {
-        
+        viewModel.goToSearchViewController()
     }
     
 
