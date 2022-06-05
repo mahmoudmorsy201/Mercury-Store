@@ -94,12 +94,21 @@ extension ProductDetailsViewController  {
         self.bindPageController()
         self.bindCollectionViewToPageControll()
         self.addToFavourite()
+        self.addToCartTapBinding()
     }
 }
 extension ProductDetailsViewController{
     func addToFavourite(){
         favoriteBtn.rx.tap.subscribe(onNext: { [weak self] in
             self?.viewModel?.saveToFavourite()
+        }).disposed(by: disposeBag)
+    }
+}
+extension ProductDetailsViewController{
+    private func addToCartTapBinding(){
+        addToCart.rx.tap.subscribe(onNext: { [weak self] in
+            self?.viewModel?.saveToCart()
+            
         }).disposed(by: disposeBag)
     }
 }
