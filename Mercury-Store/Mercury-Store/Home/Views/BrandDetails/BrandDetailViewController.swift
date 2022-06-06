@@ -61,6 +61,7 @@ extension BrandDetailViewController {
         productsForBrandCollectionView.delegate = nil
         productsForBrandCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
         viewModel.productsForBrand.drive(productsForBrandCollectionView.rx.items(cellIdentifier: BrandProductsCollectionViewCell.reuseIdentifier(), cellType: BrandProductsCollectionViewCell.self)) { index, item , cell in
+            cell.isFavouriteProduct = self.viewModel.isProductFavourite(id: item.id)
             cell.item = item
         }.disposed(by: disposeBag)
         viewModel.fetchData()

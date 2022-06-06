@@ -61,6 +61,7 @@
 		4D911858284ABBCB00F07638 /* CoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D911857284ABBCB00F07638 /* CoreDataModel.swift */; };
 		4D91185A284ABDD700F07638 /* StorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D911859284ABDD700F07638 /* StorageProtocol.swift */; };
 		4D91185E284BCB4500F07638 /* WishListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D91185D284BCB4500F07638 /* WishListViewModel.swift */; };
+		4DAF2A27284D69C0001625FF /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAF2A26284D69C0001625FF /* UIButton.swift */; };
 		4DBDBC2C2840316E00714391 /* CategoryApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDBC2B2840316E00714391 /* CategoryApi.swift */; };
 		4DBDBC2E28405E4300714391 /* CategoriesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDBC2D28405E4300714391 /* CategoriesClient.swift */; };
 		70E327F9F08636314A8DD26A /* Pods_Mercury_Store.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C880061057CCC78DAAE9EE6 /* Pods_Mercury_Store.framework */; };
@@ -234,6 +235,7 @@
 		4D911857284ABBCB00F07638 /* CoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModel.swift; sourceTree = "<group>"; };
 		4D911859284ABDD700F07638 /* StorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageProtocol.swift; sourceTree = "<group>"; };
 		4D91185D284BCB4500F07638 /* WishListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListViewModel.swift; sourceTree = "<group>"; };
+		4DAF2A26284D69C0001625FF /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		4DBDBC2B2840316E00714391 /* CategoryApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryApi.swift; sourceTree = "<group>"; };
 		4DBDBC2D28405E4300714391 /* CategoriesClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesClient.swift; sourceTree = "<group>"; };
 		5B035032FD47AF57FEEEC3EA /* Pods-Mercury-StoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-StoreTests.debug.xcconfig"; path = "Target Support Files/Pods-Mercury-StoreTests/Pods-Mercury-StoreTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1084,6 +1086,7 @@
 				C4BCE552284B1CA900F83CF0 /* UIImageView+Shadow.swift */,
 				C4BCE554284B1D0400F83CF0 /* Array+Equatable.swift */,
 				C4B4270C284BB9400051DE1B /* Reactive+ProgressHud.swift */,
+				4DAF2A26284D69C0001625FF /* UIButton.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1501,6 +1504,7 @@
 				4D8E38232849566700B22D98 /* Profile.swift in Sources */,
 				C4102941284AAF29007045F8 /* BrandProductsCollectionViewCell.swift in Sources */,
 				C4CDB95A2832022E0000519A /* HomeViewController.swift in Sources */,
+				4DAF2A27284D69C0001625FF /* UIButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -31,8 +31,9 @@ extension WishListViewController : UITableViewDelegate{
             cell.deleteCallback = {[weak self] item in
                 self?.viewModel.deleteItem(item: item)
             }
-            }.disposed(by: disposeBag)
-        }
+            self.viewModel.isFavouriteItem(productID: (element.productID as NSDecimalNumber).intValue)
+        }.disposed(by: disposeBag)
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 165

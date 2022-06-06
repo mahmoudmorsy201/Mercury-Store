@@ -16,6 +16,7 @@ protocol BrandDetailsViewModelType: AnyObject {
     var error: Driver<String?> { get }
     func fetchData()
     func goToProductDetails(with product: Product)
+    func isProductFavourite(id:Int) -> Bool
 }
 
 protocol BrandDetailsNavigationFlow: AnyObject {
@@ -64,6 +65,9 @@ final class BrandDetailsViewModel: BrandDetailsViewModelType {
                 self?.isLoadingSubject.accept(false)
                 self?.errorSubject.accept(error.localizedDescription)
             }.disposed(by: disposeBag)
+    }
+    func isProductFavourite(id:Int) -> Bool{
+        return CoreDataModel.coreDataInstatnce.isProductFavourite(id: id)
     }
 }
 

@@ -14,6 +14,7 @@ protocol WishListViewModelType {
     func getFavouriteItems()
     func updateItem(item:SavedProductItem)
     func deleteItem(item:SavedProductItem)
+    func isFavouriteItem(productID:Int)->Bool
 }
 class WishListViewModel:WishListViewModelType{
     var products: Driver<[SavedProductItem]>
@@ -62,7 +63,9 @@ class WishListViewModel:WishListViewModelType{
             self.errorSubject.accept("Somthing went wrong")
         }
     }
-    
+    func isFavouriteItem(productID:Int)->Bool{
+        return self.coreDataModel.isProductFavourite(id: productID)
+    }
     
     
 }
