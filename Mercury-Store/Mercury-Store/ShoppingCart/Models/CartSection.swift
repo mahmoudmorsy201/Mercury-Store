@@ -19,7 +19,7 @@ extension CartSection {
         self.rows = rows
     }
     
-    var sectionTotal: Int {
+    var sectionTotal: Double {
         rows.reduce(0) { result, row in
             result + row.rowTotal
         }

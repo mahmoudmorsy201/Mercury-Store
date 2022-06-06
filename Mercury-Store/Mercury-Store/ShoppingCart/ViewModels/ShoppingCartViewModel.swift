@@ -12,9 +12,9 @@ protocol ShoppingCartNavigationFlow: AnyObject {
     
 }
 enum CartAction {
-    case increment(CartProduct)
-    case decrement(CartProduct)
-    case deleteItem(CartProduct)
+    case increment(SavedProductItem)
+    case decrement(SavedProductItem)
+    case deleteItem(SavedProductItem)
     case viewIsLoaded
     case proceedToCheckout
 }
@@ -33,12 +33,12 @@ struct CartOutput {
 
 final class CartViewModel {
     private weak var shoppingCartNavigationFlow: ShoppingCartNavigationFlow!
-    private let incrementProductSubject = PublishSubject<CartProduct>()
-    private let decrementProductSubject = PublishSubject<CartProduct>()
-    private let deleteProductSubject = PublishSubject<CartProduct>()
-    var incrementProduct: AnyObserver<CartProduct> { incrementProductSubject.asObserver() }
-    var decrementProduct: AnyObserver<CartProduct> { decrementProductSubject.asObserver() }
-    var deleteProduct: AnyObserver<CartProduct> { deleteProductSubject.asObserver() }
+    private let incrementProductSubject = PublishSubject<SavedProductItem>()
+    private let decrementProductSubject = PublishSubject<SavedProductItem>()
+    private let deleteProductSubject = PublishSubject<SavedProductItem>()
+    var incrementProduct: AnyObserver<SavedProductItem> { incrementProductSubject.asObserver() }
+    var decrementProduct: AnyObserver<SavedProductItem> { decrementProductSubject.asObserver() }
+    var deleteProduct: AnyObserver<SavedProductItem> { deleteProductSubject.asObserver() }
     
     
     init(shoppingCartNavigationFlow: ShoppingCartNavigationFlow) {

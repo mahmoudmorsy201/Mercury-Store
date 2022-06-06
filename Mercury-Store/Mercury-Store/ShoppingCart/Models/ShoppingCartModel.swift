@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct CartProduct {
-    let productImage: String
-    let productName: String
-    var productPrice: Int
-}
-
-extension CartProduct: Equatable { }
+//struct CartProduct {
+//    let productImage: String
+//    let productName: String
+//    var productPrice: Int
+//}
+//
+//extension CartProduct: Equatable { }

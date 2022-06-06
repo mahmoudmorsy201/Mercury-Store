@@ -9,9 +9,9 @@ import Foundation
 
 struct CartCellViewModel {
     let row: CartRow
-    var product: CartProduct! { row.products.first }
+    var product: SavedProductItem! { row.products.first }
     var image: String? { product?.productImage }
-    var name: String? { product?.productName }
+    var name: String? { product?.productTitle }
     var price: String? { "EGP \(row.rowTotal)" }
     var count: String { "\(row.products.count)" }
 }
