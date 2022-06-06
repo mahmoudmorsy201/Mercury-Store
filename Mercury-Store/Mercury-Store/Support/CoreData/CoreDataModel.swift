@@ -100,9 +100,42 @@ extension CoreDataModel: StorageInputs {
           }
         return (updateitem , true)
     }
+    func delete(updateitem:SavedProductItem) -> Bool{
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: self.entity)
+        fetchRequest.predicate = NSPredicate(format: "(\(productCoredataAttr.id.rawValue) = %@)", updateitem.productID as CVarArg )
+        do {
+            let fetchedItems = try self.managedObjectContext.fetch(fetchRequest)
+            for object in fetchedItems {
+                self.managedObjectContext.delete(object as! NSManagedObject)
+                }
+            try self.managedObjectContext.save()
+            return true
+        } catch _ as NSError {
+              return false
+          }
+    }
+    func isProductFavourite (id :Int) -> Bool {
+            var results: [NSManagedObject] = []
+            
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: self.entity)
+        fetchRequest.predicate =  NSPredicate(format: "\(id) = %@ AND (\(productCoredataAttr.state.rawValue)  = %@ OR \(productCoredataAttr.state.rawValue) = %@)", argumentArray: [id as CVarArg, productStates.favourite.rawValue , productStates.both.rawValue])
+        
+//            let predicate = NSPredicate(format: "(\(productCoredataAttr.id.rawValue) = %@)", id as CVarArg )
+            
+        //    fetchRequest.predicate = predicate
+            
+            do {
+                results = try managedObjectContext.fetch(fetchRequest)
+            }
+            catch {
+                print("error executing fetch request: \(error)")
+            }
+            return results.count > 0
+        }
+}
+extension CoreDataModel{
     
 }
-
 extension CoreDataModel: StorageOutputs {
     var items: Observable<SavedProductItem?> {
         return itemsPrivate.subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))

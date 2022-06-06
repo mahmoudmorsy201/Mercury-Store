@@ -22,7 +22,18 @@ class BrandProductsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak private var currencyLabel: UILabel!
     
     @IBOutlet weak private var productForBrandPrice: UILabel!
-    
+    public var isFavouriteProduct:Bool? {
+        didSet{
+            favouriteButton.favouriteState(state: oldValue ?? false)
+        }
+    }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+    }
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     var item: Product? {
         didSet {
             guard let item = item else {
@@ -34,7 +45,6 @@ class BrandProductsCollectionViewCell: UICollectionViewCell {
             productForBrandImage.downloadImage(url: url , placeholder: UIImage(named: "placeholder"), imageIndicator: .gray, completion: nil)
             productForBrandName.text = item.title
             productForBrandPrice.text = item.variants[0].price
-            
         }
     }
     
@@ -54,5 +64,6 @@ extension BrandProductsCollectionViewCell {
         containerViewForBrandProductsCell.layer.borderColor = UIColor.gray.withAlphaComponent(0.3).cgColor
         containerViewForBrandProductsCell.layer.cornerRadius = 12
         containerViewForBrandProductsCell.layer.masksToBounds = true
+        favouriteButton.favouriteState(state: isFavouriteProduct ?? false)
     }
 }
