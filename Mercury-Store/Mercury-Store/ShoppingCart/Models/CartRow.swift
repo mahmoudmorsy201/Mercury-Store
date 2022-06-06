@@ -9,20 +9,17 @@ import Foundation
 
 struct CartRow {
     let uuid: UUID
-    var products: [SavedProductItem]
+    var products: SavedProductItem
 }
 
 extension CartRow {
-    init(products: [SavedProductItem]) {
+    init(products: SavedProductItem) {
         self.uuid = UUID()
         self.products = products
     }
     
     var rowTotal: Double {
-        products.reduce(0) { result, product in
-            result + product.productPrice
-            
-        }
+        Double(products.productQTY) * products.productPrice
     }
 }
 

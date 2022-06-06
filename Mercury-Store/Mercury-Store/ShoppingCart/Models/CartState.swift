@@ -23,7 +23,7 @@ struct CartState {
         guard self.sections.count < 2 else { fatalError("CartState only supports 1 section") }
         switch action {
         case .viewIsLoaded:
-            return CartState([CartSection(CartCoreDataManager.shared.getDataFromCoreData().map{CartRow(products: [$0])})])
+            return CartState([CartSection(CartCoreDataManager.shared.getDataFromCoreData().map{CartRow(products: $0)})])
         case .increment(let product):
             return CartState([increment(product, in: self.sections[0])])
         case .decrement(let product):
@@ -37,12 +37,13 @@ struct CartState {
         
     private func increment(_ product: SavedProductItem, in section: CartSection) -> CartSection {
         if let row = section.row(for: product) {
-            if row.products.count == 10 {
+            if row.products.productQTY == 10 {
                 return section
             }else {
-                let products = row.products + [product]
+                var products = row.products
+                products.productQTY += 1
                 let newRow = CartRow(uuid: row.uuid, products: products)
-                CartCoreDataManager.shared.updateExistingItem(with: SavedProductItem(productID: product.productID, productTitle: product.productTitle, productImage: product.productImage, productPrice: product.productPrice, productQTY: products.count, producrState: 1))
+                CartCoreDataManager.shared.updateExistingItem(with: SavedProductItem(productID: product.productID, productTitle: product.productTitle, productImage: product.productImage, productPrice: product.productPrice, productQTY: products.productQTY, producrState: 1))
                 return section.replacing(newRow)
             }
         } else {
@@ -52,11 +53,12 @@ struct CartState {
     
     private func decrement(_ product: SavedProductItem, in section: CartSection) -> CartSection {
         if let row = section.row(for: product) {
-            if row.products.count == 1 {
+            if row.products.productQTY == 1 {
                 return section
             } else {
-                let products = Array(row.products.dropLast())
-                CartCoreDataManager.shared.updateExistingItem(with: SavedProductItem(productID: product.productID, productTitle: product.productTitle, productImage: product.productImage, productPrice: product.productPrice, productQTY: products.count, producrState: 1))
+                var products = row.products
+                products.productQTY -= 1
+                CartCoreDataManager.shared.updateExistingItem(with: SavedProductItem(productID: product.productID, productTitle: product.productTitle, productImage: product.productImage, productPrice: product.productPrice, productQTY: products.productQTY, producrState: 1))
                 let newRow = CartRow(uuid: row.uuid, products: products)
                 return section.replacing(newRow)
             }
@@ -77,7 +79,7 @@ struct CartState {
 fileprivate extension CartSection {
     
     func row(for product: SavedProductItem) -> CartRow? {
-        return rows.filter { $0.products.contains(product)}.first
+        return rows.filter { $0.products.productID == product.productID}.first
     }
     
     func replacing(_ row: CartRow) -> CartSection {
