@@ -11,18 +11,19 @@ import RxCocoa
 import RxSwift
 
 class ProductSearchViewModel: SearchViewModel<Product> {
+    
     private let provider: SearchProvider
     private let productListSubject = PublishSubject<[Product]>()
     private let disposeBag = DisposeBag()
     private var items: [Product] = []
+    let value = BehaviorRelay<Int>(value:0)
     private weak var searchFlowNavigation : SearchFlowNavigation?
     
     init(provider: SearchProvider = SearchClient(),searchFlowNavigation : SearchFlowNavigation) {
         self.provider = provider
         self.searchFlowNavigation = searchFlowNavigation
-        
     }
-    
+   
     func fetchData() {
         self.provider.getProductsList()
             .observe(on: MainScheduler.asyncInstance)
