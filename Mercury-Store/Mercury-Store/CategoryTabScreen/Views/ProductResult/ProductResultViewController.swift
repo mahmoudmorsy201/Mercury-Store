@@ -34,17 +34,20 @@ class ProductResultViewController: UIViewController {
     }
     
     private func setupCollectionView(){
-        let nib = UINib(nibName: "ProductCell", bundle: nil)
-        productCollectionView.register(nib, forCellWithReuseIdentifier: ProductCell.identifier)
+        productCollectionView.delegate = nil
+        productCollectionView.dataSource = nil
+        productCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
+        let nib = UINib(nibName: "BrandProductsCollectionViewCell", bundle: nil)
+        productCollectionView.register(nib, forCellWithReuseIdentifier: BrandProductsCollectionViewCell.reuseIdentifier())
         
-        viewModel?.products.drive(productCollectionView.rx.items(cellIdentifier: ProductCell.identifier, cellType: ProductCell.self)){[weak self] index , element , cell in
-            guard let `self` = self else {fatalError()}
-            cell.cellClickAction =  { (item) in
-                self.viewModel?.goToProductDetail(with: item)
-            }
-            cell.configure(item: element)
+        viewModel?.products.drive(productCollectionView.rx.items(cellIdentifier: BrandProductsCollectionViewCell.reuseIdentifier(), cellType: BrandProductsCollectionViewCell.self)){[weak self] index , element , cell in
+            cell.isFavouriteProduct = self?.viewModel?.isProductFavourite(id: element.id)
+            cell.item = element
         }.disposed(by: disposeBag)
-        productCollectionView.delegate = self
+        productCollectionView.rx.modelSelected(Product.self).subscribe(onNext:{ type in
+            self.viewModel?.goToProductDetail(with: type)
+        }).disposed(by: disposeBag)
+        
     }
     
     private func bindActivity() {

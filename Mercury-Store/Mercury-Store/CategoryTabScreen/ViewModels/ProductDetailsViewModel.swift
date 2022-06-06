@@ -14,6 +14,7 @@ protocol ProductsDetailViewModelType: AnyObject{
     var bannerObservable: Driver<[ProductImage]> {get}
     func sendImagesToCollection()
     func saveToFavourite()
+    func isProductFavourite(id:Int) -> Bool
 }
 
 final class ProductsDetailViewModel: ProductsDetailViewModelType {
@@ -33,6 +34,9 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
     }
     func saveToFavourite(){
         let data = CoreDataModel.coreDataInstatnce.insert(item: SavedProductItem(productID: Decimal(product.id), productTitle: product.title, productImage: product.image.src , productPrice: Double(product.variants[0].price) ?? 0 , productQTY: 0 , producrState: productStates.favourite.rawValue))
+    }
+    func isProductFavourite(id:Int) -> Bool{
+        return CoreDataModel.coreDataInstatnce.isProductFavourite(id: id)
     }
 }
 

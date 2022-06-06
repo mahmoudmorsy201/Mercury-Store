@@ -16,6 +16,7 @@ protocol FilteredProductsViewModelType {
     var error: Driver<String?> { get }
     func goToProductDetail(with product: Product)
     func goToFilteredProductScreen()
+    func isProductFavourite(id:Int) -> Bool
 }
 
 final class FilteredProductsViewModel: FilteredProductsViewModelType {
@@ -60,7 +61,9 @@ final class FilteredProductsViewModel: FilteredProductsViewModelType {
                 self?.errorSubject.accept(error.localizedDescription)
             }.disposed(by: disposeBag)
     }
-    
+    func isProductFavourite(id:Int) -> Bool{
+        return CoreDataModel.coreDataInstatnce.isProductFavourite(id: id)
+    }
 }
 
 extension FilteredProductsViewModel {

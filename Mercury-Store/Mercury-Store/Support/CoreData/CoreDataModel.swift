@@ -120,9 +120,6 @@ extension CoreDataModel: StorageInputs {
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: self.entity)
         fetchRequest.predicate =  NSPredicate(format: "\(id) = %@ AND (\(productCoredataAttr.state.rawValue)  = %@ OR \(productCoredataAttr.state.rawValue) = %@)", argumentArray: [id as CVarArg, productStates.favourite.rawValue , productStates.both.rawValue])
         
-//            let predicate = NSPredicate(format: "(\(productCoredataAttr.id.rawValue) = %@)", id as CVarArg )
-            
-        //    fetchRequest.predicate = predicate
             
             do {
                 results = try managedObjectContext.fetch(fetchRequest)
@@ -130,6 +127,8 @@ extension CoreDataModel: StorageInputs {
             catch {
                 print("error executing fetch request: \(error)")
             }
+        print(id)
+        print(results.count)
             return results.count > 0
         }
 }
