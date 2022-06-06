@@ -108,7 +108,6 @@ extension ProductDetailsViewController{
     private func addToCartTapBinding(){
         addToCart.rx.tap.subscribe(onNext: { [weak self] in
             self?.viewModel?.saveToCart()
-            
         }).disposed(by: disposeBag)
     }
 }

@@ -39,6 +39,7 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
     }
     func saveToCart() {
         coreDataShared.insert(item: SavedProductItem(productID: Decimal(product.id), productTitle: product.title, productImage: product.image.src , productPrice: Double(product.variants[0].price) ?? 0 , productQTY: 1 , producrState: productStates.cart.rawValue))
+        coreDataShared.observeProductCount()
     }
 }
 

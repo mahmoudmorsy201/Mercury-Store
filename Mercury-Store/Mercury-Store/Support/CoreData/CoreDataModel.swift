@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 import RxSwift
 import UIKit
+import RxRelay
 //MARK: StorageProtocol
 enum productStates :Int{
     case favourite = 0
@@ -28,9 +29,13 @@ final class CoreDataModel: StorageProtocol {
     static let coreDataInstatnce = CoreDataModel()
     fileprivate let managedObjectContext:NSManagedObjectContext
     fileprivate let entity:String = "ProductsCoreData"
+    private let countSubject = PublishSubject<String?>()
+    var count: Observable<String?>?
+    
     private  init(){
         managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)!.persistentContainer.viewContext
         itemsPrivate = PublishSubject()
+        count = countSubject.asObservable()
     }
     
 }
@@ -55,6 +60,7 @@ extension CoreDataModel: StorageInputs {
                     producrState: itemMO.value(forKey: productCoredataAttr.state.rawValue) as! Int)
                 resultItems.append(tmpItem)
             }
+            
           } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
               return(resultItems , error)
@@ -76,6 +82,7 @@ extension CoreDataModel: StorageInputs {
         }catch _ as NSError {
             return (item, false)
         }
+        
         return (item , true)
     }
     
@@ -133,7 +140,17 @@ extension CoreDataModel: StorageInputs {
         }
 }
 extension CoreDataModel{
-    
+    func observeProductCount() {
+        let count = getItems(productState: productStates.cart).0.reduce(0) { result, row in
+            result + row.productQTY
+        }
+        if(getItems(productState: productStates.cart).0.isEmpty) {
+            countSubject.onNext(nil)
+        }else {
+            countSubject.onNext("\(count)")
+        }
+     
+    }
 }
 extension CoreDataModel: StorageOutputs {
     var items: Observable<SavedProductItem?> {

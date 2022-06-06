@@ -70,6 +70,7 @@ struct CartState {
     
     private func delete(_ product: SavedProductItem, in section: CartSection) -> CartSection {
         if let row = section.row(for: product) {
+            CartCoreDataManager.shared.deleteItem(with: product)
             return section.removing(row)
         }
         return section
