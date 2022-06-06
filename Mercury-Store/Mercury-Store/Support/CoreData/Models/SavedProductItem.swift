@@ -25,3 +25,5 @@ extension SavedProductItem {
         producrState = 0
     }
 }
+
+extension SavedProductItem: Equatable {}

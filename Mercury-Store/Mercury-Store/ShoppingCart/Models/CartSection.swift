@@ -19,7 +19,13 @@ extension CartSection {
         self.rows = rows
     }
     
-    var sectionTotal: Int {
+    var totalCount: Int {
+        rows.reduce(0) { result, row in
+            result + row.products.productQTY
+        }
+    }
+    
+    var sectionTotal: Double {
         rows.reduce(0) { result, row in
             result + row.rowTotal
         }

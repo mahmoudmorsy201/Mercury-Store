@@ -83,15 +83,14 @@ extension CoreDataModel: StorageInputs {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: self.entity)
         fetchRequest.predicate = NSPredicate(format: "(\(productCoredataAttr.id.rawValue) = %@)", updateitem.productID as CVarArg )
         do {
-            let fetchedItems = try self.managedObjectContext.fetch(fetchRequest) as! [NSManagedObjectContext]
-            if fetchedItems.count != 0{
-
-                let managedObject = fetchedItems[0]
-                managedObject.setValue(updateitem.productTitle, forKey: productCoredataAttr.title.rawValue)
-                managedObject.setValue(updateitem.productImage, forKey: productCoredataAttr.image.rawValue)
-                managedObject.setValue(updateitem.productPrice, forKey: productCoredataAttr.price.rawValue)
-                managedObject.setValue(updateitem.productQTY, forKey: productCoredataAttr.quantity.rawValue)
-                managedObject.setValue(updateitem.producrState, forKey: productCoredataAttr.state.rawValue)
+            let fetchedItems = try self.managedObjectContext.fetch(fetchRequest) as! [NSManagedObject]
+            if !fetchedItems.isEmpty {
+                let product = fetchedItems.first
+                product?.setValue(updateitem.productTitle, forKey: productCoredataAttr.title.rawValue)
+                product?.setValue(updateitem.productImage, forKey: productCoredataAttr.image.rawValue)
+                product?.setValue(updateitem.productPrice, forKey: productCoredataAttr.price.rawValue)
+                product?.setValue(updateitem.productQTY, forKey: productCoredataAttr.quantity.rawValue)
+                product?.setValue(updateitem.producrState, forKey: productCoredataAttr.state.rawValue)
                 try self.managedObjectContext.save()
                 return (updateitem, true)
             }

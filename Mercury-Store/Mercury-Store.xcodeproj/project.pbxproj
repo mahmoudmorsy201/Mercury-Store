@@ -122,7 +122,6 @@
 		C4C08B7B2832076B00364704 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C08B7A2832076B00364704 /* HomeModel.swift */; };
 		C4C08B7D2832077800364704 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C08B7C2832077800364704 /* HomeViewModel.swift */; };
 		C4C08B94283212D900364704 /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C08B93283212D900364704 /* AppAppearance.swift */; };
-		C4C08B9B283216C100364704 /* ShoppingCartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C08B9A283216C100364704 /* ShoppingCartModel.swift */; };
 		C4C08B9D283216D000364704 /* ShoppingCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C08B9C283216D000364704 /* ShoppingCartViewModel.swift */; };
 		C4C08BA0283216EC00364704 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C08B9E283216EC00364704 /* ShoppingCartViewController.swift */; };
 		C4C08BA1283216EC00364704 /* ShoppingCartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4C08B9F283216EC00364704 /* ShoppingCartViewController.xib */; };
@@ -305,7 +304,6 @@
 		C4C08B7A2832076B00364704 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		C4C08B7C2832077800364704 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		C4C08B93283212D900364704 /* AppAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
-		C4C08B9A283216C100364704 /* ShoppingCartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartModel.swift; sourceTree = "<group>"; };
 		C4C08B9C283216D000364704 /* ShoppingCartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewModel.swift; sourceTree = "<group>"; };
 		C4C08B9E283216EC00364704 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
 		C4C08B9F283216EC00364704 /* ShoppingCartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShoppingCartViewController.xib; sourceTree = "<group>"; };
@@ -823,7 +821,6 @@
 		C4C08B99283216B300364704 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C4C08B9A283216C100364704 /* ShoppingCartModel.swift */,
 				C4BE91D82846E49800ED8221 /* CartState.swift */,
 				C4BE91DA2846EA9A00ED8221 /* CartCoreDataManager.swift */,
 				C4C06081284733FB0063CE85 /* CartRow.swift */,
@@ -1489,7 +1486,6 @@
 				4D911856284AB91600F07638 /* ManagedObjectTypeProtocol.swift in Sources */,
 				4D8E3862284958AD00B22D98 /* RegisterViewController.swift in Sources */,
 				C4CFBA3F283B98E4009C2840 /* ApplicationEnviroment.swift in Sources */,
-				C4C08B9B283216C100364704 /* ShoppingCartModel.swift in Sources */,
 				C4CFBA71283C1914009C2840 /* BannerCollectionViewCell.swift in Sources */,
 				4D8E3868284958AD00B22D98 /* AddressViewController.swift in Sources */,
 				C410293E284AAF29007045F8 /* BrandDetailViewController.swift in Sources */,
