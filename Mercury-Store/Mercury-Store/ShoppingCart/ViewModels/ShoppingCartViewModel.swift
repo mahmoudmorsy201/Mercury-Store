@@ -27,6 +27,7 @@ struct CartOutput {
     let cart: Observable<[CartSection]>
     let cartTotal: Observable<String?>
     let cartEmpty: Observable<Bool>
+    let cartBadge: Observable<String?>
     let checkoutVisible: Observable<(visible: Bool, animated: Bool)>
 }
 
@@ -64,12 +65,17 @@ final class CartViewModel {
             cart: cart,
             cartTotal: cart.map(cartTotal()),
             cartEmpty: cart.map(cartEmpty()),
+            cartBadge: cart.map(cartTotalCount()),
             checkoutVisible: cart.map(checkoutVisible())
                 .startWith((visible: false, animated: false)))
     }
         
     func cartTotal() -> (_ cart: [CartSection]) -> String? {
         {  "EGP \($0[safe: 0]?.sectionTotal ?? 0)" }
+    }
+    
+    func cartTotalCount() -> (_ cart: [CartSection]) -> String? {
+        { "\($0[safe: 0]?.totalCount ?? 0)" }
     }
     
     func cartEmpty() -> (_ cart: [CartSection]) throws -> Bool {
@@ -81,8 +87,5 @@ final class CartViewModel {
     }
 }
 
-extension CartViewModel: ShoppingCartNavigationFlow {
-    
-}
 
 

@@ -52,11 +52,13 @@ class ShoppingCartViewController: UIViewController {
         output.cart.bind(to: shoppingCartTableView.rx.items(dataSource: dataSource()))
             .disposed(by: disposeBag)
         
+        output.cartBadge.bind(to: (navigationController?.tabBarItem.rx.badgeValue)!).disposed(by: disposeBag)
         output.cartEmpty.bind(to: shoppingCartTableView.rx.isEmpty(message: "Your cart is empty"))
             .disposed(by: disposeBag)
         
         output.cartTotal.bind(to: totalPriceLabel.rx.text)
             .disposed(by: disposeBag)
+        
         
     }
 }
@@ -74,6 +76,7 @@ extension ShoppingCartViewController {
                       incrementObserver: viewModel.incrementProduct,
                       decrementObserver: viewModel.decrementProduct,
                       deleteObserver: viewModel.deleteProduct)
+           
             return cell
         }
     }
