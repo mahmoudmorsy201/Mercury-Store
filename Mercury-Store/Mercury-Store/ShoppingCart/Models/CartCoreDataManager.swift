@@ -33,5 +33,9 @@ class CartCoreDataManager {
     func updateExistingItem(with item: SavedProductItem) {
         coreDataModel.update(updateitem: item)
     }
+    
+    func deleteItem(with item: SavedProductItem) {
+        coreDataModel.delete(updateitem: item)
+    }
 }
 

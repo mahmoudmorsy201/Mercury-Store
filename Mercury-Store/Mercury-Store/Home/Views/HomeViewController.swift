@@ -49,6 +49,18 @@ class HomeViewController: UIViewController {
         createSearchBarButton()
         bindTableView()
         bindActivity()
+        bindCartBadgeValue()
+    }
+    
+    private func bindCartBadgeValue() {
+        let cartTab = self.navigationController?.tabBarController?.tabBar.items![2]
+        if(CoreDataModel.coreDataInstatnce.count == nil) {
+            cartTab?.badgeValue = nil
+        }else {
+            CoreDataModel.coreDataInstatnce.count?.bind(to: (cartTab?.rx.badgeValue)!).disposed(by: disposeBag)
+        }
+
+        CoreDataModel.coreDataInstatnce.observeProductCount()
     }
     
     private func createSearchBarButton() {
