@@ -32,7 +32,9 @@ struct Constants {
         public static let password = "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"
         public static let storeName = "mobile-ismailia"
         public static let apiVersion = "2022-04"
-        
+        //54e7ce1d28a9d3b395830ea17be70ae1
+        //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
+        //mad-ism2022
     }
 }
 

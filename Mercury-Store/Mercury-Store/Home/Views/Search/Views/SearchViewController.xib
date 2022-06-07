@@ -17,7 +17,7 @@
                 <outlet property="productListCollectionView" destination="IWv-89-XGT" id="4cZ-D7-Wy0"/>
                 <outlet property="productSearchbar" destination="Wtg-W6-n9n" id="fmT-66-Unh"/>
                 <outlet property="sliderPrice" destination="HG9-7J-hLj" id="Gvn-ik-UYz"/>
-                <outlet property="sortBtn" destination="uzy-pe-mFa" id="VWJ-cV-BNe"/>
+                <outlet property="switchSort" destination="Pbj-hF-LTA" id="lSo-Kf-mrx"/>
                 <outlet property="view" destination="Jna-Qs-Pq1" id="7ee-sj-vPU"/>
             </connections>
         </placeholder>
@@ -27,7 +27,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Wtg-W6-n9n">
-                    <rect key="frame" x="60" y="56" width="294" height="51"/>
+                    <rect key="frame" x="62" y="56" width="290" height="51"/>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IWv-89-XGT">
@@ -42,32 +42,30 @@
                     <cells/>
                 </collectionView>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="300" translatesAutoresizingMaskIntoConstraints="NO" id="HG9-7J-hLj">
-                    <rect key="frame" x="58" y="119" width="298" height="31"/>
+                    <rect key="frame" x="60" y="119" width="294" height="31"/>
                     <color key="tintColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="thumbTintColor" systemColor="labelColor"/>
                 </slider>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EGP 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHd-0c-wBo">
-                    <rect key="frame" x="8" y="125" width="40.5" height="18"/>
+                    <rect key="frame" x="9" y="125" width="40.5" height="18"/>
                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5p-gk-Von">
-                    <rect key="frame" x="4" y="62.5" width="48" height="38"/>
+                    <rect key="frame" x="4" y="62.5" width="50" height="38"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="filter"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzy-pe-mFa">
-                    <rect key="frame" x="359" y="61" width="51" height="41"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="sortByPrice"/>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ltL-bG-RZs">
-                    <rect key="frame" x="368" y="125" width="33.5" height="18"/>
+                    <rect key="frame" x="369" y="125" width="33.5" height="18"/>
                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pbj-hF-LTA">
+                    <rect key="frame" x="361" y="66" width="51" height="31"/>
+                </switch>
             </subviews>
             <viewLayoutGuide key="safeArea" id="xbU-A9-aIN"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -80,23 +78,24 @@
                 <constraint firstItem="IWv-89-XGT" firstAttribute="bottom" secondItem="xbU-A9-aIN" secondAttribute="bottom" id="B8a-vP-EaU"/>
                 <constraint firstItem="IWv-89-XGT" firstAttribute="leading" secondItem="xbU-A9-aIN" secondAttribute="leading" constant="12" id="GMA-bm-rOA"/>
                 <constraint firstItem="Wtg-W6-n9n" firstAttribute="top" secondItem="xbU-A9-aIN" secondAttribute="top" constant="12" id="Ilt-on-eSQ"/>
-                <constraint firstItem="ltL-bG-RZs" firstAttribute="centerX" secondItem="uzy-pe-mFa" secondAttribute="centerX" id="NZC-l8-Fcl"/>
                 <constraint firstItem="HG9-7J-hLj" firstAttribute="leading" secondItem="Wtg-W6-n9n" secondAttribute="leading" id="OGd-Ho-Bmx"/>
-                <constraint firstItem="uzy-pe-mFa" firstAttribute="centerY" secondItem="Wtg-W6-n9n" secondAttribute="centerY" id="S2g-vh-pZE"/>
+                <constraint firstItem="xbU-A9-aIN" firstAttribute="trailing" secondItem="Pbj-hF-LTA" secondAttribute="trailing" constant="4" id="aOA-EU-gme"/>
+                <constraint firstItem="Pbj-hF-LTA" firstAttribute="centerY" secondItem="Wtg-W6-n9n" secondAttribute="centerY" id="ea2-Ci-nFK"/>
+                <constraint firstItem="ltL-bG-RZs" firstAttribute="centerX" secondItem="Pbj-hF-LTA" secondAttribute="centerX" id="gBK-lz-lan"/>
                 <constraint firstItem="HG9-7J-hLj" firstAttribute="trailing" secondItem="Wtg-W6-n9n" secondAttribute="trailing" id="k0r-ov-hlu"/>
                 <constraint firstItem="IWv-89-XGT" firstAttribute="top" secondItem="HG9-7J-hLj" secondAttribute="bottom" constant="12" id="l67-fX-m70"/>
                 <constraint firstItem="g5p-gk-Von" firstAttribute="centerY" secondItem="Wtg-W6-n9n" secondAttribute="centerY" id="mGd-53-jFe"/>
                 <constraint firstItem="ltL-bG-RZs" firstAttribute="centerY" secondItem="HG9-7J-hLj" secondAttribute="centerY" id="nZW-AY-wYL"/>
                 <constraint firstItem="Wtg-W6-n9n" firstAttribute="centerX" secondItem="Jna-Qs-Pq1" secondAttribute="centerX" id="noa-AU-fwc"/>
                 <constraint firstItem="xbU-A9-aIN" firstAttribute="trailing" secondItem="IWv-89-XGT" secondAttribute="trailing" constant="12" id="qkT-0B-REU"/>
-                <constraint firstItem="xbU-A9-aIN" firstAttribute="trailing" secondItem="uzy-pe-mFa" secondAttribute="trailing" constant="4" id="ueN-Cf-QVZ"/>
+                <constraint firstItem="Pbj-hF-LTA" firstAttribute="height" secondItem="g5p-gk-Von" secondAttribute="height" multiplier="0.815789" id="rd6-rM-OAK"/>
+                <constraint firstItem="Pbj-hF-LTA" firstAttribute="width" secondItem="g5p-gk-Von" secondAttribute="width" multiplier="0.979167" id="uGQ-Df-VZd"/>
             </constraints>
             <point key="canvasLocation" x="-117.39130434782609" y="-1191.2946428571429"/>
         </view>
     </objects>
     <resources>
         <image name="filter" width="24" height="24"/>
-        <image name="sortByPrice" width="27" height="27"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
