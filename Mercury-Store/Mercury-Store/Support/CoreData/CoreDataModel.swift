@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 import RxSwift
 import UIKit
+import RxRelay
 //MARK: StorageProtocol
 enum productStates :Int{
     case favourite = 0
@@ -28,9 +29,13 @@ final class CoreDataModel: StorageProtocol {
     static let coreDataInstatnce = CoreDataModel()
     let managedObjectContext:NSManagedObjectContext
     let entity:String = "ProductsCoreData"
+    private let countSubject = PublishSubject<String?>()
+    var count: Observable<String?>?
+    
     private  init(){
         managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)!.persistentContainer.viewContext
         itemsPrivate = PublishSubject()
+        count = countSubject.asObservable()
     }
     
 }
@@ -39,7 +44,6 @@ extension CoreDataModel: StorageInputs {
     
     func getItems(productState:productStates ) -> ([SavedProductItem], Error?) {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entity)
-
         fetchRequest.predicate =  NSPredicate(format: "\(productCoredataAttr.state.rawValue) = %@ OR \(productCoredataAttr.state.rawValue)  = %@", argumentArray: [productState.rawValue, 2])
         var resultItems = [SavedProductItem]()
         do {
@@ -55,6 +59,7 @@ extension CoreDataModel: StorageInputs {
                     producrState: itemMO.value(forKey: productCoredataAttr.state.rawValue) as! Int)
                 resultItems.append(tmpItem)
             }
+            
           } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
               return(resultItems , error)
@@ -76,6 +81,7 @@ extension CoreDataModel: StorageInputs {
         }catch _ as NSError {
             return (item, false)
         }
+        
         return (item , true)
     }
     
@@ -83,15 +89,14 @@ extension CoreDataModel: StorageInputs {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: self.entity)
         fetchRequest.predicate = NSPredicate(format: "(\(productCoredataAttr.id.rawValue) = %@)", updateitem.productID as CVarArg )
         do {
-            let fetchedItems = try self.managedObjectContext.fetch(fetchRequest) as! [NSManagedObjectContext]
-            if fetchedItems.count != 0{
-
-                let managedObject = fetchedItems[0]
-                managedObject.setValue(updateitem.productTitle, forKey: productCoredataAttr.title.rawValue)
-                managedObject.setValue(updateitem.productImage, forKey: productCoredataAttr.image.rawValue)
-                managedObject.setValue(updateitem.productPrice, forKey: productCoredataAttr.price.rawValue)
-                managedObject.setValue(updateitem.productQTY, forKey: productCoredataAttr.quantity.rawValue)
-                managedObject.setValue(updateitem.producrState, forKey: productCoredataAttr.state.rawValue)
+            let fetchedItems = try self.managedObjectContext.fetch(fetchRequest) as! [NSManagedObject]
+            if !fetchedItems.isEmpty {
+                let product = fetchedItems.first
+                product?.setValue(updateitem.productTitle, forKey: productCoredataAttr.title.rawValue)
+                product?.setValue(updateitem.productImage, forKey: productCoredataAttr.image.rawValue)
+                product?.setValue(updateitem.productPrice, forKey: productCoredataAttr.price.rawValue)
+                product?.setValue(updateitem.productQTY, forKey: productCoredataAttr.quantity.rawValue)
+                product?.setValue(updateitem.producrState, forKey: productCoredataAttr.state.rawValue)
                 try self.managedObjectContext.save()
                 return (updateitem, true)
             }
@@ -102,7 +107,7 @@ extension CoreDataModel: StorageInputs {
     }
     func delete(itemID:Int) -> Bool{
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: self.entity)
-        fetchRequest.predicate = NSPredicate(format: "(\(productCoredataAttr.id.rawValue) = %@)", itemID as CVarArg )
+        fetchRequest.predicate = NSPredicate(format: "\(productCoredataAttr.id.rawValue) = %@", NSNumber(value: itemID))
         do {
             let fetchedItems = try self.managedObjectContext.fetch(fetchRequest)
             for object in fetchedItems {
@@ -160,6 +165,18 @@ extension CoreDataModel{
               return(SavedProductItem())
           }
     }
+    func observeProductCount() {
+        let count = getItems(productState: productStates.cart).0.reduce(0) { result, row in
+            result + row.productQTY
+        }
+        if(getItems(productState: productStates.cart).0.isEmpty) {
+            countSubject.onNext(nil)
+        }else {
+            countSubject.onNext("\(count)")
+        }
+     
+    }
+    
 }
 extension CoreDataModel: StorageOutputs {
     var items: Observable<SavedProductItem?> {

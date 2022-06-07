@@ -26,7 +26,7 @@ class ShoppingCartViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     init(with viewModel: CartViewModel) {
-        super.init(nibName: String(describing: ShoppingCartViewController.self), bundle: nil)
+        super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
     }
     
@@ -38,6 +38,10 @@ class ShoppingCartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
+    }
+    
+    func bind() {
         guard let viewModel = self.viewModel else {fatalError("Couldn't unwrap viewModel")}
         
         let inputData = Observable.merge(
@@ -51,13 +55,23 @@ class ShoppingCartViewController: UIViewController {
         
         output.cart.bind(to: shoppingCartTableView.rx.items(dataSource: dataSource()))
             .disposed(by: disposeBag)
-        
+
+        output.cartBadge.subscribe { value in
+            if(value == "0") {
+                self.navigationController?.tabBarItem.badgeValue = nil
+            }else {
+                self.navigationController?.tabBarItem.badgeValue = value
+            }
+            
+        } onError: { error in
+            print(error)
+        }.disposed(by: disposeBag)
+
         output.cartEmpty.bind(to: shoppingCartTableView.rx.isEmpty(message: "Your cart is empty"))
             .disposed(by: disposeBag)
         
         output.cartTotal.bind(to: totalPriceLabel.rx.text)
             .disposed(by: disposeBag)
-        
     }
 }
 
@@ -74,6 +88,7 @@ extension ShoppingCartViewController {
                       incrementObserver: viewModel.incrementProduct,
                       decrementObserver: viewModel.decrementProduct,
                       deleteObserver: viewModel.deleteProduct)
+           
             return cell
         }
     }

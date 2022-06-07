@@ -12,9 +12,9 @@ protocol ShoppingCartNavigationFlow: AnyObject {
     
 }
 enum CartAction {
-    case increment(CartProduct)
-    case decrement(CartProduct)
-    case deleteItem(CartProduct)
+    case increment(SavedProductItem)
+    case decrement(SavedProductItem)
+    case deleteItem(SavedProductItem)
     case viewIsLoaded
     case proceedToCheckout
 }
@@ -27,18 +27,19 @@ struct CartOutput {
     let cart: Observable<[CartSection]>
     let cartTotal: Observable<String?>
     let cartEmpty: Observable<Bool>
+    let cartBadge: Observable<String?>
     let checkoutVisible: Observable<(visible: Bool, animated: Bool)>
 }
 
 
 final class CartViewModel {
     private weak var shoppingCartNavigationFlow: ShoppingCartNavigationFlow!
-    private let incrementProductSubject = PublishSubject<CartProduct>()
-    private let decrementProductSubject = PublishSubject<CartProduct>()
-    private let deleteProductSubject = PublishSubject<CartProduct>()
-    var incrementProduct: AnyObserver<CartProduct> { incrementProductSubject.asObserver() }
-    var decrementProduct: AnyObserver<CartProduct> { decrementProductSubject.asObserver() }
-    var deleteProduct: AnyObserver<CartProduct> { deleteProductSubject.asObserver() }
+    private let incrementProductSubject = PublishSubject<SavedProductItem>()
+    private let decrementProductSubject = PublishSubject<SavedProductItem>()
+    private let deleteProductSubject = PublishSubject<SavedProductItem>()
+    var incrementProduct: AnyObserver<SavedProductItem> { incrementProductSubject.asObserver() }
+    var decrementProduct: AnyObserver<SavedProductItem> { decrementProductSubject.asObserver() }
+    var deleteProduct: AnyObserver<SavedProductItem> { deleteProductSubject.asObserver() }
     
     
     init(shoppingCartNavigationFlow: ShoppingCartNavigationFlow) {
@@ -64,12 +65,17 @@ final class CartViewModel {
             cart: cart,
             cartTotal: cart.map(cartTotal()),
             cartEmpty: cart.map(cartEmpty()),
+            cartBadge: cart.map(cartTotalCount()),
             checkoutVisible: cart.map(checkoutVisible())
                 .startWith((visible: false, animated: false)))
     }
         
     func cartTotal() -> (_ cart: [CartSection]) -> String? {
         {  "EGP \($0[safe: 0]?.sectionTotal ?? 0)" }
+    }
+    
+    func cartTotalCount() -> (_ cart: [CartSection]) -> String? {
+        { "\($0[safe: 0]?.totalCount ?? 0)" }
     }
     
     func cartEmpty() -> (_ cart: [CartSection]) throws -> Bool {
@@ -81,8 +87,5 @@ final class CartViewModel {
     }
 }
 
-extension CartViewModel: ShoppingCartNavigationFlow {
-    
-}
 
 

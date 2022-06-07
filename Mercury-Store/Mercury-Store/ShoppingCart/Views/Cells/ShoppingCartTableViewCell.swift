@@ -71,9 +71,10 @@ class ShoppingCartTableViewCell: UITableViewCell {
 
 extension ShoppingCartTableViewCell {
     
-    func bind(viewModel: CartCellViewModel, incrementObserver: AnyObserver<CartProduct>, decrementObserver: AnyObserver<CartProduct>, deleteObserver: AnyObserver<CartProduct>) {
+    func bind(viewModel: CartCellViewModel, incrementObserver: AnyObserver<SavedProductItem>, decrementObserver: AnyObserver<SavedProductItem>, deleteObserver: AnyObserver<SavedProductItem>) {
         guard let image = viewModel.image else {return}
-        productImageCart.image = UIImage(named: image)
+        guard let url = URL(string: image) else {fatalError()}
+        productImageCart.downloadImage(url: url, placeholder: UIImage(named: "placeholder"), imageIndicator: .gray, completion: nil)
         productNameCart.text = viewModel.name
         productPriceCart.text = viewModel.price
         quantityLabel.text = viewModel.count

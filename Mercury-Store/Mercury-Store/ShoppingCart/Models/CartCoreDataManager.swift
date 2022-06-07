@@ -9,20 +9,35 @@ import Foundation
 
 class CartCoreDataManager {
     static let shared = CartCoreDataManager()
-    let all = [
-        CartProduct(productImage: "wishlist", productName: "Adidas1", productPrice: 13),
-        CartProduct(productImage: "wishlist", productName: "Adidas2", productPrice: 13),
-        CartProduct(productImage: "wishlist", productName: "Adidas3", productPrice: 13),
-        CartProduct(productImage: "wishlist", productName: "Adidas4", productPrice: 13),
-        CartProduct(productImage: "wishlist", productName: "Adidas5", productPrice: 13),
-        CartProduct(productImage: "wishlist", productName: "Adidas6", productPrice: 13),
-        CartProduct(productImage: "wishlist", productName: "Adidas7", productPrice: 13)
-    ]
-    private init() {
-        
+    private let coreDataModel:CoreDataModel
+    
+    private init(coreDataModel:CoreDataModel = CoreDataModel.coreDataInstatnce) {
+        self.coreDataModel = coreDataModel
     }
     
-    func getDataFromCoreData() -> [CartProduct] {
-        return all
+    func getDataFromCoreData() -> [SavedProductItem] {
+        let items = self.coreDataModel.getItems(productState: productStates.cart)
+        if(items.1 == nil) {
+            
+            return items.0
+        }else {
+            print(items.1?.localizedDescription)
+        }
+        return items.0
+    }
+    
+    func saveNewCartItem(with item: SavedProductItem) {
+        coreDataModel.insert(item: item)
+    }
+    
+    func updateExistingItem(with item: SavedProductItem) {
+        coreDataModel.update(updateitem: item)
+    }
+    
+    func deleteItem(with item: SavedProductItem) {
+        //mahmoud
+        //coreDataModel.delete(updateitem: item)
+        coreDataModel.deleteCartItem(productID: Int(truncating: NSDecimalNumber(decimal: item.productID)) )
     }
 }
+

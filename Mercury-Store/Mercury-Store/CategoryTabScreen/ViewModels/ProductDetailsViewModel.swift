@@ -14,7 +14,7 @@ protocol ProductsDetailViewModelType: AnyObject{
     var bannerObservable: Driver<[ProductImage]> {get}
     func sendImagesToCollection()
     func saveToFavourite()
-    func isProductFavourite(id:Int) -> Bool
+    func saveToCart()
 }
 
 final class ProductsDetailViewModel: ProductsDetailViewModelType {
@@ -23,17 +23,23 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
     var countForPageControll: Observable<Int>
     var bannerObservable: Driver<[ProductImage]>
     weak var productDetailsNavigationFlow: ProductDetailsNavigationFlow?
+    private let coreDataShared: CoreDataModel
     
-    init(with productDetailsNavigationFlow: ProductDetailsNavigationFlow,product:Product) {
+    init(with productDetailsNavigationFlow: ProductDetailsNavigationFlow,product:Product, coreDataShared: CoreDataModel = CoreDataModel.coreDataInstatnce) {
         countForPageControll = Observable.just(product.images.count)
         bannerObservable = productImagesSubject.asDriver(onErrorJustReturn: [])
         self.product = product
+        self.coreDataShared = coreDataShared
     }
     func sendImagesToCollection() {
         productImagesSubject.onNext(product.images)
     }
-    func saveToFavourite(){
-        let data = CoreDataModel.coreDataInstatnce.insert(item: SavedProductItem(productID: Decimal(product.id), productTitle: product.title, productImage: product.image.src , productPrice: Double(product.variants[0].price) ?? 0 , productQTY: 0 , producrState: productStates.favourite.rawValue))
+    func saveToFavourite() {
+        coreDataShared.insert(item: SavedProductItem(productID: Decimal(product.id), productTitle: product.title, productImage: product.image.src , productPrice: Double(product.variants[0].price) ?? 0 , productQTY: 0 , producrState: productStates.favourite.rawValue))
+    }
+    func saveToCart() {
+        coreDataShared.insert(item: SavedProductItem(productID: Decimal(product.id), productTitle: product.title, productImage: product.image.src , productPrice: Double(product.variants[0].price) ?? 0 , productQTY: 1 , producrState: productStates.cart.rawValue))
+        coreDataShared.observeProductCount()
     }
     func isProductFavourite(id:Int) -> Bool{
         return CoreDataModel.coreDataInstatnce.isProductFavourite(id: id)

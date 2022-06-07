@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeCoordinator : Coordinator {
+class HomeCoordinator : Coordinator, ShoppingCartNavigationFlow {
 
     weak var parentCoordinator: Coordinator?
     
@@ -22,7 +22,7 @@ class HomeCoordinator : Coordinator {
     func start() {
         let brandProvider: BrandsProvider = HomeScreenAPI()
         let brandViewModel = BrandsViewModel(brandsProvider: brandProvider, homeFlowNavigation: self)
-        let viewModel = HomeViewModel()
+        let viewModel = HomeViewModel(with: self)
         let categoryViewModel = CategoriesViewModel(with: self)
         let homeVC = HomeViewController(with: viewModel, and: brandViewModel, categoryViewModel: categoryViewModel)
         navigationController.pushViewController(homeVC, animated: true)
@@ -42,6 +42,12 @@ extension HomeCoordinator: HomeFlowNavigation {
         let brandDetailsVC = BrandDetailViewController(with: viewModel)
         navigationController.pushViewController(brandDetailsVC, animated: true)
     }
+    
+    func goToSearchViewController() {
+        let searchViewModel = ProductSearchViewModel(searchFlowNavigation: self)
+        let searchVC = SearchViewController(with: searchViewModel)
+        navigationController.pushViewController(searchVC, animated: true)
+    }
 }
 extension HomeCoordinator: FilteredProductsNavigationFlow {
     func goToProductDetail(with product: Product) {
@@ -55,6 +61,12 @@ extension HomeCoordinator: FilteredProductsNavigationFlow {
     }
 }
 extension HomeCoordinator: ProductDetailsNavigationFlow {
+    func goToCartScreen() {
+        let cartViewModel = CartViewModel(shoppingCartNavigationFlow: self)
+        let _ = ShoppingCartViewController(with: cartViewModel)
+        
+    }
+    
     
 }
 
@@ -66,4 +78,11 @@ extension HomeCoordinator: BrandDetailsNavigationFlow {
     }
     
     
+}
+extension HomeCoordinator: SearchFlowNavigation{
+    func  goToProductDetailFromSearch(with item:Product){
+        let viewModel = ProductsDetailViewModel(with: self,product: item)
+        let productDetailsVC = ProductDetailsViewController(with: viewModel)
+        navigationController.pushViewController(productDetailsVC, animated: true)
+    }
 }
