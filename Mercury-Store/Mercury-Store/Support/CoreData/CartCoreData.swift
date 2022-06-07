@@ -33,16 +33,16 @@ extension CoreDataModel{
     func insertCartProduct(product:SavedProductItem)->Bool{
         if (isProductFavourite(id: Int(truncating: NSDecimalNumber(decimal: product.productID)))) {
             var product = getItemByID(productID: Int(truncating: NSDecimalNumber(decimal: product.productID)))
-            if (product.producrState == productStates.both.rawValue){
-                product.productQTY = product.productQTY+1
-                return update(updateitem: product).1
-            }
+            product.productQTY = product.productQTY+1
             product.producrState = productStates.both.rawValue
             return update(updateitem: product).1
         }
         else if(!isProductExist(id: Int(truncating: NSDecimalNumber(decimal: product.productID)))){
             return insert(item: product).1
+        }else{
+            var tempProduct = product
+            tempProduct.productQTY = product.productQTY+1
+            return update(updateitem: tempProduct).1
         }
-        return false
     }
 }
