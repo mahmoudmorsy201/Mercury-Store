@@ -37,14 +37,17 @@ extension URLRequestBuilder {
     }
     
     var headers: HTTPHeaders {
-        let header = HTTPHeaders()
+        let header = HTTPHeaders([
+            "X-Shopify-Access-Token": Constants.Keys.password,
+            "Content-Type": "application/json"
+        ])
         return header
     }
     
     var urlRequest: URLRequest {
         var request = URLRequest(url: requestURL)
         request.httpMethod = method.rawValue
-        //headers.forEach { request.addValue($1, forHTTPHeaderField: $0) }
+        headers.forEach { request.addValue($0.name, forHTTPHeaderField: $0.value)}
         return request
     }
     
