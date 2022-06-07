@@ -54,7 +54,6 @@ final class FilteredProductsViewModel: FilteredProductsViewModelType {
             .observe(on: MainScheduler.asyncInstance)
             .subscribe {[weak self] (result) in
                 self?.isLoadingSubject.accept(false)
-                print(result.products.count)
                 self?.categorySubject.accept(result.products)
             } onError: {[weak self] (error) in
                 self?.isLoadingSubject.accept(false)

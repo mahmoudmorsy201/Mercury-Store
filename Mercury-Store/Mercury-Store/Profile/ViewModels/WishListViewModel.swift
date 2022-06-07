@@ -54,7 +54,7 @@ class WishListViewModel:WishListViewModelType{
     }
     
     func deleteItem(item: SavedProductItem) {
-        let state = self.coreDataModel.delete(updateitem: item)
+        let state = self.coreDataModel.deleteFavouriteProduct(productID: Int(NSDecimalNumber(decimal: item.productID)))
         if (state) {
             self.errorSubject.accept(nil)
             getFavouriteItems()

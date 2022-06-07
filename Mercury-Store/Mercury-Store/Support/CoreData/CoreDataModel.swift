@@ -26,8 +26,8 @@ enum productCoredataAttr:String{
 final class CoreDataModel: StorageProtocol {
     fileprivate  var itemsPrivate: PublishSubject<SavedProductItem?>
     static let coreDataInstatnce = CoreDataModel()
-    fileprivate let managedObjectContext:NSManagedObjectContext
-    fileprivate let entity:String = "ProductsCoreData"
+    let managedObjectContext:NSManagedObjectContext
+    let entity:String = "ProductsCoreData"
     private  init(){
         managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)!.persistentContainer.viewContext
         itemsPrivate = PublishSubject()
@@ -100,9 +100,9 @@ extension CoreDataModel: StorageInputs {
           }
         return (updateitem , true)
     }
-    func delete(updateitem:SavedProductItem) -> Bool{
+    func delete(itemID:Int) -> Bool{
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: self.entity)
-        fetchRequest.predicate = NSPredicate(format: "(\(productCoredataAttr.id.rawValue) = %@)", updateitem.productID as CVarArg )
+        fetchRequest.predicate = NSPredicate(format: "(\(productCoredataAttr.id.rawValue) = %@)", itemID as CVarArg )
         do {
             let fetchedItems = try self.managedObjectContext.fetch(fetchRequest)
             for object in fetchedItems {
@@ -114,26 +114,52 @@ extension CoreDataModel: StorageInputs {
               return false
           }
     }
-    func isProductFavourite (id :Int) -> Bool {
-            var results: [NSManagedObject] = []
-            
-            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: self.entity)
-        fetchRequest.predicate =  NSPredicate(format: "\(id) = %@ AND (\(productCoredataAttr.state.rawValue)  = %@ OR \(productCoredataAttr.state.rawValue) = %@)", argumentArray: [id as CVarArg, productStates.favourite.rawValue , productStates.both.rawValue])
-        
-            
-            do {
-                results = try managedObjectContext.fetch(fetchRequest)
-            }
-            catch {
-                print("error executing fetch request: \(error)")
-            }
-        print(id)
-        print(results.count)
-            return results.count > 0
-        }
+    
 }
 extension CoreDataModel{
-    
+    func isBothProduct(id :Int) -> Bool{
+        var results: [NSManagedObject] = []
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: self.entity)
+    fetchRequest.predicate =  NSPredicate(format: "\(productCoredataAttr.id.rawValue) = %@ AND (\(productCoredataAttr.state.rawValue)  = %@ )", argumentArray: [id as CVarArg, productStates.both.rawValue])
+        do {
+            results = try managedObjectContext.fetch(fetchRequest)
+        }
+        catch {
+            print("error executing fetch request: \(error)")
+        }
+        return results.count > 0
+    }
+    func isProductExist(id :Int)->Bool{
+        var results: [NSManagedObject] = []
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: self.entity)
+        fetchRequest.predicate =  NSPredicate(format: "\(productCoredataAttr.id.rawValue) = %@", argumentArray: [id as CVarArg])
+        do {
+            results = try managedObjectContext.fetch(fetchRequest)
+        }
+        catch {
+            print("error executing fetch request: \(error)")
+        }
+        return results.count > 0
+    }
+    func getItemByID(productID:Int)->SavedProductItem{
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entity)
+        fetchRequest.predicate =  NSPredicate(format: "\(productCoredataAttr.id.rawValue) = %@", argumentArray: [productID])
+        
+        do {
+            let fetchedItems = try managedObjectContext.fetch(fetchRequest)[0]
+            let itemMO = SavedProductItem(productID: fetchedItems.value(forKey: productCoredataAttr.id.rawValue) as! Decimal,
+                                          productTitle: fetchedItems.value(forKey: productCoredataAttr.title.rawValue) as! String,
+                                          productImage: fetchedItems.value(forKey: productCoredataAttr.image.rawValue) as! String,
+                                          productPrice: fetchedItems.value(forKey: productCoredataAttr.price.rawValue) as! Double,
+                                          productQTY: fetchedItems.value(forKey: productCoredataAttr.quantity.rawValue) as! Int,
+                                          producrState: fetchedItems.value(forKey: productCoredataAttr.state.rawValue) as! Int)
+            return itemMO
+            }
+        catch let error as NSError {
+            print("Could not fetch. \(error)")
+              return(SavedProductItem())
+          }
+    }
 }
 extension CoreDataModel: StorageOutputs {
     var items: Observable<SavedProductItem?> {
