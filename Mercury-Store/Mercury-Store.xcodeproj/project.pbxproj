@@ -68,6 +68,8 @@
 		4DAF2A27284D69C0001625FF /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAF2A26284D69C0001625FF /* UIButton.swift */; };
 		4DBDBC2C2840316E00714391 /* CategoryApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDBC2B2840316E00714391 /* CategoryApi.swift */; };
 		4DBDBC2E28405E4300714391 /* CategoriesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDBC2D28405E4300714391 /* CategoriesClient.swift */; };
+		4DCA17B0284EF2CA00F0CF3A /* FavouriteCoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA17AF284EF2CA00F0CF3A /* FavouriteCoreDataModel.swift */; };
+		4DCA17B2284EF2E000F0CF3A /* CartCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA17B1284EF2E000F0CF3A /* CartCoreData.swift */; };
 		70E327F9F08636314A8DD26A /* Pods_Mercury_Store.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C880061057CCC78DAAE9EE6 /* Pods_Mercury_Store.framework */; };
 		A4D6FC575525A7F2691B99B3 /* Pods_Mercury_Store_Mercury_StoreUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 743FC4C89A6185F7C482B1C0 /* Pods_Mercury_Store_Mercury_StoreUITests.framework */; };
 		C40BD720283EE63F0081E15B /* CategoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40BD707283E69E60081E15B /* CategoryCoordinator.swift */; };
@@ -245,6 +247,8 @@
 		4DAF2A26284D69C0001625FF /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		4DBDBC2B2840316E00714391 /* CategoryApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryApi.swift; sourceTree = "<group>"; };
 		4DBDBC2D28405E4300714391 /* CategoriesClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesClient.swift; sourceTree = "<group>"; };
+		4DCA17AF284EF2CA00F0CF3A /* FavouriteCoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCoreDataModel.swift; sourceTree = "<group>"; };
+		4DCA17B1284EF2E000F0CF3A /* CartCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCoreData.swift; sourceTree = "<group>"; };
 		5B035032FD47AF57FEEEC3EA /* Pods-Mercury-StoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-StoreTests.debug.xcconfig"; path = "Target Support Files/Pods-Mercury-StoreTests/Pods-Mercury-StoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		65483F0BCEDE1CF28D6B5977 /* Pods_Mercury_StoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mercury_StoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		743FC4C89A6185F7C482B1C0 /* Pods_Mercury_Store_Mercury_StoreUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mercury_Store_Mercury_StoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -554,6 +558,8 @@
 				4D911855284AB91600F07638 /* ManagedObjectTypeProtocol.swift */,
 				4D911859284ABDD700F07638 /* StorageProtocol.swift */,
 				4D911857284ABBCB00F07638 /* CoreDataModel.swift */,
+				4DCA17AF284EF2CA00F0CF3A /* FavouriteCoreDataModel.swift */,
+				4DCA17B1284EF2E000F0CF3A /* CartCoreData.swift */,
 				4D911852284AACA000F07638 /* Models */,
 			);
 			path = CoreData;
@@ -1452,6 +1458,7 @@
 				C4C0609A28487DDA0063CE85 /* HomeTabBarCoordinator.swift in Sources */,
 				C4BA734D2839FC5C00A5F3AB /* BrandsViewModel.swift in Sources */,
 				C4C06082284733FB0063CE85 /* CartRow.swift in Sources */,
+				4DCA17B0284EF2CA00F0CF3A /* FavouriteCoreDataModel.swift in Sources */,
 				C4CFBA48283B9F6C009C2840 /* JSONDecoder+AlmofireResponse.swift in Sources */,
 				026C7FDA284BD58100A562AE /* SearchApi.swift in Sources */,
 				C49A1D3D283349D30081F874 /* TableConfigurator.swift in Sources */,
@@ -1485,6 +1492,7 @@
 				C4C08B7B2832076B00364704 /* HomeModel.swift in Sources */,
 				4D911856284AB91600F07638 /* ManagedObjectTypeProtocol.swift in Sources */,
 				4D8E3862284958AD00B22D98 /* RegisterViewController.swift in Sources */,
+				4DCA17B2284EF2E000F0CF3A /* CartCoreData.swift in Sources */,
 				C4CFBA3F283B98E4009C2840 /* ApplicationEnviroment.swift in Sources */,
 				C4CFBA71283C1914009C2840 /* BannerCollectionViewCell.swift in Sources */,
 				4D8E3868284958AD00B22D98 /* AddressViewController.swift in Sources */,

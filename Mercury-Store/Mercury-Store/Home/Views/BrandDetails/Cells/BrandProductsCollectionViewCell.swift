@@ -23,16 +23,9 @@ class BrandProductsCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak private var productForBrandPrice: UILabel!
     public var isFavouriteProduct:Bool? {
-        didSet{
-            favouriteButton.favouriteState(state: oldValue ?? false)
+        willSet(newValue){
+            favouriteButton.favouriteState(state: newValue ?? false)
         }
-    }
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-    }
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
     }
     var item: Product? {
         didSet {
@@ -52,6 +45,9 @@ class BrandProductsCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         setupView()
         
+    }
+    override func prepareForReuse() {
+        isFavouriteProduct = false
     }
 
 }

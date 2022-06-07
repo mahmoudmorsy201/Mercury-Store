@@ -27,8 +27,8 @@ enum productCoredataAttr:String{
 final class CoreDataModel: StorageProtocol {
     fileprivate  var itemsPrivate: PublishSubject<SavedProductItem?>
     static let coreDataInstatnce = CoreDataModel()
-    fileprivate let managedObjectContext:NSManagedObjectContext
-    fileprivate let entity:String = "ProductsCoreData"
+    let managedObjectContext:NSManagedObjectContext
+    let entity:String = "ProductsCoreData"
     private let countSubject = PublishSubject<String?>()
     var count: Observable<String?>?
     
@@ -44,7 +44,6 @@ extension CoreDataModel: StorageInputs {
     
     func getItems(productState:productStates ) -> ([SavedProductItem], Error?) {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entity)
-
         fetchRequest.predicate =  NSPredicate(format: "\(productCoredataAttr.state.rawValue) = %@ OR \(productCoredataAttr.state.rawValue)  = %@", argumentArray: [productState.rawValue, 2])
         var resultItems = [SavedProductItem]()
         do {
@@ -101,14 +100,15 @@ extension CoreDataModel: StorageInputs {
                 try self.managedObjectContext.save()
                 return (updateitem, true)
             }
-        } catch _ as NSError {
+        } catch let error as NSError {
+            print(error)
               return (SavedProductItem(), false)
           }
         return (updateitem , true)
     }
-    func delete(updateitem:SavedProductItem) -> Bool{
+    func delete(itemID:Int) -> Bool{
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: self.entity)
-        fetchRequest.predicate = NSPredicate(format: "(\(productCoredataAttr.id.rawValue) = %@)", updateitem.productID as CVarArg )
+        fetchRequest.predicate = NSPredicate(format: "\(productCoredataAttr.id.rawValue) = %@", NSNumber(value: itemID))
         do {
             let fetchedItems = try self.managedObjectContext.fetch(fetchRequest)
             for object in fetchedItems {
@@ -120,26 +120,52 @@ extension CoreDataModel: StorageInputs {
               return false
           }
     }
-    func isProductFavourite (id :Int) -> Bool {
-            var results: [NSManagedObject] = []
-            
-            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: self.entity)
-        fetchRequest.predicate =  NSPredicate(format: "\(id) = %@ AND (\(productCoredataAttr.state.rawValue)  = %@ OR \(productCoredataAttr.state.rawValue) = %@)", argumentArray: [id as CVarArg, productStates.favourite.rawValue , productStates.both.rawValue])
-        
-//            let predicate = NSPredicate(format: "(\(productCoredataAttr.id.rawValue) = %@)", id as CVarArg )
-            
-        //    fetchRequest.predicate = predicate
-            
-            do {
-                results = try managedObjectContext.fetch(fetchRequest)
-            }
-            catch {
-                print("error executing fetch request: \(error)")
-            }
-            return results.count > 0
-        }
+    
 }
 extension CoreDataModel{
+    func isBothProduct(id :Int) -> Bool{
+        var results: [NSManagedObject] = []
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: self.entity)
+    fetchRequest.predicate =  NSPredicate(format: "\(productCoredataAttr.id.rawValue) = %@ AND (\(productCoredataAttr.state.rawValue)  = %@ )", argumentArray: [id as CVarArg, productStates.both.rawValue])
+        do {
+            results = try managedObjectContext.fetch(fetchRequest)
+        }
+        catch {
+            print("error executing fetch request: \(error)")
+        }
+        return results.count > 0
+    }
+    func isProductExist(id :Int)->Bool{
+        var results: [NSManagedObject] = []
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: self.entity)
+        fetchRequest.predicate =  NSPredicate(format: "\(productCoredataAttr.id.rawValue) = %@", argumentArray: [id as CVarArg])
+        do {
+            results = try managedObjectContext.fetch(fetchRequest)
+        }
+        catch {
+            print("error executing fetch request: \(error)")
+        }
+        return results.count > 0
+    }
+    func getItemByID(productID:Int)->SavedProductItem{
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entity)
+        fetchRequest.predicate =  NSPredicate(format: "\(productCoredataAttr.id.rawValue) = %@", argumentArray: [productID])
+        
+        do {
+            let fetchedItems = try managedObjectContext.fetch(fetchRequest)[0]
+            let itemMO = SavedProductItem(productID: fetchedItems.value(forKey: productCoredataAttr.id.rawValue) as! Decimal,
+                                          productTitle: fetchedItems.value(forKey: productCoredataAttr.title.rawValue) as! String,
+                                          productImage: fetchedItems.value(forKey: productCoredataAttr.image.rawValue) as! String,
+                                          productPrice: fetchedItems.value(forKey: productCoredataAttr.price.rawValue) as! Double,
+                                          productQTY: fetchedItems.value(forKey: productCoredataAttr.quantity.rawValue) as! Int,
+                                          producrState: fetchedItems.value(forKey: productCoredataAttr.state.rawValue) as! Int)
+            return itemMO
+            }
+        catch let error as NSError {
+            print("Could not fetch. \(error)")
+              return(SavedProductItem())
+          }
+    }
     func observeProductCount() {
         let count = getItems(productState: productStates.cart).0.reduce(0) { result, row in
             result + row.productQTY
@@ -151,6 +177,7 @@ extension CoreDataModel{
         }
      
     }
+    
 }
 extension CoreDataModel: StorageOutputs {
     var items: Observable<SavedProductItem?> {

@@ -35,7 +35,9 @@ class CartCoreDataManager {
     }
     
     func deleteItem(with item: SavedProductItem) {
-        coreDataModel.delete(updateitem: item)
+        //mahmoud
+        //coreDataModel.delete(updateitem: item)
+        coreDataModel.deleteCartItem(productID: Int(truncating: NSDecimalNumber(decimal: item.productID)) )
     }
 }
 

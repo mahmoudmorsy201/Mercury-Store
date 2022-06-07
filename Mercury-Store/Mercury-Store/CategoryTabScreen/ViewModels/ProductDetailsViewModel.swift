@@ -35,11 +35,14 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
         productImagesSubject.onNext(product.images)
     }
     func saveToFavourite() {
-        coreDataShared.insert(item: SavedProductItem(productID: Decimal(product.id), productTitle: product.title, productImage: product.image.src , productPrice: Double(product.variants[0].price) ?? 0 , productQTY: 0 , producrState: productStates.favourite.rawValue))
+        coreDataShared.insertFavouriteProduct(product: SavedProductItem(productID: Decimal(product.id), productTitle: product.title, productImage: product.image.src , productPrice: Double(product.variants[0].price) ?? 0 , productQTY: 0 , producrState: productStates.favourite.rawValue))
     }
     func saveToCart() {
-        coreDataShared.insert(item: SavedProductItem(productID: Decimal(product.id), productTitle: product.title, productImage: product.image.src , productPrice: Double(product.variants[0].price) ?? 0 , productQTY: 1 , producrState: productStates.cart.rawValue))
+        coreDataShared.insertCartProduct(product: SavedProductItem(productID: Decimal(product.id), productTitle: product.title, productImage: product.image.src , productPrice: Double(product.variants[0].price) ?? 0 , productQTY: 1 , producrState: productStates.cart.rawValue))
         coreDataShared.observeProductCount()
+    }
+    func isProductFavourite(id:Int) -> Bool{
+        return CoreDataModel.coreDataInstatnce.isProductFavourite(id: id)
     }
 }
 
