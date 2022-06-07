@@ -83,6 +83,9 @@
 		C4102941284AAF29007045F8 /* BrandProductsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410293D284AAF29007045F8 /* BrandProductsCollectionViewCell.swift */; };
 		C4102943284AAF52007045F8 /* BrandDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4102942284AAF52007045F8 /* BrandDetailsViewModel.swift */; };
 		C411D7B72838A1B1000E9ACF /* HelperRxDataSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C411D7B62838A1B1000E9ACF /* HelperRxDataSources.swift */; };
+		C443E68E284F889400DDC1E7 /* SearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C443E68D284F889400DDC1E7 /* SearchState.swift */; };
+		C443E690284F889F00DDC1E7 /* SearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C443E68F284F889F00DDC1E7 /* SearchDataSource.swift */; };
+		C443E692284F8D0F00DDC1E7 /* SearchRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C443E691284F8D0F00DDC1E7 /* SearchRow.swift */; };
 		C4951232283EEB6800E313EB /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4951230283EEB6800E313EB /* CategoryViewController.swift */; };
 		C4951233283EEB6800E313EB /* CategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4951231283EEB6800E313EB /* CategoryViewController.xib */; };
 		C495123A283EEC9C00E313EB /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4951238283EEC9C00E313EB /* CategoryItem.swift */; };
@@ -261,6 +264,9 @@
 		C410293D284AAF29007045F8 /* BrandProductsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandProductsCollectionViewCell.swift; sourceTree = "<group>"; };
 		C4102942284AAF52007045F8 /* BrandDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandDetailsViewModel.swift; sourceTree = "<group>"; };
 		C411D7B62838A1B1000E9ACF /* HelperRxDataSources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperRxDataSources.swift; sourceTree = "<group>"; };
+		C443E68D284F889400DDC1E7 /* SearchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchState.swift; sourceTree = "<group>"; };
+		C443E68F284F889F00DDC1E7 /* SearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataSource.swift; sourceTree = "<group>"; };
+		C443E691284F8D0F00DDC1E7 /* SearchRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRow.swift; sourceTree = "<group>"; };
 		C4951230283EEB6800E313EB /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		C4951231283EEB6800E313EB /* CategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryViewController.xib; sourceTree = "<group>"; };
 		C4951238283EEC9C00E313EB /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
@@ -685,6 +691,16 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		C443E68C284F887700DDC1E7 /* SearchState */ = {
+			isa = PBXGroup;
+			children = (
+				C443E68D284F889400DDC1E7 /* SearchState.swift */,
+				C443E68F284F889F00DDC1E7 /* SearchDataSource.swift */,
+				C443E691284F8D0F00DDC1E7 /* SearchRow.swift */,
+			);
+			path = SearchState;
+			sourceTree = "<group>";
+		};
 		C49A1D3728333AC70081F874 /* CategoriesCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -884,6 +900,7 @@
 		C4C08BB728321D1900364704 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				C443E68C284F887700DDC1E7 /* SearchState */,
 				C4C08BBA28321D4700364704 /* Views */,
 			);
 			path = Search;
@@ -1437,6 +1454,7 @@
 				C4CDB9162830E31D0000519A /* Mercury_Store.xcdatamodeld in Sources */,
 				4D91185E284BCB4500F07638 /* WishListViewModel.swift in Sources */,
 				C4C08BAC28321A5700364704 /* ProfileModel.swift in Sources */,
+				C443E690284F889F00DDC1E7 /* SearchDataSource.swift in Sources */,
 				C41029312849C412007045F8 /* ProductDetailsNavigationFlow.swift in Sources */,
 				C410292D2849C354007045F8 /* FilteredProductsNavigationFlow.swift in Sources */,
 				4D8E3872284958AD00B22D98 /* LoginViewController.swift in Sources */,
@@ -1448,6 +1466,7 @@
 				C40BD721283EE6410081E15B /* CategoryModels.swift in Sources */,
 				C4C0609A28487DDA0063CE85 /* HomeTabBarCoordinator.swift in Sources */,
 				C4BA734D2839FC5C00A5F3AB /* BrandsViewModel.swift in Sources */,
+				C443E68E284F889400DDC1E7 /* SearchState.swift in Sources */,
 				C4C06082284733FB0063CE85 /* CartRow.swift in Sources */,
 				C4CFBA48283B9F6C009C2840 /* JSONDecoder+AlmofireResponse.swift in Sources */,
 				026C7FDA284BD58100A562AE /* SearchApi.swift in Sources */,
@@ -1499,6 +1518,7 @@
 				C4CDB90E2830E31D0000519A /* SceneDelegate.swift in Sources */,
 				4D0A27C828440CDD002B17DB /* ProductDetailsViewController.swift in Sources */,
 				C4C08BA0283216EC00364704 /* ShoppingCartViewController.swift in Sources */,
+				C443E692284F8D0F00DDC1E7 /* SearchRow.swift in Sources */,
 				4D8E3826284956B400B22D98 /* CartCoreDataManager.swift in Sources */,
 				4D8E3874284985E900B22D98 /* FilteredProductsViewModel.swift in Sources */,
 				4DBDBC2E28405E4300714391 /* CategoriesClient.swift in Sources */,

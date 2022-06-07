@@ -8,9 +8,10 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import RxDataSources
 import ProgressHUD
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var minimumPrice: UILabel!
     @IBOutlet weak var maximumPrice: UILabel!
@@ -25,7 +26,10 @@ class SearchViewController: UIViewController {
             productListCollectionView.register(UINib(nibName: BrandProductsCollectionViewCell.reuseIdentifier(), bundle: nil), forCellWithReuseIdentifier: BrandProductsCollectionViewCell.reuseIdentifier())
         }
     }
-    var viewModel: ProductSearchViewModel!
+
+
+    
+    var viewModel: ProductSearchViewModel?
     private var bag = DisposeBag()
     var filterIsPressed = true
     var errorView: UIView? {
@@ -50,7 +54,26 @@ class SearchViewController: UIViewController {
         bindSlider()
         bindPrice()
         bindActivity()
-        viewModel.fetchData()
+        viewModel?.fetchData()
+        bind()
+    }
+    
+    func bind() {
+        guard let viewModel = viewModel else {
+            fatalError("Couldn't unwrap viewModel")
+        }
+        
+        let inputData = viewModel.valueChanged
+        productListCollectionView.delegate = nil
+        productListCollectionView.dataSource = nil
+        productListCollectionView.rx.setDelegate(self).disposed(by: bag)
+        
+        let output =
+        viewModel.bind(SearchInput(viewLoaded: inputData, filterTapped: rx.filter, sortTapped: rx.sort))
+        
+        output.filteredItems.bind(to: productListCollectionView.rx.items(dataSource: dataSource()))
+            .disposed(by: bag)
+        
     }
     private func hideSlider() {
         maximumPrice.isHidden = true
@@ -60,19 +83,19 @@ class SearchViewController: UIViewController {
     
     func bindToSearchValue() {
         productSearchbar.rx.text
-            .bind(to: viewModel.searchValueObserver)
+            .bind(to: viewModel!.searchByName)
             .disposed(by: bag)
     }
     
     private func bindSlider(){
         sliderPrice.rx.value
-            .map { Int($0)}
-            .bind(to: viewModel.value)
+            .map{Int($0)}
+            .bind(to: viewModel!.value)
             .disposed(by: bag)
     }
     private func bindPrice(){
         // If you want to listen and bind to a label
-        viewModel.value.asDriver()
+        viewModel?.value.asDriver()
             .map { "EGP \($0) " }
             .drive(maximumPrice.rx.text)
             .disposed(by: bag)
@@ -84,19 +107,19 @@ class SearchViewController: UIViewController {
         }.disposed(by: bag)
     }
     private func bindCollectionView() {
-        viewModel.filteredProductList.bind(to: productListCollectionView.rx.items(cellIdentifier: BrandProductsCollectionViewCell.reuseIdentifier(), cellType: BrandProductsCollectionViewCell.self)) { index, item , cell in
-            cell.item = item
-        }.disposed(by: bag)
+//        viewModel.filteredProductList.bind(to: productListCollectionView.rx.items(cellIdentifier: BrandProductsCollectionViewCell.reuseIdentifier(), cellType: BrandProductsCollectionViewCell.self)) { index, item , cell in
+//            cell.item = item
+//        }.disposed(by: bag)
     }
     private func bindActivity() {
-        viewModel.isLoadingData.drive(ProgressHUD.rx.isAnimating)
-        .disposed(by: bag)
+//        viewModel.isLoadingData.drive(ProgressHUD.rx.isAnimating)
+//        .disposed(by: bag)
     }
     private func bindSelectedItem() {
-        productListCollectionView.rx.modelSelected(Product.self).subscribe{ [weak self] item in
-            
-            self?.viewModel.goToProductDetailFromSearch(with: item)
-        }.disposed(by: bag)
+//        productListCollectionView.rx.modelSelected(Product.self).subscribe{ [weak self] item in
+//
+//            self?.viewModel.goToProductDetailFromSearch(with: item)
+//        }.disposed(by: bag)
         
         
     }
@@ -113,6 +136,36 @@ class SearchViewController: UIViewController {
             priceSlider.isHidden = true
         }
     }
+}
+
+extension SearchViewController {
+    
+    private func dataSource() -> RxCollectionViewSectionedReloadDataSource<SearchSection> {
+        .init {datasource, collectionView, indexPath, row in
+            let cell: BrandProductsCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: BrandProductsCollectionViewCell.reuseIdentifier(), for: indexPath) as! BrandProductsCollectionViewCell
+        
+            cell.item = row
+           
+            return cell
+        }
+    }
+}
+
+
+extension Reactive where Base: SearchViewController {
+    var filter: Observable<Void> {
+        base.filterBtn.rx.tap
+            .map{_ in }
+    }
+    
+    var sort: Observable<Void> {
+        base.sortBtn.rx.tap
+            .map{ _ in }
+    }
+    
+    
+    
+    
 }
 
 

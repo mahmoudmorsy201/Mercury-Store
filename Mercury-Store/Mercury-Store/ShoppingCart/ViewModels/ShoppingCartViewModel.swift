@@ -86,6 +86,3 @@ final class CartViewModel {
         { $0[safe: 0]?.rows.count == 0 ? (visible: false, animated: true) : (visible: true, animated: true) }
     }
 }
-
-
-
