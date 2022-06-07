@@ -8,6 +8,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import ProgressHUD
 
 class SearchViewController: UIViewController {
     
@@ -42,14 +43,14 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideSlider()
-        bindViews()
+        bindToSearchValue()
         bindCollectionView()
         bindSelectedItem()
         bindFilterBtn()
         bindSlider()
         bindPrice()
-        
-
+        bindActivity()
+        viewModel.fetchData()
     }
     private func hideSlider() {
         maximumPrice.isHidden = true
@@ -57,46 +58,46 @@ class SearchViewController: UIViewController {
         priceSlider.isHidden = true
     }
     
-    private func bindViews() {
-        productSearchbar
-            .rx
-            .text
-            .orEmpty
-            .bind(to: self.viewModel.searchObserver)
+    func bindToSearchValue() {
+        productSearchbar.rx.text
+            .bind(to: viewModel.searchValueObserver)
             .disposed(by: bag)
-        viewModel.fetchData()
     }
     
     private func bindSlider(){
         sliderPrice.rx.value
             .map { Int($0)}
             .bind(to: viewModel.value)
-                  .disposed(by: bag)
+            .disposed(by: bag)
     }
     private func bindPrice(){
         // If you want to listen and bind to a label
-               viewModel.value.asDriver()
-                   .map { "EGP \($0) " }
-                   .drive(maximumPrice.rx.text)
-                   .disposed(by: bag)
+        viewModel.value.asDriver()
+            .map { "EGP \($0) " }
+            .drive(maximumPrice.rx.text)
+            .disposed(by: bag)
     }
     private func bindFilterBtn(){
         filterBtn.rx.tap.bind {
             self.filterBtnIsPressed()
+            
         }.disposed(by: bag)
     }
     private func bindCollectionView() {
-        viewModel.content.drive(productListCollectionView.rx.items(cellIdentifier: BrandProductsCollectionViewCell.reuseIdentifier(), cellType: BrandProductsCollectionViewCell.self)) { index, item , cell in
+        viewModel.filteredProductList.bind(to: productListCollectionView.rx.items(cellIdentifier: BrandProductsCollectionViewCell.reuseIdentifier(), cellType: BrandProductsCollectionViewCell.self)) { index, item , cell in
             cell.item = item
         }.disposed(by: bag)
     }
-    
+    private func bindActivity() {
+        viewModel.isLoadingData.drive(ProgressHUD.rx.isAnimating)
+        .disposed(by: bag)
+    }
     private func bindSelectedItem() {
         productListCollectionView.rx.modelSelected(Product.self).subscribe{ [weak self] item in
             
             self?.viewModel.goToProductDetailFromSearch(with: item)
         }.disposed(by: bag)
-
+        
         
     }
     private func filterBtnIsPressed(){
