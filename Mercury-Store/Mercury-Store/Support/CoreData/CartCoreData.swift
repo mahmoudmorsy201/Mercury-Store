@@ -13,6 +13,7 @@ extension CoreDataModel{
         if(isBothProduct(id: productID)){
             var Product = getItemByID(productID: productID)
             Product.producrState = productStates.favourite.rawValue
+            Product.productQTY = 0
             return (update(updateitem: Product)).1
         }else{
             return delete(itemID: productID)
@@ -40,9 +41,9 @@ extension CoreDataModel{
         else if(!isProductExist(id: Int(truncating: NSDecimalNumber(decimal: product.productID)))){
             return insert(item: product).1
         }else{
-            var tempProduct = product
-            tempProduct.productQTY = product.productQTY+1
-            return update(updateitem: tempProduct).1
+            var product = getItemByID(productID: Int(truncating: NSDecimalNumber(decimal: product.productID)))
+            product.productQTY+=1
+            return update(updateitem: product).1
         }
     }
 }

@@ -100,7 +100,8 @@ extension CoreDataModel: StorageInputs {
                 try self.managedObjectContext.save()
                 return (updateitem, true)
             }
-        } catch _ as NSError {
+        } catch let error as NSError {
+            print(error)
               return (SavedProductItem(), false)
           }
         return (updateitem , true)
