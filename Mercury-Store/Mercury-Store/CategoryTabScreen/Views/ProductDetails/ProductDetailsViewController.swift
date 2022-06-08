@@ -45,7 +45,7 @@ class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
     }
     private func updateUi(){
         productTitleLabel.text = viewModel?.product.title
-        productPriceLabel.text = (viewModel?.product.variants[0].price ?? "") + " EGP"
+        productPriceLabel.text = (viewModel?.product.variants[0].price ?? "") + " USD"
         productDescription.text = viewModel?.product.bodyHTML
         self.configure()
     }
