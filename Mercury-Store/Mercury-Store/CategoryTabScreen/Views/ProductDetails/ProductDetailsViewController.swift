@@ -11,7 +11,7 @@ import RxCocoa
 
 class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
     
-    @IBOutlet weak var productDescription: UITextView!
+    @IBOutlet weak var productDescription: UILabel!
     @IBOutlet weak var productTitleLabel: UILabel!
     @IBOutlet weak var productPriceLabel: UILabel!
     @IBOutlet weak var imageControl: UIPageControl!
