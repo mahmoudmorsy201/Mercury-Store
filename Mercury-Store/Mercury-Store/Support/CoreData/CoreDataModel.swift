@@ -133,7 +133,7 @@ extension CoreDataModel{
         catch {
             print("error executing fetch request: \(error)")
         }
-        return results.count > 0
+        return !results.isEmpty
     }
     func isProductExist(id :Int)->Bool{
         var results: [NSManagedObject] = []
@@ -145,7 +145,7 @@ extension CoreDataModel{
         catch {
             print("error executing fetch request: \(error)")
         }
-        return results.count > 0
+        return !results.isEmpty
     }
     func getItemByID(productID:Int)->SavedProductItem{
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entity)
