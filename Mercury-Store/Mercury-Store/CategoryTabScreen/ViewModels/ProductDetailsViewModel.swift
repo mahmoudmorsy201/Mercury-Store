@@ -13,7 +13,8 @@ protocol ProductsDetailViewModelType: AnyObject{
     var product : Product{get}
     var bannerObservable: Driver<[ProductImage]> {get}
     func sendImagesToCollection()
-    func saveToFavourite()
+    func toggleFavourite()->Bool
+    func isProductFavourite() -> Bool
     func saveToCart()
 }
 
@@ -34,15 +35,22 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
     func sendImagesToCollection() {
         productImagesSubject.onNext(product.images)
     }
-    func saveToFavourite() {
-        coreDataShared.insertFavouriteProduct(product: SavedProductItem(productID: Decimal(product.id), productTitle: product.title, productImage: product.image.src , productPrice: Double(product.variants[0].price) ?? 0 , productQTY: 0 , producrState: productStates.favourite.rawValue))
+    
+    func toggleFavourite()->Bool {
+        return coreDataShared.toggleFavourite(product: SavedProductItem(
+            productID: Decimal(product.id),
+            productTitle: product.title,
+            productImage: product.image.src ,
+            productPrice: Double(product.variants[0].price) ?? 0 ,
+            productQTY: 0 , producrState: productStates.favourite.rawValue))
+        
     }
     func saveToCart() {
         coreDataShared.insertCartProduct(product: SavedProductItem(productID: Decimal(product.id), productTitle: product.title, productImage: product.image.src , productPrice: Double(product.variants[0].price) ?? 0 , productQTY: 1 , producrState: productStates.cart.rawValue))
         coreDataShared.observeProductCount()
     }
-    func isProductFavourite(id:Int) -> Bool{
-        return CoreDataModel.coreDataInstatnce.isProductFavourite(id: id)
+    func isProductFavourite() -> Bool{
+        return CoreDataModel.coreDataInstatnce.isProductFavourite(id: product.id)
     }
 }
 
