@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 extension Encodable {
   func asDictionary() throws -> [String: Any] {
     let data = try JSONEncoder().encode(self)
@@ -22,8 +23,8 @@ struct Customers :Codable{
 
 // MARK: - Customer
 struct Customer :Codable {
-    let id: Int?
-    let email: String?
+    let id: Int
+    let email: String
     let createdAt, updatedAt: Date?
     let firstName, lastName , tags: String?
     let ordersCount: Int?
@@ -37,8 +38,8 @@ struct Customer :Codable {
 }
 
 struct Address :Codable {
-    let id, customerID: Int?
-    let firstName, lastName: String?
+    let id, customerID: Int
+    let firstName, lastName: String
     let address1: String?
     let city, province, country, zip: String?
     let phone, name: String?

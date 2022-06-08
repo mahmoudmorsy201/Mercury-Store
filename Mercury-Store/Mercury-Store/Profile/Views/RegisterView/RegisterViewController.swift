@@ -12,7 +12,7 @@ import RxSwift
 
 class RegisterViewController: UIViewController {
     
-
+    
     @IBOutlet weak var firstNameTextField: AkiraTextField!
     @IBOutlet weak var lastNameTextField: AkiraTextField!
     @IBOutlet weak var emailTextField: AkiraTextField!
@@ -21,35 +21,57 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var signUpBtn: UIButton!
     
-    private let registerViewModel = RegisterViewModel()
+    private var registerViewModel: RegisterViewModelType!
     private let disposeBag = DisposeBag()
+    
+    init(_ registerViewModel: RegisterViewModelType) {
+        super.init(nibName: nil, bundle: nil)
+        self.registerViewModel = registerViewModel
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        firstNameTextField.becomeFirstResponder()
-        firstNameTextField.becomeFirstResponder()
-               // cosmetics
-               signUpBtn.setTitleColor(.gray, for: .disabled)
-                       // rx
-                       setupBindings()
-                       observeViewModelOnValid()
-           }
-          
-           func setupBindings() {
-                  // 3
-                  // bind textfields to viewModel for validation and process
-               firstNameTextField.rx.text.bind(to:  registerViewModel.firstNameSubject).disposed(by: disposeBag)
-               lastNameTextField.rx.text.bind(to:  registerViewModel.secondNameSubject).disposed(by: disposeBag)
-               emailTextField.rx.text.bind(to:  registerViewModel.emailSubject).disposed(by: disposeBag)
-               passwordTextField.rx.text.bind(to:  registerViewModel.passwordSubject).disposed(by: disposeBag)
-               confirmPasswordTextField.rx.text.bind(to:  registerViewModel.confirmPasswordSubject).disposed(by: disposeBag)
-                  
-              }
-           func observeViewModelOnValid(){
-               // 4
-               // check if form has fulfil conditions to enable submit button
-            registerViewModel.isValidForm.bind(to:  signUpBtn.rx.isEnabled).disposed(by: disposeBag)
-           }
-          
-           
-       }
+        
+    
+        // cosmetics
+        signUpBtn.setTitleColor(.gray, for: .disabled)
+        // rx
+        setupBindings()
+        observeViewModelOnValid()
+    }
+    
+    func setupBindings() {
+        // 3
+        // bind textfields to viewModel for validation and process
+        firstNameTextField.rx.text
+            .bind(to: registerViewModel.firstNameObservable)
+            .disposed(by: disposeBag)
+        
+        
+        lastNameTextField.rx.text
+            .bind(to: registerViewModel.secondNameObservable)
+            .disposed(by: disposeBag)
+        
+        emailTextField.rx.text
+            .bind(to: registerViewModel.emailObservable)
+            .disposed(by: disposeBag)
+        
+        passwordTextField.rx.text
+            .bind(to: registerViewModel.passwordObservable)
+            .disposed(by: disposeBag)
+        
+        confirmPasswordTextField.rx.text
+            .bind(to: registerViewModel.confirmPasswordObservable)
+            .disposed(by: disposeBag)
+        
+    }
+    
+    func observeViewModelOnValid() {
+        registerViewModel.isValidForm.bind(to:  signUpBtn.rx.isEnabled)
+            .disposed(by: disposeBag)
+    }
+}
