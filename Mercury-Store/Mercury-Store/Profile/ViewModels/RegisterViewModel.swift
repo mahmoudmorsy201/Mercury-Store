@@ -15,11 +15,14 @@ protocol RegisterViewModelType {
     var passwordObservable: AnyObserver<String?> { get }
     var confirmPasswordObservable: AnyObserver<String?> { get }
     var isValidForm: Observable<Bool> { get }
-    func postCustomer(firstName: String, lastName: String, email: String , password: String)
+    var emailCheckErrorMessage: Observable<String?> { get }
+    var showErrorLabelObserver: Observable<Bool> { get }
+    func checkCustomerExists(firstName: String, lastName: String, email: String, password: String)
+    func goToLoginScreen()
 }
 
 class RegisterViewModel: RegisterViewModelType {
-
+    private weak var guestNavigationFlow: GuestNavigationFlow?
     private let firstNameSubject = BehaviorSubject<String?>(value: "")
     private let secondNameSubject = BehaviorSubject<String?>(value: "")
     private let emailSubject = BehaviorSubject<String?>(value: "")
@@ -29,6 +32,9 @@ class RegisterViewModel: RegisterViewModelType {
     private let minPasswordCharacters = 6
     private let customerProvider: CustomerProvider
     private let customerRequestPost:PublishSubject<RegisterResponse> = PublishSubject<RegisterResponse>()
+    private let customerRequestPostError = PublishSubject<Error>()
+    private let showErrorMessage = PublishSubject<String?>()
+    private let showErrorLabelSubject = BehaviorSubject<Bool>(value: true)
     
     var firstNameObservable: AnyObserver<String?> { firstNameSubject.asObserver() }
     
@@ -39,6 +45,10 @@ class RegisterViewModel: RegisterViewModelType {
     var passwordObservable: AnyObserver<String?> { passwordSubject.asObserver() }
     
     var confirmPasswordObservable: AnyObserver<String?> { confirmPasswordSubject.asObserver() }
+    
+    var emailCheckErrorMessage: Observable<String?> { showErrorMessage.asObservable() }
+    
+    var showErrorLabelObserver: Observable<Bool> { showErrorLabelSubject.asObservable() }
 
     var isValidForm: Observable<Bool> {
         return Observable.combineLatest( firstNameSubject, secondNameSubject,emailSubject, passwordSubject,confirmPasswordSubject) { firstName, secondName, email, password, confirmPassword in
@@ -49,20 +59,44 @@ class RegisterViewModel: RegisterViewModelType {
         }
     }
     
-    init(_ customerProvider: CustomerProvider = CustomerClient()) {
+    init(_ customerProvider: CustomerProvider = CustomerClient(), flow: GuestNavigationFlow) {
         self.customerProvider = customerProvider
+        self.guestNavigationFlow = flow
     }
     
-    func postCustomer(firstName: String, lastName: String, email: String, password: String) {
+    private func postCustomer(firstName: String, lastName: String, email: String, password: String) {
         
         customerProvider.postCustomer(
             Customer(customer: CustomerClass(firstName: firstName, lastName: lastName, email: email, password: password
         )))
-        .subscribe(onNext: {[weak self] result in
+        .subscribe(onNext: { [weak self] result in
             guard let `self` = self else {fatalError()}
             self.customerRequestPost.onNext(result)
-            print(result)
-        }).disposed(by: disposeBag)
+        }, onError: { [weak self] error in
+            guard let `self` = self else {fatalError()}
+            self.customerRequestPostError.onNext(error)
+        })
+        .disposed(by: disposeBag)
     }
     
+    func checkCustomerExists(firstName: String, lastName: String, email: String, password: String) {
+        customerProvider.checkEmailExists(email)
+            .subscribe(onNext: { [weak self] result in
+                guard let `self` = self else {fatalError()}
+                if(result.customers.isEmpty) {
+                    self.postCustomer(firstName: firstName, lastName: lastName, email: email, password: password)
+                } else {
+                    self.showErrorLabelSubject.onNext(false)
+                    self.showErrorMessage.onNext(CustomerErrors.emailExists.rawValue)
+                }
+                
+            }, onError: { [weak self] error in
+                guard let `self` = self else {fatalError()}
+                self.customerRequestPostError.onNext(error)
+            }).disposed(by: disposeBag)
+    }
+    
+    func goToLoginScreen() {
+        guestNavigationFlow?.goToLoginScreen()
+    }
 }
