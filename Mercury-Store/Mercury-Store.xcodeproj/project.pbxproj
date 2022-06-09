@@ -86,6 +86,8 @@
 		C4102941284AAF29007045F8 /* BrandProductsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410293D284AAF29007045F8 /* BrandProductsCollectionViewCell.swift */; };
 		C4102943284AAF52007045F8 /* BrandDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4102942284AAF52007045F8 /* BrandDetailsViewModel.swift */; };
 		C411D7B72838A1B1000E9ACF /* HelperRxDataSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C411D7B62838A1B1000E9ACF /* HelperRxDataSources.swift */; };
+		C443E68E284F889400DDC1E7 /* SearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C443E68D284F889400DDC1E7 /* SearchState.swift */; };
+		C443E690284F889F00DDC1E7 /* SearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C443E68F284F889F00DDC1E7 /* SearchDataSource.swift */; };
 		C4951232283EEB6800E313EB /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4951230283EEB6800E313EB /* CategoryViewController.swift */; };
 		C4951233283EEB6800E313EB /* CategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4951231283EEB6800E313EB /* CategoryViewController.xib */; };
 		C495123A283EEC9C00E313EB /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4951238283EEC9C00E313EB /* CategoryItem.swift */; };
@@ -133,7 +135,6 @@
 		C4C08BB628321A8400364704 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C08BB528321A8400364704 /* ProfileCoordinator.swift */; };
 		C4C08BBD28321D5A00364704 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C08BBB28321D5A00364704 /* SearchViewController.swift */; };
 		C4C08BBE28321D5A00364704 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4C08BBC28321D5A00364704 /* SearchViewController.xib */; };
-		C4C08BC028321D8F00364704 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C08BBF28321D8F00364704 /* SearchViewModel.swift */; };
 		C4CDB90C2830E31D0000519A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDB90B2830E31D0000519A /* AppDelegate.swift */; };
 		C4CDB90E2830E31D0000519A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDB90D2830E31D0000519A /* SceneDelegate.swift */; };
 		C4CDB9162830E31D0000519A /* Mercury_Store.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C4CDB9142830E31D0000519A /* Mercury_Store.xcdatamodeld */; };
@@ -268,6 +269,8 @@
 		C410293D284AAF29007045F8 /* BrandProductsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandProductsCollectionViewCell.swift; sourceTree = "<group>"; };
 		C4102942284AAF52007045F8 /* BrandDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandDetailsViewModel.swift; sourceTree = "<group>"; };
 		C411D7B62838A1B1000E9ACF /* HelperRxDataSources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperRxDataSources.swift; sourceTree = "<group>"; };
+		C443E68D284F889400DDC1E7 /* SearchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchState.swift; sourceTree = "<group>"; };
+		C443E68F284F889F00DDC1E7 /* SearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataSource.swift; sourceTree = "<group>"; };
 		C4951230283EEB6800E313EB /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		C4951231283EEB6800E313EB /* CategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryViewController.xib; sourceTree = "<group>"; };
 		C4951238283EEC9C00E313EB /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
@@ -318,7 +321,6 @@
 		C4C08BB528321A8400364704 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		C4C08BBB28321D5A00364704 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C4C08BBC28321D5A00364704 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
-		C4C08BBF28321D8F00364704 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		C4CDB9082830E31D0000519A /* Mercury-Store.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mercury-Store.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4CDB90B2830E31D0000519A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4CDB90D2830E31D0000519A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -695,6 +697,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		C443E68C284F887700DDC1E7 /* SearchState */ = {
+			isa = PBXGroup;
+			children = (
+				C443E68D284F889400DDC1E7 /* SearchState.swift */,
+				C443E68F284F889F00DDC1E7 /* SearchDataSource.swift */,
+			);
+			path = SearchState;
+			sourceTree = "<group>";
+		};
 		C49A1D3728333AC70081F874 /* CategoriesCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -894,6 +905,7 @@
 		C4C08BB728321D1900364704 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				C443E68C284F887700DDC1E7 /* SearchState */,
 				C4C08BBA28321D4700364704 /* Views */,
 			);
 			path = Search;
@@ -1027,7 +1039,6 @@
 		C4CDB94B2831F6890000519A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				C4C08BBF28321D8F00364704 /* SearchViewModel.swift */,
 				026C7FDD284BEF0C00A562AE /* ProductSearchViewModel.swift */,
 				C4102942284AAF52007045F8 /* BrandDetailsViewModel.swift */,
 				C4C08B7C2832077800364704 /* HomeViewModel.swift */,
@@ -1450,6 +1461,7 @@
 				C4CDB9162830E31D0000519A /* Mercury_Store.xcdatamodeld in Sources */,
 				4D91185E284BCB4500F07638 /* WishListViewModel.swift in Sources */,
 				C4C08BAC28321A5700364704 /* ProfileModel.swift in Sources */,
+				C443E690284F889F00DDC1E7 /* SearchDataSource.swift in Sources */,
 				C41029312849C412007045F8 /* ProductDetailsNavigationFlow.swift in Sources */,
 				C410292D2849C354007045F8 /* FilteredProductsNavigationFlow.swift in Sources */,
 				4D8E3872284958AD00B22D98 /* LoginViewController.swift in Sources */,
@@ -1461,6 +1473,7 @@
 				C40BD721283EE6410081E15B /* CategoryModels.swift in Sources */,
 				C4C0609A28487DDA0063CE85 /* HomeTabBarCoordinator.swift in Sources */,
 				C4BA734D2839FC5C00A5F3AB /* BrandsViewModel.swift in Sources */,
+				C443E68E284F889400DDC1E7 /* SearchState.swift in Sources */,
 				C4C06082284733FB0063CE85 /* CartRow.swift in Sources */,
 				4DCA17B0284EF2CA00F0CF3A /* FavouriteCoreDataModel.swift in Sources */,
 				C4CFBA48283B9F6C009C2840 /* JSONDecoder+AlmofireResponse.swift in Sources */,
@@ -1511,7 +1524,6 @@
 				4D17769E283FB27000B0E726 /* FilterViewController.swift in Sources */,
 				C4F469252844383600DB2EF0 /* ShoppingCartCellViewModel.swift in Sources */,
 				4D8E385B284958AD00B22D98 /* OrderDetailsCell.swift in Sources */,
-				C4C08BC028321D8F00364704 /* SearchViewModel.swift in Sources */,
 				C4CDB90E2830E31D0000519A /* SceneDelegate.swift in Sources */,
 				4D0A27C828440CDD002B17DB /* ProductDetailsViewController.swift in Sources */,
 				C4C08BA0283216EC00364704 /* ShoppingCartViewController.swift in Sources */,
