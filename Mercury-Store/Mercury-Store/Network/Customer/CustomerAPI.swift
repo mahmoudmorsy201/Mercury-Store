@@ -17,7 +17,11 @@ enum CustomerAPI: URLRequestBuilder {
 extension CustomerAPI {
     var path: String {
         switch self {
-        case .postCustomer, .editCustomer, .getCustomer:
+        case .postCustomer:
+            return Constants.Paths.Customers.customer
+        case .getCustomer(let id):
+            return "/customers/\(id).json"
+        case .editCustomer:
             return Constants.Paths.Customers.customer
             
             
@@ -33,7 +37,7 @@ extension CustomerAPI {
         switch self {
         case .postCustomer(let customer):
             return try! customer.asDictionary()
-        case .getCustomer(let int):
+        case .getCustomer:
             return [:]
         case .editCustomer:
             return [:]
