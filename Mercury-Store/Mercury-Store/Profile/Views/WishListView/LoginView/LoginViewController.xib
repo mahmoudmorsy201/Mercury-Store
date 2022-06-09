@@ -11,9 +11,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="Mercury_Store" customModuleProvider="target">
             <connections>
                 <outlet property="emailTextField" destination="T3z-FH-pKU" id="3Hv-Vr-do2"/>
+                <outlet property="errorMessageLabel" destination="dSJ-ri-29h" id="lbv-Js-anZ"/>
                 <outlet property="loginButton" destination="ePb-Bf-omj" id="WEr-wr-eiM"/>
                 <outlet property="passwordTextField" destination="2Yc-Q3-KUG" id="vsD-ab-wfi"/>
-                <outlet property="signupLabel" destination="ye9-Ub-Epu" id="n9E-Pb-PeO"/>
+                <outlet property="signupBtn" destination="0yA-MR-CGQ" id="HVt-gt-IXo"/>
                 <outlet property="view" destination="o1F-Ms-auf" id="QnO-hr-4Hm"/>
             </connections>
         </placeholder>
@@ -73,7 +74,7 @@
                     </userDefinedRuntimeAttributes>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ePb-Bf-omj">
-                    <rect key="frame" x="20" y="570" width="374" height="53.5"/>
+                    <rect key="frame" x="20" y="583" width="374" height="53.5"/>
                     <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                     <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -81,23 +82,29 @@
                     <state key="normal" title="Log In"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTn-Yo-yc5">
-                    <rect key="frame" x="47" y="633.5" width="170.5" height="19.5"/>
+                    <rect key="frame" x="47" y="648.5" width="170.5" height="31"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sign up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ye9-Ub-Epu">
-                    <rect key="frame" x="225" y="633" width="56" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSJ-ri-29h">
+                    <rect key="frame" x="20" y="559" width="374" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0yA-MR-CGQ">
+                    <rect key="frame" x="225.5" y="648.5" width="75" height="31"/>
+                    <color key="tintColor" red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Sign Up"/>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="5at-xi-UIz"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="ePb-Bf-omj" firstAttribute="trailing" secondItem="2Yc-Q3-KUG" secondAttribute="trailing" id="0FN-FC-awJ"/>
                 <constraint firstItem="T3z-FH-pKU" firstAttribute="height" secondItem="o1F-Ms-auf" secondAttribute="height" multiplier="0.075" id="18L-H7-aFY"/>
+                <constraint firstItem="dSJ-ri-29h" firstAttribute="top" secondItem="2Yc-Q3-KUG" secondAttribute="bottom" constant="24" id="2th-es-3xG"/>
                 <constraint firstItem="rCL-eL-Qf5" firstAttribute="leading" secondItem="5at-xi-UIz" secondAttribute="leading" constant="20" id="3Ao-Ks-qEe"/>
                 <constraint firstItem="ZQS-Pv-LQL" firstAttribute="centerX" secondItem="9Hg-V5-w2E" secondAttribute="centerX" id="3Th-bZ-M8H"/>
                 <constraint firstItem="ZQS-Pv-LQL" firstAttribute="width" secondItem="o1F-Ms-auf" secondAttribute="width" multiplier="0.5" id="4bi-Jt-c26"/>
@@ -111,31 +118,35 @@
                 <constraint firstItem="T3z-FH-pKU" firstAttribute="leading" secondItem="5at-xi-UIz" secondAttribute="leading" constant="20" id="BMI-jX-0Gu"/>
                 <constraint firstItem="snV-ni-hFa" firstAttribute="top" secondItem="ZQS-Pv-LQL" secondAttribute="bottom" constant="8" symbolic="YES" id="BNr-hm-ATf"/>
                 <constraint firstItem="9Hg-V5-w2E" firstAttribute="top" secondItem="5at-xi-UIz" secondAttribute="top" constant="20" id="EUV-h0-aB8"/>
+                <constraint firstItem="dSJ-ri-29h" firstAttribute="trailing" secondItem="2Yc-Q3-KUG" secondAttribute="trailing" id="EfV-r3-Edm"/>
                 <constraint firstItem="rCL-eL-Qf5" firstAttribute="width" secondItem="o1F-Ms-auf" secondAttribute="width" multiplier="0.6" id="I8P-gZ-MAk"/>
+                <constraint firstItem="0yA-MR-CGQ" firstAttribute="top" secondItem="NTn-Yo-yc5" secondAttribute="top" id="JZh-lb-JAo"/>
                 <constraint firstItem="ZQS-Pv-LQL" firstAttribute="top" secondItem="9Hg-V5-w2E" secondAttribute="bottom" constant="26" id="KzE-Qs-J7a"/>
-                <constraint firstItem="ePb-Bf-omj" firstAttribute="top" secondItem="2Yc-Q3-KUG" secondAttribute="bottom" constant="35" id="Npx-Xe-1fu"/>
-                <constraint firstItem="ye9-Ub-Epu" firstAttribute="centerY" secondItem="NTn-Yo-yc5" secondAttribute="centerY" id="Rlv-Tk-NnW"/>
-                <constraint firstItem="ePb-Bf-omj" firstAttribute="leading" secondItem="2Yc-Q3-KUG" secondAttribute="leading" id="TNW-8W-lbA"/>
+                <constraint firstItem="dSJ-ri-29h" firstAttribute="leading" secondItem="2Yc-Q3-KUG" secondAttribute="leading" id="a95-pw-RzP"/>
                 <constraint firstItem="2Yc-Q3-KUG" firstAttribute="top" secondItem="ypG-kY-18R" secondAttribute="bottom" constant="8" symbolic="YES" id="fGO-sj-jWc"/>
                 <constraint firstItem="5at-xi-UIz" firstAttribute="trailing" secondItem="T3z-FH-pKU" secondAttribute="trailing" constant="20" id="fQ6-Hv-zds"/>
                 <constraint firstItem="ePb-Bf-omj" firstAttribute="height" secondItem="o1F-Ms-auf" secondAttribute="height" multiplier="0.06" id="kzg-Ps-ZAx"/>
                 <constraint firstItem="snV-ni-hFa" firstAttribute="centerX" secondItem="9Hg-V5-w2E" secondAttribute="centerX" id="mG4-8V-Hwa"/>
-                <constraint firstItem="ye9-Ub-Epu" firstAttribute="leading" secondItem="NTn-Yo-yc5" secondAttribute="trailing" constant="7.5" id="pME-IF-5Ci"/>
-                <constraint firstItem="NTn-Yo-yc5" firstAttribute="top" secondItem="ePb-Bf-omj" secondAttribute="bottom" constant="10" id="rmR-Jw-vLR"/>
+                <constraint firstItem="ePb-Bf-omj" firstAttribute="top" secondItem="dSJ-ri-29h" secondAttribute="bottom" constant="24" id="nWz-yD-5Nf"/>
+                <constraint firstItem="0yA-MR-CGQ" firstAttribute="bottom" secondItem="NTn-Yo-yc5" secondAttribute="bottom" id="r6S-9N-mR9"/>
+                <constraint firstItem="NTn-Yo-yc5" firstAttribute="top" secondItem="ePb-Bf-omj" secondAttribute="bottom" constant="12" id="rmR-Jw-vLR"/>
+                <constraint firstItem="0yA-MR-CGQ" firstAttribute="leading" secondItem="NTn-Yo-yc5" secondAttribute="trailing" constant="8" id="ts9-8n-lp1"/>
+                <constraint firstItem="ePb-Bf-omj" firstAttribute="leading" secondItem="2Yc-Q3-KUG" secondAttribute="leading" id="vD3-2t-erv"/>
+                <constraint firstItem="ePb-Bf-omj" firstAttribute="trailing" secondItem="2Yc-Q3-KUG" secondAttribute="trailing" id="vz2-KE-Nzi"/>
                 <constraint firstItem="2Yc-Q3-KUG" firstAttribute="height" secondItem="T3z-FH-pKU" secondAttribute="height" id="xdD-Vf-i1F"/>
                 <constraint firstItem="2Yc-Q3-KUG" firstAttribute="leading" secondItem="T3z-FH-pKU" secondAttribute="leading" id="xnC-zj-nqf"/>
                 <constraint firstItem="T3z-FH-pKU" firstAttribute="top" secondItem="rCL-eL-Qf5" secondAttribute="bottom" constant="8" symbolic="YES" id="y3t-K7-BcJ"/>
                 <constraint firstItem="2Yc-Q3-KUG" firstAttribute="trailing" secondItem="T3z-FH-pKU" secondAttribute="trailing" id="yeu-JD-6rO"/>
             </constraints>
-            <point key="canvasLocation" x="-138" y="-546"/>
+            <point key="canvasLocation" x="-471.01449275362324" y="-593.30357142857144"/>
         </view>
     </objects>
     <designables>
         <designable name="2Yc-Q3-KUG">
-            <size key="intrinsicContentSize" width="5" height="22"/>
+            <size key="intrinsicContentSize" width="17" height="37.5"/>
         </designable>
         <designable name="T3z-FH-pKU">
-            <size key="intrinsicContentSize" width="5" height="23"/>
+            <size key="intrinsicContentSize" width="17" height="38.5"/>
         </designable>
     </designables>
     <resources>

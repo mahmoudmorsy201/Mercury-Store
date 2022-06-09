@@ -77,7 +77,7 @@ extension ProfileCoordinator: GuestNavigationFlow {
     }
     
     func goToLoginScreen() {
-        let viewModel = LoginViewModel()
+        let viewModel = LoginViewModel(registerFlow: self)
         let loginVC = LoginViewController(viewModel)
         self.navigationController.pushViewController(loginVC, animated: true)
     }
