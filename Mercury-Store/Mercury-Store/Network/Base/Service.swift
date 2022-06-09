@@ -31,6 +31,7 @@ class NetworkService {
                 switch response.result {
                 case .success(let data):
                     do {
+                        print(String(decoding:data, as: UTF8.self))
                         let item = try newJSONDecoder().decode(T.self, from: data)
                         observer.onNext(item)
                         observer.onCompleted()
