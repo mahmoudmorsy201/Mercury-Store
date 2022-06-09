@@ -26,7 +26,7 @@ extension CustomerAPI {
     var parameters: Parameters? {
         switch self {
         case .postCustomer(let customer):
-            return try? customer.asDictionary()
+            return try! customer.asDictionary()
         case .getCustomer(let int):
             return [:]
         case .editCustomer:

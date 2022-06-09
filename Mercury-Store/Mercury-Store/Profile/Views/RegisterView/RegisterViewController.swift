@@ -36,15 +36,13 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    
-        // cosmetics
         signUpBtn.setTitleColor(.gray, for: .disabled)
-        // rx
         setupBindings()
         observeViewModelOnValid()
+        bindSignUpBtn()
     }
     
-    func setupBindings() {
+    private func setupBindings() {
         // 3
         // bind textfields to viewModel for validation and process
         firstNameTextField.rx.text
@@ -70,8 +68,19 @@ class RegisterViewController: UIViewController {
         
     }
     
-    func observeViewModelOnValid() {
+    private func observeViewModelOnValid() {
         registerViewModel.isValidForm.bind(to:  signUpBtn.rx.isEnabled)
             .disposed(by: disposeBag)
     }
+    
+    private func bindSignUpBtn() {
+        signUpBtn.rx.tap.subscribe {[weak self] _ in
+            guard let `self` = self else {fatalError()}
+            self.registerViewModel.postCustomer(firstName: self.firstNameTextField.text!, lastName: self.lastNameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!)
+        }.disposed(by: disposeBag)
+
+
+        
+    }
+    
 }

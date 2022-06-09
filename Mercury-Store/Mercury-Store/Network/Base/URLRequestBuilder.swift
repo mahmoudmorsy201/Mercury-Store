@@ -38,7 +38,7 @@ extension URLRequestBuilder {
     
     var headers: HTTPHeaders {
         let header = HTTPHeaders([
-            "X-Shopify-Access-Token": Constants.Keys.password,
+            "X-Shopify-Access-Token": "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",
             "Content-Type": "application/json"
         ])
         return header
@@ -47,11 +47,13 @@ extension URLRequestBuilder {
     var urlRequest: URLRequest {
         var request = URLRequest(url: requestURL)
         request.httpMethod = method.rawValue
+        request.httpShouldHandleCookies = false
         headers.forEach { request.addValue($0.name, forHTTPHeaderField: $0.value)}
         return request
     }
     
     func asURLRequest() throws -> URLRequest {
+        print(urlRequest)
         return try encoding.encode(urlRequest, with: parameters)
     }
 }
