@@ -9,4 +9,5 @@ import Foundation
 
 enum CustomerErrors: String {
     case emailExists = "Email already registered please login"
+    case emailNotExists = "Please register first"
 }

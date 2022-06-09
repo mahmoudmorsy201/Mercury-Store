@@ -19,6 +19,7 @@ class CustomerClient: CustomerProvider {
     }
     func checkEmailExists(_ email: String) -> Observable<AllCustomers> {
         NetworkService().execute(CustomerAPI.getCustomerByEmail(email))
+    }
     func getCustomer(id:Int) -> Observable<RegisterResponse>{
         NetworkService().execute(CustomerAPI.getCustomer(id))
     }
