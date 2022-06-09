@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class BrandProductsCollectionViewCell: UICollectionViewCell {
 
@@ -22,36 +23,40 @@ class BrandProductsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak private var currencyLabel: UILabel!
     
     @IBOutlet weak private var productForBrandPrice: UILabel!
-    public var isFavouriteProduct:Bool? {
-        willSet(newValue){
-            favouriteButton.favouriteState(state: newValue ?? false)
-        }
-    }
+    let viewModel:ProductCellViewModelType = ProductCellViewModel()
+    let disposeBag = DisposeBag()
     var item: Product? {
         didSet {
             guard let item = item else {
                 return
             }
-            guard let url = URL(string: item.image.src) else {
-                return
-            }
-            productForBrandImage.downloadImage(url: url , placeholder: UIImage(named: "placeholder"), imageIndicator: .gray, completion: nil)
-            productForBrandName.text = item.title
-            productForBrandPrice.text = item.variants[0].price
+            configProductCell(item: item)
         }
+    }
+    
+    func configProductCell(item:Product){
+        guard let url = URL(string: item.image.src) else {
+            return
+        }
+        productForBrandImage.downloadImage(url: url , placeholder: UIImage(named: "placeholder"), imageIndicator: .gray, completion: nil)
+        productForBrandName.text = item.title
+        productForBrandPrice.text = item.variants[0].price
+        favouriteButton.favouriteState(state: viewModel.getFavouriteState(productID: item.id))
+        favouriteButton.rx.tap.throttle(.milliseconds(5000), latest: false, scheduler: MainScheduler.instance).subscribe(onNext: { [ weak self ] in
+            guard let self = self else{return}
+            let savedValue = SavedProductItem(productID: Decimal(item.id), productTitle: item.title, productImage: item.image.src, productPrice: Double(item.variants[0].price )! , productQTY: 0, producrState: productStates.favourite.rawValue)
+            let favourite = self.viewModel.toggleFavourite(product: savedValue)
+            self.favouriteButton.favouriteState(state: favourite)
+            
+        }).disposed(by: disposeBag)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
-        
-    }
-    override func prepareForReuse() {
-        isFavouriteProduct = false
     }
 
 }
-
 //MARK: Private Handlers
 //
 extension BrandProductsCollectionViewCell {
@@ -60,6 +65,5 @@ extension BrandProductsCollectionViewCell {
         containerViewForBrandProductsCell.layer.borderColor = UIColor.gray.withAlphaComponent(0.3).cgColor
         containerViewForBrandProductsCell.layer.cornerRadius = 12
         containerViewForBrandProductsCell.layer.masksToBounds = true
-        favouriteButton.favouriteState(state: isFavouriteProduct ?? false)
     }
 }

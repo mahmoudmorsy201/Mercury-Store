@@ -29,7 +29,7 @@ extension CoreDataModel{
         catch {
             print("error executing fetch request: \(error)")
         }
-        return results.count > 0
+        return !results.isEmpty
     }
     func insertCartProduct(product:SavedProductItem)->Bool{
         if (isProductFavourite(id: Int(truncating: NSDecimalNumber(decimal: product.productID)))) {

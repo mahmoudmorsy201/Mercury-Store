@@ -17,6 +17,15 @@ extension CoreDataModel{
             return delete(itemID: productID)
         }
     }
+    func toggleFavourite(product:SavedProductItem)->Bool{
+        let isFavorite = isProductFavourite(id: Int(truncating: NSDecimalNumber(decimal: product.productID) ))
+        if isFavorite {
+            deleteFavouriteProduct(productID: Int(truncating: NSDecimalNumber(decimal: product.productID) ))
+        }else{
+            insertFavouriteProduct(product: product)
+        }
+        return !isFavorite
+    }
     func isProductFavourite (id :Int) -> Bool {
             var results: [NSManagedObject] = []
             
@@ -28,7 +37,7 @@ extension CoreDataModel{
             catch {
                 print("error executing fetch request: \(error)")
             }
-            return results.count > 0
+        return !results.isEmpty
         }
     func insertFavouriteProduct(product:SavedProductItem)->Bool{
         if (isCartProduct(id: Int(truncating: NSDecimalNumber(decimal: product.productID)))) {

@@ -41,7 +41,6 @@ class ProductResultViewController: UIViewController {
         productCollectionView.register(nib, forCellWithReuseIdentifier: BrandProductsCollectionViewCell.reuseIdentifier())
         
         viewModel?.products.drive(productCollectionView.rx.items(cellIdentifier: BrandProductsCollectionViewCell.reuseIdentifier(), cellType: BrandProductsCollectionViewCell.self)){[weak self] index , element , cell in
-            cell.isFavouriteProduct = self?.viewModel?.isProductFavourite(id: element.id)
             cell.item = element
         }.disposed(by: disposeBag)
         productCollectionView.rx.modelSelected(Product.self).subscribe(onNext:{ type in

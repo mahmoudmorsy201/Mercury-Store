@@ -24,7 +24,7 @@ class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
     
     @IBOutlet weak var favoriteBtn: UIButton!
     
-    private var viewModel: ProductsDetailViewModelType?
+    private var viewModel: ProductsDetailViewModelType!
     private let disposeBag = DisposeBag()
     
     private let collectionViewFrame = ReplaySubject<CGRect>.create(bufferSize: 1)
@@ -44,9 +44,9 @@ class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
         collectionViewFrame.onNext(self.productImagesCollectionView.frame)
     }
     private func updateUi(){
-        productTitleLabel.text = viewModel?.product.title
-        productPriceLabel.text = (viewModel?.product.variants[0].price ?? "") + " USD"
-        productDescription.text = viewModel?.product.bodyHTML
+        productTitleLabel.text = viewModel.product.title
+        productPriceLabel.text = "\(viewModel.product.variants[0].price )EGP"
+        productDescription.text = viewModel.product.bodyHTML
         self.configure()
     }
 }
@@ -57,16 +57,16 @@ extension ProductDetailsViewController {
         productImagesCollectionView.delegate = nil
         productImagesCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
         
-        viewModel?.bannerObservable
+        viewModel.bannerObservable
             .drive(productImagesCollectionView.rx.items(cellIdentifier:  ProductDetailsImageCollectionCell.reuseIdentifier(), cellType:  ProductDetailsImageCollectionCell.self)) {indexPath, item, cell in
                 cell.item = item
             }
             .disposed(by: disposeBag)
-        viewModel?.sendImagesToCollection()
+        viewModel.sendImagesToCollection()
     }
     
     private func bindPageController() {
-        viewModel?.countForPageControll
+        viewModel.countForPageControll
             .bind(to: imageControl.rx.numberOfPages)
             .disposed(by: disposeBag)
     }
@@ -95,19 +95,25 @@ extension ProductDetailsViewController  {
         self.bindCollectionViewToPageControll()
         self.addToFavourite()
         self.addToCartTapBinding()
+        self.bindFavouriteButton()
     }
 }
 extension ProductDetailsViewController{
+    func bindFavouriteButton(){
+        favoriteBtn.favouriteState(state: viewModel.isProductFavourite )
+    }
     func addToFavourite(){
         favoriteBtn.rx.tap.subscribe(onNext: { [weak self] in
-            self?.viewModel?.saveToFavourite()
+            guard let self = self else {return}
+            self.favoriteBtn.favouriteState(state:  self.viewModel.toggleFavourite() )
         }).disposed(by: disposeBag)
     }
 }
 extension ProductDetailsViewController{
     private func addToCartTapBinding(){
         addToCart.rx.tap.subscribe(onNext: { [weak self] in
-            self?.viewModel?.saveToCart()
+            guard let self = self else { return }
+            self.viewModel.saveToCart()
         }).disposed(by: disposeBag)
     }
 }
