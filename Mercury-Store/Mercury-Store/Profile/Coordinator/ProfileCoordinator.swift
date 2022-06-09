@@ -22,9 +22,15 @@ class ProfileCoordinator: Coordinator {
     }
     
     func start() {
+        //TODO: Check login status
+        /*
         let profileVC = ProfileViewController(nibName: String(describing: ProfileViewController.self), bundle: nil)
         profileVC.viewModel = ProfileViewModel(profileNavigationFlow: self)
         navigationController.pushViewController(profileVC, animated: true)
+         */
+        let guestViewModel = GuestViewModel(self)
+        let guestVC = GuestProfileViewController(guestViewModel)
+        navigationController.pushViewController(guestVC, animated: true)
     }
     
 
@@ -60,5 +66,19 @@ extension ProfileCoordinator: ProfileNavigationFlow {
     func goToMainTab() {
         self.navigationController.tabBarController?.selectedIndex = 0
     }
+    
+}
+
+extension ProfileCoordinator: GuestNavigationFlow {
+    func goToRegistrationScreen() {
+        let viewModel = RegisterViewModel()
+        let registrationVC = RegisterViewController(viewModel)
+        self.navigationController.pushViewController(registrationVC, animated: true)
+    }
+    
+    func goToLoginScreen() {
+        
+    }
+    
     
 }
