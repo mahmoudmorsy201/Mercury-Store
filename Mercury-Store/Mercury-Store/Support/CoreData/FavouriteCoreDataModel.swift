@@ -18,14 +18,13 @@ extension CoreDataModel{
         }
     }
     func toggleFavourite(product:SavedProductItem)->Bool{
-        let state = !isProductFavourite(id: Int(truncating: NSDecimalNumber(decimal: product.productID) ))
-        if (!state) {
-            let item = getItemByID(productID: Int(truncating: NSDecimalNumber(decimal: product.productID) ))
+        let isFavorite = isProductFavourite(id: Int(truncating: NSDecimalNumber(decimal: product.productID) ))
+        if isFavorite {
             deleteFavouriteProduct(productID: Int(truncating: NSDecimalNumber(decimal: product.productID) ))
         }else{
             insertFavouriteProduct(product: product)
         }
-        return state
+        return !isFavorite
     }
     func isProductFavourite (id :Int) -> Bool {
             var results: [NSManagedObject] = []

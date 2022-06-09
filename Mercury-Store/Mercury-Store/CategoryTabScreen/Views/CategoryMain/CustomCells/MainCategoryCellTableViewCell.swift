@@ -21,16 +21,8 @@ class MainCategoryCellTableViewCell: UITableViewCell {
     public func config(item:CustomCollection){
         self.item = item
         categoryItem.text = item.title
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        //cellContainerView.addGestureRecognizer(tap)
     }
-    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-        guard let cellClickAction = cellClickAction else {
-            return
-        }
-       // cellContainerView.backgroundColor = .blue
-       // cellClickAction(self.item!)
-    }
+    
     private func setupCell() {
         cellContainerView.applyShadow(cornerRadius: 12)
     }
