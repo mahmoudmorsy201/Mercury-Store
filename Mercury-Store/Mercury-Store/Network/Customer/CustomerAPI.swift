@@ -11,6 +11,7 @@ enum CustomerAPI: URLRequestBuilder {
     case postCustomer(Customer)
     case getCustomer(Int)
     case editCustomer
+    case getCustomerByEmail(String)
 }
 
 extension CustomerAPI {
@@ -18,6 +19,11 @@ extension CustomerAPI {
         switch self {
         case .postCustomer, .editCustomer, .getCustomer:
             return Constants.Paths.Customers.customer
+            
+            
+            
+        case .getCustomerByEmail:
+            return Constants.Paths.Customers.customerSearch
         }
     }
 }
@@ -31,6 +37,9 @@ extension CustomerAPI {
             return [:]
         case .editCustomer:
             return [:]
+        case .getCustomerByEmail(let email):
+            
+            return ["query": "email:\(email)"]
         }
     }
 }
@@ -45,6 +54,8 @@ extension CustomerAPI {
             return .get
         case .editCustomer:
             return .put
+        case .getCustomerByEmail:
+            return .get
         }
     }
 }

@@ -71,7 +71,7 @@ extension ProfileCoordinator: ProfileNavigationFlow {
 
 extension ProfileCoordinator: GuestNavigationFlow {
     func goToRegistrationScreen() {
-        let viewModel = RegisterViewModel()
+        let viewModel = RegisterViewModel(flow: self)
         let registrationVC = RegisterViewController(viewModel)
         self.navigationController.pushViewController(registrationVC, animated: true)
     }

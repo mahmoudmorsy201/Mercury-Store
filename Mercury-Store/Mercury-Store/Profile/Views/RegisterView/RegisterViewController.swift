@@ -18,9 +18,10 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var emailTextField: AkiraTextField!
     @IBOutlet weak var passwordTextField: AkiraTextField!
     @IBOutlet weak var confirmPasswordTextField: AkiraTextField!
-    @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var signUpBtn: UIButton!
     
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var errorMessageLabel: UILabel!
     private var registerViewModel: RegisterViewModelType!
     private let disposeBag = DisposeBag()
     
@@ -40,7 +41,11 @@ class RegisterViewController: UIViewController {
         setupBindings()
         observeViewModelOnValid()
         bindSignUpBtn()
+        bindLoginButton()
+        bindErrorLabel()
     }
+    
+
     
     private func setupBindings() {
         // 3
@@ -74,13 +79,29 @@ class RegisterViewController: UIViewController {
     }
     
     private func bindSignUpBtn() {
-        signUpBtn.rx.tap.subscribe {[weak self] _ in
+        signUpBtn.rx.tap
+            .debounce(.milliseconds(2000), scheduler: MainScheduler.asyncInstance)
+            .subscribe {[weak self] _ in
             guard let `self` = self else {fatalError()}
-            self.registerViewModel.postCustomer(firstName: self.firstNameTextField.text!, lastName: self.lastNameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!)
+            self.registerViewModel.checkCustomerExists(firstName: self.firstNameTextField.text!, lastName: self.lastNameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!)
         }.disposed(by: disposeBag)
-
-
+    }
+    
+    private func bindErrorLabel() {
+        registerViewModel.emailCheckErrorMessage
+            .bind(to: errorMessageLabel.rx.text)
+            .disposed(by: disposeBag)
         
+        registerViewModel.showErrorLabelObserver
+            .bind(to: errorMessageLabel.rx.isHidden)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindLoginButton() {
+        loginButton.rx.tap.subscribe { [weak self] _ in
+            guard let `self` = self else {fatalError()}
+            self.registerViewModel.goToLoginScreen()
+        }.disposed(by: disposeBag)
     }
     
 }

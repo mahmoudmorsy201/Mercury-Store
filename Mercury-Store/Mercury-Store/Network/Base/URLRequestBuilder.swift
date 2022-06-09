@@ -53,7 +53,6 @@ extension URLRequestBuilder {
     }
     
     func asURLRequest() throws -> URLRequest {
-        print(urlRequest)
         return try encoding.encode(urlRequest, with: parameters)
     }
 }
