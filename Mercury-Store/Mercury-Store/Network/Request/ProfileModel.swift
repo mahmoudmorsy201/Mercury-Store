@@ -32,7 +32,7 @@ struct AllCustomers:Codable {
 struct CustomerClass: Codable {
     let firstName, lastName, email: String
     let password : String
-
+    
     enum CodingKeys: String, CodingKey {
         case firstName = "first_name"
         case lastName = "last_name"
@@ -59,10 +59,10 @@ struct CustomerResponse: Codable {
     let verifiedEmail: Bool
     let taxExempt: Bool
     let phone: String?
-    let tags: String
+    let password: String
     let currency: String
     let addresses: [Address]
-
+    
     enum CodingKeys: String, CodingKey {
         case id, email
         case acceptsMarketing = "accepts_marketing"
@@ -77,7 +77,8 @@ struct CustomerResponse: Codable {
         case note
         case verifiedEmail = "verified_email"
         case taxExempt = "tax_exempt"
-        case phone, tags
+        case phone
+        case password = "tags"
         case currency, addresses
     }
 }
@@ -92,7 +93,7 @@ struct Address: Codable {
     let phone, name, provinceCode, countryCode: String
     let countryName: String
     let addressDefault: Bool
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case customerID = "customer_id"

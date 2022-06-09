@@ -100,6 +100,8 @@
 		C49A1D3B28333D800081F874 /* CategoriesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C49A1D3928333D800081F874 /* CategoriesCollectionViewCell.xib */; };
 		C49A1D3D283349D30081F874 /* TableConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A1D3C283349D30081F874 /* TableConfigurator.swift */; };
 		C49E80452851951E00E9AE68 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49E80442851951E00E9AE68 /* ErrorResponse.swift */; };
+		C49F0FFC285299B6009306BA /* Userdefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F0FFB285299B6009306BA /* Userdefaults.swift */; };
+		C49F0FFE2852A806009306BA /* String+isValidEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F0FFD2852A806009306BA /* String+isValidEmail.swift */; };
 		C4AEE956283A14460025EDB5 /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AEE955283A14460025EDB5 /* URLRequestBuilder.swift */; };
 		C4AEE959283A1FA30025EDB5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AEE958283A1FA30025EDB5 /* Constants.swift */; };
 		C4B4270D284BB9400051DE1B /* Reactive+ProgressHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B4270C284BB9400051DE1B /* Reactive+ProgressHud.swift */; };
@@ -290,6 +292,8 @@
 		C49A1D3928333D800081F874 /* CategoriesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesCollectionViewCell.xib; sourceTree = "<group>"; };
 		C49A1D3C283349D30081F874 /* TableConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableConfigurator.swift; sourceTree = "<group>"; };
 		C49E80442851951E00E9AE68 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		C49F0FFB285299B6009306BA /* Userdefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Userdefaults.swift; sourceTree = "<group>"; };
+		C49F0FFD2852A806009306BA /* String+isValidEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+isValidEmail.swift"; sourceTree = "<group>"; };
 		C4AEE955283A14460025EDB5 /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
 		C4AEE958283A1FA30025EDB5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C4B4270C284BB9400051DE1B /* Reactive+ProgressHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+ProgressHud.swift"; sourceTree = "<group>"; };
@@ -737,6 +741,23 @@
 			path = Error;
 			sourceTree = "<group>";
 		};
+		C49F0FF92852999A009306BA /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				C49F0FFA285299AC009306BA /* Userdefaults */,
+				4D911851284AAC8B00F07638 /* CoreData */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		C49F0FFA285299AC009306BA /* Userdefaults */ = {
+			isa = PBXGroup;
+			children = (
+				C49F0FFB285299B6009306BA /* Userdefaults.swift */,
+			);
+			path = Userdefaults;
+			sourceTree = "<group>";
+		};
 		C4AEE954283A142F0025EDB5 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -1026,7 +1047,7 @@
 		C4CDB9412831F2770000519A /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				4D911851284AAC8B00F07638 /* CoreData */,
+				C49F0FF92852999A009306BA /* Local */,
 				C4CDB9422831F2800000519A /* Coordinator */,
 			);
 			path = Support;
@@ -1144,6 +1165,7 @@
 				C4B4270C284BB9400051DE1B /* Reactive+ProgressHud.swift */,
 				4DAF2A26284D69C0001625FF /* UIButton.swift */,
 				C4FE466D2850D756006668C3 /* UIButton+RoundedCorners.swift */,
+				C49F0FFD2852A806009306BA /* String+isValidEmail.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1503,7 +1525,9 @@
 				C4B4270D284BB9400051DE1B /* Reactive+ProgressHud.swift in Sources */,
 				C4AEE956283A14460025EDB5 /* URLRequestBuilder.swift in Sources */,
 				C4BCE553284B1CA900F83CF0 /* UIImageView+Shadow.swift in Sources */,
+				C49F0FFC285299B6009306BA /* Userdefaults.swift in Sources */,
 				C4C04EE328333278002EC367 /* LogoTableViewCell.swift in Sources */,
+				C49F0FFE2852A806009306BA /* String+isValidEmail.swift in Sources */,
 				C4CDB9162830E31D0000519A /* Mercury_Store.xcdatamodeld in Sources */,
 				4D91185E284BCB4500F07638 /* WishListViewModel.swift in Sources */,
 				C4C08BAC28321A5700364704 /* ProfileModel.swift in Sources */,
