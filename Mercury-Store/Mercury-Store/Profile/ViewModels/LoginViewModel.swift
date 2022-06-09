@@ -8,29 +8,52 @@
 import RxSwift
 import RxCocoa
 
-class LoginViewModel {
+protocol LoginViewModelType {
+    var emailObservable: AnyObserver<String?> { get }
+    var passwordObservable: AnyObserver<String?> { get }
+    var isValidForm: Observable<Bool> { get }
+    func getCustomer()
+}
+
+
+class LoginViewModel: LoginViewModelType {
     
-    // 1
-            // Create subjects/observable
-            let emailSubject = BehaviorRelay<String?>(value: "")
-            let passwordSubject = BehaviorRelay<String?>(value: "")
-            let disposeBag = DisposeBag()
-            let minPasswordCharacters = 6
-        // 2
-            // Observable - combine few conditions
+            private let emailSubject = BehaviorSubject<String?>(value: "")
+           private let passwordSubject = BehaviorSubject<String?>(value: "")
+            private let disposeBag = DisposeBag()
+          private let minPasswordCharacters = 6
+    private let customerProvider: CustomerProvider
+    private let customerRequestGet:PublishSubject<RegisterResponse> = PublishSubject<RegisterResponse>()
+    
+    var emailObservable: AnyObserver<String?> { emailSubject.asObserver() }
+    
+    var passwordObservable: AnyObserver<String?> { passwordSubject.asObserver() }
+    
+        
             var isValidForm: Observable<Bool> {
-                // valid email
-                // password >= N
+                
                 return Observable.combineLatest( emailSubject, passwordSubject) {  email, password in
                     guard  email != nil && password != nil else {
                         return false
                     }
-                    // Conditions:
-                    // email is valid
-                    // password greater or equal to specified
+                   
                     return  email!.validateEmail() && password!.count >= self.minPasswordCharacters
                 }
             }
+    init(_ customerProvider: CustomerProvider = CustomerClient()) {
+        self.customerProvider = customerProvider
+    }
+    func getCustomer(){
+        customerProvider.getCustomer(
+            id:6256082157826)
+        .subscribe(onNext: {[weak self] result in
+            guard let `self` = self else {fatalError()}
+            self.customerRequestGet.onNext(result)
+            print(result)
+        }).disposed(by: disposeBag)
+        
+        
+    }
         
     }
     extension String {
