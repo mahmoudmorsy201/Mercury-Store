@@ -10,4 +10,5 @@ import Foundation
 protocol GuestNavigationFlow: AnyObject {
     func goToRegistrationScreen()
     func goToLoginScreen()
+    func isLoggedInSuccessfully(_ id: Int)
 }

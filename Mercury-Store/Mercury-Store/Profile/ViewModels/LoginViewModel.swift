@@ -30,7 +30,7 @@ class LoginViewModel: LoginViewModelType {
     private let customerRequestPostError = PublishSubject<Error>()
     private let showErrorMessage = PublishSubject<String?>()
     private let showErrorLabelSubject = BehaviorSubject<Bool>(value: true)
-    private let customerRequestGet:PublishSubject<RegisterResponse> = PublishSubject<RegisterResponse>()
+    private let sharedInstance: MyUserDefaults
     
     var emailObservable: AnyObserver<String?> { emailSubject.asObserver() }
     
@@ -39,7 +39,7 @@ class LoginViewModel: LoginViewModelType {
     var emailCheckErrorMessage: Observable<String?> { showErrorMessage.asObservable() }
     
     var showErrorLabelObserver: Observable<Bool> { showErrorLabelSubject.asObservable() }
-
+    
     
     var isValidForm: Observable<Bool> {
         
@@ -51,36 +51,58 @@ class LoginViewModel: LoginViewModelType {
             return  email!.validateEmail() && password!.count >= self.minPasswordCharacters
         }
     }
-    init(_ customerProvider: CustomerProvider = CustomerClient(),registerFlow:GuestNavigationFlow) {
+    
+    init(_ customerProvider: CustomerProvider = CustomerClient(),sharedInstance: MyUserDefaults = MyUserDefaults.shared ,registerFlow: GuestNavigationFlow) {
         self.customerProvider = customerProvider
         self.registerNavigationFlow = registerFlow
+        self.sharedInstance = sharedInstance
     }
+    
     func checkCustomerExists( email: String, password: String) {
         customerProvider.checkEmailExists(email)
             .subscribe(onNext: { [weak self] result in
                 guard let `self` = self else {fatalError()}
-                if(!result.customers.isEmpty) {
-                    
-                } else {
-                    self.showErrorLabelSubject.onNext(false)
-                    self.showErrorMessage.onNext(CustomerErrors.emailNotExists.rawValue)
-                }
-                
+                self.checkResult(result, password: password)
             }, onError: { [weak self] error in
                 guard let `self` = self else {fatalError()}
                 self.customerRequestPostError.onNext(error)
             }).disposed(by: disposeBag)
     }
+    
     func goToRegisterScreen() {
         registerNavigationFlow?.goToRegistrationScreen()
     }
-    
-    
-}
-extension String {
-    func validateEmail() -> Bool {
-        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let predicate = NSPredicate(format:"SELF MATCHES %@", emailRegex)
-        return predicate.evaluate(with: self)
+        
+    private func checkResult(_ result: AllCustomers, password: String) {
+        if(!result.customers.isEmpty) {
+            checkPassword(password, result)
+        } else {
+            self.showErrorLabelSubject.onNext(false)
+            self.showErrorMessage.onNext(CustomerErrors.emailNotExists.rawValue)
+        }
     }
+    
+    private func goToProfileScreen(_ id: Int) {
+        self.registerNavigationFlow?.isLoggedInSuccessfully(id)
+    }
+    
+    private func checkPassword(_ password: String, _ result: AllCustomers) {
+        let matched = result.customers.map{ $0.password }.filter{ $0 == password }
+        if(matched.contains{$0 == password}) {
+            let customer = result.customers[0]
+            self.saveCredentialsInUserDefaults(customer: customer)
+            self.goToProfileScreen(customer.id)
+        }else {
+            self.showErrorLabelSubject.onNext(false)
+            self.showErrorMessage.onNext(CustomerErrors.checkYourCredentials.rawValue)
+        }
+    }
+    
+    private func saveCredentialsInUserDefaults(customer: CustomerResponse) {
+        sharedInstance.add(val: true, key: .loggedIn)
+        sharedInstance.add(val: customer.email, key: .email)
+        sharedInstance.add(val: customer.firstName, key: .username)
+        sharedInstance.add(val: customer.id, key: .id)
+    }
+    
 }
