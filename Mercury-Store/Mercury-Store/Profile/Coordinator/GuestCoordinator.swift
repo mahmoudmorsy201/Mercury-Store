@@ -26,8 +26,6 @@ class GuestCoordinator: Coordinator {
         let guestVC = GuestProfileViewController(guestViewModel)
         navigationController.pushViewController(guestVC, animated: true)
     }
-    
-    
 }
 
 extension GuestCoordinator: GuestNavigationFlow {
@@ -48,6 +46,8 @@ extension GuestCoordinator: GuestNavigationFlow {
         let loginVC = LoginViewController(viewModel)
         self.navigationController.pushViewController(loginVC, animated: true)
     }
+    
+
     
     
 }

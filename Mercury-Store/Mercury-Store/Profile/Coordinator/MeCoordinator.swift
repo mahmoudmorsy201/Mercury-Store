@@ -34,6 +34,9 @@ class MeCoordinator: Coordinator {
         }
         
     }
+    deinit {
+        print("MeCoordinator dinit")
+    }
 }
 extension MeCoordinator {
     private func getUserFromUserDefaults() -> Bool {
