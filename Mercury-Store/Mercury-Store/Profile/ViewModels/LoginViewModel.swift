@@ -7,6 +7,7 @@
 
 import RxSwift
 import RxCocoa
+import Foundation
 
 protocol LoginViewModelType {
     var emailObservable: AnyObserver<String?> { get }
@@ -30,7 +31,7 @@ class LoginViewModel: LoginViewModelType {
     private let customerRequestPostError = PublishSubject<Error>()
     private let showErrorMessage = PublishSubject<String?>()
     private let showErrorLabelSubject = BehaviorSubject<Bool>(value: true)
-    private let sharedInstance: MyUserDefaults
+    private let sharedInstance: UserDefaults
     
     var emailObservable: AnyObserver<String?> { emailSubject.asObserver() }
     
@@ -52,7 +53,7 @@ class LoginViewModel: LoginViewModelType {
         }
     }
     
-    init(_ customerProvider: CustomerProvider = CustomerClient(),sharedInstance: MyUserDefaults = MyUserDefaults.shared ,registerFlow: GuestNavigationFlow) {
+    init(_ customerProvider: CustomerProvider = CustomerClient(),sharedInstance: UserDefaults = UserDefaults.standard ,registerFlow: GuestNavigationFlow) {
         self.customerProvider = customerProvider
         self.registerNavigationFlow = registerFlow
         self.sharedInstance = sharedInstance
@@ -99,10 +100,16 @@ class LoginViewModel: LoginViewModelType {
     }
     
     private func saveCredentialsInUserDefaults(customer: CustomerResponse) {
-        sharedInstance.add(val: true, key: .loggedIn)
-        sharedInstance.add(val: customer.email, key: .email)
-        sharedInstance.add(val: customer.firstName, key: .username)
-        sharedInstance.add(val: customer.id, key: .id)
+        let user = fromCustomerToUser(customer)
+        do {
+            try sharedInstance.setObject(user, forKey: "user")
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func fromCustomerToUser(_ customer: CustomerResponse) -> User {
+        return User(id: customer.id, email: customer.email, username: customer.firstName, isLoggedIn: true, isDiscount: false)
     }
     
 }

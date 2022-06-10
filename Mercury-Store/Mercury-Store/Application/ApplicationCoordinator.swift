@@ -29,8 +29,6 @@ class ApplicationCoordinator : Coordinator {
     
     func goToHomeTabbar(){
         let coordinator = HomeTabBarCoordinator(navigationController: navigationController)
-        children.removeAll()
-        
         coordinator.parentCoordinator = self
         
         coordinator.start()
