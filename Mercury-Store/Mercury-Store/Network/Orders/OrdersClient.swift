@@ -9,12 +9,12 @@ import Foundation
 import RxSwift
 
 protocol OrdersProvider: AnyObject {
-    func getOrderList(userId:Int) -> Observable<DraftOrderList>
+    func getOrderList() -> Observable<OrderList>
 }
 
 class OrderListApi: OrdersProvider {
-    func getOrderList(userId: Int) -> Observable<DraftOrderList> {
-        NetworkService().execute(OrdersAPI.getOrders(userId))
+    func getOrderList() -> Observable<OrderList> {
+        NetworkService().execute(OrdersAPI.getOrders)
     }
     
 }

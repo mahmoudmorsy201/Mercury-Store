@@ -12,7 +12,7 @@ protocol DraftOrdersViewModelsType{
     var isLoading: Driver<Bool> { get }
     var error: Driver<String?> { get }
     var userID:Int{ get}
-    var orders: Driver<[DraftOrder]>{get}
+    var orders: Driver<[OrderItem]>{get}
 }
 class DraftOrdersViewModels:DraftOrdersViewModelsType{
     let ordersProvider :OrdersProvider
@@ -24,11 +24,11 @@ class DraftOrdersViewModels:DraftOrdersViewModelsType{
     var userID: Int  {
         MyUserDefaults.shared.getValue(forKey: .id) as! Int
     }
-    private let typesSubject = BehaviorRelay<[DraftOrder]>(value: [])
+    private let typesSubject = BehaviorRelay<[OrderItem]>(value: [])
     private let isLoadingSubject = BehaviorRelay<Bool>(value: false)
     private let errorSubject = BehaviorRelay<String?>(value: nil)
     
-    var orders: Driver<[DraftOrder]>
+    var orders: Driver<[OrderItem]>
     init() {
         orders = typesSubject.asDriver(onErrorJustReturn: [])
         isLoading = isLoadingSubject.asDriver(onErrorJustReturn: false)
@@ -40,12 +40,12 @@ class DraftOrdersViewModels:DraftOrdersViewModelsType{
         self.typesSubject.accept([])
         self.isLoadingSubject.accept(true)
         self.errorSubject.accept(nil)
-        self.ordersProvider.getOrderList(userId:userID)
+        self.ordersProvider.getOrderList()
             .observe(on: MainScheduler.asyncInstance)
                     .subscribe {[weak self] (result) in
                         guard let self = self else{return}
                         self.isLoadingSubject.accept(false)
-                        self.typesSubject.accept(result.draftOrders)
+                        self.typesSubject.accept(result.orders)
                     } onError: {[weak self] (error) in
                         self?.isLoadingSubject.accept(false)
                         self?.errorSubject.accept(error.localizedDescription)

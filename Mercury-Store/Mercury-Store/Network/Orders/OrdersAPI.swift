@@ -9,13 +9,13 @@ import Foundation
 import Alamofire
 
 enum OrdersAPI: URLRequestBuilder {
-    case getOrders(Int)
+    case getOrders
 }
 extension OrdersAPI {
     var path: String {
         switch self {
         case .getOrders:
-            return Constants.Paths.Orders.ordersList
+            return Constants.Paths.Customers.customerOrders
         }
     }
 }
@@ -23,8 +23,8 @@ extension OrdersAPI {
 extension OrdersAPI {
     var parameters: Parameters? {
         switch self {
-        case .getOrders(let value):
-            return ["customer_id": value]
+        case .getOrders:
+            return [:]
         }
     }
 }
@@ -32,7 +32,7 @@ extension OrdersAPI {
 extension OrdersAPI {
     var method: HTTPMethod {
         switch self {
-        case .getOrders(let id):
+        case .getOrders:
             return HTTPMethod.get
         }
     }
