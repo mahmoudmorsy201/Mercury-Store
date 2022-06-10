@@ -9,17 +9,18 @@ import UIKit
 
 class myOrdersTableViewController: UITableViewController {
     
+    var ordersViewModel:DraftOrdersViewModelsType!
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.ordersViewModel = DraftOrdersViewModels()
+    }
     
-        
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
         tableView.register(UINib(nibName: "MyOrdersViewCell", bundle: nil), forCellReuseIdentifier: "myOrderCell")
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source

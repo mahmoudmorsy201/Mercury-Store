@@ -39,7 +39,7 @@ class ProfileCoordinator: Coordinator {
 extension ProfileCoordinator: ProfileNavigationFlow {
     
     func goToMyOrdersScreen() {
-        let myOrdersVC = MyOrderDetailsController(nibName: String(describing: MyOrderDetailsController.self), bundle: nil)
+        let myOrdersVC = myOrdersTableViewController(nibName: String(describing: myOrdersTableViewController.self), bundle: nil)
         
         self.navigationController.pushViewController(myOrdersVC, animated: true)
     }
