@@ -33,6 +33,7 @@ struct CartOutput {
 
 
 final class CartViewModel {
+    let disposeBag = DisposeBag()
     private weak var shoppingCartNavigationFlow: ShoppingCartNavigationFlow!
     private let incrementProductSubject = PublishSubject<SavedProductItem>()
     private let decrementProductSubject = PublishSubject<SavedProductItem>()
@@ -84,5 +85,15 @@ final class CartViewModel {
     
     func checkoutVisible() -> (_ cart: [CartSection]) throws -> (visible: Bool, animated: Bool) {
         { $0[safe: 0]?.rows.count == 0 ? (visible: false, animated: true) : (visible: true, animated: true) }
+    }
+    func proceedToCheckout(){
+        let order:OrderListApi = OrderListApi()
+        order.postOrder(order: OrderRequest(order: OrderRequestItem(lineItems: [LineItemOrder(variantID: 42845057384706, quantity: 3)], customer: CustomerOrderRequst(id: MyUserDefaults.shared.getValue(forKey: .id) as! Int ) )))
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe {[weak self] (result) in
+                print(result)
+            } onError: {[weak self] (error) in
+                print(error)
+            }.disposed(by: disposeBag)
     }
 }

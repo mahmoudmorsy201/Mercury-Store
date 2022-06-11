@@ -23,9 +23,6 @@ extension CustomerAPI {
             return "/customers/\(id).json"
         case .editCustomer:
             return Constants.Paths.Customers.customer
-            
-            
-            
         case .getCustomerByEmail:
             return Constants.Paths.Customers.customerSearch
         }
