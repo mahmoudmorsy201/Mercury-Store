@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController {
     init(with viewModel: ProfileViewModel) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
+        print(MyUserDefaults.shared.getValue(forKey: .id))
     }
     
     required init?(coder: NSCoder) {
