@@ -26,6 +26,9 @@
 		4D698187285351AD005AC26D /* OrdersClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D698186285351AD005AC26D /* OrdersClient.swift */; };
 		4D7C67842854332B0087F1FF /* PostOrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C67832854332B0087F1FF /* PostOrderRequest.swift */; };
 		4D7C67862854B8A00087F1FF /* OrderPostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C67852854B8A00087F1FF /* OrderPostResponse.swift */; };
+		4D7C67882854D4EF0087F1FF /* PricesRoleReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C67872854D4EF0087F1FF /* PricesRoleReponse.swift */; };
+		4D7C678A2854D87F0087F1FF /* PriceRulesApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C67892854D87F0087F1FF /* PriceRulesApi.swift */; };
+		4D7C678D2854DDC10087F1FF /* PricesRulesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C678C2854DDC10087F1FF /* PricesRulesClient.swift */; };
 		4D7E510D2849AECB00BA92A0 /* HomeFlowNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7E510C2849AECB00BA92A0 /* HomeFlowNavigation.swift */; };
 		4D8A30F82853111E00AD85A8 /* DraftOrdersViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A30F72853111E00AD85A8 /* DraftOrdersViewModels.swift */; };
 		4D8A30FA2853150C00AD85A8 /* DraftOrdersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A30F92853150C00AD85A8 /* DraftOrdersList.swift */; };
@@ -231,6 +234,9 @@
 		4D698186285351AD005AC26D /* OrdersClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersClient.swift; sourceTree = "<group>"; };
 		4D7C67832854332B0087F1FF /* PostOrderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostOrderRequest.swift; sourceTree = "<group>"; };
 		4D7C67852854B8A00087F1FF /* OrderPostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPostResponse.swift; sourceTree = "<group>"; };
+		4D7C67872854D4EF0087F1FF /* PricesRoleReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricesRoleReponse.swift; sourceTree = "<group>"; };
+		4D7C67892854D87F0087F1FF /* PriceRulesApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRulesApi.swift; sourceTree = "<group>"; };
+		4D7C678C2854DDC10087F1FF /* PricesRulesClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricesRulesClient.swift; sourceTree = "<group>"; };
 		4D7E510C2849AECB00BA92A0 /* HomeFlowNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeFlowNavigation.swift; sourceTree = "<group>"; };
 		4D8A30F72853111E00AD85A8 /* DraftOrdersViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftOrdersViewModels.swift; sourceTree = "<group>"; };
 		4D8A30F92853150C00AD85A8 /* DraftOrdersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftOrdersList.swift; sourceTree = "<group>"; };
@@ -465,6 +471,15 @@
 				4D698186285351AD005AC26D /* OrdersClient.swift */,
 			);
 			path = Orders;
+			sourceTree = "<group>";
+		};
+		4D7C678B2854D8880087F1FF /* PricesRules */ = {
+			isa = PBXGroup;
+			children = (
+				4D7C67892854D87F0087F1FF /* PriceRulesApi.swift */,
+				4D7C678C2854DDC10087F1FF /* PricesRulesClient.swift */,
+			);
+			path = PricesRules;
 			sourceTree = "<group>";
 		};
 		4D8E3829284958AC00B22D98 /* OrdersView */ = {
@@ -789,6 +804,7 @@
 		C4AEE954283A142F0025EDB5 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				4D7C678B2854D8880087F1FF /* PricesRules */,
 				4D698183285336F9005AC26D /* Orders */,
 				C49E80432851950B00E9AE68 /* Error */,
 				C4FE46682850CC55006668C3 /* Request */,
@@ -1168,6 +1184,7 @@
 				4D21DF202846A35400582E43 /* CustomCollectionResponse.swift */,
 				4D8A30F92853150C00AD85A8 /* DraftOrdersList.swift */,
 				4D7C67852854B8A00087F1FF /* OrderPostResponse.swift */,
+				4D7C67872854D4EF0087F1FF /* PricesRoleReponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1623,6 +1640,7 @@
 				4D698187285351AD005AC26D /* OrdersClient.swift in Sources */,
 				4D8E3862284958AD00B22D98 /* RegisterViewController.swift in Sources */,
 				4DCA17B2284EF2E000F0CF3A /* CartCoreData.swift in Sources */,
+				4D7C678A2854D87F0087F1FF /* PriceRulesApi.swift in Sources */,
 				C4CFBA3F283B98E4009C2840 /* ApplicationEnviroment.swift in Sources */,
 				C4CFBA71283C1914009C2840 /* BannerCollectionViewCell.swift in Sources */,
 				4D8E3868284958AD00B22D98 /* AddressViewController.swift in Sources */,
@@ -1633,6 +1651,7 @@
 				C410292F2849C3B7007045F8 /* ProductDetailsViewModel.swift in Sources */,
 				C40BD720283EE63F0081E15B /* CategoryCoordinator.swift in Sources */,
 				C4CFBA5B283BB583009C2840 /* BrandsCollectionResponse.swift in Sources */,
+				4D7C678D2854DDC10087F1FF /* PricesRulesClient.swift in Sources */,
 				C4CFBA76283C21EF009C2840 /* BannerViewModel.swift in Sources */,
 				4D91185A284ABDD700F07638 /* StorageProtocol.swift in Sources */,
 				C4951232283EEB6800E313EB /* CategoryViewController.swift in Sources */,
@@ -1660,6 +1679,7 @@
 				4D7C67842854332B0087F1FF /* PostOrderRequest.swift in Sources */,
 				C4102941284AAF29007045F8 /* BrandProductsCollectionViewCell.swift in Sources */,
 				C4CDB95A2832022E0000519A /* HomeViewController.swift in Sources */,
+				4D7C67882854D4EF0087F1FF /* PricesRoleReponse.swift in Sources */,
 				4DAF2A27284D69C0001625FF /* UIButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

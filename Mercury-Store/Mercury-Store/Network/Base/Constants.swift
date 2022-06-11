@@ -22,12 +22,14 @@ struct Constants {
         struct Customers {
             public static let customer = "/customers.json"
             public static let customerSearch = "/customers/search.json"
-            public static let customerOrders = "/customers/\(MyUserDefaults.shared.getValue(forKey: .id) as! Int)/orders"
+            public static let customerOrders = "/customers/orders"
         }
         struct Order{
             public static let postOrder = "/orders.json"
         }
-        
+        struct PricesRule{
+            public static let pricesRules = "/price_rules.json"
+        }
     }
     
         
