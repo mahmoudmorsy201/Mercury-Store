@@ -20,11 +20,12 @@ struct Constants {
             public static let mainCategoryList = "/custom_collections.json"
         }
         struct Customers {
-            //207119551
             public static let customer = "/customers.json"
             public static let customerSearch = "/customers/search.json"
-//            public static let customerOrders = "/customers/\(MyUserDefaults.shared.getValue(forKey: .id) as! Int)/orders"
-            public static let customerOrders = "/customers/6252030984450/orders"
+            public static let customerOrders = "/customers/\(MyUserDefaults.shared.getValue(forKey: .id) as! Int)/orders"
+        }
+        struct Order{
+            public static let postOrder = "/orders.json"
         }
         
     }
