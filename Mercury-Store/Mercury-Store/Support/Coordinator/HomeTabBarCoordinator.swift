@@ -13,12 +13,12 @@ import UIKit
 final class HomeTabBarCoordinator : Coordinator {
     
     weak var parentCoordinator: Coordinator?
-    
     var mainTabBar: UITabBarController!
+    
     var children: [Coordinator] = []
     
     var navigationController: UINavigationController
-        
+    
     init(navigationController : UINavigationController) {
         self.navigationController = navigationController
         self.mainTabBar = UITabBarController()
@@ -47,7 +47,7 @@ extension HomeTabBarCoordinator {
                        coordinator: ShoppingCartCoordinator(navigationController: UINavigationController()), tag: 2),
             TabContent(title: "Profile",
                        image: UIImage(systemName: "person.crop.circle.fill")!,
-                       coordinator: ProfileCoordinator(navigationController: UINavigationController()), tag: 3),
+                       coordinator: MeCoordinator(navigationController: UINavigationController()), tag: 3),
         ]
         
         tabs.forEach { tab in
@@ -64,8 +64,8 @@ extension HomeTabBarCoordinator {
     /// Configure navigation bar appearance
     ///
     private func configureNavController() {
-        navigationController.pushViewController(mainTabBar, animated: true)
-        navigationController.setNavigationBarHidden(true, animated: true)
+        navigationController.pushViewController(mainTabBar, animated: false)
+        navigationController.setNavigationBarHidden(true, animated: false)
     }
 }
 

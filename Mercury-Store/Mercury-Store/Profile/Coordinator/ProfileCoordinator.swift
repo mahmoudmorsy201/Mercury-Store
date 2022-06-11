@@ -22,18 +22,10 @@ class ProfileCoordinator: Coordinator {
     }
     
     func start() {
-        //TODO: Check login status
-        /*
-        let profileVC = ProfileViewController(nibName: String(describing: ProfileViewController.self), bundle: nil)
-        profileVC.viewModel = ProfileViewModel(profileNavigationFlow: self)
+        let viewModel = ProfileViewModel(profileNavigationFlow: self)
+        let profileVC = ProfileViewController(with: viewModel)
         navigationController.pushViewController(profileVC, animated: true)
-         */
-        let guestViewModel = GuestViewModel(self)
-        let guestVC = GuestProfileViewController(guestViewModel)
-        navigationController.pushViewController(guestVC, animated: true)
     }
-    
-
 }
 
 extension ProfileCoordinator: ProfileNavigationFlow {
@@ -64,30 +56,12 @@ extension ProfileCoordinator: ProfileNavigationFlow {
     }
     
     func goToMainTab() {
-        self.navigationController.tabBarController?.selectedIndex = 0
+        UserDefaults.standard.removeObject(forKey: "user")
+        let appC = self.parentCoordinator?.parentCoordinator as! ApplicationCoordinator
+        appC.goToHomeTabbar()
+        appC.childDidFinish(self)
     }
     
-}
 
-extension ProfileCoordinator: GuestNavigationFlow {
-    func isLoggedInSuccessfully(_ id: Int) {
-        
-        let profileViewModel = ProfileViewModel(profileNavigationFlow: self)
-        let profileVc = ProfileViewController(with: profileViewModel)
-        self.navigationController.pushViewController(profileVc, animated: true)
-    }
-    
-    func goToRegistrationScreen() {
-        let viewModel = RegisterViewModel(flow: self)
-        let registrationVC = RegisterViewController(viewModel)
-        self.navigationController.pushViewController(registrationVC, animated: true)
-    }
-    
-    func goToLoginScreen() {
-        let viewModel = LoginViewModel(registerFlow: self)
-        let loginVC = LoginViewController(viewModel)
-        self.navigationController.pushViewController(loginVC, animated: true)
-    }
-    
     
 }
