@@ -13,14 +13,13 @@ import RxDataSources
 class ShoppingCartViewController: UIViewController {
     
     @IBOutlet weak private var totalPriceLabel: UILabel!
-    @IBOutlet weak var checkoutBottom: NSLayoutConstraint!
+    @IBOutlet weak var checkoutBTN: UIButton!
+    
     @IBOutlet weak private var shoppingCartTableView: UITableView! {
         didSet {
             shoppingCartTableView.register(UINib(nibName: ShoppingCartTableViewCell.reuseIdentifier(), bundle: nil), forCellReuseIdentifier: ShoppingCartTableViewCell.reuseIdentifier())
         }
     }
-    @IBOutlet weak var proceedToCheckoutBtn: UIButton!
-    
   
     private var viewModel: CartViewModel?
     private let disposeBag = DisposeBag()
@@ -39,6 +38,9 @@ class ShoppingCartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+        checkoutBTN.rx.tap.subscribe(onNext: {
+            self.viewModel?.proceedToCheckout()
+        }).disposed(by: disposeBag)
     }
     
     func bind() {

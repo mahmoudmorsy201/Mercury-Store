@@ -10,7 +10,7 @@ import Alamofire
 
 enum OrdersAPI: URLRequestBuilder {
     case getOrders
-    case postOrder
+    case postOrder(OrderRequest)
 }
 extension OrdersAPI {
     var path: String {
@@ -29,8 +29,8 @@ extension OrdersAPI {
         switch self {
         case .getOrders:
             return [:]
-        case .postOrder:
-            return [:]
+        case .postOrder(let order):
+            return try! order.asDictionary()
         }
     }
 }

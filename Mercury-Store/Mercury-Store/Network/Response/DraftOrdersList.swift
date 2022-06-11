@@ -9,7 +9,6 @@ import Foundation
 struct OrderList: Codable {
     let orders: [OrderItem]
 }
-
 // MARK: - Order
 struct OrderItem: Codable {
     let id: Int
