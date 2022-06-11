@@ -11,29 +11,31 @@ import RxCocoa
 protocol DraftOrdersViewModelsType{
     var isLoading: Driver<Bool> { get }
     var error: Driver<String?> { get }
-    var userID:Int{ get}
+    var user: User? { get}
     var orders: Driver<[OrderItem]>{get}
 }
 class DraftOrdersViewModels:DraftOrdersViewModelsType{
-    let ordersProvider :OrdersProvider
-    let disposeBag = DisposeBag()
-    var isLoading: Driver<Bool>
-    
-    var error: Driver<String?>
-    
-    var userID: Int  {
-        MyUserDefaults.shared.getValue(forKey: .id) as! Int
-    }
     private let typesSubject = BehaviorRelay<[OrderItem]>(value: [])
     private let isLoadingSubject = BehaviorRelay<Bool>(value: false)
     private let errorSubject = BehaviorRelay<String?>(value: nil)
+    private let ordersProvider :OrdersProvider
+    private let disposeBag = DisposeBag()
+    private let userDefaults: UserDefaults
     
     var orders: Driver<[OrderItem]>
-    init() {
+    var isLoading: Driver<Bool>
+    var error: Driver<String?>
+    
+    var user: User?
+    
+    
+    init(_ userDefaults: UserDefaults = UserDefaults.standard, ordersProvider :OrdersProvider = OrderListApi()) {
         orders = typesSubject.asDriver(onErrorJustReturn: [])
         isLoading = isLoadingSubject.asDriver(onErrorJustReturn: false)
         error = errorSubject.asDriver(onErrorJustReturn: "Something went wrong")
-        ordersProvider = OrderListApi()
+        self.ordersProvider = ordersProvider
+        self.userDefaults = userDefaults
+        self.user = getUser()
         fetchOrders()
     }
     private func fetchOrders(){
@@ -42,13 +44,22 @@ class DraftOrdersViewModels:DraftOrdersViewModelsType{
         self.errorSubject.accept(nil)
         self.ordersProvider.getOrderList()
             .observe(on: MainScheduler.asyncInstance)
-                    .subscribe {[weak self] (result) in
-                        guard let self = self else{return}
-                        self.isLoadingSubject.accept(false)
-                        self.typesSubject.accept(result.orders)
-                    } onError: {[weak self] (error) in
-                        self?.isLoadingSubject.accept(false)
-                        self?.errorSubject.accept(error.localizedDescription)
-                    }.disposed(by: disposeBag)
+            .subscribe {[weak self] (result) in
+                guard let self = self else{return}
+                self.isLoadingSubject.accept(false)
+                self.typesSubject.accept(result.orders)
+            } onError: {[weak self] (error) in
+                self?.isLoadingSubject.accept(false)
+                self?.errorSubject.accept(error.localizedDescription)
+            }.disposed(by: disposeBag)
+    }
+    
+    private func getUser() -> User? {
+        do {
+            return try userDefaults.getObject(forKey: "user", castTo: User.self)
+        } catch {
+            print(error.localizedDescription)
+            return nil
+        }
     }
 }
