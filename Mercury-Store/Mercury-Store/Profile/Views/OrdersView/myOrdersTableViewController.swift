@@ -10,12 +10,15 @@ import RxSwift
 
 class myOrdersTableViewController: UITableViewController {
     
-    var ordersViewModel:DraftOrdersViewModelsType!
+    private var ordersViewModel:DraftOrdersViewModelsType!
     let disposeBag = DisposeBag()
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        self.ordersViewModel = DraftOrdersViewModels()
+    
+    init(_ viewModel: DraftOrdersViewModelsType) {
+        super.init(nibName: nil, bundle: nil)
+        self.ordersViewModel = viewModel
     }
+    
+    
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -26,7 +29,7 @@ class myOrdersTableViewController: UITableViewController {
     }
 }
 extension myOrdersTableViewController{
-    func setupTable(){
+    private func setupTable(){
         tableView.register(UINib(nibName: "MyOrdersViewCell", bundle: nil), forCellReuseIdentifier: "myOrderCell")
         tableView.dataSource = nil
         tableView.delegate = nil
@@ -34,6 +37,6 @@ extension myOrdersTableViewController{
         ordersViewModel.orders.drive(tableView.rx.items(
             cellIdentifier: "myOrderCell", cellType: MyOrdersViewCell.self)){index , element ,cell in
                 cell.setupCell(order: element)
-        }
+            }.disposed(by: disposeBag)
     }
 }
