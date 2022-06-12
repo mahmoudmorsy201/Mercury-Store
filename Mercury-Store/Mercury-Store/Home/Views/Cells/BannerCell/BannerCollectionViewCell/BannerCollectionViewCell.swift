@@ -41,11 +41,29 @@ class BannerCollectionViewCell: UICollectionViewCell {
         discountTitleLabel.text = "By \(item.title) Coupon"
         useThisDiscount.rx.tap.subscribe(onNext: {[weak self] in
             guard let self = self else{return}
-            self.viewModel.savePriceRole(itemId: self.item!.id)
+            if(self.viewModel.savePriceRole(itemId: self.item!.id)){
+                self.presentSavingState()
+            }else{
+                self.presentErrorSAvingData()
+            }
         }).disposed(by: disposeBag)
     }
     override func awakeFromNib() {
         super.awakeFromNib()
         
+    }
+    func presentSavingState(){
+        let dialogMessage = UIAlertController(title: "", message: "your coupon was saved Succefully", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+        dialogMessage.addAction(ok)
+        guard let parentVC = self.parentViewController else { return }
+        parentVC.present(dialogMessage, animated: true, completion: nil)
+    }
+    func presentErrorSAvingData(){
+        let dialogMessage = UIAlertController(title: "", message: "something went wrong while savong coupon", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+        dialogMessage.addAction(ok)
+        guard let parentVC = self.parentViewController else { return }
+        parentVC.present(dialogMessage, animated: true, completion: nil)
     }
 }
