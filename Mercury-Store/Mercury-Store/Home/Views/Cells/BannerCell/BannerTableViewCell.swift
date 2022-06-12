@@ -58,7 +58,7 @@ extension BannerTableViewCell {
         bannerCollectionView.delegate = nil
         bannerCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
         
-        viewModel?.bannerObservable
+        viewModel?.pricesRules
             .drive(bannerCollectionView.rx.items(cellIdentifier: BannerCollectionViewCell.reuseIdentifier(), cellType: BannerCollectionViewCell.self)) {indexPath, item , cell in
                 cell.item = item
             }
@@ -66,9 +66,9 @@ extension BannerTableViewCell {
     }
     
     private func bindPageController() {
-        viewModel?.countForPageControll
-            .bind(to: bannerImageViewPageControl.rx.numberOfPages)
-            .disposed(by: disposeBag)
+//        viewModel?.countForPageControll
+//            .bind(to: bannerImageViewPageControl.rx.numberOfPages)
+//            .disposed(by: disposeBag)
     }
     
     private func bindCollectionViewToPageControll() {
