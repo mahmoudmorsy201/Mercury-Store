@@ -12,10 +12,6 @@ import RxCocoa
 class BannerCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var cellCOntainer: UIView!
-    @IBOutlet weak var discountValueLabel: UILabel!
-    
-    @IBOutlet weak var useThisDiscount: UIButton!
-    @IBOutlet weak var discountTitleLabel: UILabel!
     private var viewModel:PriceRoleCellViewModelType!
     private let disposeBag = DisposeBag()
     
@@ -27,7 +23,17 @@ class BannerCollectionViewCell: UICollectionViewCell {
             setupCellData(item: item)
         }
     }
-    
+    var index: Int? {
+        didSet {
+            guard let index = index else {
+                return
+            }
+            if (index+1)%2 == 0{
+                print(index+1)
+                assignbackground(imageName: "of1")
+            }
+        }
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -38,10 +44,10 @@ class BannerCollectionViewCell: UICollectionViewCell {
     }
     
     func setupCellData(item:PriceRule){
-        discountValueLabel.text = "get \(item.value) Off "
-        discountTitleLabel.text = "By \(item.title) Coupon"
         assignbackground()
-        useThisDiscount.rx.tap.subscribe(onNext: {[weak self] in
+        let tapGesture = UITapGestureRecognizer()
+        cellCOntainer.addGestureRecognizer(tapGesture)
+        tapGesture.rx.event.subscribe(onNext: {[weak self] _ in
             guard let self = self else{return}
             if(self.viewModel.savePriceRole(itemId: self.item!.id)){
                 self.presentSavingState()
@@ -50,13 +56,12 @@ class BannerCollectionViewCell: UICollectionViewCell {
             }
         }).disposed(by: disposeBag)
     }
-    func assignbackground(){
-        let background = UIImage(named: "offer_background")
+    func assignbackground(imageName:String = "of1"){
+        let background = UIImage(named: imageName)
         var imageView : UIImageView!
         imageView = UIImageView(frame: cellCOntainer.bounds)
         imageView.contentMode =  UIView.ContentMode.scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.alpha = 0.3
         imageView.image = background
         imageView.center = cellCOntainer.center
         cellCOntainer.addSubview(imageView)
@@ -67,7 +72,9 @@ class BannerCollectionViewCell: UICollectionViewCell {
         
     }
     func presentSavingState(){
-        let dialogMessage = UIAlertController(title: "", message: "your coupon was saved Succefully", preferredStyle: .alert)
+        let msgPart2 = "your coupon was saved Succefully\n"
+        let msgPart1 = "\(item!.title)\n"
+        let dialogMessage = UIAlertController(title: "", message: "\(msgPart1) \(msgPart2)", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
         dialogMessage.addAction(ok)
         guard let parentVC = self.parentViewController else { return }
