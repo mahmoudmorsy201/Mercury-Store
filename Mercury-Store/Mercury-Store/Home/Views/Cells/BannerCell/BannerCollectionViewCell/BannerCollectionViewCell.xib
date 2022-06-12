@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,23 +17,59 @@
                 <rect key="frame" x="0.0" y="0.0" width="309" height="163"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3up-JF-8vr">
-                        <rect key="frame" x="12" y="12" width="285" height="139"/>
-                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVs-cd-zPK">
+                        <rect key="frame" x="4" y="4" width="301" height="155"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yj0-ry-CYM">
+                                <rect key="frame" x="4" y="4" width="297" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PB4-wv-emu">
+                                <rect key="frame" x="4" y="67" width="293" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1K-SO-LMe">
+                                <rect key="frame" x="233" y="116" width="62" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Use It"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="PB4-wv-emu" firstAttribute="centerY" secondItem="KVs-cd-zPK" secondAttribute="centerY" id="3WJ-PD-YJF"/>
+                            <constraint firstAttribute="trailing" secondItem="PB4-wv-emu" secondAttribute="trailing" constant="4" id="Oue-0k-hgu"/>
+                            <constraint firstItem="Yj0-ry-CYM" firstAttribute="leading" secondItem="KVs-cd-zPK" secondAttribute="leading" constant="4" id="QrQ-UA-sqO"/>
+                            <constraint firstItem="PB4-wv-emu" firstAttribute="leading" secondItem="KVs-cd-zPK" secondAttribute="leading" constant="4" id="Z3I-qx-knV"/>
+                            <constraint firstItem="Yj0-ry-CYM" firstAttribute="top" secondItem="KVs-cd-zPK" secondAttribute="top" constant="4" id="iZE-ae-mfh"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="3up-JF-8vr" secondAttribute="bottom" constant="12" id="mhv-5A-Ppa"/>
-                <constraint firstItem="3up-JF-8vr" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="12" id="ss0-Pb-yys"/>
-                <constraint firstItem="3up-JF-8vr" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="x7q-V9-ll8"/>
-                <constraint firstAttribute="trailing" secondItem="3up-JF-8vr" secondAttribute="trailing" constant="12" id="yqA-HY-CZU"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="Yj0-ry-CYM" secondAttribute="trailing" constant="4" id="2ge-Vr-SUg"/>
+                <constraint firstItem="KVs-cd-zPK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="Pxx-h4-xGx"/>
+                <constraint firstAttribute="bottom" secondItem="KVs-cd-zPK" secondAttribute="bottom" constant="4" id="THa-d3-1dm"/>
+                <constraint firstAttribute="trailing" secondItem="KVs-cd-zPK" secondAttribute="trailing" constant="4" id="x4U-Dj-Evg"/>
+                <constraint firstItem="KVs-cd-zPK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="zIw-o0-XM4"/>
             </constraints>
             <size key="customSize" width="430" height="163"/>
             <connections>
-                <outlet property="bannerImageView" destination="3up-JF-8vr" id="Pcr-yp-0Rp"/>
+                <outlet property="discountTitleLabel" destination="PB4-wv-emu" id="8X5-fd-HnJ"/>
+                <outlet property="discountValueLabel" destination="Yj0-ry-CYM" id="Fj3-xW-O0A"/>
+                <outlet property="useThisDiscount" destination="w1K-SO-LMe" id="Glh-ec-aPH"/>
             </connections>
             <point key="canvasLocation" x="192.0289855072464" y="62.611607142857139"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
