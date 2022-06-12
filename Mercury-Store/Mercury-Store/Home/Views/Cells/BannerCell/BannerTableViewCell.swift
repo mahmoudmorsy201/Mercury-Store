@@ -61,14 +61,15 @@ extension BannerTableViewCell {
         viewModel?.pricesRules
             .drive(bannerCollectionView.rx.items(cellIdentifier: BannerCollectionViewCell.reuseIdentifier(), cellType: BannerCollectionViewCell.self)) {indexPath, item , cell in
                 cell.item = item
+                cell.index = indexPath
             }
             .disposed(by: disposeBag)
     }
     
     private func bindPageController() {
-//        viewModel?.countForPageControll
-//            .bind(to: bannerImageViewPageControl.rx.numberOfPages)
-//            .disposed(by: disposeBag)
+        viewModel?.countForPageControll.asObservable()
+            .bind(to: bannerImageViewPageControl.rx.numberOfPages)
+            .disposed(by: disposeBag)
     }
     
     private func bindCollectionViewToPageControll() {
