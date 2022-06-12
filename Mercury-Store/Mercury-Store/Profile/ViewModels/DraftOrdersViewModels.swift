@@ -8,13 +8,16 @@
 import Foundation
 import RxSwift
 import RxCocoa
-protocol DraftOrdersViewModelsType{
+
+/*
+protocol DraftOrdersViewModelsType {
     var isLoading: Driver<Bool> { get }
     var error: Driver<String?> { get }
     var user: User? { get}
     var orders: Driver<[OrderItem]>{get}
 }
-class DraftOrdersViewModels:DraftOrdersViewModelsType{
+
+class DraftOrdersViewModels:DraftOrdersViewModelsType {
     private let typesSubject = BehaviorRelay<[OrderItem]>(value: [])
     private let isLoadingSubject = BehaviorRelay<Bool>(value: false)
     private let errorSubject = BehaviorRelay<String?>(value: nil)
@@ -29,7 +32,7 @@ class DraftOrdersViewModels:DraftOrdersViewModelsType{
     var user: User?
     
     
-    init(_ userDefaults: UserDefaults = UserDefaults.standard, ordersProvider :OrdersProvider = OrderListApi()) {
+    init(_ userDefaults: UserDefaults = UserDefaults.standard, ordersProvider :OrdersProvider = OrdersClient()) {
         orders = typesSubject.asDriver(onErrorJustReturn: [])
         isLoading = isLoadingSubject.asDriver(onErrorJustReturn: false)
         error = errorSubject.asDriver(onErrorJustReturn: "Something went wrong")
@@ -42,7 +45,10 @@ class DraftOrdersViewModels:DraftOrdersViewModelsType{
         self.typesSubject.accept([])
         self.isLoadingSubject.accept(true)
         self.errorSubject.accept(nil)
-        self.ordersProvider.getOrderList()
+        guard let user = user else {
+            return
+        }
+        self.ordersProvider.getOrderList(with: user.id)
             .observe(on: MainScheduler.asyncInstance)
             .subscribe {[weak self] (result) in
                 guard let self = self else{return}
@@ -62,4 +68,4 @@ class DraftOrdersViewModels:DraftOrdersViewModelsType{
             return nil
         }
     }
-}
+}*/

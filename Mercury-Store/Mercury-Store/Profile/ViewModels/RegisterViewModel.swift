@@ -67,7 +67,7 @@ class RegisterViewModel: RegisterViewModelType {
     private func postCustomer(firstName: String, lastName: String, email: String, password: String) {
         
         customerProvider.postCustomer(
-            Customer(customer: CustomerClass(firstName: firstName, lastName: lastName, email: email, password: password
+            Customer(customer: CustomerClass(firstName: firstName, lastName: lastName, email: email, password: password, cartId: "0", favouriteId: "0"
         )))
         .subscribe(onNext: { [weak self] result in
             guard let `self` = self else {fatalError()}

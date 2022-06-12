@@ -111,10 +111,13 @@ extension ProductDetailsViewController{
 }
 extension ProductDetailsViewController{
     private func addToCartTapBinding(){
-        addToCart.rx.tap.subscribe(onNext: { [weak self] in
+        addToCart.rx.tap.subscribe { [weak self] _ in
             guard let self = self else { return }
-            self.viewModel.saveToCart()
-        }).disposed(by: disposeBag)
+            self.viewModel.modifyOrderInCartIfCartIdIsNil(self.viewModel.product.variants[0].id)
+        }.disposed(by: disposeBag)
+
+        
+
     }
 }
 extension ProductDetailsViewController : UICollectionViewDelegateFlowLayout {

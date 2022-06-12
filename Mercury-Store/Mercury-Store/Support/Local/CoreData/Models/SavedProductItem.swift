@@ -7,6 +7,7 @@
 
 import Foundation
 struct SavedProductItem{
+    var variantId: Int
     var productID:Decimal
     var productTitle:String
     var productImage:String
@@ -23,6 +24,7 @@ extension SavedProductItem {
         productQTY = 0
         // 0 favourite -- 1 cart -- 2cart
         producrState = 0
+        variantId = 0
     }
 }
 

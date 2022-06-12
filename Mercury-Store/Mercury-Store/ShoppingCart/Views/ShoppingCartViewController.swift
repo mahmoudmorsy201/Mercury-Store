@@ -38,12 +38,14 @@ class ShoppingCartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
-        checkoutBTN.rx.tap.subscribe(onNext: {
-            self.viewModel?.proceedToCheckout()
-        }).disposed(by: disposeBag)
     }
     
-    func bind() {
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.viewModel?.viewDidDisappear()
+    }
+    
+    private func bind() {
         guard let viewModel = self.viewModel else {fatalError("Couldn't unwrap viewModel")}
         
         let inputData = Observable.merge(

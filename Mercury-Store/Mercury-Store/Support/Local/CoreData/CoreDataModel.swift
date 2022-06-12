@@ -17,6 +17,7 @@ enum productStates :Int{
     case both = 2
 }
 enum productCoredataAttr:String{
+    case variantId = "variantId"
     case id = "id"
     case title = "title"
     case image = "image"
@@ -51,6 +52,7 @@ extension CoreDataModel: StorageInputs {
             
             for itemMO in fetchedItems {
                 let tmpItem: SavedProductItem = SavedProductItem(
+                    variantId: itemMO.value(forKey: productCoredataAttr.variantId.rawValue) as! Int,
                     productID: itemMO.value(forKey: productCoredataAttr.id.rawValue) as! Decimal,
                     productTitle: itemMO.value(forKey: productCoredataAttr.title.rawValue) as! String,
                     productImage: itemMO.value(forKey: productCoredataAttr.image.rawValue) as! String ,
@@ -60,16 +62,17 @@ extension CoreDataModel: StorageInputs {
                 resultItems.append(tmpItem)
             }
             
-          } catch let error as NSError {
+        } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
-              return(resultItems , error)
-          }
+            return(resultItems , error)
+        }
         return (resultItems, nil)
     }
     
     func insert(item : SavedProductItem) -> (SavedProductItem, Bool) {
         let entityItem = NSEntityDescription.entity(forEntityName: self.entity, in: self.managedObjectContext)!
         let product = NSManagedObject(entity: entityItem, insertInto: self.managedObjectContext)
+        product.setValue(item.variantId , forKey: productCoredataAttr.variantId.rawValue)
         product.setValue(item.productID , forKey: productCoredataAttr.id.rawValue)
         product.setValue(item.productTitle , forKey: productCoredataAttr.title.rawValue)
         product.setValue(item.productImage , forKey:  productCoredataAttr.image.rawValue)
@@ -102,8 +105,8 @@ extension CoreDataModel: StorageInputs {
             }
         } catch let error as NSError {
             print(error)
-              return (SavedProductItem(), false)
-          }
+            return (SavedProductItem(), false)
+        }
         return (updateitem , true)
     }
     func delete(itemID:Int) -> Bool{
@@ -113,12 +116,12 @@ extension CoreDataModel: StorageInputs {
             let fetchedItems = try self.managedObjectContext.fetch(fetchRequest)
             for object in fetchedItems {
                 self.managedObjectContext.delete(object as! NSManagedObject)
-                }
+            }
             try self.managedObjectContext.save()
             return true
         } catch _ as NSError {
-              return false
-          }
+            return false
+        }
     }
     
 }
@@ -126,7 +129,7 @@ extension CoreDataModel{
     func isBothProduct(id :Int) -> Bool{
         var results: [NSManagedObject] = []
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: self.entity)
-    fetchRequest.predicate =  NSPredicate(format: "\(productCoredataAttr.id.rawValue) = %@ AND (\(productCoredataAttr.state.rawValue)  = %@ )", argumentArray: [id as CVarArg, productStates.both.rawValue])
+        fetchRequest.predicate =  NSPredicate(format: "\(productCoredataAttr.id.rawValue) = %@ AND (\(productCoredataAttr.state.rawValue)  = %@ )", argumentArray: [id as CVarArg, productStates.both.rawValue])
         do {
             results = try managedObjectContext.fetch(fetchRequest)
         }
@@ -153,18 +156,20 @@ extension CoreDataModel{
         
         do {
             let fetchedItems = try managedObjectContext.fetch(fetchRequest)[0]
-            let itemMO = SavedProductItem(productID: fetchedItems.value(forKey: productCoredataAttr.id.rawValue) as! Decimal,
+            let itemMO = SavedProductItem(
+                variantId: fetchedItems.value(forKey: productCoredataAttr.variantId.rawValue) as! Int,
+                                          productID: fetchedItems.value(forKey: productCoredataAttr.id.rawValue) as! Decimal,
                                           productTitle: fetchedItems.value(forKey: productCoredataAttr.title.rawValue) as! String,
                                           productImage: fetchedItems.value(forKey: productCoredataAttr.image.rawValue) as! String,
                                           productPrice: fetchedItems.value(forKey: productCoredataAttr.price.rawValue) as! Double,
                                           productQTY: fetchedItems.value(forKey: productCoredataAttr.quantity.rawValue) as! Int,
                                           producrState: fetchedItems.value(forKey: productCoredataAttr.state.rawValue) as! Int)
             return itemMO
-            }
+        }
         catch let error as NSError {
             print("Could not fetch. \(error)")
-              return(SavedProductItem())
-          }
+            return(SavedProductItem())
+        }
     }
     func observeProductCount() {
         let count = getItems(productState: productStates.cart).0.reduce(0) { result, row in
@@ -175,7 +180,7 @@ extension CoreDataModel{
         }else {
             countSubject.onNext("\(count)")
         }
-     
+        
     }
     
 }

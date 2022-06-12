@@ -10,13 +10,13 @@ import RxSwift
 
 class myOrdersTableViewController: UITableViewController {
     
-    private var ordersViewModel:DraftOrdersViewModelsType!
+    //private var ordersViewModel:DraftOrdersViewModelsType!
     let disposeBag = DisposeBag()
-    
-    init(_ viewModel: DraftOrdersViewModelsType) {
-        super.init(nibName: nil, bundle: nil)
-        self.ordersViewModel = viewModel
-    }
+//
+//    init(_ viewModel: DraftOrdersViewModelsType) {
+//        super.init(nibName: nil, bundle: nil)
+//        self.ordersViewModel = viewModel
+//    }
     
     
     
@@ -34,9 +34,10 @@ extension myOrdersTableViewController{
         tableView.dataSource = nil
         tableView.delegate = nil
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
-        ordersViewModel.orders.drive(tableView.rx.items(
+        /*ordersViewModel.orders.drive(tableView.rx.items(
             cellIdentifier: "myOrderCell", cellType: MyOrdersViewCell.self)){index , element ,cell in
                 cell.setupCell(order: element)
             }.disposed(by: disposeBag)
-    }
+    }*/
+}
 }
