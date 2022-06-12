@@ -40,7 +40,7 @@ class ProductResultViewController: UIViewController {
         let nib = UINib(nibName: "BrandProductsCollectionViewCell", bundle: nil)
         productCollectionView.register(nib, forCellWithReuseIdentifier: BrandProductsCollectionViewCell.reuseIdentifier())
         
-        viewModel?.products.drive(productCollectionView.rx.items(cellIdentifier: BrandProductsCollectionViewCell.reuseIdentifier(), cellType: BrandProductsCollectionViewCell.self)){[weak self] index , element , cell in
+        viewModel?.products.drive(productCollectionView.rx.items(cellIdentifier: BrandProductsCollectionViewCell.reuseIdentifier(), cellType: BrandProductsCollectionViewCell.self)){index , element , cell in
             cell.item = element
         }.disposed(by: disposeBag)
         productCollectionView.rx.modelSelected(Product.self).subscribe(onNext:{ type in

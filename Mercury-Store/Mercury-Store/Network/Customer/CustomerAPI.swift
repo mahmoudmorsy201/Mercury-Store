@@ -10,7 +10,7 @@ import Alamofire
 enum CustomerAPI: URLRequestBuilder {
     case postCustomer(Customer)
     case getCustomer(Int)
-    case editCustomer
+    case editCustomer(Int, EditCustomer)
     case getCustomerByEmail(String)
 }
 
@@ -21,8 +21,8 @@ extension CustomerAPI {
             return Constants.Paths.Customers.customer
         case .getCustomer(let id):
             return "/customers/\(id).json"
-        case .editCustomer:
-            return Constants.Paths.Customers.customer
+        case .editCustomer(let id, _):
+            return "/customers/\(id).json"
         case .getCustomerByEmail:
             return Constants.Paths.Customers.customerSearch
         }
@@ -36,8 +36,8 @@ extension CustomerAPI {
             return try! customer.asDictionary()
         case .getCustomer:
             return [:]
-        case .editCustomer:
-            return [:]
+        case .editCustomer(_ , let editCustomer):
+            return try! editCustomer.asDictionary()
         case .getCustomerByEmail(let email):
             
             return ["query": "email:\(email)"]

@@ -50,6 +50,7 @@ class HomeViewController: UIViewController {
         bindTableView()
         bindActivity()
         bindCartBadgeValue()
+        self.viewModel.getAllProductsFromApi() 
     }
     
     private func bindCartBadgeValue() {

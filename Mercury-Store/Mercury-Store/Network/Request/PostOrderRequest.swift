@@ -6,45 +6,59 @@
 //
 
 import Foundation
-/*
- {
-   "order": {
-     "line_items": [
-       {
-         "variant_id": 447654529,
-         "quantity": 1
-       }
-     ],
-     "customer": {
-       "id": 207119551
-     },
-     "financial_status": "pending"
-   }
- }
- */
-struct OrderRequest:Encodable{
-    let order: OrderRequestItem
+
+struct DraftOrdersRequest: Codable {
+    let draftOrder: DraftOrderItem
+
+    enum CodingKeys: String, CodingKey {
+        case draftOrder = "draft_order"
+    }
 }
-// MARK: - Order
-struct OrderRequestItem: Codable {
-    let lineItems: [LineItemOrder]
-    let customer: CustomerOrderRequst
+
+// MARK: - DraftOrder
+struct DraftOrderItem: Codable {
+    let lineItems: [LineItemDraft]
+    let customer: CustomerId
+    let useCustomerDefaultAddress: Bool
+
     enum CodingKeys: String, CodingKey {
         case lineItems = "line_items"
         case customer
+        case useCustomerDefaultAddress = "use_customer_default_address"
     }
 }
 
 // MARK: - Customer
-struct CustomerOrderRequst: Codable {
+struct CustomerId: Codable {
     let id: Int
 }
 
 // MARK: - LineItem
-struct LineItemOrder: Codable {
-    let variantID, quantity: Int
+struct LineItemDraft: Codable {
+    let quantity, variantID: Int
+
     enum CodingKeys: String, CodingKey {
-        case variantID = "variant_id"
         case quantity
+        case variantID = "variant_id"
+    }
+}
+
+
+//MARK: - PutOrderRequest
+struct PutOrderRequest: Codable {
+    let draftOrder: ModifyDraftOrderRequest
+
+    enum CodingKeys: String, CodingKey {
+        case draftOrder = "draft_order"
+    }
+}
+
+struct ModifyDraftOrderRequest: Codable {
+    let dratOrderId: Int
+    let lineItems: [LineItemDraft]
+    
+    enum CodingKeys: String, CodingKey {
+        case lineItems = "line_items"
+        case dratOrderId = "id"
     }
 }

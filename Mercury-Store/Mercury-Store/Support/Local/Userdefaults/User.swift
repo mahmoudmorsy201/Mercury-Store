@@ -14,4 +14,7 @@ struct User: Codable {
     let username: String
     let isLoggedIn: Bool
     let isDiscount: Bool
+    let password: String
+    let cartId: Int
+    let favouriteId: Int
 }

@@ -37,13 +37,44 @@ final class CartViewModel {
     private let incrementProductSubject = PublishSubject<SavedProductItem>()
     private let decrementProductSubject = PublishSubject<SavedProductItem>()
     private let deleteProductSubject = PublishSubject<SavedProductItem>()
+    private let cartOrderSubject = PublishSubject<DraftOrderResponseTest>()
     var incrementProduct: AnyObserver<SavedProductItem> { incrementProductSubject.asObserver() }
     var decrementProduct: AnyObserver<SavedProductItem> { decrementProductSubject.asObserver() }
     var deleteProduct: AnyObserver<SavedProductItem> { deleteProductSubject.asObserver() }
+    let ordersProvider: OrdersProvider
     
-    
-    init(shoppingCartNavigationFlow: ShoppingCartNavigationFlow) {
+    init(shoppingCartNavigationFlow: ShoppingCartNavigationFlow,ordersProvider: OrdersProvider = OrdersClient()) {
         self.shoppingCartNavigationFlow = shoppingCartNavigationFlow
+        self.ordersProvider = ordersProvider
+    }
+    
+    func viewDidDisappear() {
+        modifyOrderInCartApi()
+    }
+    
+    private func modifyOrderInCartApi() {
+        let user = getUserFromUserDefaults()
+        if(user != nil) {
+            if(user!.cartId != 0) {
+                let savedItemsInCart = CartCoreDataManager.shared.getDataFromCoreData()
+                let coreDataLineDraft = savedItemsInCart.map { LineItemDraft(quantity: $0.productQTY, variantID: $0.variantId)}
+                
+                self.ordersProvider.modifyExistingOrder(with: user!.cartId, and: PutOrderRequest(draftOrder: ModifyDraftOrderRequest(dratOrderId: user!.cartId, lineItems: coreDataLineDraft)))
+                    .subscribe(onNext: {[weak self] result in
+                        guard let `self` = self else {fatalError()}
+                        self.cartOrderSubject.onNext(result)
+                    }).disposed(by: disposeBag)
+            }
+        }
+    }
+    
+    private func getUserFromUserDefaults() -> User? {
+        do {
+            return try UserDefaults.standard.getObject(forKey: "user", castTo: User.self)
+        } catch {
+            print(error.localizedDescription)
+            return nil
+        }
     }
     
     func bind(_ input: CartInput) -> CartOutput {
@@ -84,7 +115,5 @@ final class CartViewModel {
     
     func checkoutVisible() -> (_ cart: [CartSection]) throws -> (visible: Bool, animated: Bool) {
         { $0[safe: 0]?.rows.count == 0 ? (visible: false, animated: true) : (visible: true, animated: true) }
-    }
-    func proceedToCheckout(){
     }
 }

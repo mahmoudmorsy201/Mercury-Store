@@ -32,12 +32,16 @@ struct AllCustomers:Codable {
 struct CustomerClass: Codable {
     let firstName, lastName, email: String
     let password : String
+    let cartId: String
+    let favouriteId: String
     
     enum CodingKeys: String, CodingKey {
         case firstName = "first_name"
         case lastName = "last_name"
         case email
         case password = "tags"
+        case cartId = "note"
+        case favouriteId = "multipass_identifier"
     }
 }
 
@@ -49,37 +53,26 @@ struct RegisterResponse: Codable {
 struct CustomerResponse: Codable {
     let id: Int
     let email: String
-    let acceptsMarketing: Bool
-    let createdAt, updatedAt: Date
     let firstName, lastName: String
-    let ordersCount: Int
-    let state, totalSpent: String
-    let lastOrderID: Int?
-    let note: String?
+    let cartId: String
+    let favouriteId: String
     let verifiedEmail: Bool
     let taxExempt: Bool
     let phone: String?
     let password: String
-    let currency: String
     let addresses: [Address]
     
     enum CodingKeys: String, CodingKey {
         case id, email
-        case acceptsMarketing = "accepts_marketing"
-        case createdAt = "created_at"
-        case updatedAt = "updated_at"
         case firstName = "first_name"
         case lastName = "last_name"
-        case ordersCount = "orders_count"
-        case state
-        case totalSpent = "total_spent"
-        case lastOrderID = "last_order_id"
-        case note
+        case cartId = "note"
+        case favouriteId = "multipass_identifier"
         case verifiedEmail = "verified_email"
         case taxExempt = "tax_exempt"
         case phone
         case password = "tags"
-        case currency, addresses
+        case addresses
     }
 }
 
@@ -104,5 +97,25 @@ struct Address: Codable {
         case countryCode = "country_code"
         case countryName = "country_name"
         case addressDefault = "default"
+    }
+}
+
+
+struct EditCustomer: Codable {
+    let customer: EditCustomerItem
+}
+
+// MARK: - Customer
+struct EditCustomerItem: Codable {
+    let id: Int
+    let email, firstName, password, cartId: String
+    let favouriteId: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id, email
+        case firstName = "first_name"
+        case password = "tags"
+        case cartId = "note"
+        case favouriteId = "multipass_identifier"
     }
 }

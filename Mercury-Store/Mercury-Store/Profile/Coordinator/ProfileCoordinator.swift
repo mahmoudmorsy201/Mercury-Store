@@ -31,10 +31,10 @@ class ProfileCoordinator: Coordinator {
 extension ProfileCoordinator: ProfileNavigationFlow {
     
     func goToMyOrdersScreen() {
-        let viewModel = DraftOrdersViewModels()
-        let myOrdersVC = myOrdersTableViewController(viewModel)
+        //let viewModel = DraftOrdersViewModels()
+        //let myOrdersVC = myOrdersTableViewController(viewModel)
         
-        self.navigationController.pushViewController(myOrdersVC, animated: true)
+        //self.navigationController.pushViewController(myOrdersVC, animated: true)
     }
     
     func goToMyWishListScreen() {

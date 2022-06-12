@@ -44,7 +44,7 @@ class BrandProductsCollectionViewCell: UICollectionViewCell {
         favouriteButton.favouriteState(state: viewModel.getFavouriteState(productID: item.id))
         favouriteButton.rx.tap.throttle(.milliseconds(5000), latest: false, scheduler: MainScheduler.instance).subscribe(onNext: { [ weak self ] in
             guard let self = self else{return}
-            let savedValue = SavedProductItem(productID: Decimal(item.id), productTitle: item.title, productImage: item.image.src, productPrice: Double(item.variants[0].price )! , productQTY: 0, producrState: productStates.favourite.rawValue)
+            let savedValue = SavedProductItem(variantId: item.variants[0].id, productID: Decimal(item.id), productTitle: item.title, productImage: item.image.src, productPrice: Double(item.variants[0].price )! , productQTY: 0, producrState: productStates.favourite.rawValue, inventoryQuantity: item.variants[0].inventoryQuantity)
             let favourite = self.viewModel.toggleFavourite(product: savedValue)
             self.favouriteButton.favouriteState(state: favourite)
             

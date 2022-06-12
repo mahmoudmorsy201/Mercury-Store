@@ -9,17 +9,22 @@ import Foundation
 import RxSwift
 
 protocol OrdersProvider: AnyObject {
-    func getOrderList() -> Observable<OrderList>
-    func postOrder(order:OrderRequest) -> Observable<OrderItemPostResponse>
+    //func getOrderList(with customerId: Int) -> Observable<OrderList>
+    func postOrder(order: DraftOrdersRequest) -> Observable<DraftOrderResponseTest>
+    func modifyExistingOrder(with oderId: Int, and putOrderRequest: PutOrderRequest) -> Observable<DraftOrderResponseTest>
 }
 
-class OrderListApi: OrdersProvider {
-    func postOrder(order: OrderRequest)  -> Observable<OrderItemPostResponse>{
+class OrdersClient: OrdersProvider {
+    func modifyExistingOrder(with oderId: Int, and putOrderRequest: PutOrderRequest) -> Observable<DraftOrderResponseTest> {
+        NetworkService().execute(OrdersAPI.modifyExistingOrder(oderId, putOrderRequest))
+    }
+    
+    func postOrder(order: DraftOrdersRequest)  -> Observable<DraftOrderResponseTest>{
         NetworkService().execute(OrdersAPI.postOrder(order))
     }
     
-    func getOrderList() -> Observable<OrderList> {
-        NetworkService().execute(OrdersAPI.getOrders)
-    }
+//    func getOrderList(with customerId: Int) -> Observable<OrderList> {
+//        NetworkService().execute(OrdersAPI.getOrders(customerId))
+//    }
     
 }

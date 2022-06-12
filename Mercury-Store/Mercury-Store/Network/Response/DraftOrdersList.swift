@@ -6,6 +6,8 @@
 //
 import Foundation
 
+
+/*
 struct OrderList: Codable {
     let orders: [OrderItem]
 }
@@ -207,7 +209,7 @@ struct Set: Codable {
 // MARK: - Money
 struct Money: Codable {
     let amount: String
-    let currencyCode: Currency
+    let currencyCode: String
 
     enum CodingKeys: String, CodingKey {
         case amount
@@ -303,7 +305,7 @@ struct Fulfillment: Codable {
     let originAddress: OriginAddress
     let receipt: Receipt
     let service: String
-    let shipmentStatus: JSONNull?
+    let shipmentStatus: String?
     let status, trackingCompany, trackingNumber: String
     let trackingNumbers: [String]
     let trackingURL: String
@@ -405,7 +407,7 @@ struct NoteAttribute: Codable {
 
 // MARK: - TaxLine
 struct TaxLine: Codable {
-    let channelLiable: JSONNull?
+    let channelLiable: Bool?
     let price: String
     let priceSet: Set
     let rate: Double
@@ -815,4 +817,5 @@ class JSONAny: Codable {
             try JSONAny.encode(to: &container, value: self.value)
         }
     }
-}
+}*/
+
