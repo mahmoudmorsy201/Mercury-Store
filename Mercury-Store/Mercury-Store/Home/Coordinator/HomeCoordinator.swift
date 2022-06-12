@@ -20,7 +20,7 @@ class HomeCoordinator : Coordinator, ShoppingCartNavigationFlow {
     }
     
     func start() {
-        let brandProvider: BrandsProvider = HomeScreenAPI()
+        let brandProvider: BrandsProvider = HomeScreenClient()
         let brandViewModel = BrandsViewModel(brandsProvider: brandProvider, homeFlowNavigation: self)
         let viewModel = HomeViewModel(with: self)
         let categoryViewModel = CategoriesViewModel(with: self)
@@ -37,7 +37,7 @@ extension HomeCoordinator: HomeFlowNavigation {
     }
     
     func goToBrandDetails(with brandItem: SmartCollectionElement) {
-        let productsForBrandProvider =  HomeScreenAPI()
+        let productsForBrandProvider =  HomeScreenClient()
         let viewModel = BrandDetailsViewModel(with: brandItem, productsForBrandProvider: productsForBrandProvider, brandDetailsNavigationFlow: self)
         let brandDetailsVC = BrandDetailViewController(with: viewModel)
         navigationController.pushViewController(brandDetailsVC, animated: true)

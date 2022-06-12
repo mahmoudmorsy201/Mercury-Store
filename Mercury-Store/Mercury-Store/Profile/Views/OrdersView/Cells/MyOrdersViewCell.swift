@@ -16,7 +16,7 @@ class MyOrdersViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    public func setupCell(order: DraftOrder){
+    public func setupCell(order: DraftOrderTest){
         //createdAt.text = "\(order.name) \(order.createdAt.formatted(.dateTime))"
         //price.text = "Order total price: \(order.totalPrice) \(order.currency)"
        // paid.text = "order state: \(order.fulfillmentStatus)"

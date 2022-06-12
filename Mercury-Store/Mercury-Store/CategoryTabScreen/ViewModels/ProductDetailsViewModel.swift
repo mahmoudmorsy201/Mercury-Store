@@ -55,11 +55,11 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
             productTitle: product.title,
             productImage: product.image.src ,
             productPrice: Double(product.variants[0].price) ?? 0 ,
-            productQTY: 0 , producrState: productStates.favourite.rawValue))
+            productQTY: 0 , producrState: productStates.favourite.rawValue, inventoryQuantity: product.variants[0].inventoryQuantity))
     }
     
     private func saveToCart() {
-        coreDataShared.insertCartProduct(product: SavedProductItem(variantId: product.variants[0].id, productID: Decimal(product.id), productTitle: product.title, productImage: product.image.src , productPrice: Double(product.variants[0].price) ?? 0 , productQTY: 1 , producrState: productStates.cart.rawValue))
+        coreDataShared.insertCartProduct(product: SavedProductItem(variantId: product.variants[0].id, productID: Decimal(product.id), productTitle: product.title, productImage: product.image.src , productPrice: Double(product.variants[0].price) ?? 0 , productQTY: 1 , producrState: productStates.cart.rawValue, inventoryQuantity: product.variants[0].inventoryQuantity))
         coreDataShared.observeProductCount()
     }
     
