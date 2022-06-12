@@ -33,7 +33,6 @@ struct CartOutput {
 
 
 final class CartViewModel {
-    let disposeBag = DisposeBag()
     private weak var shoppingCartNavigationFlow: ShoppingCartNavigationFlow!
     private let incrementProductSubject = PublishSubject<SavedProductItem>()
     private let decrementProductSubject = PublishSubject<SavedProductItem>()
