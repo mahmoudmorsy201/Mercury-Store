@@ -66,9 +66,9 @@ extension BannerTableViewCell {
     }
     
     private func bindPageController() {
-//        viewModel?.countForPageControll
-//            .bind(to: bannerImageViewPageControl.rx.numberOfPages)
-//            .disposed(by: disposeBag)
+        viewModel?.countForPageControll.asObservable()
+            .bind(to: bannerImageViewPageControl.rx.numberOfPages)
+            .disposed(by: disposeBag)
     }
     
     private func bindCollectionViewToPageControll() {

@@ -11,6 +11,7 @@ import RxCocoa
 
 class BannerCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var cellCOntainer: UIView!
     @IBOutlet weak var discountValueLabel: UILabel!
     
     @IBOutlet weak var useThisDiscount: UIButton!
@@ -39,6 +40,7 @@ class BannerCollectionViewCell: UICollectionViewCell {
     func setupCellData(item:PriceRule){
         discountValueLabel.text = "get \(item.value) Off "
         discountTitleLabel.text = "By \(item.title) Coupon"
+        assignbackground()
         useThisDiscount.rx.tap.subscribe(onNext: {[weak self] in
             guard let self = self else{return}
             if(self.viewModel.savePriceRole(itemId: self.item!.id)){
@@ -47,6 +49,18 @@ class BannerCollectionViewCell: UICollectionViewCell {
                 self.presentErrorSAvingData()
             }
         }).disposed(by: disposeBag)
+    }
+    func assignbackground(){
+        let background = UIImage(named: "offer_background")
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: cellCOntainer.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.alpha = 0.3
+        imageView.image = background
+        imageView.center = cellCOntainer.center
+        cellCOntainer.addSubview(imageView)
+        self.cellCOntainer.sendSubviewToBack(imageView)
     }
     override func awakeFromNib() {
         super.awakeFromNib()

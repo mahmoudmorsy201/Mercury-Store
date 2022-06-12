@@ -62,6 +62,7 @@
             </constraints>
             <size key="customSize" width="430" height="163"/>
             <connections>
+                <outlet property="cellCOntainer" destination="KVs-cd-zPK" id="zQr-gJ-1Kf"/>
                 <outlet property="discountTitleLabel" destination="PB4-wv-emu" id="8X5-fd-HnJ"/>
                 <outlet property="discountValueLabel" destination="Yj0-ry-CYM" id="Fj3-xW-O0A"/>
                 <outlet property="useThisDiscount" destination="w1K-SO-LMe" id="Glh-ec-aPH"/>
