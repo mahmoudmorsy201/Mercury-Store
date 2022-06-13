@@ -35,6 +35,10 @@ extension CategoryCoordinator: CategoriesNavigationFlow {
 
 
 extension CategoryCoordinator: FilteredProductsNavigationFlow {
+    func goToSearchScreen() {
+        
+    }
+    
     func goToProductDetail(with product: Product) {
         let viewModel = ProductsDetailViewModel(with: self,product: product)
         let productDetailsVC = ProductDetailsViewController(with: viewModel)

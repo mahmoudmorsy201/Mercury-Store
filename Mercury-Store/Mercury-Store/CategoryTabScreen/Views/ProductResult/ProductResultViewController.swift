@@ -11,6 +11,7 @@ import ProgressHUD
 
 class ProductResultViewController: UIViewController {
 
+    @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var productCollectionView: UICollectionView!
     
     private let disposeBag = DisposeBag()
@@ -30,9 +31,15 @@ class ProductResultViewController: UIViewController {
         super.viewDidLoad()
         setupCollectionView()
         bindActivity()
+        bindSearchBtn()
         
     }
-    
+    private func bindSearchBtn() {
+        searchButton.rx.tap
+            .subscribe {[weak self] _ in
+                self?.viewModel?.goToSearchScreen()
+            }.disposed(by: disposeBag)
+    }
     private func setupCollectionView(){
         productCollectionView.delegate = nil
         productCollectionView.dataSource = nil

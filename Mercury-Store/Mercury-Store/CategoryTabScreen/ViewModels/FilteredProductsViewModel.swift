@@ -17,6 +17,7 @@ protocol FilteredProductsViewModelType {
     func goToProductDetail(with product: Product)
     func goToFilteredProductScreen()
     func isProductFavourite(id:Int) -> Bool
+    func goToSearchScreen()
 }
 
 final class FilteredProductsViewModel: FilteredProductsViewModelType {
@@ -45,6 +46,9 @@ final class FilteredProductsViewModel: FilteredProductsViewModelType {
         self.productType = productType
         self.filteredProductsNavigationFlow = filteredProductsNavigationFlow
         self.fetchData()
+    }
+    func goToSearchScreen() {
+        filteredProductsNavigationFlow?.goToSearchScreen()
     }
     private func fetchData() {
         self.categorySubject.accept([])
