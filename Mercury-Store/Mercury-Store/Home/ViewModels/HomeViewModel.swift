@@ -62,23 +62,22 @@ final class HomeViewModel {
     func getDraftOrderById(_ products: [Product]) {
         let user = getUserFromUserDefaults()
         if (user != nil) {
-            self.isLoadingSubject.accept(true)
-            self.draftOrderProvider.getDraftOrder(with: user!.cartId)
-                .subscribe(onNext:  {[weak self] result in
-                    guard let `self` = self else {fatalError()}
-                    let variantIdsFromDraftOrderResponse = result.draftOrder.lineItems.map{ $0.variantID }
-                    let filteredProducts = self.filter(items: products, contains: variantIdsFromDraftOrderResponse)
-                    
-                    if(self.fetchedItemsFromCoreData.isEmpty) {
-                        for item in filteredProducts {
-                            let newSaved = SavedProductItem(inventoryQuantity: item.variants[0].inventoryQuantity, variantId: item.variants[0].id, productID: Decimal(item.id), productTitle: item.title, productImage: item.image.src, productPrice: Double(item.variants[0].price)!, productQTY: 4, producrState: 1)
-                          let _ = CoreDataModel.coreDataInstatnce.insertCartProduct(product: newSaved)
+            if(user!.cartId != 0) {
+                self.isLoadingSubject.accept(true)
+                self.draftOrderProvider.getDraftOrder(with: user!.cartId)
+                    .subscribe(onNext:  {[weak self] result in
+                        guard let `self` = self else {fatalError()}
+                        let variantIdsFromDraftOrderResponse = result.draftOrder.lineItems.map{ $0.variantID }
+                        let filteredProducts = self.filter(items: products, contains: variantIdsFromDraftOrderResponse)
+                        
+                        if(self.fetchedItemsFromCoreData.isEmpty) {
+                            for item in filteredProducts {
+                                let newSaved = SavedProductItem(inventoryQuantity: item.variants[0].inventoryQuantity, variantId: item.variants[0].id, productID: Decimal(item.id), productTitle: item.title, productImage: item.image.src, productPrice: Double(item.variants[0].price)!, productQTY: 4, producrState: 1)
+                              let _ = CoreDataModel.coreDataInstatnce.insertCartProduct(product: newSaved)
+                            }
                         }
-                        
-                        
-                        
-                    }
-                }).disposed(by: disposeBag)
+                    }).disposed(by: disposeBag)
+            }
         }
 
     }

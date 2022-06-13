@@ -78,15 +78,10 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
                 .subscribe(onNext: {[weak self] result in
                     guard let `self` = self else {fatalError()}
                     self.cartOrderSubject.onNext(result)
-                    let newUser = User(id: user!.id , email: user!.email, username: user!.username, isLoggedIn: true, isDiscount: false, password: user!.password, cartId: result.draftOrder.id , favouriteId: user!.favouriteId)
-                    try! self.userDefaults.setObject(newUser, forKey: "user")
-                    self.modifyCustomerData(draftOrderId: user!.cartId)
+                    self.modifyCustomerData(draftOrderId: result.draftOrder.id)
                 }).disposed(by: disposeBag)
 
         }
-        saveToCart()
-        
-        
     }
     
     func modifyCustomerData(draftOrderId: Int) {
@@ -96,6 +91,8 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
                 .subscribe(onNext: {[weak self] userResult in
                     guard let `self` = self else {fatalError()}
                     self.editCustomerSubject.onNext(userResult)
+                    let newUser = User(id: user!.id , email: user!.email, username: user!.username, isLoggedIn: true, isDiscount: false, password: user!.password, cartId: Int(userResult.customer.cartId) ?? 0 , favouriteId: user!.favouriteId)
+                    try! self.userDefaults.setObject(newUser, forKey: "user")
                 }).disposed(by: self.disposeBag)
         }
     }
