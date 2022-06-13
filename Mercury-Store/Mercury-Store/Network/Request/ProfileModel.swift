@@ -53,8 +53,8 @@ struct CustomerResponse: Codable {
     let id: Int
     let email: String
     let firstName, lastName: String
-    let cartId: String?
-    let favouriteId: String?
+    let cartId: String
+    let favouriteId: String
     let verifiedEmail: Bool
     let taxExempt: Bool
     let phone: String?
