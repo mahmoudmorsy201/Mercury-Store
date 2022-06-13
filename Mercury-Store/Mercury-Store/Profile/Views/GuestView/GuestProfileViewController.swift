@@ -17,7 +17,6 @@ class GuestProfileViewController: UIViewController {
     private var viewModel: GuestViewModelType!
     private let disposeBag = DisposeBag()
     
-    
     //MARK: - Init
     //
     init(_ viewModel: GuestViewModelType) {
@@ -36,6 +35,8 @@ class GuestProfileViewController: UIViewController {
         setupView()
         bindRegisterButtonTap()
         bindLoginButtonTap()
+       
+       
     }
 }
 
