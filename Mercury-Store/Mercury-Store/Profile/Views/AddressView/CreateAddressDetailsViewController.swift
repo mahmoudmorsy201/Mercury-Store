@@ -15,25 +15,29 @@ class CreateAddressDetailsViewController: UIViewController {
     @IBOutlet weak var cityTxt: UITextField!
     @IBOutlet weak var AddressTxt: UITextField!
     @IBOutlet weak var phoneTxt: UITextField!
+    
+    private var viewModel: AddressViewModelType!
+    
+    init(with viewModel: AddressViewModelType) {
+        super.init(nibName: nil, bundle: nil)
+        self.viewModel = viewModel
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func didPressedOnAddAddress(_ sender: Any) {
-       // coordinator?.moveTo(flow: .profile(.myAddressesScreen), userData: nil)
+        let user = viewModel.getUserFromUserDefaults()
+        viewModel.postAddress(AddressRequestItem(address1: AddressTxt!.text!, address2: AddressTxt!.text!, city: cityTxt!.text!, company: "iti", firstName:user!.username, lastName: user!.username, phone: phoneTxt!.text!, province: cityTxt!.text!, country: countryTxt!.text!, zip: "G1R 4P5", name: "\(user!.username)", provinceCode: "Cairo", countryCode: "EG", countryName: "Egypt"))
+        
 
     }
 }

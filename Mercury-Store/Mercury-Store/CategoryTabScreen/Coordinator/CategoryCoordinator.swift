@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoryCoordinator: Coordinator, ShoppingCartNavigationFlow {
+class CategoryCoordinator: Coordinator {
     var parentCoordinator: Coordinator?
         
     var children: [Coordinator] = []

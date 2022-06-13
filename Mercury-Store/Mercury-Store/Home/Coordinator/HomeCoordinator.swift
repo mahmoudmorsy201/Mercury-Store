@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeCoordinator : Coordinator, ShoppingCartNavigationFlow {
+class HomeCoordinator : Coordinator {
 
     weak var parentCoordinator: Coordinator?
     
@@ -61,12 +61,6 @@ extension HomeCoordinator: FilteredProductsNavigationFlow {
     }
 }
 extension HomeCoordinator: ProductDetailsNavigationFlow {
-    func goToCartScreen() {
-        let cartViewModel = CartViewModel(shoppingCartNavigationFlow: self)
-        let _ = ShoppingCartViewController(with: cartViewModel)
-        
-    }
-    
     
 }
 

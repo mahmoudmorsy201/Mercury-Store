@@ -31,8 +31,8 @@ struct AllCustomers:Codable {
 struct CustomerClass: Codable {
     let firstName, lastName, email: String
     let password : String
-    let cartId: String?
-    let favouriteId: String?
+    let cartId: String
+    let favouriteId: String
     
     enum CodingKeys: String, CodingKey {
         case firstName = "first_name"
@@ -73,6 +73,10 @@ struct CustomerResponse: Codable {
         case password = "tags"
         case addresses
     }
+}
+struct AddressesResponse: Codable {
+
+let addresses: [Address]
 }
 
 // MARK: - Address

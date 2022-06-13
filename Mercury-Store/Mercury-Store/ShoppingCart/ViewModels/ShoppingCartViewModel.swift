@@ -9,7 +9,7 @@ import RxSwift
 import RxCocoa
 
 protocol ShoppingCartNavigationFlow: AnyObject {
-    
+    func goToAddAddressScreen()
 }
 enum CartAction {
     case increment(SavedProductItem)
@@ -67,7 +67,18 @@ final class CartViewModel {
             }
         }
     }
-    
+    func checkUserExists() -> Bool{
+        let user = getUserFromUserDefaults()
+        if(user != nil) {
+            return true
+        }else {
+            return false
+        }
+       
+    }
+    func goToAddAddressScreen() {
+        shoppingCartNavigationFlow.goToAddAddressScreen()
+    }
     private func getUserFromUserDefaults() -> User? {
         do {
             return try UserDefaults.standard.getObject(forKey: "user", castTo: User.self)
