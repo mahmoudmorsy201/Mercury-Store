@@ -50,16 +50,17 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
     }
     func toggleFavourite()->Bool  {
         return coreDataShared.toggleFavourite(product: SavedProductItem(
-            variantId: product.variants[0].id,
+            inventoryQuantity: product.variants[0].inventoryQuantity, variantId: product.variants[0].id,
             productID: Decimal(product.id),
             productTitle: product.title,
             productImage: product.image.src ,
             productPrice: Double(product.variants[0].price) ?? 0 ,
-            productQTY: 0 , producrState: productStates.favourite.rawValue, inventoryQuantity: product.variants[0].inventoryQuantity))
+            productQTY: 0 , producrState: productStates.favourite.rawValue))
     }
     
     private func saveToCart() {
-        coreDataShared.insertCartProduct(product: SavedProductItem(variantId: product.variants[0].id, productID: Decimal(product.id), productTitle: product.title, productImage: product.image.src , productPrice: Double(product.variants[0].price) ?? 0 , productQTY: 1 , producrState: productStates.cart.rawValue, inventoryQuantity: product.variants[0].inventoryQuantity))
+        let _ = coreDataShared.insertCartProduct(product: SavedProductItem(inventoryQuantity: product.variants[0].inventoryQuantity, variantId: product.variants[0].id, productID: Decimal(product.id), productTitle: product.title, productImage: product.image.src , productPrice: Double(product.variants[0].price) ?? 0 , productQTY: 1 , producrState: productStates.cart.rawValue))
+        
         coreDataShared.observeProductCount()
     }
     

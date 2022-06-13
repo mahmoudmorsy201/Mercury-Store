@@ -70,11 +70,11 @@ final class HomeViewModel {
                     let filteredProducts = self.filter(items: products, contains: variantIdsFromDraftOrderResponse)
                     
                     if(self.fetchedItemsFromCoreData.isEmpty) {
-                       filteredProducts.map{ item in
-                            SavedProductItem(variantId: item.variants[0].id, productID: Decimal(item.id), productTitle: item.title, productImage: item.image.src, productPrice: Double(item.variants[0].price)!, productQTY: 4, producrState: 1, inventoryQuantity: item.variants[0].inventoryQuantity)
-                        }.map {
-                            CoreDataModel.coreDataInstatnce.insertCartProduct(product: $0)
+                        for item in filteredProducts {
+                            let newSaved = SavedProductItem(inventoryQuantity: item.variants[0].inventoryQuantity, variantId: item.variants[0].id, productID: Decimal(item.id), productTitle: item.title, productImage: item.image.src, productPrice: Double(item.variants[0].price)!, productQTY: 4, producrState: 1)
+                          let _ = CoreDataModel.coreDataInstatnce.insertCartProduct(product: newSaved)
                         }
+                        
                         
                         
                     }

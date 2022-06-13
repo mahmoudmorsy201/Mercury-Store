@@ -36,7 +36,7 @@ struct SearchState {
             return SearchState([sortByName(name, in: self.sections[0])])
         case .searchByPrice(let price):
             return SearchState([sortByPrice(price, in: self.sections[0])])
-        case .sortAlphabetically(let sortOrder):
+        case .sortAlphabetically:
             return .empty()
 
         }

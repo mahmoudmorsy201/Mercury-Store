@@ -155,3 +155,7 @@ struct TaxLine: Codable {
     let rate: Double
     let title, price: String
 }
+
+struct EmptyObject: Codable {
+    
+}

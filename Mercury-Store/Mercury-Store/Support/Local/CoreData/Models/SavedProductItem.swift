@@ -7,6 +7,7 @@
 
 import Foundation
 struct SavedProductItem{
+    var inventoryQuantity: Int
     var variantId: Int
     var productID:Decimal
     var productTitle:String
@@ -14,7 +15,6 @@ struct SavedProductItem{
     var productPrice:Double
     var productQTY:Int
     var producrState:Int
-    var inventoryQuantity: Int
 }
 extension SavedProductItem {
     init() {
