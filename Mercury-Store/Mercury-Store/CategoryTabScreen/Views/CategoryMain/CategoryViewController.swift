@@ -58,7 +58,7 @@ extension CategoryViewController :UITableViewDelegate{
     
     private func setupReactiveMainCategoryTableData(){
         viewModel.categories.drive(mainCategoryItems.rx.items(cellIdentifier: MainCategoryCellTableViewCell.identifier, cellType: MainCategoryCellTableViewCell.self)){ index , element , cell in
-            cell.config(item: element,index: index)
+            cell.config(item: element )
         }.disposed(by: disposeBag)
     }
     

@@ -26,15 +26,12 @@ class MainCategoryCellTableViewCell: UITableViewCell {
             self.cellContainerView.backgroundColor = UIColor(hexString: "#ed05f5")
         }
         else{
-            categoryItem.textColor = .black
+            self.categoryItem.textColor = .black
             self.cellContainerView.backgroundColor = .white
         }
     }
     
-    public func config(item:CustomCollection, index:Int){
-        if index == 0{
-            designSelected(selected: true)
-        }
+    public func config(item:CustomCollection){
         self.item = item
         categoryItem.text = item.title
     }

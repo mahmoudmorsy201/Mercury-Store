@@ -11,6 +11,7 @@ import RxCocoa
 
 class BannerCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var imageCard: UIImageView!
     @IBOutlet weak var cellCOntainer: UIView!
     private var viewModel:PriceRoleCellViewModelType!
     private let disposeBag = DisposeBag()
@@ -29,8 +30,9 @@ class BannerCollectionViewCell: UICollectionViewCell {
                 return
             }
             if (index+1)%2 == 0{
-                print(index+1)
-                assignbackground(imageName: "of1")
+                imageCard.image = UIImage(named: "of2")
+            }else{
+                imageCard.image = UIImage(named: "of3")
             }
         }
     }
@@ -44,7 +46,6 @@ class BannerCollectionViewCell: UICollectionViewCell {
     }
     
     func setupCellData(item:PriceRule){
-        assignbackground()
         let tapGesture = UITapGestureRecognizer()
         cellCOntainer.addGestureRecognizer(tapGesture)
         tapGesture.rx.event.subscribe(onNext: {[weak self] _ in
@@ -55,17 +56,6 @@ class BannerCollectionViewCell: UICollectionViewCell {
                 self.presentErrorSAvingData()
             }
         }).disposed(by: disposeBag)
-    }
-    func assignbackground(imageName:String = "of1"){
-        let background = UIImage(named: imageName)
-        var imageView : UIImageView!
-        imageView = UIImageView(frame: cellCOntainer.bounds)
-        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = background
-        imageView.center = cellCOntainer.center
-        cellCOntainer.addSubview(imageView)
-        self.cellCOntainer.sendSubviewToBack(imageView)
     }
     override func awakeFromNib() {
         super.awakeFromNib()
