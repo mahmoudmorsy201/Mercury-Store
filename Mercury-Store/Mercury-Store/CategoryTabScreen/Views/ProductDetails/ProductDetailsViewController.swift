@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Toast_Swift
 
 class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
     
@@ -104,7 +105,7 @@ extension ProductDetailsViewController{
     }
     func addToFavourite(){
         favoriteBtn.rx.tap.subscribe(onNext: { [weak self] in
-            self!.view.makeToast("Added to Favourite", duration: 3.0, position: .top)
+            self!.view.makeToast("Added to Favorites", duration: 3.0, position: .top)
             guard let self = self else {return}
             self.favoriteBtn.favouriteState(state:  self.viewModel.toggleFavourite() )
         }).disposed(by: disposeBag)
@@ -113,6 +114,7 @@ extension ProductDetailsViewController{
 extension ProductDetailsViewController{
     private func addToCartTapBinding(){
         addToCart.rx.tap.subscribe { [weak self] _ in
+            self!.view.makeToast("Added to Bag", duration: 3.0, position: .bottom)
             guard let self = self else { return }
             self.viewModel.modifyOrderInCartIfCartIdIsNil(self.viewModel.product.variants[0].id)
         }.disposed(by: disposeBag)
