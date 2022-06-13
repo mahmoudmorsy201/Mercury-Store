@@ -112,6 +112,4 @@ class LoginViewModel: LoginViewModelType {
         return User(id: customer.id, email: customer.email, username: customer.firstName, isLoggedIn: true, isDiscount: false, password: customer.password, cartId: Int(customer.cartId ?? "") ?? 0, favouriteId: Int(customer.favouriteId ?? "0") ?? 0)
     }
     
-    
-    
 }
