@@ -53,13 +53,15 @@ extension CoreDataModel: StorageInputs {
             
             for itemMO in fetchedItems {
                 let tmpItem: SavedProductItem = SavedProductItem(
+                    inventoryQuantity: itemMO.value(forKey:productCoredataAttr.inventoryQuantity.rawValue) as! Int,
                     variantId: itemMO.value(forKey: productCoredataAttr.variantId.rawValue) as! Int,
                     productID: itemMO.value(forKey: productCoredataAttr.id.rawValue) as! Decimal,
                     productTitle: itemMO.value(forKey: productCoredataAttr.title.rawValue) as! String,
                     productImage: itemMO.value(forKey: productCoredataAttr.image.rawValue) as! String ,
                     productPrice: itemMO.value(forKey: productCoredataAttr.price.rawValue) as! Double,
                     productQTY: itemMO.value(forKey: productCoredataAttr.quantity.rawValue) as! Int,
-                    producrState: itemMO.value(forKey: productCoredataAttr.state.rawValue) as! Int, inventoryQuantity: itemMO.value(forKey: productCoredataAttr.inventoryQuantity.rawValue) as! Int)
+                    producrState: itemMO.value(forKey: productCoredataAttr.state.rawValue) as! Int
+                )
                 resultItems.append(tmpItem)
             }
             
@@ -80,6 +82,7 @@ extension CoreDataModel: StorageInputs {
         product.setValue(item.productPrice , forKey: productCoredataAttr.price.rawValue)
         product.setValue(item.productQTY , forKey: productCoredataAttr.quantity.rawValue)
         product.setValue(item.producrState , forKey: productCoredataAttr.state.rawValue)
+        product.setValue(item.inventoryQuantity, forKey: productCoredataAttr.inventoryQuantity.rawValue)
         do{
             try managedObjectContext.save()
         }catch _ as NSError {
@@ -159,14 +162,13 @@ extension CoreDataModel{
         do {
             let fetchedItems = try managedObjectContext.fetch(fetchRequest)[0]
             let itemMO = SavedProductItem(
-                variantId: fetchedItems.value(forKey: productCoredataAttr.variantId.rawValue) as! Int,
+                inventoryQuantity: fetchedItems.value(forKey: productCoredataAttr.inventoryQuantity.rawValue) as! Int, variantId: fetchedItems.value(forKey: productCoredataAttr.variantId.rawValue) as! Int,
                 productID: fetchedItems.value(forKey: productCoredataAttr.id.rawValue) as! Decimal,
                 productTitle: fetchedItems.value(forKey: productCoredataAttr.title.rawValue) as! String,
                 productImage: fetchedItems.value(forKey: productCoredataAttr.image.rawValue) as! String,
                 productPrice: fetchedItems.value(forKey: productCoredataAttr.price.rawValue) as! Double,
                 productQTY: fetchedItems.value(forKey: productCoredataAttr.quantity.rawValue) as! Int,
-                producrState: fetchedItems.value(forKey: productCoredataAttr.state.rawValue) as! Int,
-                inventoryQuantity: fetchedItems.value(forKey: productCoredataAttr.inventoryQuantity.rawValue) as! Int
+                producrState: fetchedItems.value(forKey: productCoredataAttr.state.rawValue) as! Int
             )
             return itemMO
         }

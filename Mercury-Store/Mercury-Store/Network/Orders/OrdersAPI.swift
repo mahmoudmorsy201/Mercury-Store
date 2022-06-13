@@ -12,6 +12,7 @@ enum OrdersAPI: URLRequestBuilder {
     case getOrders(Int)
     case postOrder(DraftOrdersRequest)
     case modifyExistingOrder(Int, PutOrderRequest)
+    case deleteDraftOrder(Int)
 }
 extension OrdersAPI {
     var path: String {
@@ -22,6 +23,8 @@ extension OrdersAPI {
         case .postOrder:
             return Constants.Paths.Order.postOrder
         case .modifyExistingOrder(let id, _):
+            return Constants.Paths.Order.modifyExistingOrder + "/\(id).json"
+        case .deleteDraftOrder(let id):
             return Constants.Paths.Order.modifyExistingOrder + "/\(id).json"
         }
     }
@@ -36,6 +39,8 @@ extension OrdersAPI {
             return try! order.asDictionary()
         case .modifyExistingOrder(_, let order):
             return try! order.asDictionary()
+        case .deleteDraftOrder:
+            return [:]
         }
     }
 }
@@ -49,6 +54,8 @@ extension OrdersAPI {
             return HTTPMethod.post
         case .modifyExistingOrder:
             return .put
+        case .deleteDraftOrder:
+            return .delete
         }
     }
 }

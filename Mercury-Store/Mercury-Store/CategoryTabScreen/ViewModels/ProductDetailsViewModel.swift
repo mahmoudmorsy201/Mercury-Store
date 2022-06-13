@@ -50,16 +50,17 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
     }
     func toggleFavourite()->Bool  {
         return coreDataShared.toggleFavourite(product: SavedProductItem(
-            variantId: product.variants[0].id,
+            inventoryQuantity: product.variants[0].inventoryQuantity, variantId: product.variants[0].id,
             productID: Decimal(product.id),
             productTitle: product.title,
             productImage: product.image.src ,
             productPrice: Double(product.variants[0].price) ?? 0 ,
-            productQTY: 0 , producrState: productStates.favourite.rawValue, inventoryQuantity: product.variants[0].inventoryQuantity))
+            productQTY: 0 , producrState: productStates.favourite.rawValue))
     }
     
     private func saveToCart() {
-        coreDataShared.insertCartProduct(product: SavedProductItem(variantId: product.variants[0].id, productID: Decimal(product.id), productTitle: product.title, productImage: product.image.src , productPrice: Double(product.variants[0].price) ?? 0 , productQTY: 1 , producrState: productStates.cart.rawValue, inventoryQuantity: product.variants[0].inventoryQuantity))
+        let _ = coreDataShared.insertCartProduct(product: SavedProductItem(inventoryQuantity: product.variants[0].inventoryQuantity, variantId: product.variants[0].id, productID: Decimal(product.id), productTitle: product.title, productImage: product.image.src , productPrice: Double(product.variants[0].price) ?? 0 , productQTY: 1 , producrState: productStates.cart.rawValue))
+        
         coreDataShared.observeProductCount()
     }
     
@@ -77,15 +78,10 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
                 .subscribe(onNext: {[weak self] result in
                     guard let `self` = self else {fatalError()}
                     self.cartOrderSubject.onNext(result)
-                    let newUser = User(id: user!.id , email: user!.email, username: user!.username, isLoggedIn: true, isDiscount: false, password: user!.password, cartId: result.draftOrder.id , favouriteId: user!.favouriteId)
-                    try! self.userDefaults.setObject(newUser, forKey: "user")
-                    self.modifyCustomerData(draftOrderId: user!.cartId)
+                    self.modifyCustomerData(draftOrderId: result.draftOrder.id)
                 }).disposed(by: disposeBag)
 
         }
-        saveToCart()
-        
-        
     }
     
     func modifyCustomerData(draftOrderId: Int) {
@@ -95,6 +91,8 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
                 .subscribe(onNext: {[weak self] userResult in
                     guard let `self` = self else {fatalError()}
                     self.editCustomerSubject.onNext(userResult)
+                    let newUser = User(id: user!.id , email: user!.email, username: user!.username, isLoggedIn: true, isDiscount: false, password: user!.password, cartId: Int(userResult.customer.cartId) ?? 0 , favouriteId: user!.favouriteId)
+                    try! self.userDefaults.setObject(newUser, forKey: "user")
                 }).disposed(by: self.disposeBag)
         }
     }
