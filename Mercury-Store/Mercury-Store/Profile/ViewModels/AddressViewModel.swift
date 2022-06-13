@@ -15,7 +15,8 @@ protocol AddressViewModelType {
     var addressObservable: AnyObserver<String?> { get }
     var phoneObservable: AnyObserver<String?> { get }
     var isValidForm: Observable<Bool> { get }
-    func postAddress(_ address:AddressRequestItem,id:Int)
+    func postAddress(_ address:AddressRequestItem)
+    func getUserFromUserDefaults() -> User?
    // var addressCheckErrorMessage: Observable<String?> { get }
     //var showErrorLabelObserver: Observable<Bool> { get }
    
@@ -57,11 +58,11 @@ class AddressViewModel: AddressViewModelType {
     init(_ addressProvider: AddressProvider = AddressClient()) {
         self.addressProvider = addressProvider
     }
-    func postAddress( _ address:AddressRequestItem,id:Int){
-        
-        addressProvider.postAddress(with: id, addressRequest: AddressRequest(address: address))
+    
+    func postAddress( _ address:AddressRequestItem){
+        let user = getUserFromUserDefaults()
+        addressProvider.postAddress(with: user!.id, addressRequest: AddressRequest(address: address))
         .subscribe(onNext: { [weak self] result in
-            print(result)
             guard let `self` = self else {fatalError()}
             self.addressRequestPost.onNext(result)
         }, onError: { [weak self] error in
@@ -70,4 +71,12 @@ class AddressViewModel: AddressViewModelType {
         })
         .disposed(by: disposeBag)
     }
+    func getUserFromUserDefaults() -> User? {
+            do {
+                return try UserDefaults.standard.getObject(forKey: "user", castTo: User.self)
+            } catch {
+                print(error.localizedDescription)
+                return nil
+            }
+        }
 }

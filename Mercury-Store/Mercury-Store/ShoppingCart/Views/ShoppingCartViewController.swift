@@ -21,7 +21,7 @@ class ShoppingCartViewController: UIViewController {
         }
     }
   
-    private var viewModel: CartViewModel?
+    private var viewModel: CartViewModel!
     private let disposeBag = DisposeBag()
     
     init(with viewModel: CartViewModel) {
@@ -33,16 +33,17 @@ class ShoppingCartViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: Life Cycle
+    //MARK: -Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+        bindProceedToCheckoutTapped()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.viewModel?.viewDidDisappear()
+        self.viewModel.viewDidDisappear()
     }
     
     private func bind() {
@@ -77,7 +78,30 @@ class ShoppingCartViewController: UIViewController {
         output.cartTotal.bind(to: totalPriceLabel.rx.text)
             .disposed(by: disposeBag)
     }
+    
+    func bindProceedToCheckoutTapped() {
+        
+
+        
+        checkoutBTN.rx.tap
+            .subscribe {[weak self] _ in
+                guard let `self` = self else {fatalError()}
+                if(self.viewModel.checkUserExists()) {
+                    self.viewModel.goToAddAddressScreen()
+                } else {
+                    AlertView.showAlertBox(title: "Login Alert", message: "Please you have to login first") { [weak self] action in
+                        
+                    }.present(on: self) { [weak self] in
+                        
+                    }
+                }
+                
+            }.disposed(by: disposeBag)
+        
+    }
+    
 }
+
 
 //MARK: Private handlers
 
