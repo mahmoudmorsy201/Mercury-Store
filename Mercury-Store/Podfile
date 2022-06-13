@@ -18,6 +18,9 @@ target 'Mercury-Store' do
   #Image download
   pod 'SDWebImage', '5.12.5'
 
+  #Toast_Swift
+  pod 'Toast-Swift', '~> 5.0.1'
+
 
  #pods for textfield effects
  pod 'TextFieldEffects'
