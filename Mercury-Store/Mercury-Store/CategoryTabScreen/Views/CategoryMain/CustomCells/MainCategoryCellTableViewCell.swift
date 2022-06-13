@@ -15,15 +15,24 @@ class MainCategoryCellTableViewCell: UITableViewCell {
     var cellClickAction:( (_ item:CustomCollection)->() )?
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupCell()
     }
-
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        designSelected(selected: selected)
+    }
+    
+    func designSelected(selected:Bool){
+        if selected {
+            self.categoryItem.textColor = .white
+            self.cellContainerView.backgroundColor = UIColor(hexString: "#ed05f5")
+        }
+        else{
+            self.categoryItem.textColor = .black
+            self.cellContainerView.backgroundColor = .white
+        }
+    }
+    
     public func config(item:CustomCollection){
         self.item = item
         categoryItem.text = item.title
-    }
-    
-    private func setupCell() {
-        cellContainerView.applyShadow(cornerRadius: 12)
     }
 }
