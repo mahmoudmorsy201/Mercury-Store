@@ -24,9 +24,10 @@ class CategoryItem: UICollectionViewCell {
     }
     public func config(name:String , itemId:Int){
         title.text = name
+        title.textColor = UIColor(hexString: "#ed05f5")
         image.image = UIImage(named: name)
     }
     private func setupCell() {
-        containerViewForCategoriesCollectionViewCell.applyShadow(cornerRadius: 12)
+        containerViewForCategoriesCollectionViewCell.applyShadow(cornerRadius: 8)
     }
 }
