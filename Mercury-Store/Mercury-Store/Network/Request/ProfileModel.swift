@@ -4,7 +4,6 @@
 //
 //  Created by mac hub on 16/05/2022.
 //
-
 import Foundation
 
 extension Encodable {
@@ -32,8 +31,8 @@ struct AllCustomers:Codable {
 struct CustomerClass: Codable {
     let firstName, lastName, email: String
     let password : String
-    let cartId: String
-    let favouriteId: String
+    let cartId: String?
+    let favouriteId: String?
     
     enum CodingKeys: String, CodingKey {
         case firstName = "first_name"
@@ -54,8 +53,8 @@ struct CustomerResponse: Codable {
     let id: Int
     let email: String
     let firstName, lastName: String
-    let cartId: String
-    let favouriteId: String
+    let cartId: String?
+    let favouriteId: String?
     let verifiedEmail: Bool
     let taxExempt: Bool
     let phone: String?

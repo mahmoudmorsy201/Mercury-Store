@@ -42,7 +42,7 @@ final class CartViewModel {
     var decrementProduct: AnyObserver<SavedProductItem> { decrementProductSubject.asObserver() }
     var deleteProduct: AnyObserver<SavedProductItem> { deleteProductSubject.asObserver() }
     let ordersProvider: OrdersProvider
-    
+    let disposeBag = DisposeBag()
     init(shoppingCartNavigationFlow: ShoppingCartNavigationFlow,ordersProvider: OrdersProvider = OrdersClient()) {
         self.shoppingCartNavigationFlow = shoppingCartNavigationFlow
         self.ordersProvider = ordersProvider

@@ -23,7 +23,7 @@ struct Constants {
             public static let customer = "/customers.json"
             public static let customerSearch = "/customers/search.json"
             public static let customerOrders = "/customers"
-            public static let customerOrders = "/customers/orders"
+           // public static let customerOrders = "/customers/orders"
         }
         struct Order{
             public static let postOrder = "/draft_orders.json"
