@@ -20,18 +20,15 @@ struct PriceRule: Codable {
     let id: Int
     let valueType, value, customerSelection, targetType: String
     let targetSelection, allocationMethod: String
-    let allocationLimit: JSONNull?
+    let allocationLimit: Int?
     let oncePerCustomer: Bool
-    let usageLimit: JSONNull?
+    let usageLimit: Int?
     let startsAt: Date
-    let endsAt: JSONNull?
+    let endsAt: Date?
     let createdAt, updatedAt: Date
-    let entitledProductIDS, entitledVariantIDS, entitledCollectionIDS, entitledCountryIDS: [JSONAny]
-    let prerequisiteProductIDS, prerequisiteVariantIDS, prerequisiteCollectionIDS, customerSegmentPrerequisiteIDS: [JSONAny]
-    let prerequisiteCustomerIDS: [JSONAny]
-    let prerequisiteSubtotalRange, prerequisiteQuantityRange, prerequisiteShippingPriceRange: JSONNull?
-    let prerequisiteToEntitlementQuantityRatio: PrerequisiteToEntitlementQuantityRatio
-    let prerequisiteToEntitlementPurchase: PrerequisiteToEntitlementPurchase
+    let entitledProductIDS, entitledVariantIDS, entitledCollectionIDS, entitledCountryIDS: [Int?]
+    let prerequisiteProductIDS, prerequisiteVariantIDS, prerequisiteCollectionIDS, customerSegmentPrerequisiteIDS: [Int?]
+    let prerequisiteCustomerIDS: [Int?]
     let title, adminGraphqlAPIID: String
 
     enum CodingKeys: String, CodingKey {
@@ -58,32 +55,7 @@ struct PriceRule: Codable {
         case prerequisiteCollectionIDS = "prerequisite_collection_ids"
         case customerSegmentPrerequisiteIDS = "customer_segment_prerequisite_ids"
         case prerequisiteCustomerIDS = "prerequisite_customer_ids"
-        case prerequisiteSubtotalRange = "prerequisite_subtotal_range"
-        case prerequisiteQuantityRange = "prerequisite_quantity_range"
-        case prerequisiteShippingPriceRange = "prerequisite_shipping_price_range"
-        case prerequisiteToEntitlementQuantityRatio = "prerequisite_to_entitlement_quantity_ratio"
-        case prerequisiteToEntitlementPurchase = "prerequisite_to_entitlement_purchase"
         case title
         case adminGraphqlAPIID = "admin_graphql_api_id"
     }
 }
-
-// MARK: - PrerequisiteToEntitlementPurchase
-struct PrerequisiteToEntitlementPurchase: Codable {
-    let prerequisiteAmount: JSONNull?
-
-    enum CodingKeys: String, CodingKey {
-        case prerequisiteAmount = "prerequisite_amount"
-    }
-}
-
-// MARK: - PrerequisiteToEntitlementQuantityRatio
-struct PrerequisiteToEntitlementQuantityRatio: Codable {
-    let prerequisiteQuantity, entitledQuantity: JSONNull?
-
-    enum CodingKeys: String, CodingKey {
-        case prerequisiteQuantity = "prerequisite_quantity"
-        case entitledQuantity = "entitled_quantity"
-    }
-}
-

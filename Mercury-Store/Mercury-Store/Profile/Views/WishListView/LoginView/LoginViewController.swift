@@ -40,20 +40,16 @@ class LoginViewController: UIViewController {
         bindErrorLabel()
     }
     
-    
     func setupBindings() {
-        // 3
-        // bind textfields to viewModel for validation and process
         emailTextField.rx.text.bind(to: loginViewModel.emailObservable).disposed(by: disposeBag)
         passwordTextField.rx.text.bind(to: loginViewModel.passwordObservable).disposed(by: disposeBag)
-        
-        
     }
+    
     func  observeViewModelOnValid(){
-        
         loginViewModel.isValidForm.bind(to: loginButton.rx.isEnabled).disposed(by: disposeBag)
     }
-    private func  bindLoginBtn(){
+    
+    private func bindLoginBtn(){
         loginButton.rx.tap.subscribe { [weak self] _ in
             guard let `self` = self else {fatalError()}
             self.loginViewModel.checkCustomerExists(email:self.emailTextField.text!, password:self.passwordTextField.text!)
