@@ -8,7 +8,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import Toast_Swift
 
 class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
     
