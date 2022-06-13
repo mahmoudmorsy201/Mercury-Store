@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Toast_Swift
 
 class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
     
@@ -104,6 +105,7 @@ extension ProductDetailsViewController{
     }
     func addToFavourite(){
         favoriteBtn.rx.tap.subscribe(onNext: { [weak self] in
+            self!.view.makeToast("Added to Favourite", duration: 3.0, position: .top)
             guard let self = self else {return}
             self.favoriteBtn.favouriteState(state:  self.viewModel.toggleFavourite() )
         }).disposed(by: disposeBag)
