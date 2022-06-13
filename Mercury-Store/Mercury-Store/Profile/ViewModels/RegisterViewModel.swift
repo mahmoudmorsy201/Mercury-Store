@@ -72,6 +72,7 @@ class RegisterViewModel: RegisterViewModelType {
         .subscribe(onNext: { [weak self] result in
             guard let `self` = self else {fatalError()}
             self.customerRequestPost.onNext(result)
+            self.goToLoginScreen()
         }, onError: { [weak self] error in
             guard let `self` = self else {fatalError()}
             self.customerRequestPostError.onNext(error)
