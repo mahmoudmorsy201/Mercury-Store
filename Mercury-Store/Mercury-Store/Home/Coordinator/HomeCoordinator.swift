@@ -50,6 +50,12 @@ extension HomeCoordinator: HomeFlowNavigation {
     }
 }
 extension HomeCoordinator: FilteredProductsNavigationFlow {
+    func goToSearchScreen() {
+        let searchViewModel = ProductSearchViewModel(searchFlowNavigation: self)
+        let searchVC = SearchViewController(with: searchViewModel)
+        navigationController.pushViewController(searchVC, animated: true)
+    }
+    
     func goToProductDetail(with product: Product) {
         let viewModel = ProductsDetailViewModel(with: self,product: product)
         let productDetailsVC = ProductDetailsViewController(with: viewModel)

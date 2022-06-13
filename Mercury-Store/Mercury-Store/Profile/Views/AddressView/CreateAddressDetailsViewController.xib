@@ -98,7 +98,7 @@
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="18d-Od-Sho" customClass="AkiraTextField" customModule="TextFieldEffects">
                                     <rect key="frame" x="12" y="709.5" width="390" height="89"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                             <color key="value" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -201,7 +201,7 @@
     </objects>
     <designables>
         <designable name="18d-Od-Sho">
-            <size key="intrinsicContentSize" width="51" height="22"/>
+            <size key="intrinsicContentSize" width="51" height="23"/>
         </designable>
         <designable name="QQW-xc-PZg">
             <size key="intrinsicContentSize" width="29" height="23"/>
