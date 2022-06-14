@@ -9,7 +9,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-
 class ShoppingCartTableViewCell: UITableViewCell {
     @IBOutlet weak private var containerViewForProductImage: UIView!
     
@@ -40,13 +39,10 @@ class ShoppingCartTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCell()
-
-    }
+             }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
     
     private func setupCell() {
@@ -68,6 +64,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
     }
     
 }
+   
 
 extension ShoppingCartTableViewCell {
     
@@ -89,12 +86,41 @@ extension ShoppingCartTableViewCell {
             .bind(to: decrementObserver)
             .disposed(by: disposeBag)
         
-        self.deleteTap
-            .map{ viewModel.product }
-            .bind(to: deleteObserver)
-            .disposed(by: disposeBag)
+       
+        //Show Alert here...
+        self.deleteButton.rx.tap.bind() { [weak self] in
+            let alert = UIAlertController(title: "Delete", message: "Do you want to delete.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: someHandler))
+            alert.addAction(UIAlertAction(title: "cancel", style: .cancel, handler: nil))
+
+            if let vc = self!.next(ofType: UIViewController.self) {
+
+            vc.present(alert, animated: true, completion: nil)
+      }
+        }.disposed(by: disposeBag)
+
+        func someHandler(alert: UIAlertAction!) {
+            self.deleteTap
+                .map{ viewModel.product
+                }
+                .bind(to: deleteObserver)
+                .disposed(by: disposeBag)
+                }        }
+       
+    }
+
+
+
+
+extension UIResponder {
+    func next<T:UIResponder>(ofType: T.Type) -> T? {
+        let r = self.next
+        if let r = r as? T ?? r?.next(ofType: T.self) {
+            return r
+        } else {
+            return nil
+        }
     }
 }
-
 
 
