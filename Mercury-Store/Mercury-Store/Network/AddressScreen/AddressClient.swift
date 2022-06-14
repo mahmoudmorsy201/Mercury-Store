@@ -10,6 +10,8 @@ import RxSwift
 protocol AddressProvider: AnyObject {
     func postAddress(with customerId: Int , addressRequest: AddressRequest) -> Observable<AddressResponse>
     func getAddress(with id:Int) -> Observable<AddressesResponse>
+    func putAddress(with customerId: Int,with addressId: Int , addressRequest: AddressRequestPut) -> Observable<AddressResponse>
+
 }
 
 class AddressClient: AddressProvider {
@@ -19,7 +21,9 @@ class AddressClient: AddressProvider {
     func getAddress(with id:Int) -> Observable<AddressesResponse>{
         NetworkService().execute(AddressAPI.getAddress(id))
     }
-    
+    func putAddress(with customerId: Int,with addressId: Int , addressRequest: AddressRequestPut) -> Observable<AddressResponse>{
+        NetworkService().execute(AddressAPI.putAddress(customerId, addressId, addressRequest))
+    }
     
 }
 

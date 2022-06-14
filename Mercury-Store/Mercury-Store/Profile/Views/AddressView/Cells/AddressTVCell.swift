@@ -18,7 +18,7 @@ class AddressTVCell: UITableViewCell {
             guard let address = address else {
                 return
             }
-            addressLabel.text = address.name
+            addressLabel.text = address.address1+","+address.city
             
         }
     }

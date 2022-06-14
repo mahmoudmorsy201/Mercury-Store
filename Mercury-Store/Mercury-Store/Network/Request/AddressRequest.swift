@@ -19,7 +19,7 @@ struct AddressRequestItem: Codable {
     let firstName, lastName, phone, province: String
     let country, zip, name, provinceCode: String
     let countryCode, countryName: String
-
+   
     enum CodingKeys: String, CodingKey {
         case address1, address2, city, company
         case firstName = "first_name"
@@ -28,6 +28,7 @@ struct AddressRequestItem: Codable {
         case provinceCode = "province_code"
         case countryCode = "country_code"
         case countryName = "country_name"
+        
     }
 }
 struct AddressesResponse: Codable {
@@ -63,5 +64,29 @@ struct CustomerAddress: Codable {
         case countryCode = "country_code"
         case countryName = "country_name"
         case customerAddressDefault = "default"
+    }
+}
+
+struct AddressRequestPut: Codable {
+    let address: AddressRequestItemPut
+}
+
+
+// MARK: - Address
+struct AddressRequestItemPut: Codable {
+    let address1, address2, city, company: String
+    let firstName, lastName, phone, province: String
+    let country, zip, name, provinceCode: String
+    let countryCode, countryName: String
+    let id :Int
+    enum CodingKeys: String, CodingKey {
+        case address1, address2, city, company
+        case firstName = "first_name"
+        case lastName = "last_name"
+        case phone, province, country, zip, name
+        case provinceCode = "province_code"
+        case countryCode = "country_code"
+        case countryName = "country_name"
+        case id
     }
 }
