@@ -595,7 +595,6 @@
 		4D8E3849284958AC00B22D98 /* WishListView */ = {
 			isa = PBXGroup;
 			children = (
-				4D8E3852284958AC00B22D98 /* LoginView */,
 				4D8E384A284958AC00B22D98 /* Cells */,
 				4D8E384D284958AC00B22D98 /* WishListViewController.swift */,
 				4D8E384E284958AC00B22D98 /* WishListViewController.xib */,
@@ -993,6 +992,7 @@
 		C4C08BA928321A4300364704 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4D8E3852284958AC00B22D98 /* LoginView */,
 				4D8E383E284958AC00B22D98 /* AddressView */,
 				4D8E3846284958AC00B22D98 /* GuestView */,
 				4D8E384F284958AC00B22D98 /* AboutUsView */,

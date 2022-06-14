@@ -15,7 +15,9 @@ protocol AddressViewModelType {
     var addressObservable: AnyObserver<String?> { get }
     var phoneObservable: AnyObserver<String?> { get }
     var isValidForm: Observable<Bool> { get }
+    var addresses: Driver<[CustomerAddress]> {get}
     func postAddress(_ address:AddressRequestItem)
+    func getAddress()
     func getUserFromUserDefaults() -> User?
    // var addressCheckErrorMessage: Observable<String?> { get }
     //var showErrorLabelObserver: Observable<Bool> { get }
@@ -27,9 +29,11 @@ class AddressViewModel: AddressViewModelType {
     private let addressSubject = BehaviorSubject<String?>(value: "")
     private let phoneSubject = BehaviorSubject<String?>(value: "")
     private let disposeBag = DisposeBag()
-    
+    var addresses: Driver<[CustomerAddress]>
     private let addressProvider: AddressProvider
     private let addressRequestPost:PublishSubject<AddressResponse> = PublishSubject<AddressResponse>()
+   // private let addressRequestGet:PublishSubject<AddressesResponse> = PublishSubject<AddressesResponse>()
+    private let addressRequestGett:PublishSubject = PublishSubject<[CustomerAddress]>()
     private let addressRequestPostError = PublishSubject<Error>()
    // private let showErrorMessage = PublishSubject<String?>()
    // private let showErrorLabelSubject = BehaviorSubject<Bool>(value: true)
@@ -57,6 +61,8 @@ class AddressViewModel: AddressViewModelType {
     }
     init(_ addressProvider: AddressProvider = AddressClient()) {
         self.addressProvider = addressProvider
+       addresses = addressRequestGett.asDriver(onErrorJustReturn: [])
+
     }
     
     func postAddress( _ address:AddressRequestItem){
@@ -65,6 +71,20 @@ class AddressViewModel: AddressViewModelType {
         .subscribe(onNext: { [weak self] result in
             guard let `self` = self else {fatalError()}
             self.addressRequestPost.onNext(result)
+        }, onError: { [weak self] error in
+            guard let `self` = self else {fatalError()}
+            self.addressRequestPostError.onNext(error)
+        })
+        .disposed(by: disposeBag)
+    }
+    
+    func getAddress( ){
+        let user = getUserFromUserDefaults()
+        addressProvider.getAddress(with:  user!.id)
+        .subscribe(onNext: { [weak self] result in
+            guard let `self` = self else {fatalError()}
+            self.addressRequestGett.onNext(result.addresses)
+            print(result)
         }, onError: { [weak self] error in
             guard let `self` = self else {fatalError()}
             self.addressRequestPostError.onNext(error)
