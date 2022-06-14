@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (5.6.1)
   - Differentiator (5.0.0)
+  - DLRadioButton (1.4.12)
   - ProgressHUD (13.6)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
@@ -21,6 +22,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (= 5.6.1)
+  - DLRadioButton (~> 1.4)
   - ProgressHUD
   - RxCocoa (= 6.5.0)
   - RxDataSources (~> 5.0)
@@ -34,6 +36,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Differentiator
+    - DLRadioButton
     - ProgressHUD
     - RxCocoa
     - RxDataSources
@@ -47,6 +50,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
+  DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
   ProgressHUD: 4bdaa0d2ddf676b23324b199f9facffb5c3a1620
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
@@ -57,6 +61,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 9a63143d9508373fb09d223552b1379056ed78ba
+PODFILE CHECKSUM: 60d84bd21cec4bf3216268091f7ec3880954ea98
 
 COCOAPODS: 1.11.3

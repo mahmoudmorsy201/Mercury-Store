@@ -78,5 +78,8 @@ class AddressViewModel: AddressViewModelType {
                 print(error.localizedDescription)
                 return nil
             }
-        }
+    }
+    func gotToPaymentScreen(){
+        
+    }
 }

@@ -14,6 +14,7 @@ protocol ProfileNavigationFlow: AnyObject {
     func goToMyAddressesScreen()
     func goToAboutUsScreen()
     func goToMainTab()
+    func goToPaymentScreen()
 }
 
 class ProfileViewModel {
@@ -39,7 +40,6 @@ class ProfileViewModel {
                 
             ])
         ]
-        
         _sectionModels.onNext(sections)
     }
     func getUserInfo() -> User? {
@@ -54,6 +54,9 @@ class ProfileViewModel {
 
 
 extension ProfileViewModel: ProfileNavigationFlow {
+    func goToPaymentScreen() {
+        self.profileNavigationFlow.goToPaymentScreen()
+    }
     
     func goToMyOrdersScreen() {
         self.profileNavigationFlow.goToMyOrdersScreen()

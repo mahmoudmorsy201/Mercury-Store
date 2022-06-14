@@ -11,8 +11,6 @@ import UIKit
 
 class ProfileCoordinator: Coordinator {
     weak var parentCoordinator: Coordinator?
-    
-    
     var children: [Coordinator] = []
     
     var navigationController: UINavigationController
@@ -29,7 +27,10 @@ class ProfileCoordinator: Coordinator {
 }
 
 extension ProfileCoordinator: ProfileNavigationFlow {
-    
+    func goToPaymentScreen() {
+        let paymentVC = PaymentViewViewController(nibName: String(describing: PaymentViewViewController.self), bundle: nil)
+        self.navigationController.pushViewController(paymentVC, animated: true)
+    }
     func goToMyOrdersScreen() {
         //let viewModel = DraftOrdersViewModels()
         //let myOrdersVC = myOrdersTableViewController(viewModel)
@@ -55,7 +56,6 @@ extension ProfileCoordinator: ProfileNavigationFlow {
         
         self.navigationController.pushViewController(aboutUsVC, animated: true)
     }
-    
     func goToMainTab() {
         UserDefaults.standard.removeObject(forKey: "user")
         let appC = self.parentCoordinator?.parentCoordinator as! ApplicationCoordinator
