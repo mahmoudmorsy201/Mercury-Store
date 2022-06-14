@@ -9,14 +9,14 @@ import RxSwift
 
 protocol AddressProvider: AnyObject {
     func postAddress(with customerId: Int , addressRequest: AddressRequest) -> Observable<AddressResponse>
-    func getAddress(id:Int) -> Observable<RegisterResponse>
+    func getAddress(with id:Int) -> Observable<AddressesResponse>
 }
 
 class AddressClient: AddressProvider {
     func postAddress(with customerId: Int, addressRequest: AddressRequest) -> Observable<AddressResponse> {
         NetworkService().execute(AddressAPI.postAddress(customerId, addressRequest))
     }
-    func getAddress(id:Int) -> Observable<RegisterResponse>{
+    func getAddress(with id:Int) -> Observable<AddressesResponse>{
         NetworkService().execute(AddressAPI.getAddress(id))
     }
     

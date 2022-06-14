@@ -74,10 +74,6 @@ struct CustomerResponse: Codable {
         case addresses
     }
 }
-struct AddressesResponse: Codable {
-
-let addresses: [Address]
-}
 
 // MARK: - Address
 struct Address: Codable {

@@ -30,6 +30,9 @@ struct AddressRequestItem: Codable {
         case countryName = "country_name"
     }
 }
+struct AddressesResponse: Codable {
+let addresses: [CustomerAddress]
+}
 
 // MARK: - AddressResponse
 struct AddressResponse: Codable {

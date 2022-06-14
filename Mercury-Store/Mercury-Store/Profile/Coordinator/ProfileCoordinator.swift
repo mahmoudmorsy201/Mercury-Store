@@ -44,7 +44,9 @@ extension ProfileCoordinator: ProfileNavigationFlow {
     }
     
     func goToMyAddressesScreen() {
-        let myAddressesVC = AddressViewController(nibName: String(describing: AddressViewController.self), bundle: nil)
+        let addressesViewModel : AddressViewModelType = AddressViewModel()
+       
+      let myAddressesVC = AddressViewController(addressesViewModel)
         
         self.navigationController.pushViewController(myAddressesVC, animated: true)
         

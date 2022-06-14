@@ -10,15 +10,31 @@ import UIKit
 class AddressTVCell: UITableViewCell {
 
     @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var editButton: UIButton!
+    
+    
+    var address: CustomerAddress? {
+        didSet {
+            guard let address = address else {
+                return
+            }
+            addressLabel.text = address.name
+            
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+      
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        
+    }
+    public func config(name:String , itemId:Int){
+        addressLabel.text = name
+        
     }
     
 }
