@@ -19,7 +19,7 @@ protocol AddressViewModelType {
     func getUserFromUserDefaults() -> User?
    // var addressCheckErrorMessage: Observable<String?> { get }
     //var showErrorLabelObserver: Observable<Bool> { get }
-   
+    func goToPaymentScreen()
 }
 class AddressViewModel: AddressViewModelType {
     private let countrySubject = BehaviorSubject<String?>(value: "")
@@ -33,7 +33,7 @@ class AddressViewModel: AddressViewModelType {
     private let addressRequestPostError = PublishSubject<Error>()
    // private let showErrorMessage = PublishSubject<String?>()
    // private let showErrorLabelSubject = BehaviorSubject<Bool>(value: true)
-    
+    private weak var navigationFlow:ShoppingCartNavigationFlow?
     var countryObservable: AnyObserver<String?> { countrySubject.asObserver() }
     
     var cityObservable: AnyObserver<String?> { citySubject.asObserver() }
@@ -55,8 +55,9 @@ class AddressViewModel: AddressViewModelType {
             return !(country!.isEmpty) &&  !(city!.isEmpty) && phone!.isValidPhone() && !(address!.isEmpty)
         }
     }
-    init(_ addressProvider: AddressProvider = AddressClient()) {
+    init(_ addressProvider: AddressProvider = AddressClient() , navigationFlow:ShoppingCartNavigationFlow) {
         self.addressProvider = addressProvider
+        self.navigationFlow = navigationFlow
     }
     
     func postAddress( _ address:AddressRequestItem){
@@ -79,7 +80,7 @@ class AddressViewModel: AddressViewModelType {
                 return nil
             }
     }
-    func gotToPaymentScreen(){
-        
+    func goToPaymentScreen() {
+        navigationFlow?.goToPaymentScreen()
     }
 }

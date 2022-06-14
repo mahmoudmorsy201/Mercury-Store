@@ -32,9 +32,11 @@ extension PaymentViewViewController:UITableViewDelegate ,UITableViewDataSource{
         selectPaymentTable.tableFooterView = UIView(frame: .zero)
         selectPaymentTable.separatorStyle = .none
     }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Payment Options"
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -43,6 +45,9 @@ extension PaymentViewViewController:UITableViewDelegate ,UITableViewDataSource{
         let cell = selectPaymentTable.dequeueReusableCell(withIdentifier: RadioButtonCell.reuseIdentifier()) as! RadioButtonCell
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.setSelected(false, animated: false)
+    }
     
 }

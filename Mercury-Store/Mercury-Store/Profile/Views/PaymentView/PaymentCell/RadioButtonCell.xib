@@ -16,19 +16,25 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4F2-IV-jWd">
-                        <rect key="frame" x="16" y="13" width="157" height="31"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4F2-IV-jWd">
+                        <rect key="frame" x="4" y="16" width="312" height="31"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" image="circle.inset.filled" catalog="system" title="Cash On Delivery"/>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrg-oQ-Ml8">
-                        <rect key="frame" x="16" y="46" width="122" height="31"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrg-oQ-Ml8">
+                        <rect key="frame" x="4" y="51" width="312" height="31"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" image="circle" catalog="system" title="With PayPal"/>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="nrg-oQ-Ml8" firstAttribute="top" secondItem="4F2-IV-jWd" secondAttribute="bottom" constant="4" id="905-iH-vBu"/>
+                    <constraint firstItem="4F2-IV-jWd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="4" id="Gd7-hx-Mib"/>
+                    <constraint firstItem="4F2-IV-jWd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="aJQ-5Z-eRA"/>
+                    <constraint firstAttribute="trailing" secondItem="4F2-IV-jWd" secondAttribute="trailing" constant="4" id="byo-cX-kII"/>
+                    <constraint firstAttribute="trailing" secondItem="nrg-oQ-Ml8" secondAttribute="trailing" constant="4" id="nsi-GD-Qt7"/>
+                    <constraint firstItem="nrg-oQ-Ml8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="4" id="p1F-nD-7eE"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>

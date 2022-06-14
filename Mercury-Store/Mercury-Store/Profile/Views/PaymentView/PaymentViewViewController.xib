@@ -108,6 +108,7 @@
                                 <constraint firstItem="Dz3-jU-4jL" firstAttribute="leading" secondItem="OMp-RU-TbD" secondAttribute="leading" id="fJo-Nc-zkM"/>
                                 <constraint firstItem="tWf-CK-P4N" firstAttribute="top" secondItem="6S7-jY-Ha2" secondAttribute="bottom" constant="16" id="fbL-qC-VQb"/>
                                 <constraint firstItem="drJ-6g-OSx" firstAttribute="top" secondItem="C4O-WP-Tjm" secondAttribute="bottom" constant="16" id="jGN-1j-vdc"/>
+                                <constraint firstItem="EUh-OI-9zY" firstAttribute="leading" secondItem="zUo-e0-Vwv" secondAttribute="leading" constant="267" id="kvc-r4-TYv"/>
                                 <constraint firstItem="drJ-6g-OSx" firstAttribute="leading" secondItem="C4O-WP-Tjm" secondAttribute="leading" id="nre-KU-Ie9"/>
                                 <constraint firstItem="EUh-OI-9zY" firstAttribute="top" secondItem="mvi-pi-VgG" secondAttribute="bottom" constant="16" id="o5c-kC-ZEU"/>
                                 <constraint firstItem="MWT-3e-rxT" firstAttribute="leading" secondItem="zUo-e0-Vwv" secondAttribute="leading" constant="16" id="s5q-gX-FoN"/>
@@ -118,7 +119,7 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pjz-SC-qJV">
-                            <rect key="frame" x="8" y="442" width="398" height="32.5"/>
+                            <rect key="frame" x="8" y="464" width="398" height="32.5"/>
                             <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="tintColor" systemColor="systemBackgroundColor"/>
                             <state key="normal" title="Button"/>
@@ -133,11 +134,11 @@
                                 </attributedString>
                             </buttonConfiguration>
                         </button>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="pAp-iZ-V2u">
-                            <rect key="frame" x="8" y="282" width="398" height="128"/>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="94" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="pAp-iZ-V2u">
+                            <rect key="frame" x="8" y="282" width="398" height="150"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="128" id="TnZ-lq-XeN"/>
+                                <constraint firstAttribute="height" constant="150" id="TnZ-lq-XeN"/>
                             </constraints>
                         </tableView>
                     </subviews>
@@ -160,7 +161,6 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="yeO-Gu-jrd" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="VHT-Fi-3I1"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="EUh-OI-9zY" secondAttribute="trailing" constant="80" id="Y6Y-np-pQS"/>
                 <constraint firstItem="yeO-Gu-jrd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="cWt-Xt-QiR"/>
                 <constraint firstItem="yeO-Gu-jrd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="om1-z8-iIj"/>
             </constraints>

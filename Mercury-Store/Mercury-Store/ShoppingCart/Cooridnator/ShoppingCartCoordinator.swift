@@ -30,10 +30,14 @@ class ShoppingCartCoordinator: Coordinator {
 
 extension ShoppingCartCoordinator: ShoppingCartNavigationFlow {
     func goToAddAddressScreen() {
-        let addressViewModel: AddressViewModelType = AddressViewModel()
+        let addressViewModel: AddressViewModelType = AddressViewModel(navigationFlow: self)
         let newAddressVC = CreateAddressDetailsViewController(with: addressViewModel)
         navigationController.present(newAddressVC, animated: true)
     }
-    
+    func goToPaymentScreen(){
+        navigationController.dismiss(animated: true)
+        let paymentAddressVC = PaymentViewViewController(nibName: "PaymentViewViewController", bundle: nil)
+        navigationController.pushViewController(paymentAddressVC, animated: true)
+    }
     
 }

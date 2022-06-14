@@ -10,6 +10,7 @@ import RxCocoa
 
 protocol ShoppingCartNavigationFlow: AnyObject {
     func goToAddAddressScreen()
+    func goToPaymentScreen()
 }
 enum CartAction {
     case increment(SavedProductItem)

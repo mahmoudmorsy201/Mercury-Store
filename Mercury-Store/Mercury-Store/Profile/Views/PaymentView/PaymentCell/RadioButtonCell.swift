@@ -23,16 +23,17 @@ class RadioButtonCell: UITableViewCell {
     var paymentMethod:paymentOptions = .cashOnDelivery
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.payPalAction()
+        self.cashOnDeliveryAction()
     }
-    
 }
 extension RadioButtonCell{
     
     private func payPalAction(){
         payPal.rx.tap.bind{ [ weak self ]  in
             guard let self = self else {return}
-            self.payPal.imageView?.image = UIImage(systemName: "circle.inset.filled")
-            self.cashOnDelivery.imageView?.image = UIImage(systemName: "circle")
+            self.cashOnDelivery.setImage(UIImage(systemName: "circle"), for: .normal)
+            self.payPal.setImage(UIImage(systemName: "circle.inset.filled"), for: .normal)
             self.paymentMethod = .withPaypal
         }.disposed(by: disposeBage)
     }
@@ -40,8 +41,8 @@ extension RadioButtonCell{
     private func cashOnDeliveryAction(){
         cashOnDelivery.rx.tap.bind{ [ weak self ]  in
             guard let self = self else {return}
-            self.payPal.imageView?.image = UIImage(systemName: "circle")
-            self.cashOnDelivery.imageView?.image = UIImage(systemName: "circle.inset.filled")
+            self.payPal.setImage(UIImage(systemName: "circle") , for: .normal)
+            self.cashOnDelivery.setImage(UIImage(systemName: "circle.inset.filled"), for: .normal)
             self.paymentMethod = .cashOnDelivery
         }.disposed(by: disposeBage)
     }
