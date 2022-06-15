@@ -63,6 +63,7 @@ final class ProductSearchViewModel {
             [SearchSection(values)]
         }
     }
+    
     func filterArrayBasedOnSlider() -> Observable<[SearchSection]> {
         return Observable.combineLatest(
             value

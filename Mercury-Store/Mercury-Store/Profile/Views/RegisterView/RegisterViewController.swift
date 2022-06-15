@@ -9,22 +9,28 @@ import UIKit
 import TextFieldEffects
 import RxCocoa
 import RxSwift
+import ProgressHUD
 
 class RegisterViewController: UIViewController {
     
-    
+    //MARK: - Outlets
+    //
     @IBOutlet weak var firstNameTextField: AkiraTextField!
     @IBOutlet weak var lastNameTextField: AkiraTextField!
     @IBOutlet weak var emailTextField: AkiraTextField!
     @IBOutlet weak var passwordTextField: AkiraTextField!
     @IBOutlet weak var confirmPasswordTextField: AkiraTextField!
     @IBOutlet weak var signUpBtn: UIButton!
-    
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var errorMessageLabel: UILabel!
+    
+    //MARK: - Private variables
+    //
     private var registerViewModel: RegisterViewModelType!
     private let disposeBag = DisposeBag()
     
+    //MARK: - Init
+    //
     init(_ registerViewModel: RegisterViewModelType) {
         super.init(nibName: nil, bundle: nil)
         self.registerViewModel = registerViewModel
@@ -34,6 +40,8 @@ class RegisterViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Life cycle
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,9 +51,15 @@ class RegisterViewController: UIViewController {
         bindSignUpBtn()
         bindLoginButton()
         bindErrorLabel()
+        bindActivity()
     }
     
-
+    //MARK: - Private Handlers
+    //
+    private func bindActivity() {
+        registerViewModel.isLoading.drive(ProgressHUD.rx.isAnimating)
+        .disposed(by: disposeBag)
+    }
     
     private func setupBindings() {
         // 3
@@ -80,7 +94,6 @@ class RegisterViewController: UIViewController {
     
     private func bindSignUpBtn() {
         signUpBtn.rx.tap
-            .debounce(.milliseconds(2000), scheduler: MainScheduler.asyncInstance)
             .subscribe {[weak self] _ in
             guard let `self` = self else {fatalError()}
             self.registerViewModel.checkCustomerExists(firstName: self.firstNameTextField.text!, lastName: self.lastNameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!)

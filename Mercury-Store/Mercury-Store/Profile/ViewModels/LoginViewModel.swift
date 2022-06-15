@@ -9,19 +9,25 @@ import RxSwift
 import RxCocoa
 import Foundation
 
+// MARK: - Protocol view model
+//
 protocol LoginViewModelType {
     var emailObservable: AnyObserver<String?> { get }
     var passwordObservable: AnyObserver<String?> { get }
     var isValidForm: Observable<Bool> { get }
     var emailCheckErrorMessage: Observable<String?> { get }
     var showErrorLabelObserver: Observable<Bool> { get }
+    var isLoading: Driver<Bool> { get }
     func checkCustomerExists( email: String, password: String)
     func goToRegisterScreen()
 }
 
-
+// MARK: - ViewModel
+//
 class LoginViewModel: LoginViewModelType {
     
+    // MARK: - Private properties
+    //
     private weak var registerNavigationFlow : GuestNavigationFlow?
     private let emailSubject = BehaviorSubject<String?>(value: "")
     private let passwordSubject = BehaviorSubject<String?>(value: "")
@@ -32,7 +38,10 @@ class LoginViewModel: LoginViewModelType {
     private let showErrorMessage = PublishSubject<String?>()
     private let showErrorLabelSubject = BehaviorSubject<Bool>(value: true)
     private let sharedInstance: UserDefaults
+    private let isLoadingSubject = BehaviorRelay<Bool> (value: false)
     
+    // MARK: - Public properties
+    //
     var emailObservable: AnyObserver<String?> { emailSubject.asObserver() }
     
     var passwordObservable: AnyObserver<String?> { passwordSubject.asObserver() }
@@ -41,6 +50,7 @@ class LoginViewModel: LoginViewModelType {
     
     var showErrorLabelObserver: Observable<Bool> { showErrorLabelSubject.asObservable() }
     
+    var isLoading: Driver<Bool> { isLoadingSubject.asDriver(onErrorJustReturn: false) }
     
     var isValidForm: Observable<Bool> {
         
@@ -53,13 +63,18 @@ class LoginViewModel: LoginViewModelType {
         }
     }
     
+    // MARK: - Initializers
+    //
     init(_ customerProvider: CustomerProvider = CustomerClient(),sharedInstance: UserDefaults = UserDefaults.standard ,registerFlow: GuestNavigationFlow) {
         self.customerProvider = customerProvider
         self.registerNavigationFlow = registerFlow
         self.sharedInstance = sharedInstance
     }
     
+    // MARK: - Public handlers
+    //
     func checkCustomerExists( email: String, password: String) {
+        self.isLoadingSubject.accept(true)
         customerProvider.checkEmailExists(email)
             .subscribe(onNext: { [weak self] result in
                 guard let `self` = self else {fatalError()}
@@ -70,10 +85,18 @@ class LoginViewModel: LoginViewModelType {
             }).disposed(by: disposeBag)
     }
     
+    // MARK: - Navigation
+    //
     func goToRegisterScreen() {
         registerNavigationFlow?.goToRegistrationScreen()
     }
-        
+}
+
+// MARK: - Extensions
+//
+extension LoginViewModel {
+    // MARK: - Private handlers
+    //
     private func checkResult(_ result: AllCustomers, password: String) {
         if(!result.customers.isEmpty) {
             checkPassword(password, result)
@@ -93,6 +116,7 @@ class LoginViewModel: LoginViewModelType {
             let customer = result.customers[0]
             self.saveCredentialsInUserDefaults(customer: customer)
             self.goToProfileScreen(customer.id)
+            self.isLoadingSubject.accept(false)
         }else {
             self.showErrorLabelSubject.onNext(false)
             self.showErrorMessage.onNext(CustomerErrors.checkYourCredentials.rawValue)
@@ -109,7 +133,6 @@ class LoginViewModel: LoginViewModelType {
     }
     
     private func fromCustomerToUser(_ customer: CustomerResponse) -> User {
-        return User(id: customer.id, email: customer.email, username: customer.firstName, isLoggedIn: true, isDiscount: false, password: customer.password, cartId: Int(customer.cartId ?? "") ?? 0, favouriteId: Int(customer.favouriteId ?? "0") ?? 0)
+        return User(id: customer.id, email: customer.email, username: customer.firstName, isLoggedIn: true, isDiscount: false, password: customer.password, cartId: Int(customer.cartId ) ?? 0, favouriteId: Int(customer.favouriteId ) ?? 0)
     }
-    
 }
