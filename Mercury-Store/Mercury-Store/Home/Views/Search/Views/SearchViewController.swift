@@ -10,8 +10,10 @@ import RxCocoa
 import RxSwift
 import RxDataSources
 import ProgressHUD
+import DropDown
 
 class SearchViewController: UIViewController, UIScrollViewDelegate {
+    @IBOutlet weak var emptyView: UIView!
     
     @IBOutlet weak var minimumPrice: UILabel!
     @IBOutlet weak var maximumPrice: UILabel!
@@ -19,21 +21,17 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var productSearchbar: UISearchBar!
     @IBOutlet weak var sliderPrice: UISlider!
     @IBOutlet weak var filterBtn: UIButton!
-    @IBOutlet weak var switchSort: UISwitch!
-    
     @IBOutlet weak var productListCollectionView: UICollectionView! {
         didSet {
             productListCollectionView.register(UINib(nibName: BrandProductsCollectionViewCell.reuseIdentifier(), bundle: nil), forCellWithReuseIdentifier: BrandProductsCollectionViewCell.reuseIdentifier())
         }
     }
 
-    var viewModel: ProductSearchViewModel?
+    private var viewModel: ProductSearchViewModel!
     private var bag = DisposeBag()
-    
-    var filterIsPressed = true
-    var errorView: UIView? {
-        return nil
-    }
+    private let dropDown = DropDown()
+    private var filterIsPressed = true
+    private var myButton: UIButton!
     
     init(with viewModel: ProductSearchViewModel) {
         super.init(nibName: nil, bundle: nil)
@@ -42,9 +40,10 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+     
     override func viewDidLoad() {
         super.viewDidLoad()
+        createSortBarButton()
         hideSlider()
         bindToSearchValue()
         bindSelectedItem()
@@ -53,8 +52,40 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
         bindPrice()
         bindActivity()
         viewModel?.fetchData()
-        bindSortBtn()
         bind()
+        bindEmptyViewHidden()
+        emptyView.isHidden = true
+    }
+    private func bindEmptyViewHidden() {
+        self.viewModel.error
+            .drive(emptyView.rx.isHidden)
+            .disposed(by: bag)
+    }
+    private func createSortBarButton() {
+        var config = UIButton.Configuration.tinted()
+        config.title = "Sort"
+        config.image = UIImage(systemName: "arrow.up.arrow.down")
+        config.imagePlacement = .trailing
+        config.cornerStyle = .capsule
+        myButton = UIButton(configuration: config)
+        
+        myButton.addTarget(self, action: #selector(sortBtnTapped), for: .touchUpInside)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: myButton)
+    
+        dropDown.anchorView = myButton
+        dropDown.dataSource = viewModel.sortArray
+    }
+    
+    @objc func sortBtnTapped() {
+        dropDown.selectionAction = { (index: Int, item: String) in
+          print("Selected item: \(item) at index: \(index)")
+            self.viewModel.acceptTitle(item)
+        }
+        
+        dropDown.width = 200
+        dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
+        dropDown.show()
     }
     
     func bind() {
@@ -84,20 +115,17 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
             .disposed(by: bag)
     }
     
+    
     private func bindSlider(){
         sliderPrice.rx.value
             .map{Int($0)}
             .bind(to: viewModel!.value)
             .disposed(by: bag)
     }
-    private func bindSortBtn() {
-        switchSort.rx.value
-            .bind(to: viewModel!.sortAlphabetically)
-            .disposed(by: bag)
-    }
+    
     private func bindPrice(){
         viewModel?.value.asDriver()
-            .map { "EGP \($0) " }
+            .map { "E£ \($0) " }
             .drive(maximumPrice.rx.text)
             .disposed(by: bag)
     }
