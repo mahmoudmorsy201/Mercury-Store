@@ -11,19 +11,18 @@ import RxSwift
 
 class ProfileViewController: UIViewController {
     
-    
-    var viewModel: ProfileViewModel!
-    let disposeBag = DisposeBag()
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var userEmail: UILabel!
+    
+    private var viewModel: ProfileViewModel!
+    private let disposeBag = DisposeBag()
     
     init(with viewModel: ProfileViewModel) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
         let user = try! UserDefaults.standard.getObject(forKey: "user", castTo: User.self)
         title = "\(user.username)"
-        //print(MyUserDefaults.shared.getValue(forKey: .id))
     }
     
     required init?(coder: NSCoder) {
