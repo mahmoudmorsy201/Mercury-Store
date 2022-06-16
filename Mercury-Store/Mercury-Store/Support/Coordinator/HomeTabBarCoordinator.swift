@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-// MARK: HomeTabBarCoordinator
+// MARK: - HomeTabBarCoordinator
 //
 final class HomeTabBarCoordinator : Coordinator {
     
@@ -29,7 +29,7 @@ final class HomeTabBarCoordinator : Coordinator {
     }
 }
 
-// MARK: Private Handlers
+// MARK: - Private Handlers
 //
 extension HomeTabBarCoordinator {
     /// Used to make tabs and main coordinators
@@ -69,7 +69,7 @@ extension HomeTabBarCoordinator {
     }
 }
 
-// MARK: Nested Types
+// MARK: -Nested Types
 //
 extension HomeTabBarCoordinator {
     struct TabContent {

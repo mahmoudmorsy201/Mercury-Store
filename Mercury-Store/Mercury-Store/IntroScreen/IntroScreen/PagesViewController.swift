@@ -22,6 +22,17 @@ class PagesViewController: UIPageViewController {
     var nextButtonTopAnchor: NSLayoutConstraint?
     var pageControlBottomAnchor: NSLayoutConstraint?
 
+    private weak var pageNavigationFlow: LaunchScreenNavigationFlow?
+    
+    init(_ pageNavigationFlow: LaunchScreenNavigationFlow?) {
+        super.init(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: nil)
+        self.pageNavigationFlow = pageNavigationFlow
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -182,6 +193,8 @@ extension PagesViewController{
         pageControl.currentPage = lastPageIndex
         
         goToSpecificPage(index: lastPageIndex, ofViewControllers: pages)
+        UserDefaults.standard.set(true, forKey: "hasSeenOnBoard")
+        self.pageNavigationFlow?.goToHomeTabbar()
         animateControlsIfNeeded()
     }
     
