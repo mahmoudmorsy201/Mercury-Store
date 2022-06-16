@@ -47,7 +47,7 @@ extension PaymentViewViewController{
     
     func confirmAction(){
         confirmOrder.rx.tap.bind{
-            self.viewModel.startCheckout()
+            self.viewModel.confirmOrder()
         }.disposed(by: disposeBag)
     }
     
@@ -73,6 +73,9 @@ extension PaymentViewViewController:UITableViewDelegate ,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = selectPaymentTable.dequeueReusableCell(withIdentifier: RadioButtonCell.reuseIdentifier()) as! RadioButtonCell
+        cell.paymentSubject.subscribe{ event in
+            self.viewModel.paymentMethod = event.element!
+        }
         return cell
     }
     

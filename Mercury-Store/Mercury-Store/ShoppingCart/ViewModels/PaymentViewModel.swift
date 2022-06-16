@@ -14,11 +14,11 @@ protocol PaymentViewModelType{
     var CouponLoading: Driver<Bool> { get }
     var CouponInfo: Driver<PriceRule> { get}
     var CouponError: Driver<String?> { get }
-    func startCheckout()
+    var paymentMethod:paymentOptions {set get}
+    func confirmOrder()
 }
 
 class PaymentViewModel:PaymentViewModelType{
-    
     
     private let couponSubject = BehaviorRelay<PriceRule>(value: PriceRule() )
     private let isLoadingSubject = BehaviorRelay<Bool>(value: false)
@@ -33,11 +33,14 @@ class PaymentViewModel:PaymentViewModelType{
     let couponApi:PricesRulesProvider = PricesRulesApi()
     let disposeBag = DisposeBag()
     
-    init(_userDefaults:UserDefaults = UserDefaults() ) {
+    var paymentMethod: paymentOptions
+    
+    init(_userDefaults:UserDefaults = UserDefaults() ,paymentMethod:paymentOptions = .cashOnDelivery) {
         userDefaults = _userDefaults
         CouponInfo = couponSubject.asDriver(onErrorJustReturn: PriceRule() )
         CouponLoading = isLoadingSubject.asDriver(onErrorJustReturn: false)
         CouponError = errorSubject.asDriver(onErrorJustReturn: "Somthing went wrong")
+        self.paymentMethod = paymentMethod
         fetchCouponData()
     }
     
@@ -80,6 +83,20 @@ class PaymentViewModel:PaymentViewModelType{
             } else if let error = error {
             } else {
             }
+        }
+    }
+    
+    func closeOrder(){
+        
+    }
+    
+    func confirmOrder(){
+        switch(paymentMethod){
+            
+        case .withPaypal:
+            self.startCheckout()
+        case .cashOnDelivery:
+            self.closeOrder()
         }
     }
     

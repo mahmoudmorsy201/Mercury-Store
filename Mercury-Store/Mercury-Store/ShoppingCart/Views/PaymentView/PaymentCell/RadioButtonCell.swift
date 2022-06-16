@@ -20,12 +20,20 @@ class RadioButtonCell: UITableViewCell {
     @IBOutlet weak var payPal: UIButton!
     @IBOutlet weak var cashOnDelivery: UIButton!
     let disposeBage = DisposeBag()
-   // var paymentmethodObservable:Observable<paymentOptions>  = Observable()
-    var paymentMethod:paymentOptions = .cashOnDelivery
+    //var paymentMethod:paymentOptions = .cashOnDelivery
+    let paymentSubject = BehaviorSubject<paymentOptions>(value: .cashOnDelivery)
     override func awakeFromNib() {
         super.awakeFromNib()
         self.payPalAction()
         self.cashOnDeliveryAction()
+    }
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style:style, reuseIdentifier: reuseIdentifier)
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
 }
 extension RadioButtonCell{
@@ -35,7 +43,7 @@ extension RadioButtonCell{
             guard let self = self else {return}
             self.cashOnDelivery.setImage(UIImage(systemName: "circle"), for: .normal)
             self.payPal.setImage(UIImage(systemName: "circle.inset.filled"), for: .normal)
-            self.paymentMethod = .withPaypal
+            self.paymentSubject.onNext(.withPaypal)
         }.disposed(by: disposeBage)
     }
     
@@ -44,7 +52,7 @@ extension RadioButtonCell{
             guard let self = self else {return}
             self.payPal.setImage(UIImage(systemName: "circle") , for: .normal)
             self.cashOnDelivery.setImage(UIImage(systemName: "circle.inset.filled"), for: .normal)
-            self.paymentMethod = .cashOnDelivery
+            self.paymentSubject.onNext(.cashOnDelivery)
         }.disposed(by: disposeBage)
     }
     
