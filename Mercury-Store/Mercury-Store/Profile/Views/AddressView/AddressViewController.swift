@@ -8,7 +8,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
-import RxDataSources
+
 
 class AddressViewController: UIViewController, UIScrollViewDelegate{
     
@@ -29,10 +29,17 @@ class AddressViewController: UIViewController, UIScrollViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // bind()
+        
         self.configure()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.viewModel?.getAddress()
+    }
+    
 }
+
     extension AddressViewController {
         private func bindTableView() {
             tableView.dataSource = nil
@@ -45,14 +52,28 @@ class AddressViewController: UIViewController, UIScrollViewDelegate{
                 }
                 .disposed(by: disposeBag)
             self.viewModel?.getAddress()
+            
+            
+            tableView.rx.modelSelected(CustomerAddress.self)
+                .subscribe(onNext:{ type in
+                    self.viewModel.goToEditAddressScreen(with: type)
+                }).disposed(by: disposeBag)
+            
         }
-       
+
 
         
     }
 extension AddressViewController {
     private func configure() {
         self.bindTableView()
-       
+        
     }
 }
+extension AddressViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 140
+    }
+    
+}
+

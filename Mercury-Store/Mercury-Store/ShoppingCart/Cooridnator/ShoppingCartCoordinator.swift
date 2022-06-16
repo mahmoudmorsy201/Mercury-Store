@@ -7,8 +7,10 @@
 
 import UIKit
 
-class ShoppingCartCoordinator: Coordinator {
+class ShoppingCartCoordinator: Coordinator{
     
+    
+
     weak var parentCoordinator: Coordinator?
     
     var children: [Coordinator] = []
@@ -31,7 +33,7 @@ class ShoppingCartCoordinator: Coordinator {
 extension ShoppingCartCoordinator: ShoppingCartNavigationFlow {
     
     func goToAddAddressScreen() {
-        let addressViewModel: AddressViewModelType = AddressViewModel()
+        let addressViewModel: AddressViewModelType = AddressViewModel(addressNavigationFlow: self)
         let newAddressVC = CreateAddressDetailsViewController(with: addressViewModel)
         navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.pushViewController(newAddressVC, animated: true)
@@ -39,6 +41,17 @@ extension ShoppingCartCoordinator: ShoppingCartNavigationFlow {
     
     func goToGuestTab() {
         self.navigationController.tabBarController?.selectedIndex = 3
+    }
+    
+    
+}
+extension ShoppingCartCoordinator: UpdateAddressNavigationFlow {
+    func popEditContorller() {
+        
+    }
+    
+    func goToUpdateAddressScreen(with address: CustomerAddress) {
+        
     }
     
     

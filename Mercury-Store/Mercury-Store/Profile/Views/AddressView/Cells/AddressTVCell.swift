@@ -6,11 +6,15 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class AddressTVCell: UITableViewCell {
 
     @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var edit: UIImageView!
+    
+    @IBOutlet weak var cityLabel: UILabel!
     
     
     var address: CustomerAddress? {
@@ -18,13 +22,13 @@ class AddressTVCell: UITableViewCell {
             guard let address = address else {
                 return
             }
-            addressLabel.text = address.address1+","+address.city
-            
+            addressLabel.text = address.address1
+            cityLabel.text = address.city
         }
     }
+   
     override func awakeFromNib() {
         super.awakeFromNib()
-      
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -32,9 +36,7 @@ class AddressTVCell: UITableViewCell {
 
         
     }
-    public func config(name:String , itemId:Int){
-        addressLabel.text = name
-        
-    }
+   
     
 }
+
