@@ -11,6 +11,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductDetailsViewController" customModule="Mercury_Store" customModuleProvider="target">
             <connections>
                 <outlet property="addToCart" destination="nzG-Pf-VUv" id="Qwb-99-wGS"/>
+                <outlet property="closeButton" destination="QxP-vK-VmV" id="qVQ-wv-pOp"/>
+                <outlet property="containerViewForAddToCartButton" destination="V1C-ll-Jqt" id="Y8d-zx-OoY"/>
                 <outlet property="favoriteBtn" destination="Ph3-bH-rgU" id="sir-gc-4M2"/>
                 <outlet property="imageControl" destination="EpU-5I-188" id="RKX-je-NGj"/>
                 <outlet property="productDescription" destination="sst-kl-peU" id="ltp-hU-ezV"/>
@@ -25,14 +27,14 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gb3-1g-JIl">
-                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gb3-1g-JIl">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tnd-aH-pcy">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="1029"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="1009"/>
                             <subviews>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="tbY-cN-hfZ">
-                                    <rect key="frame" x="12" y="12" width="390" height="411.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="403.5"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kCr-TQ-czK">
                                         <size key="itemSize" width="128" height="128"/>
@@ -42,96 +44,74 @@
                                     </collectionViewFlowLayout>
                                 </collectionView>
                                 <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="EpU-5I-188">
-                                    <rect key="frame" x="12" y="385.5" width="390" height="26"/>
+                                    <rect key="frame" x="12" y="365.5" width="390" height="26"/>
                                     <color key="pageIndicatorTintColor" systemColor="systemGrayColor"/>
                                     <color key="currentPageIndicatorTintColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </pageControl>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xI-Mk-SoX">
-                                    <rect key="frame" x="12" y="586.5" width="390" height="30"/>
+                                    <rect key="frame" x="12" y="566.5" width="390" height="30"/>
                                     <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASICS TIGER | GEL-LYTE V '30 YEARS OF GEL' PACK" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Pi-UZ-Tup">
-                                    <rect key="frame" x="12" y="447.5" width="390" height="55"/>
+                                    <rect key="frame" x="12" y="427.5" width="390" height="55"/>
                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="23"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ph3-bH-rgU">
-                                    <rect key="frame" x="322" y="42" width="50" height="50"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="50" id="SXH-x5-OTB"/>
-                                        <constraint firstAttribute="height" constant="50" id="bcg-pH-RUV"/>
-                                    </constraints>
-                                    <color key="tintColor" systemColor="systemRedColor"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nzG-Pf-VUv">
-                                    <rect key="frame" x="57" y="889" width="300" height="50"/>
-                                    <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="300" id="niI-Qz-XJD"/>
-                                        <constraint firstAttribute="height" constant="50" id="x1s-Kb-Z3V"/>
-                                    </constraints>
-                                    <color key="tintColor" systemColor="secondarySystemGroupedBackgroundColor"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain">
-                                        <attributedString key="attributedTitle">
-                                            <fragment content="ADD TO CART">
-                                                <attributes>
-                                                    <font key="NSFont" size="20" name="TimesNewRomanPSMT"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                    </buttonConfiguration>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="10"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sst-kl-peU">
-                                    <rect key="frame" x="12" y="628.5" width="390" height="218.5"/>
+                                    <rect key="frame" x="12" y="608.5" width="390" height="218.5"/>
                                     <string key="text">LabelLabelLabelLabelLabelLabelLabelLabelvLabelLabelvLabelLabelvLabelLabelvLabelvvLabelvLabelLabelvLabelLabelvLabelLabelvLabelvvLabelvLabelLabelvLabelvLabelLabelvLabelLabelvvLabelvvLabelLabelvvLabelvvLabelvLabelLabelvLabelLabelvLabelLabelvLabelvvLabelvLabelLabelvLabel</string>
                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="23"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="150.00 USD" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gk6-1y-75i">
-                                    <rect key="frame" x="12" y="514.5" width="390" height="30"/>
+                                    <rect key="frame" x="12" y="494.5" width="390" height="30"/>
                                     <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
                                     <color key="textColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QxP-vK-VmV">
+                                    <rect key="frame" x="344.5" y="24" width="45.5" height="45"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="0u2-Di-t3W"/>
+                                    </constraints>
+                                    <color key="tintColor" red="0.3604836166" green="0.70115709299999995" blue="0.75295150280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Button" image="xmark.app" catalog="system">
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
+                                    </state>
+                                    <buttonConfiguration key="configuration" style="plain" image="xmark.app" catalog="system">
+                                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
+                                    </buttonConfiguration>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="4Pi-UZ-Tup" secondAttribute="trailing" constant="12" id="1xw-kz-ASk"/>
                                 <constraint firstItem="gk6-1y-75i" firstAttribute="top" secondItem="4Pi-UZ-Tup" secondAttribute="bottom" constant="12" id="6jb-ni-WHp"/>
+                                <constraint firstItem="QxP-vK-VmV" firstAttribute="top" secondItem="tnd-aH-pcy" secondAttribute="top" constant="24" id="7lX-xk-h6p"/>
                                 <constraint firstItem="EpU-5I-188" firstAttribute="leading" secondItem="tnd-aH-pcy" secondAttribute="leading" constant="12" id="8vQ-PC-KnI"/>
-                                <constraint firstItem="nzG-Pf-VUv" firstAttribute="top" secondItem="sst-kl-peU" secondAttribute="bottom" constant="42" id="Mua-wu-Gc9"/>
-                                <constraint firstAttribute="trailing" secondItem="tbY-cN-hfZ" secondAttribute="trailing" constant="12" id="N5x-VT-gdz"/>
-                                <constraint firstItem="tbY-cN-hfZ" firstAttribute="top" secondItem="tnd-aH-pcy" secondAttribute="top" constant="12" id="QBf-Xw-yiN"/>
+                                <constraint firstAttribute="trailing" secondItem="tbY-cN-hfZ" secondAttribute="trailing" id="N5x-VT-gdz"/>
+                                <constraint firstItem="tbY-cN-hfZ" firstAttribute="top" secondItem="tnd-aH-pcy" secondAttribute="top" id="QBf-Xw-yiN"/>
                                 <constraint firstItem="EpU-5I-188" firstAttribute="bottom" secondItem="tbY-cN-hfZ" secondAttribute="bottom" constant="-12" id="QP0-ek-hgh"/>
+                                <constraint firstAttribute="bottom" secondItem="sst-kl-peU" secondAttribute="bottom" constant="182" id="SSr-uH-BcV"/>
                                 <constraint firstItem="6xI-Mk-SoX" firstAttribute="trailing" secondItem="gk6-1y-75i" secondAttribute="trailing" id="UUv-yJ-W5Y"/>
                                 <constraint firstItem="sst-kl-peU" firstAttribute="trailing" secondItem="6xI-Mk-SoX" secondAttribute="trailing" id="XVf-ym-HX0"/>
-                                <constraint firstAttribute="bottom" secondItem="nzG-Pf-VUv" secondAttribute="bottom" constant="90" id="YNw-32-c0j"/>
+                                <constraint firstAttribute="trailing" secondItem="QxP-vK-VmV" secondAttribute="trailing" constant="24" id="aPM-l7-cSg"/>
                                 <constraint firstItem="gk6-1y-75i" firstAttribute="leading" secondItem="4Pi-UZ-Tup" secondAttribute="leading" id="bDZ-yE-85e"/>
-                                <constraint firstAttribute="trailing" secondItem="Ph3-bH-rgU" secondAttribute="trailing" constant="42" id="cJo-VQ-1OL"/>
                                 <constraint firstItem="gk6-1y-75i" firstAttribute="trailing" secondItem="4Pi-UZ-Tup" secondAttribute="trailing" id="cd8-df-yDC"/>
                                 <constraint firstItem="4Pi-UZ-Tup" firstAttribute="leading" secondItem="tnd-aH-pcy" secondAttribute="leading" constant="12" id="d0f-XY-JRk"/>
                                 <constraint firstItem="4Pi-UZ-Tup" firstAttribute="top" secondItem="tbY-cN-hfZ" secondAttribute="bottom" constant="24" id="eiM-uP-oEg"/>
-                                <constraint firstItem="Ph3-bH-rgU" firstAttribute="top" secondItem="tnd-aH-pcy" secondAttribute="top" constant="42" id="g8d-VO-lnZ"/>
                                 <constraint firstItem="sst-kl-peU" firstAttribute="leading" secondItem="6xI-Mk-SoX" secondAttribute="leading" id="gWX-nn-gNw"/>
                                 <constraint firstItem="tbY-cN-hfZ" firstAttribute="height" secondItem="tnd-aH-pcy" secondAttribute="height" multiplier="0.4" id="hn9-BS-Wo9"/>
                                 <constraint firstAttribute="trailing" secondItem="EpU-5I-188" secondAttribute="trailing" constant="12" id="iHA-SW-NS0"/>
                                 <constraint firstItem="sst-kl-peU" firstAttribute="top" secondItem="6xI-Mk-SoX" secondAttribute="bottom" constant="12" id="lzB-5d-ZBW"/>
                                 <constraint firstItem="6xI-Mk-SoX" firstAttribute="leading" secondItem="gk6-1y-75i" secondAttribute="leading" id="na9-3l-8cE"/>
-                                <constraint firstItem="tbY-cN-hfZ" firstAttribute="leading" secondItem="tnd-aH-pcy" secondAttribute="leading" constant="12" id="w0B-db-Vsv"/>
+                                <constraint firstItem="tbY-cN-hfZ" firstAttribute="leading" secondItem="tnd-aH-pcy" secondAttribute="leading" id="w0B-db-Vsv"/>
                                 <constraint firstItem="6xI-Mk-SoX" firstAttribute="top" secondItem="gk6-1y-75i" secondAttribute="bottom" constant="42" id="xVD-uA-Vbj"/>
-                                <constraint firstItem="nzG-Pf-VUv" firstAttribute="centerX" secondItem="tnd-aH-pcy" secondAttribute="centerX" id="xb3-Hj-YB9"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -145,20 +125,73 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="uVV-Un-920"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="7QC-Xk-fjb"/>
                 </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V1C-ll-Jqt">
+                    <rect key="frame" x="0.0" y="755.5" width="414" height="106.5"/>
+                    <subviews>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nzG-Pf-VUv">
+                            <rect key="frame" x="69.5" y="26.5" width="332.5" height="53.5"/>
+                            <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="tinted" image="cart.fill.badge.plus" catalog="system" imagePlacement="leading" cornerStyle="capsule">
+                                <backgroundConfiguration key="background">
+                                    <color key="backgroundColor" red="0.3604836166" green="0.70115709299999995" blue="0.75295150280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </backgroundConfiguration>
+                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="font">
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                </preferredSymbolConfiguration>
+                                <attributedString key="attributedTitle">
+                                    <fragment content="ADD TO CART">
+                                        <attributes>
+                                            <font key="NSFont" size="20" name="TimesNewRomanPSMT"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                            </buttonConfiguration>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ph3-bH-rgU">
+                            <rect key="frame" x="12" y="26.5" width="45.5" height="53.5"/>
+                            <color key="tintColor" systemColor="systemRedColor"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="gray" image="heart" catalog="system" cornerStyle="medium"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="Ph3-bH-rgU" firstAttribute="top" secondItem="nzG-Pf-VUv" secondAttribute="top" id="7mg-O8-uhp"/>
+                        <constraint firstItem="nzG-Pf-VUv" firstAttribute="height" secondItem="V1C-ll-Jqt" secondAttribute="height" multiplier="0.5" id="LA7-ns-o0E"/>
+                        <constraint firstItem="nzG-Pf-VUv" firstAttribute="leading" secondItem="Ph3-bH-rgU" secondAttribute="trailing" constant="12" id="jPk-4Z-OZe"/>
+                        <constraint firstAttribute="trailing" secondItem="nzG-Pf-VUv" secondAttribute="trailing" constant="12" id="ndT-ln-krO"/>
+                        <constraint firstItem="nzG-Pf-VUv" firstAttribute="centerY" secondItem="V1C-ll-Jqt" secondAttribute="centerY" id="t85-UZ-ejL"/>
+                        <constraint firstItem="Ph3-bH-rgU" firstAttribute="bottom" secondItem="nzG-Pf-VUv" secondAttribute="bottom" id="va7-L1-UQt"/>
+                        <constraint firstItem="Ph3-bH-rgU" firstAttribute="leading" secondItem="V1C-ll-Jqt" secondAttribute="leading" constant="12" id="z1i-08-gWM"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="uBG-kh-VJh"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="V1C-ll-Jqt" firstAttribute="width" secondItem="uBG-kh-VJh" secondAttribute="width" id="ANt-hV-HTL"/>
                 <constraint firstItem="gb3-1g-JIl" firstAttribute="leading" secondItem="uBG-kh-VJh" secondAttribute="leading" id="Kx5-2e-6f8"/>
-                <constraint firstItem="gb3-1g-JIl" firstAttribute="top" secondItem="uBG-kh-VJh" secondAttribute="top" id="S2v-ws-lxU"/>
+                <constraint firstItem="V1C-ll-Jqt" firstAttribute="height" secondItem="uBG-kh-VJh" secondAttribute="height" multiplier="0.13" id="QhN-Bd-H0D"/>
+                <constraint firstItem="gb3-1g-JIl" firstAttribute="top" secondItem="R4V-4j-MZS" secondAttribute="top" id="S2v-ws-lxU"/>
                 <constraint firstAttribute="bottom" secondItem="gb3-1g-JIl" secondAttribute="bottom" id="T1b-cr-iNU"/>
                 <constraint firstItem="gb3-1g-JIl" firstAttribute="trailing" secondItem="uBG-kh-VJh" secondAttribute="trailing" id="m2L-Bb-riz"/>
+                <constraint firstItem="V1C-ll-Jqt" firstAttribute="centerX" secondItem="R4V-4j-MZS" secondAttribute="centerX" id="oVE-IB-EmG"/>
+                <constraint firstItem="uBG-kh-VJh" firstAttribute="bottom" secondItem="V1C-ll-Jqt" secondAttribute="bottom" id="reA-5f-Ds5"/>
             </constraints>
             <point key="canvasLocation" x="-1407.2463768115942" y="-1089.5089285714284"/>
         </view>
     </objects>
     <resources>
+        <image name="cart.fill.badge.plus" catalog="system" width="128" height="106"/>
         <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="xmark.app" catalog="system" width="128" height="114"/>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
@@ -167,6 +200,9 @@
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

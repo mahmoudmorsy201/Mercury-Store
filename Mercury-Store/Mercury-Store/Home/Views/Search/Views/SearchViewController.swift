@@ -15,6 +15,7 @@ import DropDown
 class SearchViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var emptyView: UIView!
     
+    @IBOutlet weak var emptyImageView: UIImageView!
     @IBOutlet weak var minimumPrice: UILabel!
     @IBOutlet weak var maximumPrice: UILabel!
     @IBOutlet weak var priceSlider: UISlider!
@@ -57,6 +58,8 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
         emptyView.isHidden = true
     }
     private func bindEmptyViewHidden() {
+        let emptySearchGif = UIImage.gifImageWithName("emptySearch")
+        emptyImageView.image = emptySearchGif
         self.viewModel.error
             .drive(emptyView.rx.isHidden)
             .disposed(by: bag)
@@ -79,7 +82,6 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
     
     @objc func sortBtnTapped() {
         dropDown.selectionAction = { (index: Int, item: String) in
-          print("Selected item: \(item) at index: \(index)")
             self.viewModel.acceptTitle(item)
         }
         

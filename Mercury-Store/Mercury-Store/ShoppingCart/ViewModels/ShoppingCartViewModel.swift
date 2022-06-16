@@ -10,6 +10,7 @@ import RxCocoa
 
 protocol ShoppingCartNavigationFlow: AnyObject {
     func goToAddAddressScreen()
+    func goToGuestTab()
 }
 enum CartAction {
     case increment(SavedProductItem)
@@ -33,7 +34,7 @@ struct CartOutput {
 
 
 final class CartViewModel {
-    private weak var shoppingCartNavigationFlow: ShoppingCartNavigationFlow!
+    private weak var shoppingCartNavigationFlow: ShoppingCartNavigationFlow?
     private let incrementProductSubject = PublishSubject<SavedProductItem>()
     private let decrementProductSubject = PublishSubject<SavedProductItem>()
     private let deleteProductSubject = PublishSubject<SavedProductItem>()
@@ -74,10 +75,12 @@ final class CartViewModel {
         }else {
             return false
         }
-       
+    }
+    func goToGuestTab() {
+        shoppingCartNavigationFlow?.goToGuestTab()
     }
     func goToAddAddressScreen() {
-        shoppingCartNavigationFlow.goToAddAddressScreen()
+        shoppingCartNavigationFlow?.goToAddAddressScreen()
     }
     private func getUserFromUserDefaults() -> User? {
         do {

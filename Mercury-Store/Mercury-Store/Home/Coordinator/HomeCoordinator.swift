@@ -59,6 +59,7 @@ extension HomeCoordinator: FilteredProductsNavigationFlow {
     func goToProductDetail(with product: Product) {
         let viewModel = ProductsDetailViewModel(with: self,product: product)
         let productDetailsVC = ProductDetailsViewController(with: viewModel)
+        navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.pushViewController(productDetailsVC, animated: true)
     }
     
@@ -67,6 +68,11 @@ extension HomeCoordinator: FilteredProductsNavigationFlow {
     }
 }
 extension HomeCoordinator: ProductDetailsNavigationFlow {
+    func popViewController() {
+        navigationController.popViewController(animated: true)
+        navigationController.setNavigationBarHidden(false, animated: false)
+    }
+    
     
 }
 
@@ -74,6 +80,7 @@ extension HomeCoordinator: BrandDetailsNavigationFlow {
     func goToProductDetails(with product: Product) {
         let viewModel = ProductsDetailViewModel(with: self,product: product)
         let productDetailsVC = ProductDetailsViewController(with: viewModel)
+        navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.pushViewController(productDetailsVC, animated: true)
     }
     
@@ -83,6 +90,7 @@ extension HomeCoordinator: SearchFlowNavigation{
     func  goToProductDetailFromSearch(with item:Product){
         let viewModel = ProductsDetailViewModel(with: self,product: item)
         let productDetailsVC = ProductDetailsViewController(with: viewModel)
+        navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.pushViewController(productDetailsVC, animated: true)
     }
 }

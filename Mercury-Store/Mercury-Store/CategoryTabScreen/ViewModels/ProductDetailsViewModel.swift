@@ -16,14 +16,12 @@ protocol ProductsDetailViewModelType: AnyObject{
     func toggleFavourite()->Bool
     var isProductFavourite:Bool{get}
     func modifyOrderInCartIfCartIdIsNil(_ variantId: Int)
+    func popViewController()
 }
 
 final class ProductsDetailViewModel: ProductsDetailViewModelType {
     private let productImagesSubject = PublishSubject<[ProductImage]>()
-    var product: Product
-    var countForPageControll: Observable<Int>
-    var bannerObservable: Driver<[ProductImage]>
-    weak var productDetailsNavigationFlow: ProductDetailsNavigationFlow?
+    private weak var productDetailsNavigationFlow: ProductDetailsNavigationFlow?
     private let coreDataShared: CoreDataModel
     private let cartOrderSubject = PublishSubject<DraftOrderResponseTest>()
     private let userDefaults: UserDefaults
@@ -31,6 +29,9 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
     private let disposeBag = DisposeBag()
     private let customerProvider: CustomerProvider
     private let editCustomerSubject = PublishSubject<RegisterResponse>()
+    var product: Product
+    var countForPageControll: Observable<Int>
+    var bannerObservable: Driver<[ProductImage]>
     
     init(with productDetailsNavigationFlow: ProductDetailsNavigationFlow,product:Product, coreDataShared: CoreDataModel = CoreDataModel.coreDataInstatnce,ordersProvider: OrdersProvider = OrdersClient(),
          userDefaults: UserDefaults = UserDefaults.standard, customerProvider: CustomerProvider = CustomerClient()) {
@@ -41,6 +42,7 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
         self.ordersProvider = ordersProvider
         self.userDefaults = userDefaults
         self.customerProvider = customerProvider
+        self.productDetailsNavigationFlow = productDetailsNavigationFlow
     }
     func sendImagesToCollection() {
         productImagesSubject.onNext(product.images)
@@ -56,6 +58,10 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
             productImage: product.image.src ,
             productPrice: Double(product.variants[0].price) ?? 0 ,
             productQTY: 0 , producrState: productStates.favourite.rawValue))
+    }
+    
+    func popViewController() {
+        productDetailsNavigationFlow?.popViewController()
     }
     
     private func saveToCart() {

@@ -29,10 +29,15 @@ class ShoppingCartCoordinator: Coordinator {
 }
 
 extension ShoppingCartCoordinator: ShoppingCartNavigationFlow {
+    
     func goToAddAddressScreen() {
         let addressViewModel: AddressViewModelType = AddressViewModel()
         let newAddressVC = CreateAddressDetailsViewController(with: addressViewModel)
         navigationController.present(newAddressVC, animated: true)
+    }
+    
+    func goToGuestTab() {
+        self.navigationController.tabBarController?.selectedIndex = 3
     }
     
     
