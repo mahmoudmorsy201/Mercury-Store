@@ -24,7 +24,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
     
     @IBOutlet weak private var quantityLabel: UILabel!
     
-
+    
     @IBOutlet weak private var incrementQuantityButton: UIButton!
     
     @IBOutlet weak private var decrementQuantityButton: UIButton!
@@ -35,11 +35,12 @@ class ShoppingCartTableViewCell: UITableViewCell {
     var incrementTap: ControlEvent<Void> { self.incrementQuantityButton.rx.tap }
     var decrementTap: ControlEvent<Void> { self.decrementQuantityButton.rx.tap }
     var deleteTap: ControlEvent<Void> { self.deleteButton.rx.tap }
+    var delegate: ShoppingCartViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCell()
-             }
+    }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -54,8 +55,8 @@ class ShoppingCartTableViewCell: UITableViewCell {
         self.productImageCart.layer.borderWidth = 0.5
         self.productImageCart.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
     }
-        
-
+    
+    
     
     private(set) var disposeBag = DisposeBag()
     override func prepareForReuse() {
@@ -64,7 +65,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
     }
     
 }
-   
+
 
 extension ShoppingCartTableViewCell {
     
@@ -75,51 +76,31 @@ extension ShoppingCartTableViewCell {
         productNameCart.text = viewModel.name
         productPriceCart.text = viewModel.price
         quantityLabel.text = viewModel.count
-
+        
         self.incrementTap
             .map { viewModel.product }
             .bind(to: incrementObserver)
             .disposed(by: disposeBag)
-
+        
         self.decrementTap
             .map { viewModel.product }
             .bind(to: decrementObserver)
             .disposed(by: disposeBag)
         
-       
-        //Show Alert here...
-        self.deleteButton.rx.tap.bind() { [weak self] in
-            let alert = UIAlertController(title: "Delete", message: "Do you want to delete.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: someHandler))
-            alert.addAction(UIAlertAction(title: "cancel", style: .cancel, handler: nil))
-
-            if let vc = self!.next(ofType: UIViewController.self) {
-
-            vc.present(alert, animated: true, completion: nil)
-      }
-        }.disposed(by: disposeBag)
-
-        func someHandler(alert: UIAlertAction!) {
-            self.deleteTap
-                .map{ viewModel.product
-                }
-                .bind(to: deleteObserver)
-                .disposed(by: disposeBag)
-                }        }
-       
+        self.deleteTap
+            .withUnretained(self)
+            .flatMapLatest{ s, _ in s.deleteItem()}
+            .filter { $0 == .default}
+            .map{ _ in viewModel.product }
+            .bind(to: deleteObserver)
+            .disposed(by: disposeBag)
     }
-
-
-
-
-extension UIResponder {
-    func next<T:UIResponder>(ofType: T.Type) -> T? {
-        let r = self.next
-        if let r = r as? T ?? r?.next(ofType: T.self) {
-            return r
-        } else {
-            return nil
-        }
+    fileprivate func deleteItem() -> Observable<UIViewController.AlertAction> {
+        guard let delegate = delegate else { fatalError()}
+        return delegate.alert(title: "Delete Item",
+                     message: "Would you like to delete this item?",
+                     defaultTitle: "OK",
+                     cancelTitle: "Cancel")
     }
 }
 

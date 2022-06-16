@@ -19,7 +19,7 @@ final class CategoriesViewModel: CategoriesViewModelType {
     var categories: Driver<[CategoryDataItem]>
     
     private var categoriesArray: [CategoryDataItem] = [
-        CategoryDataItem(id: 395961565442, name: "Home", imageName: "home", colorHex: "FEDDE1"),
+        CategoryDataItem(id: 395961565442, name: "Home", imageName: "home", colorHex: "#FEDDE1"),
         
         CategoryDataItem(id: 395963597058, name: "Men", imageName: "Men", colorHex: "#642CA9"),
         CategoryDataItem(id: 395964121346, name: "Men-1", imageName: "Men", colorHex: "#642CA9"),

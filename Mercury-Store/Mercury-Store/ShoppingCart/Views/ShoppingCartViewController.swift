@@ -11,10 +11,12 @@ import RxSwift
 import RxDataSources
 
 class ShoppingCartViewController: UIViewController {
-    
+    @IBOutlet weak var containerViewForShadow: UIView!
+    @IBOutlet weak var emptyView: UIView!
+    @IBOutlet weak var containerViewForSubTotalAndProceedToCheckout: UIView!
     @IBOutlet weak private var totalPriceLabel: UILabel!
     @IBOutlet weak var checkoutBTN: UIButton!
-    
+    @IBOutlet weak var emptyImageView: UIImageView!
     @IBOutlet weak private var shoppingCartTableView: UITableView! {
         didSet {
             shoppingCartTableView.register(UINib(nibName: ShoppingCartTableViewCell.reuseIdentifier(), bundle: nil), forCellReuseIdentifier: ShoppingCartTableViewCell.reuseIdentifier())
@@ -33,10 +35,11 @@ class ShoppingCartViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: -Life Cycle
+    //MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
         bind()
         bindProceedToCheckoutTapped()
     }
@@ -44,6 +47,16 @@ class ShoppingCartViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.viewModel.viewDidDisappear()
+    }
+    
+    private func setupUI() {
+        containerViewForSubTotalAndProceedToCheckout.makeCorners(corners: [.topLeft , .topRight], radius: 18)
+        containerViewForShadow.applyShadow()
+        checkoutBTN.tintColor = UIColor(hexString: "#642CA9")
+        containerViewForSubTotalAndProceedToCheckout.applyShadow()
+        containerViewForSubTotalAndProceedToCheckout.backgroundColor = UIColor(hexString: "#D3D3D3")
+        let emptyCartGif = UIImage.gifImageWithName("emptyCart")
+        emptyImageView.image = emptyCartGif
     }
     
     private func bind() {
@@ -71,8 +84,9 @@ class ShoppingCartViewController: UIViewController {
         } onError: { error in
             print(error)
         }.disposed(by: disposeBag)
-
-        output.cartEmpty.bind(to: shoppingCartTableView.rx.isEmpty(message: "Your cart is empty"))
+        
+        
+        output.cartEmpty.bind(to: emptyView.rx.isEmpty())
             .disposed(by: disposeBag)
         
         output.cartTotal.bind(to: totalPriceLabel.rx.text)
@@ -80,9 +94,6 @@ class ShoppingCartViewController: UIViewController {
     }
     
     func bindProceedToCheckoutTapped() {
-        
-
-        
         checkoutBTN.rx.tap
             .subscribe {[weak self] _ in
                 guard let `self` = self else {fatalError()}
@@ -90,20 +101,17 @@ class ShoppingCartViewController: UIViewController {
                     self.viewModel.goToAddAddressScreen()
                 } else {
                     AlertView.showAlertBox(title: "Login Alert", message: "Please you have to login first") { [weak self] action in
-                        
-                    }.present(on: self) { [weak self] in
-                        
-                    }
+                        self?.viewModel.goToGuestTab()
+                    }.present(on: self)
                 }
                 
             }.disposed(by: disposeBag)
         
     }
-    
 }
 
 
-//MARK: Private handlers
+//MARK: -Private handlers
 
 extension ShoppingCartViewController {
     
@@ -116,13 +124,14 @@ extension ShoppingCartViewController {
                       incrementObserver: viewModel.incrementProduct,
                       decrementObserver: viewModel.decrementProduct,
                       deleteObserver: viewModel.deleteProduct)
+            cell.delegate = self
            
             return cell
         }
     }
 }
 
-//MARK: Delegates
+//MARK: -Delegates
 
 extension ShoppingCartViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

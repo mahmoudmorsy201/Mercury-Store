@@ -11,7 +11,9 @@ import RxCocoa
 import Toast_Swift
 
 class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
+    @IBOutlet weak var containerViewForAddToCartButton: UIView!
     
+    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var productDescription: UILabel!
     @IBOutlet weak var productTitleLabel: UILabel!
     @IBOutlet weak var productPriceLabel: UILabel!
@@ -42,7 +44,18 @@ class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUi()
+        setUpUI()
         collectionViewFrame.onNext(self.productImagesCollectionView.frame)
+    }
+    private func bindCloseButton() {
+        closeButton.rx.tap
+            .subscribe {[weak self] _ in
+                self?.viewModel.popViewController()
+            }.disposed(by: disposeBag)
+
+    }
+    private func setUpUI() {
+        self.containerViewForAddToCartButton.makeCorners(corners: [.topLeft,.topRight], radius: 12)
     }
     private func updateUi(){
         productTitleLabel.text = viewModel.product.title
@@ -97,6 +110,7 @@ extension ProductDetailsViewController  {
         self.addToFavourite()
         self.addToCartTapBinding()
         self.bindFavouriteButton()
+        self.bindCloseButton()
     }
 }
 extension ProductDetailsViewController{

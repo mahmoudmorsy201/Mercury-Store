@@ -21,6 +21,8 @@ target 'Mercury-Store' do
   #Toast_Swift
   pod 'Toast-Swift', '~> 5.0.1'
 
+  #DropDown
+  pod 'DropDown'
 
  #pods for textfield effects
  pod 'TextFieldEffects'

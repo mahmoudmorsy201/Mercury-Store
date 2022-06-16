@@ -12,7 +12,8 @@ import RxCocoa
 
 class CreateAddressDetailsViewController: UIViewController {
    
-
+    @IBOutlet weak var closeButton: UIButton!
+    
     @IBOutlet weak var addAddressBtn: UIButton!
     @IBOutlet weak var countryTxt: UITextField!
     @IBOutlet weak var cityTxt: UITextField!
@@ -20,7 +21,7 @@ class CreateAddressDetailsViewController: UIViewController {
     @IBOutlet weak var phoneTxt: UITextField!
     
     private var viewModel: AddressViewModelType!
-    private let disposeBag = DisposeBag ()
+    private let disposeBag = DisposeBag()
     
     init(with viewModel: AddressViewModelType) {
         super.init(nibName: nil, bundle: nil)
@@ -37,6 +38,13 @@ class CreateAddressDetailsViewController: UIViewController {
         setupBindings()
         observeViewModelOnValid()
         
+    }
+  
+    private func bindCloseButton() {
+        closeButton.rx.tap
+            .subscribe {[weak self] _ in
+                //self?.viewModel.popViewController()
+            }.disposed(by: disposeBag)
     }
     func setupBindings() {
         cityTxt.rx.text.bind(to: viewModel.cityObservable).disposed(by: disposeBag)
