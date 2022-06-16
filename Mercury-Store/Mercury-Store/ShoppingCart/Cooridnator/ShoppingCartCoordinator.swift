@@ -33,7 +33,8 @@ extension ShoppingCartCoordinator: ShoppingCartNavigationFlow {
     func goToAddAddressScreen() {
         let addressViewModel: AddressViewModelType = AddressViewModel()
         let newAddressVC = CreateAddressDetailsViewController(with: addressViewModel)
-        navigationController.present(newAddressVC, animated: true)
+        navigationController.setNavigationBarHidden(true, animated: false)
+        navigationController.pushViewController(newAddressVC, animated: true)
     }
     
     func goToGuestTab() {

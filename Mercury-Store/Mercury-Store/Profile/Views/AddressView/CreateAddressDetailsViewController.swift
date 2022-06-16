@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import RxSwift
 
 class CreateAddressDetailsViewController: UIViewController {
    
-
+    @IBOutlet weak var closeButton: UIButton!
+    
     @IBOutlet weak var addAddressBtn: UIButton!
     @IBOutlet weak var countryTxt: UITextField!
     @IBOutlet weak var cityTxt: UITextField!
@@ -17,6 +19,7 @@ class CreateAddressDetailsViewController: UIViewController {
     @IBOutlet weak var phoneTxt: UITextField!
     
     private var viewModel: AddressViewModelType!
+    private let disposeBag = DisposeBag()
     
     init(with viewModel: AddressViewModelType) {
         super.init(nibName: nil, bundle: nil)
@@ -32,7 +35,12 @@ class CreateAddressDetailsViewController: UIViewController {
         super.viewDidLoad()
         
     }
-
+    private func bindCloseButton() {
+        closeButton.rx.tap
+            .subscribe {[weak self] _ in
+                //self?.viewModel.popViewController()
+            }.disposed(by: disposeBag)
+    }
     
     @IBAction func didPressedOnAddAddress(_ sender: Any) {
         let user = viewModel.getUserFromUserDefaults()
