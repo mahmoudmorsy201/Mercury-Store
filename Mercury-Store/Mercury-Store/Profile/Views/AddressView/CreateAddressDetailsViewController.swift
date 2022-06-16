@@ -9,16 +9,17 @@ import UIKit
 import Toast_Swift
 import RxSwift
 import RxCocoa
+import TextFieldEffects
 
 class CreateAddressDetailsViewController: UIViewController {
    
     @IBOutlet weak var closeButton: UIButton!
     
     @IBOutlet weak var addAddressBtn: UIButton!
-    @IBOutlet weak var countryTxt: UITextField!
-    @IBOutlet weak var cityTxt: UITextField!
-    @IBOutlet weak var AddressTxt: UITextField!
-    @IBOutlet weak var phoneTxt: UITextField!
+    @IBOutlet weak var countryTxt: AkiraTextField!
+    @IBOutlet weak var cityTxt: AkiraTextField!
+    @IBOutlet weak var AddressTxt: AkiraTextField!
+    @IBOutlet weak var phoneTxt: AkiraTextField!
     
     private var viewModel: AddressViewModelType!
     private let disposeBag = DisposeBag()

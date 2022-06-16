@@ -14,6 +14,10 @@
 		0292A8AE2849CAE6001BC74F /* ProductDetailsImageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0292A8AC2849CAE6001BC74F /* ProductDetailsImageCollectionCell.swift */; };
 		0292A8AF2849CAE6001BC74F /* ProductDetailsImageCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0292A8AD2849CAE6001BC74F /* ProductDetailsImageCollectionCell.xib */; };
 		02B217A9284C5CE50040B36D /* SearchFlowNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B217A8284C5CE50040B36D /* SearchFlowNavigation.swift */; };
+		02C87C2C285B515300F4D8BF /* AddressesCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C87C2A285B515300F4D8BF /* AddressesCheckViewController.swift */; };
+		02C87C2D285B515300F4D8BF /* AddressesCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02C87C2B285B515300F4D8BF /* AddressesCheckViewController.xib */; };
+		02C87C31285B539A00F4D8BF /* AddressesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C87C2F285B539A00F4D8BF /* AddressesCell.swift */; };
+		02C87C32285B539A00F4D8BF /* AddressesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02C87C30285B539A00F4D8BF /* AddressesCell.xib */; };
 		02DADAC028572B4200D4C275 /* String+isValidPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DADABF28572B4200D4C275 /* String+isValidPhone.swift */; };
 		4D0A27C828440CDD002B17DB /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0A27C628440CDD002B17DB /* ProductDetailsViewController.swift */; };
 		4D0A27C928440CDD002B17DB /* ProductDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D0A27C728440CDD002B17DB /* ProductDetailsViewController.xib */; };
@@ -155,8 +159,6 @@
 		C4C08BBD28321D5A00364704 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C08BBB28321D5A00364704 /* SearchViewController.swift */; };
 		C4C08BBE28321D5A00364704 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4C08BBC28321D5A00364704 /* SearchViewController.xib */; };
 		C4C1E84F285AEA970051E465 /* UIImage+GifLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C1E84E285AEA970051E465 /* UIImage+GifLoader.swift */; };
-		C4C1E851285AEC830051E465 /* emptySearch.gif in Resources */ = {isa = PBXBuildFile; fileRef = C4C1E850285AEC830051E465 /* emptySearch.gif */; };
-		C4C1E853285AEE6C0051E465 /* emptyCart.gif in Resources */ = {isa = PBXBuildFile; fileRef = C4C1E852285AEE6C0051E465 /* emptyCart.gif */; };
 		C4C1E855285AF81E0051E465 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C1E854285AF81E0051E465 /* UIViewController+Alert.swift */; };
 		C4C1E857285B11BC0051E465 /* UpdateAddressNavigationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C1E856285B11BC0051E465 /* UpdateAddressNavigationFlow.swift */; };
 		C4C1E85A285B11EF0051E465 /* UpdateAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C1E858285B11EF0051E465 /* UpdateAddressViewController.swift */; };
@@ -230,6 +232,10 @@
 		0292A8AC2849CAE6001BC74F /* ProductDetailsImageCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsImageCollectionCell.swift; sourceTree = "<group>"; };
 		0292A8AD2849CAE6001BC74F /* ProductDetailsImageCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductDetailsImageCollectionCell.xib; sourceTree = "<group>"; };
 		02B217A8284C5CE50040B36D /* SearchFlowNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFlowNavigation.swift; sourceTree = "<group>"; };
+		02C87C2A285B515300F4D8BF /* AddressesCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesCheckViewController.swift; sourceTree = "<group>"; };
+		02C87C2B285B515300F4D8BF /* AddressesCheckViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressesCheckViewController.xib; sourceTree = "<group>"; };
+		02C87C2F285B539A00F4D8BF /* AddressesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesCell.swift; sourceTree = "<group>"; };
+		02C87C30285B539A00F4D8BF /* AddressesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressesCell.xib; sourceTree = "<group>"; };
 		02DADABF28572B4200D4C275 /* String+isValidPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+isValidPhone.swift"; sourceTree = "<group>"; };
 		02E7127A283FBACB005726B3 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		18891F1E7F7C989CC0ABBB4A /* Pods-Mercury-Store.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-Store.release.xcconfig"; path = "Target Support Files/Pods-Mercury-Store/Pods-Mercury-Store.release.xcconfig"; sourceTree = "<group>"; };
@@ -376,8 +382,6 @@
 		C4C08BBB28321D5A00364704 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C4C08BBC28321D5A00364704 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		C4C1E84E285AEA970051E465 /* UIImage+GifLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+GifLoader.swift"; sourceTree = "<group>"; };
-		C4C1E850285AEC830051E465 /* emptySearch.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = emptySearch.gif; path = ../../../../emptySearch.gif; sourceTree = "<group>"; };
-		C4C1E852285AEE6C0051E465 /* emptyCart.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = emptyCart.gif; path = ../../../../emptyCart.gif; sourceTree = "<group>"; };
 		C4C1E854285AF81E0051E465 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		C4C1E856285B11BC0051E465 /* UpdateAddressNavigationFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAddressNavigationFlow.swift; sourceTree = "<group>"; };
 		C4C1E858285B11EF0051E465 /* UpdateAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAddressViewController.swift; sourceTree = "<group>"; };
@@ -469,6 +473,25 @@
 			children = (
 				0292A8AC2849CAE6001BC74F /* ProductDetailsImageCollectionCell.swift */,
 				0292A8AD2849CAE6001BC74F /* ProductDetailsImageCollectionCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		02C87C29285B50E800F4D8BF /* AddressesView */ = {
+			isa = PBXGroup;
+			children = (
+				02C87C2E285B515D00F4D8BF /* Cells */,
+				02C87C2A285B515300F4D8BF /* AddressesCheckViewController.swift */,
+				02C87C2B285B515300F4D8BF /* AddressesCheckViewController.xib */,
+			);
+			path = AddressesView;
+			sourceTree = "<group>";
+		};
+		02C87C2E285B515D00F4D8BF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				02C87C2F285B539A00F4D8BF /* AddressesCell.swift */,
+				02C87C30285B539A00F4D8BF /* AddressesCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1009,6 +1032,7 @@
 		C4C08BA928321A4300364704 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				02C87C29285B50E800F4D8BF /* AddressesView */,
 				4D8E3852284958AC00B22D98 /* LoginView */,
 				4D8E383E284958AC00B22D98 /* AddressView */,
 				4D8E3846284958AC00B22D98 /* GuestView */,
@@ -1119,8 +1143,6 @@
 		C4CDB93F2830E3300000519A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C4C1E852285AEE6C0051E465 /* emptyCart.gif */,
-				C4C1E850285AEC830051E465 /* emptySearch.gif */,
 				C4CDB9172830E3210000519A /* Assets.xcassets */,
 				C4CDB9192830E3210000519A /* LaunchScreen.storyboard */,
 			);
@@ -1454,18 +1476,18 @@
 				4D0A27C928440CDD002B17DB /* ProductDetailsViewController.xib in Resources */,
 				4D8E385F284958AD00B22D98 /* ProfileViewController.xib in Resources */,
 				4D8E386F284958AD00B22D98 /* AboutUsViewController.xib in Resources */,
-				C4C1E851285AEC830051E465 /* emptySearch.gif in Resources */,
+				02C87C2D285B515300F4D8BF /* AddressesCheckViewController.xib in Resources */,
 				4D8E386E284958AD00B22D98 /* WishListViewController.xib in Resources */,
 				C4CDB95B2832022E0000519A /* HomeViewController.xib in Resources */,
 				C4C08BA1283216EC00364704 /* ShoppingCartViewController.xib in Resources */,
 				4D8E3855284958AD00B22D98 /* myOrdersTableViewController.xib in Resources */,
 				C410293F284AAF29007045F8 /* BrandDetailViewController.xib in Resources */,
+				02C87C32285B539A00F4D8BF /* AddressesCell.xib in Resources */,
 				C4BA734B2839F8BF00A5F3AB /* BrandsCollectionViewCell.xib in Resources */,
 				4D8E386B284958AD00B22D98 /* WishListCell.xib in Resources */,
 				0292A8AF2849CAE6001BC74F /* ProductDetailsImageCollectionCell.xib in Resources */,
 				C4CFBA72283C1914009C2840 /* BannerCollectionViewCell.xib in Resources */,
 				4D8E3867284958AD00B22D98 /* AddressViewController.xib in Resources */,
-				C4C1E853285AEE6C0051E465 /* emptyCart.gif in Resources */,
 				C4C08BBE28321D5A00364704 /* SearchViewController.xib in Resources */,
 				4D8E3869284958AD00B22D98 /* GuestProfileViewController.xib in Resources */,
 				4D8E3856284958AD00B22D98 /* MyOrdersViewCell.xib in Resources */,
@@ -1614,6 +1636,7 @@
 				C4C08B94283212D900364704 /* AppAppearance.swift in Sources */,
 				C4C0609828487CFF0063CE85 /* ApplicationCoordinator.swift in Sources */,
 				C4C0609E28488FAC0063CE85 /* ShoppingCartCoordinator.swift in Sources */,
+				02C87C2C285B515300F4D8BF /* AddressesCheckViewController.swift in Sources */,
 				026C7FDE284BEF0C00A562AE /* ProductSearchViewModel.swift in Sources */,
 				026C7FDC284BD5B000A562AE /* SearchClient.swift in Sources */,
 				C4102943284AAF52007045F8 /* BrandDetailsViewModel.swift in Sources */,
@@ -1640,6 +1663,7 @@
 				C4B9828D28532BAE00242415 /* MeCoordinator.swift in Sources */,
 				C4CDB9162830E31D0000519A /* Mercury_Store.xcdatamodeld in Sources */,
 				4D91185E284BCB4500F07638 /* WishListViewModel.swift in Sources */,
+				02C87C31285B539A00F4D8BF /* AddressesCell.swift in Sources */,
 				C4D8779028572E8E00921CBE /* UIViewController+UIAlert.swift in Sources */,
 				C4C08BAC28321A5700364704 /* ProfileModel.swift in Sources */,
 				026EB73B2857226100DF876E /* AddressViewModel.swift in Sources */,
