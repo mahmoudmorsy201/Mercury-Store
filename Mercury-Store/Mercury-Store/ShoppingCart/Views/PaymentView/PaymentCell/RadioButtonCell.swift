@@ -20,7 +20,6 @@ class RadioButtonCell: UITableViewCell {
     @IBOutlet weak var payPal: UIButton!
     @IBOutlet weak var cashOnDelivery: UIButton!
     let disposeBage = DisposeBag()
-    //var paymentMethod:paymentOptions = .cashOnDelivery
     let paymentSubject = BehaviorSubject<paymentOptions>(value: .cashOnDelivery)
     override func awakeFromNib() {
         super.awakeFromNib()

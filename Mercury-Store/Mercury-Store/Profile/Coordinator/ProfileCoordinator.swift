@@ -32,7 +32,7 @@ extension ProfileCoordinator: ProfileNavigationFlow {
     }
     
     func goToPaymentScreen() {
-        let paymentVC = PaymentViewViewController(nibName: String(describing: PaymentViewViewController.self), bundle: nil)
+        let paymentVC = PaymentViewViewController(nibName: String(describing: PaymentViewViewController.self), bundle: nil, subCartFeees: 50.5)
         self.navigationController.pushViewController(paymentVC, animated: true)
     }
     

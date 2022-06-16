@@ -19,9 +19,10 @@ protocol AddressViewModelType {
     func getUserFromUserDefaults() -> User?
    // var addressCheckErrorMessage: Observable<String?> { get }
     //var showErrorLabelObserver: Observable<Bool> { get }
-    func goToPaymentScreen()
+    func goToPaymentScreen(itemsPrice:Double)
 }
 class AddressViewModel: AddressViewModelType {
+    
     private let countrySubject = BehaviorSubject<String?>(value: "")
     private let citySubject = BehaviorSubject<String?>(value: "")
     private let addressSubject = BehaviorSubject<String?>(value: "")
@@ -80,7 +81,7 @@ class AddressViewModel: AddressViewModelType {
                 return nil
             }
     }
-    func goToPaymentScreen() {
-        navigationFlow?.goToPaymentScreen()
+    func goToPaymentScreen(itemsPrice:Double) {
+        navigationFlow?.goToPaymentScreen(itemsPrice: itemsPrice)
     }
 }

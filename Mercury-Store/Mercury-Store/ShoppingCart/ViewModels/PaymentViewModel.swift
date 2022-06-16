@@ -14,11 +14,16 @@ protocol PaymentViewModelType{
     var CouponLoading: Driver<Bool> { get }
     var CouponInfo: Driver<PriceRule> { get}
     var CouponError: Driver<String?> { get }
-    var paymentMethod:paymentOptions {set get}
+    var paymentMethod:paymentOptions { set get }
+    var subTotal: Double{ get }
+    var total: BehaviorSubject<Double>{ get }
     func confirmOrder()
 }
 
 class PaymentViewModel:PaymentViewModelType{
+    var total: BehaviorSubject<Double>
+    
+    var subTotal: Double
     
     private let couponSubject = BehaviorRelay<PriceRule>(value: PriceRule() )
     private let isLoadingSubject = BehaviorRelay<Bool>(value: false)
@@ -35,11 +40,13 @@ class PaymentViewModel:PaymentViewModelType{
     
     var paymentMethod: paymentOptions
     
-    init(_userDefaults:UserDefaults = UserDefaults() ,paymentMethod:paymentOptions = .cashOnDelivery) {
+    init(_userDefaults:UserDefaults = UserDefaults() ,paymentMethod:paymentOptions = .cashOnDelivery ,subTotal:Double) {
         userDefaults = _userDefaults
         CouponInfo = couponSubject.asDriver(onErrorJustReturn: PriceRule() )
         CouponLoading = isLoadingSubject.asDriver(onErrorJustReturn: false)
         CouponError = errorSubject.asDriver(onErrorJustReturn: "Somthing went wrong")
+        total = BehaviorSubject<Double>(value: subTotal)
+        self.subTotal = subTotal
         self.paymentMethod = paymentMethod
         fetchCouponData()
     }
@@ -58,28 +65,43 @@ class PaymentViewModel:PaymentViewModelType{
         self.couponApi.getSinglePriceData(id: couponID)
             .observe(on: MainScheduler.asyncInstance)
                     .subscribe {[weak self] (result) in
-                        self?.isLoadingSubject.accept(false)
-                        self?.couponSubject.accept(result.priceRule)
+                        guard let self = self else{ return }
+                        self.isLoadingSubject.accept(false)
+                        self.couponSubject.accept(result.priceRule)
+                        self.handleCouponDiscount(discountValue: abs(Double(result.priceRule.value) ?? 0.0) )
                     } onError: {[weak self] (error) in
-                        self?.isLoadingSubject.accept(false)
-                        self?.errorSubject.accept(error.localizedDescription)
+                        guard let self = self else{ return }
+                        self.isLoadingSubject.accept(false)
+                        self.errorSubject.accept(error.localizedDescription)
                     }.disposed(by: disposeBag)
     }
     
-    func startCheckout() {
+    func handleCouponDiscount(discountValue:Double){
+        do{
+            let temp = try total.value()
+            if discountValue > temp{
+                total.onNext(0)
+            }else{
+                total.onNext(temp - discountValue)
+            }
+        }catch(_){
+        }
+    }
+    
+    func startCheckout(amount:String) {
         self.braintreeClient = BTAPIClient(authorization: PaymentModel.braintreeAuthorization)!
         let payPalDriver = BTPayPalDriver(apiClient: braintreeClient!)
-        let request = BTPayPalCheckoutRequest(amount: "2.32")
+        let request = BTPayPalCheckoutRequest(amount: amount)
         request.currencyCode = PaymentModel.currencyCode
         payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
             if let tokenizedPayPalAccount = tokenizedPayPalAccount {
                 print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
-                let email = tokenizedPayPalAccount.email
-                let firstName = tokenizedPayPalAccount.firstName
-                let lastName = tokenizedPayPalAccount.lastName
-                let phone = tokenizedPayPalAccount.phone
-                let billingAddress = tokenizedPayPalAccount.billingAddress
-                let shippingAddress = tokenizedPayPalAccount.shippingAddress
+//                let email = tokenizedPayPalAccount.email
+//                let firstName = tokenizedPayPalAccount.firstName
+//                let lastName = tokenizedPayPalAccount.lastName
+//                let phone = tokenizedPayPalAccount.phone
+//                let billingAddress = tokenizedPayPalAccount.billingAddress
+//                let shippingAddress = tokenizedPayPalAccount.shippingAddress
             } else if let error = error {
             } else {
             }
@@ -94,7 +116,10 @@ class PaymentViewModel:PaymentViewModelType{
         switch(paymentMethod){
             
         case .withPaypal:
-            self.startCheckout()
+            do{
+                let totalFees = try! total.value()
+                self.startCheckout(amount: "\(totalFees)")
+            }
         case .cashOnDelivery:
             self.closeOrder()
         }

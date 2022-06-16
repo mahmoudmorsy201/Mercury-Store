@@ -23,12 +23,13 @@ class PaymentViewViewController: UIViewController {
         super.viewDidLoad()
         initTable()
         readCoupon()
+        totalFees()
         confirmAction()
     }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle? , subCartFeees:Double) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        self.viewModel = PaymentViewModel()
+        self.viewModel = PaymentViewModel(subTotal: subCartFeees)
     }
     
     required init?(coder: NSCoder) {
@@ -51,6 +52,13 @@ extension PaymentViewViewController{
         }.disposed(by: disposeBag)
     }
     
+    func totalFees(){
+        subTotal.text = "\(viewModel.subTotal) USD"
+        shippingFees.text = "0 USD"
+        viewModel.total.asObserver().subscribe{ item in
+            self.totalMoney.text = "\(item.element!) USD"
+        }
+    }
 }
 
 extension PaymentViewViewController:UITableViewDelegate ,UITableViewDataSource{
