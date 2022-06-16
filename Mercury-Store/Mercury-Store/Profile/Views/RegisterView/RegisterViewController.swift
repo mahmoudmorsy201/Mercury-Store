@@ -14,7 +14,6 @@ import ProgressHUD
 class RegisterViewController: UIViewController {
     
     //MARK: - Outlets
-    //
     @IBOutlet weak var firstNameTextField: AkiraTextField!
     @IBOutlet weak var lastNameTextField: AkiraTextField!
     @IBOutlet weak var emailTextField: AkiraTextField!

@@ -29,7 +29,8 @@ target 'Mercury-Store' do
 
  #ProgressHud
  pod 'ProgressHUD'
-  
+  #lottieFiles
+  pod 'lottie-ios'
   target 'Mercury-StoreTests' do
     inherit! :search_paths
     # Pods for testing
