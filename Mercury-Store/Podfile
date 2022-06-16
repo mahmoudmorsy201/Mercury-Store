@@ -30,7 +30,6 @@ target 'Mercury-Store' do
  #ProgressHud
  pod 'ProgressHUD'
   
-
   target 'Mercury-StoreTests' do
     inherit! :search_paths
     # Pods for testing
