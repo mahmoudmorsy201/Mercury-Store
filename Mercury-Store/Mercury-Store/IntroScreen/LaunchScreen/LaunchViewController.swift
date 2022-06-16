@@ -9,29 +9,41 @@ import UIKit
 import Lottie
 
 class LaunchViewController: UIViewController {
-
+    private weak var launchScreenFlow: LaunchScreenNavigationFlow?
+    
+    init(_ launchScreenFlow: LaunchScreenNavigationFlow) {
+        super.init(nibName: nil, bundle: nil)
+        self.launchScreenFlow = launchScreenFlow
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let animationView = AnimationView()
         animationView.animation = Animation.named("E-commerce")
         animationView.frame = view.bounds
-        animationView.loopMode = .loop
-        animationView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         animationView.center = view.center
-       
+        animationView.frame = view.bounds
+        animationView.backgroundColor = .white
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .playOnce
         animationView.play()
         view.addSubview(animationView)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [weak self] in
             guard let self = self else {return}
-            //here to do put PagesViewController(THe Intro)
-            //let startVC = HomeViewController( nibName:"HomeViewController", bundle: nil)
-           // self.navigationController?.pushViewController(startVC, animated: true)
+            let hasSeenOnBoard = UserDefaults.standard.bool(forKey: "hasSeenOnBoard")
+            if(hasSeenOnBoard == false) {
+                self.launchScreenFlow?.goToOnBoardingScreen()
+            }else {
+                self.launchScreenFlow?.goToHomeTabbar()
+            }
+           
         }
 
     }
-
-
-  
-
 }
