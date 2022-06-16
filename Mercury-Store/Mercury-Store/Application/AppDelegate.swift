@@ -7,7 +7,7 @@
 
 import UIKit
 import CoreData
-
+import Braintree
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -15,9 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        BTAppContextSwitcher.setReturnURLScheme("com.iti.Mercury-Store.payments")
         return true
     }
-
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if url.scheme?.localizedCaseInsensitiveCompare("com.iti.Mercury-Store.payments") == .orderedSame {
+            return BTAppContextSwitcher.handleOpenURL(url)
+        }
+        return false
+    }
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -25,9 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
-
-
-
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {

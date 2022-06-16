@@ -31,6 +31,9 @@ struct Constants {
         }
         struct PricesRule{
             public static let pricesRules = "/price_rules.json"
+            public static func getCoupon(id:Int)->String{
+                return "price_rules/\(id).json"
+            }
         }
     }
     

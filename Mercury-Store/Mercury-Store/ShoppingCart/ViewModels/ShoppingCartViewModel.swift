@@ -103,7 +103,6 @@ final class CartViewModel {
             }
             .map { $0.sections }
             .share()
-        
         return CartOutput(
             cart: cart,
             cartTotal: cart.map(cartTotal()),

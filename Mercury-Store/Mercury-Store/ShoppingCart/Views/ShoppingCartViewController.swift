@@ -57,7 +57,7 @@ class ShoppingCartViewController: UIViewController {
         shoppingCartTableView.rx.setDelegate(self).disposed(by: disposeBag)
         
         let output = viewModel.bind(CartInput(viewLoaded: inputData))
-        
+    
         output.cart.bind(to: shoppingCartTableView.rx.items(dataSource: dataSource()))
             .disposed(by: disposeBag)
 

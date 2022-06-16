@@ -85,6 +85,8 @@
 		4DCA17B0284EF2CA00F0CF3A /* FavouriteCoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA17AF284EF2CA00F0CF3A /* FavouriteCoreDataModel.swift */; };
 		4DCA17B2284EF2E000F0CF3A /* CartCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA17B1284EF2E000F0CF3A /* CartCoreData.swift */; };
 		4DCA17B4284FE77E00F0CF3A /* ProductCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCA17B3284FE77E00F0CF3A /* ProductCellViewModel.swift */; };
+		4DD82609285AEB6300F5B63C /* PaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD82608285AEB6300F5B63C /* PaymentModel.swift */; };
+		4DF070FD285907E20075DC60 /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF070FC285907E20075DC60 /* PaymentViewModel.swift */; };
 		4DF2005128576C2100D49B59 /* PaymentViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2004F28576C2100D49B59 /* PaymentViewViewController.swift */; };
 		4DF2005228576C2100D49B59 /* PaymentViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DF2005028576C2100D49B59 /* PaymentViewViewController.xib */; };
 		70E327F9F08636314A8DD26A /* Pods_Mercury_Store.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C880061057CCC78DAAE9EE6 /* Pods_Mercury_Store.framework */; };
@@ -298,6 +300,8 @@
 		4DCA17AF284EF2CA00F0CF3A /* FavouriteCoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCoreDataModel.swift; sourceTree = "<group>"; };
 		4DCA17B1284EF2E000F0CF3A /* CartCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCoreData.swift; sourceTree = "<group>"; };
 		4DCA17B3284FE77E00F0CF3A /* ProductCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellViewModel.swift; sourceTree = "<group>"; };
+		4DD82608285AEB6300F5B63C /* PaymentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentModel.swift; sourceTree = "<group>"; };
+		4DF070FC285907E20075DC60 /* PaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
 		4DF2004F28576C2100D49B59 /* PaymentViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewViewController.swift; sourceTree = "<group>"; };
 		4DF2005028576C2100D49B59 /* PaymentViewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentViewViewController.xib; sourceTree = "<group>"; };
 		5B035032FD47AF57FEEEC3EA /* Pods-Mercury-StoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mercury-StoreTests.debug.xcconfig"; path = "Target Support Files/Pods-Mercury-StoreTests/Pods-Mercury-StoreTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -955,6 +959,7 @@
 			isa = PBXGroup;
 			children = (
 				C4C08B9C283216D000364704 /* ShoppingCartViewModel.swift */,
+				4DF070FC285907E20075DC60 /* PaymentViewModel.swift */,
 				C4F469242844383600DB2EF0 /* ShoppingCartCellViewModel.swift */,
 			);
 			path = ViewModels;
@@ -963,6 +968,7 @@
 		C4C08B98283216A700364704 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4DF2004E28576BA900D49B59 /* PaymentView */,
 				C4F46915283FFD4900DB2EF0 /* Cells */,
 				C4C08B9E283216EC00364704 /* ShoppingCartViewController.swift */,
 				C4C08B9F283216EC00364704 /* ShoppingCartViewController.xib */,
@@ -977,6 +983,7 @@
 				C4BE91DA2846EA9A00ED8221 /* CartCoreDataManager.swift */,
 				C4C06081284733FB0063CE85 /* CartRow.swift */,
 				C4C060832847342F0063CE85 /* CartSection.swift */,
+				4DD82608285AEB6300F5B63C /* PaymentModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1020,7 +1027,6 @@
 		C4C08BA928321A4300364704 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4DF2004E28576BA900D49B59 /* PaymentView */,
 				4D8E383E284958AC00B22D98 /* AddressView */,
 				4D8E3846284958AC00B22D98 /* GuestView */,
 				4D8E384F284958AC00B22D98 /* AboutUsView */,
@@ -1641,7 +1647,9 @@
 				C4C04EE328333278002EC367 /* LogoTableViewCell.swift in Sources */,
 				C49F0FFE2852A806009306BA /* String+isValidEmail.swift in Sources */,
 				C4B9828B28532B6100242415 /* UserDefaults+ObjectSavable.swift in Sources */,
+				4DF070FD285907E20075DC60 /* PaymentViewModel.swift in Sources */,
 				C4B9828D28532BAE00242415 /* MeCoordinator.swift in Sources */,
+				4DD82609285AEB6300F5B63C /* PaymentModel.swift in Sources */,
 				C4CDB9162830E31D0000519A /* Mercury_Store.xcdatamodeld in Sources */,
 				4DB39DC228583CA400EB8B42 /* RadioButtonCell.swift in Sources */,
 				4D91185E284BCB4500F07638 /* WishListViewModel.swift in Sources */,

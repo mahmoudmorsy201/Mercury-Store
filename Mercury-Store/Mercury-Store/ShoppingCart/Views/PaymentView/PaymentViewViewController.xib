@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PaymentViewViewController" customModule="Mercury_Store" customModuleProvider="target">
             <connections>
+                <outlet property="confirmOrder" destination="Pjz-SC-qJV" id="niN-gT-W6u"/>
                 <outlet property="couponInput" destination="Dz3-jU-4jL" id="EiE-oc-Fht"/>
                 <outlet property="discountValue" destination="dPw-Ab-wuI" id="LYk-Th-E6s"/>
                 <outlet property="selectPaymentTable" destination="pAp-iZ-V2u" id="how-F5-LKy"/>

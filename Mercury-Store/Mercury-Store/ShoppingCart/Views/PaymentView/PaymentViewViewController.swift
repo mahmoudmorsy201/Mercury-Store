@@ -6,21 +6,51 @@
 //
 
 import UIKit
+import RxSwift
 
 class PaymentViewViewController: UIViewController {
-
+    let disposeBag:DisposeBag = DisposeBag()
+    private var viewModel:PaymentViewModelType!
     @IBOutlet weak var selectPaymentTable: UITableView!
     @IBOutlet weak var validateCoupon: UIButton!
     @IBOutlet weak var couponInput: UITextField!
     @IBOutlet weak var totalMoney: UILabel!
     @IBOutlet weak var discountValue: UILabel!
     @IBOutlet weak var shippingFees: UILabel!
+    @IBOutlet weak var confirmOrder: UIButton!
     @IBOutlet weak var subTotal: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         initTable()
+        readCoupon()
+        confirmAction()
     }
-
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.viewModel = PaymentViewModel()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+}
+extension PaymentViewViewController{
+    
+    func readCoupon(){
+        viewModel.CouponInfo.asObservable().subscribe { item in
+            guard let element = item.element else{ return }
+            self.couponInput.text = element.title
+            self.discountValue.text = element.value
+        }
+    }
+    
+    func confirmAction(){
+        confirmOrder.rx.tap.bind{
+            self.viewModel.startCheckout()
+        }.disposed(by: disposeBag)
+    }
+    
 }
 
 extension PaymentViewViewController:UITableViewDelegate ,UITableViewDataSource{
@@ -45,6 +75,7 @@ extension PaymentViewViewController:UITableViewDelegate ,UITableViewDataSource{
         let cell = selectPaymentTable.dequeueReusableCell(withIdentifier: RadioButtonCell.reuseIdentifier()) as! RadioButtonCell
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.setSelected(false, animated: false)
