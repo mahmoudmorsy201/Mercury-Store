@@ -8,5 +8,6 @@
 import Foundation
 protocol UpdateAddressNavigationFlow: AnyObject {
     func goToUpdateAddressScreen(with address: CustomerAddress)
-    func popEditContorller()
+    func popEditController()
+    func goToAddAddressScreen()
 }
