@@ -102,19 +102,15 @@ class PaymentViewModel:PaymentViewModelType{
     func startCheckout(amount:String) {
         self.braintreeClient = BTAPIClient(authorization: PaymentModel.braintreeAuthorization)!
         let payPalDriver = BTPayPalDriver(apiClient: braintreeClient!)
-        let request = BTPayPalCheckoutRequest(amount: amount)
+        let request = BTPayPalCheckoutRequest(amount: "50")
         request.currencyCode = PaymentModel.currencyCode
         payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
             if let tokenizedPayPalAccount = tokenizedPayPalAccount {
-                print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
-//                let email = tokenizedPayPalAccount.email
-//                let firstName = tokenizedPayPalAccount.firstName
-//                let lastName = tokenizedPayPalAccount.lastName
-//                let phone = tokenizedPayPalAccount.phone
-//                let billingAddress = tokenizedPayPalAccount.billingAddress
-//                let shippingAddress = tokenizedPayPalAccount.shippingAddress
+                self.postOrder()
             } else if let error = error {
+                print(error)
             } else {
+                print("the user canceled")
             }
         }
     }
