@@ -11,6 +11,7 @@ import RxSwift
 
 
 class AddressViewController: UIViewController, UIScrollViewDelegate{
+    @IBOutlet weak var emptyView: UIView!
     
     @IBOutlet weak var tableView: UITableView!{
         didSet {
@@ -60,11 +61,18 @@ extension AddressViewController {
             }).disposed(by: disposeBag)
         
     }
+    
+    private func bindEmptyView() {
+        self.viewModel.empty
+            .drive(emptyView.rx.isHidden)
+            .disposed(by: disposeBag)
+    }
 }
 
 extension AddressViewController {
     private func configure() {
         self.bindTableView()
+        self.bindEmptyView()
     }
 }
 
