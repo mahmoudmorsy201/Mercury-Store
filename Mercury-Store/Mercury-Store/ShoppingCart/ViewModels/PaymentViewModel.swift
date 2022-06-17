@@ -41,15 +41,16 @@ class PaymentViewModel:PaymentViewModelType{
     
     var paymentMethod: paymentOptions
     
-    init(_userDefaults:UserDefaults = UserDefaults() ,paymentMethod:paymentOptions = .cashOnDelivery ,subTotal:Double, ordersProvider: OrdersProvider = OrdersClient()) {
+    init(_userDefaults:UserDefaults = UserDefaults() ,paymentMethod:paymentOptions = .cashOnDelivery , ordersProvider: OrdersProvider = OrdersClient() ) {
         userDefaults = _userDefaults
         CouponInfo = couponSubject.asDriver(onErrorJustReturn: PriceRule() )
         CouponLoading = isLoadingSubject.asDriver(onErrorJustReturn: false)
         CouponError = errorSubject.asDriver(onErrorJustReturn: "Somthing went wrong")
         self.ordersProvider = ordersProvider
-        total = BehaviorSubject<Double>(value: subTotal)
-        self.subTotal = subTotal
+        total = BehaviorSubject<Double>(value: 0)
+        self.subTotal = 0
         self.paymentMethod = paymentMethod
+        self.totalItemsPrice()
         fetchCouponData()
     }
     
@@ -102,11 +103,11 @@ class PaymentViewModel:PaymentViewModelType{
     func startCheckout(amount:String) {
         self.braintreeClient = BTAPIClient(authorization: PaymentModel.braintreeAuthorization)!
         let payPalDriver = BTPayPalDriver(apiClient: braintreeClient!)
-        let request = BTPayPalCheckoutRequest(amount: "50")
+        let request = BTPayPalCheckoutRequest(amount: amount)
         request.currencyCode = PaymentModel.currencyCode
         payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
             if let tokenizedPayPalAccount = tokenizedPayPalAccount {
-                self.postOrder()
+                self.postOrder(financial_status: "paid")
             } else if let error = error {
                 print(error)
             } else {
@@ -115,26 +116,36 @@ class PaymentViewModel:PaymentViewModelType{
         }
     }
     
-    private func postOrder() {
+    private func postOrder(financial_status:String = "authorized") {
         let user = getUserFromUserDefaults()
+        let lineItems = getLineItems().map { LineItemDraft(quantity: $0.productQTY, variantID: $0.variantId)}
+        let discountValue = couponSubject.value
+        let order = try! OrderItem(lineItems: lineItems, customer: CustomerId(id: user!.id), useCustomerDefaultAddress: true, current_subtotal_price: "\(subTotal)", current_total_discounts: "\(discountValue)", total_price: "\(total.value())", financial_status: financial_status)
         if (user != nil) {
-            let savedItemsInCart = CartCoreDataManager.shared.getDataFromCoreData()
-            let coreDataLineDraft = savedItemsInCart.map { LineItemDraft(quantity: $0.productQTY, variantID: $0.variantId)}
-            var coreDataLineDraftWithNewElement = coreDataLineDraft
-            
-            let newOrderRequest = PostOrderRequest(order: DraftOrderItem(lineItems: coreDataLineDraftWithNewElement, customer: CustomerId(id: user!.id), useCustomerDefaultAddress: true))
-            self.ordersProvider.postOrder(order: newOrderRequest)
-                .subscribe(onNext: {[weak self] result in
-                    guard let `self` = self else {fatalError()}
-                    print(result)
-                }).disposed(by: disposeBag)
-
+            let newOrderRequest = PostOrderRequest(order: order)
+        self.ordersProvider.postOrder(order: newOrderRequest)
+            .subscribe(onNext: {[weak self] result in
+                guard let `self` = self else {fatalError()}
+                print(result)
+            }).disposed(by: disposeBag)
         }
+    }
+    
+    private func getLineItems()->[SavedProductItem]{
+        return CartCoreDataManager.shared.getDataFromCoreData()
+    }
+    
+    private func totalItemsPrice(){
+        var itemsPrice:Double = 0
+        for item in getLineItems(){
+            itemsPrice += item.productPrice*Double(item.productQTY)
+        }
+        subTotal = itemsPrice
+        total.onNext(subTotal)
     }
     
     func confirmOrder(){
         switch(paymentMethod){
-            
         case .withPaypal:
             do{
                 let totalFees = try! total.value()

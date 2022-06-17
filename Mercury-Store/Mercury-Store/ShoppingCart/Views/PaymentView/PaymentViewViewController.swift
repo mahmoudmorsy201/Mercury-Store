@@ -29,7 +29,7 @@ class PaymentViewViewController: UIViewController {
     
     init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle? , subCartFeees:Double) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        self.viewModel = PaymentViewModel(subTotal: subCartFeees)
+        self.viewModel = PaymentViewModel()
     }
     
     required init?(coder: NSCoder) {
