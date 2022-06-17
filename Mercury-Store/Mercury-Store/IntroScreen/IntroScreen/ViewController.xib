@@ -21,21 +21,21 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TyZ-CM-mBf">
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TyZ-CM-mBf">
                     <rect key="frame" x="32" y="770" width="350" height="40"/>
-                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Xts-6J-N5o"/>
                     </constraints>
-                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Get Started"/>
+                    <color key="tintColor" systemColor="systemOrangeColor"/>
+                    <buttonConfiguration key="configuration" style="filled" image="cart.fill" catalog="system" imagePlacement="trailing" title="Get Started" cornerStyle="large">
+                        <color key="baseBackgroundColor" systemColor="systemOrangeColor"/>
+                    </buttonConfiguration>
                     <connections>
                         <action selector="getStartedAction:" destination="-1" eventType="touchUpInside" id="7xG-Qz-Z6a"/>
                     </connections>
                 </button>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Rn9-AK-nt1">
-                    <rect key="frame" x="0.0" y="736" width="414" height="26"/>
+                    <rect key="frame" x="0.0" y="690" width="414" height="26"/>
                     <color key="pageIndicatorTintColor" systemColor="systemOrangeColor"/>
                 </pageControl>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gj3-xz-s0s">
@@ -45,21 +45,22 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Rn9-AK-nt1" secondAttribute="trailing" id="21W-qF-MOj"/>
-                <constraint firstItem="Rn9-AK-nt1" firstAttribute="top" secondItem="Gj3-xz-s0s" secondAttribute="bottom" constant="8" id="5xI-qf-7fD"/>
                 <constraint firstItem="TyZ-CM-mBf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="6R0-1l-YYA"/>
                 <constraint firstItem="Gj3-xz-s0s" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="7s5-UP-n3B"/>
-                <constraint firstItem="Rn9-AK-nt1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="GyM-S9-CAJ"/>
+                <constraint firstItem="TyZ-CM-mBf" firstAttribute="top" secondItem="Gj3-xz-s0s" secondAttribute="bottom" constant="42" id="GRn-H9-C13"/>
+                <constraint firstItem="Rn9-AK-nt1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="KQf-do-Vgc"/>
                 <constraint firstItem="Gj3-xz-s0s" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="SA1-KM-Hzg"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TyZ-CM-mBf" secondAttribute="trailing" constant="32" id="Zfv-Ym-nvM"/>
-                <constraint firstItem="TyZ-CM-mBf" firstAttribute="top" secondItem="Rn9-AK-nt1" secondAttribute="bottom" constant="8" id="mN8-LR-724"/>
+                <constraint firstItem="Rn9-AK-nt1" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="gQO-Di-dUF"/>
                 <constraint firstItem="Gj3-xz-s0s" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qOj-Z7-Wuj"/>
+                <constraint firstItem="Rn9-AK-nt1" firstAttribute="bottom" secondItem="Gj3-xz-s0s" secondAttribute="bottom" constant="-12" id="uYU-h3-2fE"/>
                 <constraint firstItem="TyZ-CM-mBf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="726" id="xUa-Jr-UP2"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="80.357142857142847"/>
         </view>
     </objects>
     <resources>
+        <image name="cart.fill" catalog="system" width="128" height="102"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

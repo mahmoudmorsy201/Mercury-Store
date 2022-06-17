@@ -51,6 +51,7 @@ class RegisterViewController: UIViewController {
         bindLoginButton()
         bindErrorLabel()
         bindActivity()
+        setUpUI()
     }
     
     //MARK: - Private Handlers
@@ -58,6 +59,12 @@ class RegisterViewController: UIViewController {
     private func bindActivity() {
         registerViewModel.isLoading.drive(ProgressHUD.rx.isAnimating)
         .disposed(by: disposeBag)
+    }
+    
+    private func setUpUI() {
+        self.signUpBtn.tintColor = ColorsPalette.labelColors
+        self.signUpBtn.configuration?.background.backgroundColor = ColorsPalette.lightColor
+        loginButton.tintColor = ColorsPalette.lightColor
     }
     
     private func setupBindings() {

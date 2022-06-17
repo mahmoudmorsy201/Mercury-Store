@@ -35,8 +35,15 @@ class GuestProfileViewController: UIViewController {
         setupView()
         bindRegisterButtonTap()
         bindLoginButtonTap()
-       
-       
+        setUpUI()
+    }
+    
+    private func setUpUI() {
+        self.registerButton.tintColor = ColorsPalette.labelColors
+        self.registerButton.configuration?.background.backgroundColor = ColorsPalette.lightColor
+        self.loginButton.tintColor = ColorsPalette.labelColors
+        self.loginButton.configuration?.background.backgroundColor = ColorsPalette.lightColor
+        self.imagView.tintColor = ColorsPalette.lightColor
     }
 }
 

@@ -130,8 +130,6 @@
                     <subviews>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nzG-Pf-VUv">
                             <rect key="frame" x="69.5" y="26.5" width="332.5" height="53.5"/>
-                            <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
-                            <color key="tintColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="tinted" image="cart.fill.badge.plus" catalog="system" imagePlacement="leading" cornerStyle="capsule">
                                 <backgroundConfiguration key="background">
@@ -192,9 +190,6 @@
         <image name="cart.fill.badge.plus" catalog="system" width="128" height="106"/>
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="xmark.app" catalog="system" width="128" height="114"/>
-        <systemColor name="secondarySystemGroupedBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
