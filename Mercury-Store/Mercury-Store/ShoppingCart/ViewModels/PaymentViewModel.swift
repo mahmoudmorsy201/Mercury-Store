@@ -29,6 +29,7 @@ class PaymentViewModel:PaymentViewModelType{
     private let isLoadingSubject = BehaviorRelay<Bool>(value: false)
     private let errorSubject = BehaviorRelay<String?>(value: nil)
     private var braintreeClient: BTAPIClient?
+    private let ordersProvider: OrdersProvider
     
     var CouponLoading: Driver<Bool>
     var CouponInfo: Driver<PriceRule>
@@ -40,18 +41,19 @@ class PaymentViewModel:PaymentViewModelType{
     
     var paymentMethod: paymentOptions
     
-    init(_userDefaults:UserDefaults = UserDefaults() ,paymentMethod:paymentOptions = .cashOnDelivery ,subTotal:Double) {
+    init(_userDefaults:UserDefaults = UserDefaults() ,paymentMethod:paymentOptions = .cashOnDelivery ,subTotal:Double, ordersProvider: OrdersProvider = OrdersClient()) {
         userDefaults = _userDefaults
         CouponInfo = couponSubject.asDriver(onErrorJustReturn: PriceRule() )
         CouponLoading = isLoadingSubject.asDriver(onErrorJustReturn: false)
         CouponError = errorSubject.asDriver(onErrorJustReturn: "Somthing went wrong")
+        self.ordersProvider = ordersProvider
         total = BehaviorSubject<Double>(value: subTotal)
         self.subTotal = subTotal
         self.paymentMethod = paymentMethod
         fetchCouponData()
     }
     
-    func checkIfHasCoupon()->Int?{
+    private func checkIfHasCoupon()->Int?{
         do{
             let couponId = try userDefaults.getObject(forKey: "discountId", castTo: Int.self)
             return couponId
@@ -88,6 +90,15 @@ class PaymentViewModel:PaymentViewModelType{
         }
     }
     
+    private func getUserFromUserDefaults() -> User? {
+        do {
+            return try userDefaults.getObject(forKey: "user", castTo: User.self)
+        } catch {
+            print(error.localizedDescription)
+            return nil
+        }
+    }
+    
     func startCheckout(amount:String) {
         self.braintreeClient = BTAPIClient(authorization: PaymentModel.braintreeAuthorization)!
         let payPalDriver = BTPayPalDriver(apiClient: braintreeClient!)
@@ -108,8 +119,21 @@ class PaymentViewModel:PaymentViewModelType{
         }
     }
     
-    func closeOrder(){
-        
+    private func postOrder() {
+        let user = getUserFromUserDefaults()
+        if (user != nil) {
+            let savedItemsInCart = CartCoreDataManager.shared.getDataFromCoreData()
+            let coreDataLineDraft = savedItemsInCart.map { LineItemDraft(quantity: $0.productQTY, variantID: $0.variantId)}
+            var coreDataLineDraftWithNewElement = coreDataLineDraft
+            
+            let newOrderRequest = PostOrderRequest(order: DraftOrderItem(lineItems: coreDataLineDraftWithNewElement, customer: CustomerId(id: user!.id), useCustomerDefaultAddress: true))
+            self.ordersProvider.postOrder(order: newOrderRequest)
+                .subscribe(onNext: {[weak self] result in
+                    guard let `self` = self else {fatalError()}
+                    print(result)
+                }).disposed(by: disposeBag)
+
+        }
     }
     
     func confirmOrder(){
@@ -121,7 +145,7 @@ class PaymentViewModel:PaymentViewModelType{
                 self.startCheckout(amount: "\(totalFees)")
             }
         case .cashOnDelivery:
-            self.closeOrder()
+            self.postOrder()
         }
     }
     

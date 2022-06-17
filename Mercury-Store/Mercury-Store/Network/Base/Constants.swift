@@ -26,8 +26,9 @@ struct Constants {
            // public static let customerOrders = "/customers/orders"
         }
         struct Order{
-            public static let postOrder = "/draft_orders.json"
+            public static let postDraftOrder = "/draft_orders.json"
             public static let modifyExistingOrder = "/draft_orders"
+            public static let postOrder = "/orders.json"
         }
         struct PricesRule{
             public static let pricesRules = "/price_rules.json"

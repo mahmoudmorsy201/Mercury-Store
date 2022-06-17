@@ -14,7 +14,9 @@ struct DraftOrdersRequest: Codable {
         case draftOrder = "draft_order"
     }
 }
-
+struct PostOrderRequest: Codable {
+    let order: DraftOrderItem
+}
 // MARK: - DraftOrder
 struct DraftOrderItem: Codable {
     let lineItems: [LineItemDraft]
@@ -43,8 +45,6 @@ struct LineItemDraft: Codable {
     }
 }
 
-
-//MARK: - PutOrderRequest
 struct PutOrderRequest: Codable {
     let draftOrder: ModifyDraftOrderRequest
 

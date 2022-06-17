@@ -74,7 +74,7 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
             coreDataLineDraftWithNewElement.append(newItemDraft)
             
             let newOrderRequest = DraftOrdersRequest(draftOrder: DraftOrderItem(lineItems: coreDataLineDraftWithNewElement, customer: CustomerId(id: user!.id), useCustomerDefaultAddress: true))
-            self.ordersProvider.postOrder(order: newOrderRequest)
+            self.ordersProvider.postDraftOrder(order: newOrderRequest)
                 .subscribe(onNext: {[weak self] result in
                     guard let `self` = self else {fatalError()}
                     self.cartOrderSubject.onNext(result)
