@@ -41,7 +41,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             super.viewDidLoad()
             self.view.layoutIfNeeded()
             //to call viewDidLayoutSubviews() and get dynamic width and height of scrollview
-           // UserDefaults.standard.set(true, forKey: "hasSeenOnBoard")
+            UserDefaults.standard.set(true, forKey: "hasSeenOnBoard")
             self.scrollView.delegate = self
             scrollView.isPagingEnabled = true
             scrollView.showsHorizontalScrollIndicator = false
