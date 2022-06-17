@@ -39,7 +39,7 @@ extension LaunchScreenCoordinator: LaunchScreenNavigationFlow {
     }
     
     func goToOnBoardingScreen() {
-        let pagesViewController = PagesViewController(self)
+        let pagesViewController = ViewController(self)
         navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.pushViewController(pagesViewController, animated: true)
     }
