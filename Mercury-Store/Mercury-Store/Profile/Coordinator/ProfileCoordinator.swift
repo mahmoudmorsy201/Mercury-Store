@@ -67,6 +67,13 @@ extension ProfileCoordinator: ProfileNavigationFlow {
 }
 
 extension ProfileCoordinator: UpdateAddressNavigationFlow {
+    func goToAddAddressScreen() {
+        let addressViewModel: AddressViewModelType = AddressViewModel(addressNavigationFlow: self)
+        let newAddressVC = CreateAddressDetailsViewController(with: addressViewModel)
+        navigationController.setNavigationBarHidden(true, animated: false)
+        navigationController.pushViewController(newAddressVC, animated: true)
+    }
+    
     func goToUpdateAddressScreen(with address: CustomerAddress) {
         let addressViewModel: AddressViewModelType = AddressViewModel(addressNavigationFlow: self)
         let newAddressVC = UpdateAddressViewController(with: addressViewModel, selectedAddress: address)
@@ -75,7 +82,8 @@ extension ProfileCoordinator: UpdateAddressNavigationFlow {
         
     }
     
-    func popEditContorller() {
+    func popEditController() {
+        navigationController.setNavigationBarHidden(false, animated: false)
         navigationController.popViewController(animated: true)
     }
 }

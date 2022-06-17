@@ -17,6 +17,18 @@ class AddressesCell: UITableViewCell {
     
     @IBOutlet weak var isCheckedAddr: UIImageView!
 
+    var address: CustomerAddress? {
+        didSet {
+            guard let address = address else {
+                return
+            }
+            addressLabel.text = address.address1
+            cityLabel.text = address.city
+            CountryLabel.text = address.countryName
+        }
+    }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

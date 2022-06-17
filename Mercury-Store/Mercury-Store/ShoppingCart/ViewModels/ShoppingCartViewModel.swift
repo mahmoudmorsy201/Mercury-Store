@@ -8,10 +8,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol ShoppingCartNavigationFlow: AnyObject {
-    func goToAddAddressScreen()
-    func goToGuestTab()
-}
+
 enum CartAction {
     case increment(SavedProductItem)
     case decrement(SavedProductItem)
@@ -44,6 +41,7 @@ final class CartViewModel {
     var deleteProduct: AnyObserver<SavedProductItem> { deleteProductSubject.asObserver() }
     let ordersProvider: OrdersProvider
     let disposeBag = DisposeBag()
+    
     init(shoppingCartNavigationFlow: ShoppingCartNavigationFlow,ordersProvider: OrdersProvider = OrdersClient()) {
         self.shoppingCartNavigationFlow = shoppingCartNavigationFlow
         self.ordersProvider = ordersProvider
@@ -68,7 +66,8 @@ final class CartViewModel {
             }
         }
     }
-    func checkUserExists() -> Bool{
+    
+    func checkUserExists() -> Bool {
         let user = getUserFromUserDefaults()
         if(user != nil) {
             return true
@@ -76,12 +75,15 @@ final class CartViewModel {
             return false
         }
     }
+    
     func goToGuestTab() {
         shoppingCartNavigationFlow?.goToGuestTab()
     }
-    func goToAddAddressScreen() {
-        shoppingCartNavigationFlow?.goToAddAddressScreen()
+    
+    func goToAddressesScreen() {
+        shoppingCartNavigationFlow?.goToAddressesScreen()
     }
+    
     private func getUserFromUserDefaults() -> User? {
         do {
             return try UserDefaults.standard.getObject(forKey: "user", castTo: User.self)

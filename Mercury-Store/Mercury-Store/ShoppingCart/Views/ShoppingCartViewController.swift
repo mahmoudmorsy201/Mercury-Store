@@ -98,7 +98,7 @@ class ShoppingCartViewController: UIViewController {
             .subscribe {[weak self] _ in
                 guard let `self` = self else {fatalError()}
                 if(self.viewModel.checkUserExists()) {
-                    self.viewModel.goToAddAddressScreen()
+                    self.viewModel.goToAddressesScreen()
                 } else {
                     AlertView.showAlertBox(title: "Login Alert", message: "Please you have to login first") { [weak self] action in
                         self?.viewModel.goToGuestTab()
