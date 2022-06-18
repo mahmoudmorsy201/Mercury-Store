@@ -44,7 +44,7 @@ class ProductResultViewController: UIViewController {
         productCollectionView.delegate = nil
         productCollectionView.dataSource = nil
         productCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
-        let nib = UINib(nibName: "BrandProductsCollectionViewCell", bundle: nil)
+        let nib = UINib(nibName: BrandProductsCollectionViewCell.reuseIdentifier(), bundle: nil)
         productCollectionView.register(nib, forCellWithReuseIdentifier: BrandProductsCollectionViewCell.reuseIdentifier())
         
         viewModel?.products.drive(productCollectionView.rx.items(cellIdentifier: BrandProductsCollectionViewCell.reuseIdentifier(), cellType: BrandProductsCollectionViewCell.self)){index , element , cell in
@@ -71,6 +71,6 @@ extension ProductResultViewController : UICollectionViewDelegate, UICollectionVi
     {
         let padding: CGFloat =  20
         let collectionViewSize = collectionView.frame.size.width - padding
-        return CGSize(width: collectionViewSize/2, height: 200)
+        return CGSize(width: collectionViewSize/2, height: 300)
     }
 }

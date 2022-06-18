@@ -11,6 +11,7 @@ import RxSwift
 import RxDataSources
 
 class ShoppingCartViewController: UIViewController {
+    @IBOutlet weak var subTotalLabel: UILabel!
     @IBOutlet weak var containerViewForShadow: UIView!
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var containerViewForSubTotalAndProceedToCheckout: UIView!
@@ -52,9 +53,12 @@ class ShoppingCartViewController: UIViewController {
     private func setupUI() {
         containerViewForSubTotalAndProceedToCheckout.makeCorners(corners: [.topLeft , .topRight], radius: 18)
         containerViewForShadow.applyShadow()
-        checkoutBTN.tintColor = UIColor(hexString: "#642CA9")
+        checkoutBTN.tintColor = ColorsPalette.labelColors
+        subTotalLabel.textColor = ColorsPalette.darkBlue
+        checkoutBTN.configuration?.background.backgroundColor = ColorsPalette.lightColor
         containerViewForSubTotalAndProceedToCheckout.applyShadow()
-        containerViewForSubTotalAndProceedToCheckout.backgroundColor = UIColor(hexString: "#D3D3D3")
+        totalPriceLabel.textColor = ColorsPalette.lightColor
+        containerViewForSubTotalAndProceedToCheckout.backgroundColor = ColorsPalette.labelColors
         let emptyCartGif = UIImage.gifImageWithName("emptyCart")
         emptyImageView.image = emptyCartGif
     }
@@ -68,6 +72,10 @@ class ShoppingCartViewController: UIViewController {
         shoppingCartTableView.delegate = nil
         shoppingCartTableView.dataSource = nil
         shoppingCartTableView.rx.setDelegate(self).disposed(by: disposeBag)
+        shoppingCartTableView.rx.itemSelected
+          .subscribe(onNext: { [weak self] indexPath in
+              self?.shoppingCartTableView.deselectRow(at: indexPath, animated: true)
+          }).disposed(by: disposeBag)
         
         let output = viewModel.bind(CartInput(viewLoaded: inputData))
         

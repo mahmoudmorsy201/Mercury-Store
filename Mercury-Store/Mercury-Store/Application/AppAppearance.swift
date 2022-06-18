@@ -15,8 +15,8 @@ final class AppAppearance {
             let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground()
             appearance.titleTextAttributes = [.foregroundColor: ColorsPalette.lightColor]
-            appearance.backgroundColor = ColorsPalette.lightColor
-            UINavigationBar.appearance().tintColor = .white
+            appearance.backgroundColor = ColorsPalette.labelColors
+            UINavigationBar.appearance().tintColor = ColorsPalette.lightColor
             UINavigationBar.appearance().standardAppearance = appearance
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
         } else {
@@ -30,10 +30,10 @@ final class AppAppearance {
         if #available(iOS 15, *) {
             let appearance = UITabBarAppearance()
             appearance.configureWithOpaqueBackground()
-            appearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: ColorsPalette.labelColors]
-            appearance.backgroundColor = ColorsPalette.lightColor
+            appearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: ColorsPalette.lightColor]
+            appearance.backgroundColor = ColorsPalette.labelColors
             appearance.selectionIndicatorTintColor = ColorsPalette.lightColor
-            UITabBar.appearance().tintColor = ColorsPalette.labelColors
+            UITabBar.appearance().tintColor = ColorsPalette.lightColor
             UITabBar.appearance().standardAppearance = appearance
             UITabBar.appearance().scrollEdgeAppearance = appearance
         } else {

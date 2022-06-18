@@ -45,6 +45,7 @@ class LoginViewController: UIViewController {
         observeViewModelOnValid()
         bindLoginBtn()
         bindErrorLabel()
+        bindSignupBtn()
         bindActivity()
         setUpUI()
     }
@@ -52,7 +53,7 @@ class LoginViewController: UIViewController {
     private func setUpUI() {
         self.loginButton.tintColor = ColorsPalette.labelColors
         self.loginButton.configuration?.background.backgroundColor = ColorsPalette.lightColor
-        self.signupBtn.tintColor = ColorsPalette.labelColors
+        signupBtn.tintColor = ColorsPalette.lightColor
     }
 }
 
