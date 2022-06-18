@@ -46,6 +46,13 @@ class LoginViewController: UIViewController {
         bindLoginBtn()
         bindErrorLabel()
         bindActivity()
+        setUpUI()
+    }
+    
+    private func setUpUI() {
+        self.loginButton.tintColor = ColorsPalette.labelColors
+        self.loginButton.configuration?.background.backgroundColor = ColorsPalette.lightColor
+        self.signupBtn.tintColor = ColorsPalette.labelColors
     }
 }
 

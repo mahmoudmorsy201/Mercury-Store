@@ -132,10 +132,8 @@
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihm-1h-wl4">
                                     <rect key="frame" x="12" y="870" width="390" height="63.5"/>
-                                    <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="tintColor" systemColor="systemBackgroundColor"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain">
+                                    <buttonConfiguration key="configuration" style="plain" cornerStyle="large">
                                         <attributedString key="attributedTitle">
                                             <fragment content="sign up">
                                                 <attributes>
