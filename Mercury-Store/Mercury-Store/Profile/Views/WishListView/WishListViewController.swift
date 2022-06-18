@@ -10,9 +10,15 @@ import RxSwift
 
 class WishListViewController: UIViewController {
     
+    // MARK: - IBOutlets
+    //
+    @IBOutlet weak var tableView: UITableView!
+    // MARK: - Properties
+    //
     let viewModel:WishListViewModelType = WishListViewModel()
     let disposeBag = DisposeBag()
-    @IBOutlet weak var tableView: UITableView!
+    // MARK: - Life cycle
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -22,8 +28,10 @@ class WishListViewController: UIViewController {
    
 
 }
+// MARK: - Extensions
 extension WishListViewController : UITableViewDelegate{
-    
+    // MARK: - Private handlers
+    //
     func tableDataSource(){
         viewModel.getFavouriteItems()
         viewModel.products.drive(tableView.rx.items(cellIdentifier: WishListCell.identifier , cellType: WishListCell.self)){ index , element , cell in

@@ -10,13 +10,16 @@ import RxSwift
 import ProgressHUD
 
 class ProductResultViewController: UIViewController {
-
+    // MARK: - IBOutlets
+    //
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var productCollectionView: UICollectionView!
-    
+    // MARK: - Properties
+    //
     private let disposeBag = DisposeBag()
     private var viewModel:FilteredProductsViewModelType?
-    
+    // MARK: - Set up
+    //
     init(with viewModel: FilteredProductsViewModelType) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
@@ -29,11 +32,19 @@ class ProductResultViewController: UIViewController {
     //
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
         setupCollectionView()
         bindActivity()
         bindSearchBtn()
         
     }
+    private func setupUI() {
+        self.searchButton.tintColor = ColorsPalette.lightColor
+       
+    }
+    
+    // MARK: - Private handlers
+    //
     private func bindSearchBtn() {
         searchButton.rx.tap
             .subscribe {[weak self] _ in
@@ -66,6 +77,7 @@ class ProductResultViewController: UIViewController {
     }
 
 }
+// MARK: - Extensions
 extension ProductResultViewController : UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {

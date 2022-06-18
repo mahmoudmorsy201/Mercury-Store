@@ -10,10 +10,13 @@ import RxSwift
 
 class GuestProfileViewController: UIViewController {
     
+    // MARK: - IBOutlets
+    //
     @IBOutlet weak private var imagView: UIImageView!
     @IBOutlet weak private var loginButton: UIButton!
     @IBOutlet weak private var registerButton: UIButton!
-    
+    // MARK: - Properties
+    //
     private var viewModel: GuestViewModelType!
     private let disposeBag = DisposeBag()
     
@@ -47,11 +50,10 @@ class GuestProfileViewController: UIViewController {
     }
 }
 
-//MARK: - Private Handlers
-//
-
+// MARK: - Extensions
 extension GuestProfileViewController {
-    
+    //MARK: - Private Handlers
+    //
     private func setupView() {
         loginButton.makeRoundedCornerButton()
         registerButton.makeRoundedCornerButton()
