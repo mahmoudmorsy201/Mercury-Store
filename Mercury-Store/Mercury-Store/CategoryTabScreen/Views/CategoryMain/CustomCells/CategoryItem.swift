@@ -24,7 +24,8 @@ class CategoryItem: UICollectionViewCell {
     }
     public func config(name:String , itemId:Int){
         title.text = name
-        title.textColor = UIColor(hexString: "#ed05f5")
+        title.textColor = ColorsPalette.labelColors
+        containerViewForCategoriesCollectionViewCell.backgroundColor = ColorsPalette.darkBlue
         image.image = UIImage(named: name)
     }
     private func setupCell() {

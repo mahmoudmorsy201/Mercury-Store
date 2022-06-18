@@ -13,7 +13,9 @@
                 <outlet property="AddressTxt" destination="RCf-UJ-QL6" id="NOC-IJ-vUZ"/>
                 <outlet property="addAddressBtn" destination="UYy-wQ-PAI" id="eyd-Dp-GiZ"/>
                 <outlet property="cityTxt" destination="QQW-xc-PZg" id="nM6-J2-otL"/>
+                <outlet property="closeButton" destination="Huu-9x-dhQ" id="XVx-JG-aXe"/>
                 <outlet property="countryTxt" destination="yDm-0F-pL1" id="KDr-hy-7b9"/>
+                <outlet property="errorLabel" destination="xSn-hj-kmc" id="J76-UZ-qQ0"/>
                 <outlet property="phoneTxt" destination="18d-Od-Sho" id="qJ1-nh-su6"/>
                 <outlet property="view" destination="tXN-JS-zjq" id="WdJ-Of-QGq"/>
             </connections>
@@ -139,10 +141,22 @@
                                     <color key="textColor" systemColor="systemRedColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Huu-9x-dhQ">
+                                    <rect key="frame" x="344.5" y="24" width="45.5" height="31"/>
+                                    <color key="tintColor" red="0.3604836166" green="0.70115709299999995" blue="0.75295150280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Button" image="xmark.app" catalog="system">
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
+                                    </state>
+                                    <buttonConfiguration key="configuration" style="plain" image="xmark.app" catalog="system">
+                                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
+                                    </buttonConfiguration>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="CrS-hI-aml" firstAttribute="leading" secondItem="DpT-qz-ExN" secondAttribute="leading" constant="12" id="3Ac-nZ-xQT"/>
+                                <constraint firstItem="Huu-9x-dhQ" firstAttribute="top" secondItem="DpT-qz-ExN" secondAttribute="top" constant="24" id="7SV-pi-Hbh"/>
                                 <constraint firstItem="RCf-UJ-QL6" firstAttribute="leading" secondItem="QQW-xc-PZg" secondAttribute="leading" id="7pW-0G-TD9"/>
                                 <constraint firstItem="QQW-xc-PZg" firstAttribute="height" secondItem="yDm-0F-pL1" secondAttribute="height" id="AFf-7j-Y66"/>
                                 <constraint firstItem="RCf-UJ-QL6" firstAttribute="top" secondItem="QQW-xc-PZg" secondAttribute="bottom" constant="12" id="AGE-fC-BAW"/>
@@ -152,12 +166,12 @@
                                 <constraint firstItem="UYy-wQ-PAI" firstAttribute="trailing" secondItem="18d-Od-Sho" secondAttribute="trailing" id="ECS-UJ-khN"/>
                                 <constraint firstAttribute="height" constant="1276.5" id="F5n-0I-DXW"/>
                                 <constraint firstItem="xSn-hj-kmc" firstAttribute="top" secondItem="18d-Od-Sho" secondAttribute="bottom" constant="24" id="Gr0-sT-FKx"/>
+                                <constraint firstAttribute="trailing" secondItem="Huu-9x-dhQ" secondAttribute="trailing" constant="24" id="I7w-X0-eOh"/>
                                 <constraint firstItem="18d-Od-Sho" firstAttribute="trailing" secondItem="RCf-UJ-QL6" secondAttribute="trailing" id="IIN-NT-2dp"/>
                                 <constraint firstItem="QQW-xc-PZg" firstAttribute="leading" secondItem="yDm-0F-pL1" secondAttribute="leading" id="KR3-G6-Exl"/>
-                                <constraint firstItem="xSn-hj-kmc" firstAttribute="leading" secondItem="18d-Od-Sho" secondAttribute="leading" id="Kxa-vH-z5y"/>
                                 <constraint firstItem="UYy-wQ-PAI" firstAttribute="leading" secondItem="18d-Od-Sho" secondAttribute="leading" id="Kzl-aA-Ffh"/>
                                 <constraint firstItem="yDm-0F-pL1" firstAttribute="trailing" secondItem="3dh-ad-ZDK" secondAttribute="trailing" id="Lty-Pk-yn5"/>
-                                <constraint firstItem="UYy-wQ-PAI" firstAttribute="top" secondItem="xSn-hj-kmc" secondAttribute="bottom" constant="24" id="UIU-Y1-BgD"/>
+                                <constraint firstItem="UYy-wQ-PAI" firstAttribute="top" secondItem="xSn-hj-kmc" secondAttribute="bottom" constant="24" id="PTT-Je-gug"/>
                                 <constraint firstItem="yDm-0F-pL1" firstAttribute="height" secondItem="DpT-qz-ExN" secondAttribute="height" multiplier="0.0697219" id="V1H-Hb-VzN"/>
                                 <constraint firstItem="yDm-0F-pL1" firstAttribute="leading" secondItem="3dh-ad-ZDK" secondAttribute="leading" id="WZy-NE-5a3"/>
                                 <constraint firstItem="QQW-xc-PZg" firstAttribute="top" secondItem="yDm-0F-pL1" secondAttribute="bottom" constant="12" id="Xvf-I8-2He"/>
@@ -166,9 +180,10 @@
                                 <constraint firstItem="18d-Od-Sho" firstAttribute="height" secondItem="RCf-UJ-QL6" secondAttribute="height" id="cHg-Nw-edu"/>
                                 <constraint firstItem="RCf-UJ-QL6" firstAttribute="trailing" secondItem="QQW-xc-PZg" secondAttribute="trailing" id="cNh-vY-Fc4"/>
                                 <constraint firstItem="QQW-xc-PZg" firstAttribute="trailing" secondItem="yDm-0F-pL1" secondAttribute="trailing" id="ddt-u1-V2e"/>
+                                <constraint firstItem="xSn-hj-kmc" firstAttribute="leading" secondItem="18d-Od-Sho" secondAttribute="leading" id="fqI-jk-pdm"/>
                                 <constraint firstAttribute="trailing" secondItem="CrS-hI-aml" secondAttribute="trailing" constant="12" id="iUx-Fa-4sV"/>
+                                <constraint firstItem="xSn-hj-kmc" firstAttribute="trailing" secondItem="18d-Od-Sho" secondAttribute="trailing" id="jcj-5K-yB4"/>
                                 <constraint firstItem="3dh-ad-ZDK" firstAttribute="top" secondItem="SRI-Kw-5Jh" secondAttribute="bottom" constant="12" id="kY0-QC-JFB"/>
-                                <constraint firstItem="xSn-hj-kmc" firstAttribute="trailing" secondItem="18d-Od-Sho" secondAttribute="trailing" id="l2m-1m-o8a"/>
                                 <constraint firstItem="18d-Od-Sho" firstAttribute="top" secondItem="RCf-UJ-QL6" secondAttribute="bottom" constant="12" id="ofn-0n-ICg"/>
                                 <constraint firstItem="18d-Od-Sho" firstAttribute="leading" secondItem="RCf-UJ-QL6" secondAttribute="leading" id="rfB-qg-kYO"/>
                                 <constraint firstItem="RCf-UJ-QL6" firstAttribute="height" secondItem="QQW-xc-PZg" secondAttribute="height" id="wAw-UI-GFr"/>
@@ -215,6 +230,7 @@
     </designables>
     <resources>
         <image name="address" width="256" height="256"/>
+        <image name="xmark.app" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

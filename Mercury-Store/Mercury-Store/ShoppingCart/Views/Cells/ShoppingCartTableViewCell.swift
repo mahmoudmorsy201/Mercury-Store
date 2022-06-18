@@ -9,7 +9,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-
 class ShoppingCartTableViewCell: UITableViewCell {
     @IBOutlet weak private var containerViewForProductImage: UIView!
     
@@ -25,7 +24,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
     
     @IBOutlet weak private var quantityLabel: UILabel!
     
-
+    
     @IBOutlet weak private var incrementQuantityButton: UIButton!
     
     @IBOutlet weak private var decrementQuantityButton: UIButton!
@@ -36,17 +35,15 @@ class ShoppingCartTableViewCell: UITableViewCell {
     var incrementTap: ControlEvent<Void> { self.incrementQuantityButton.rx.tap }
     var decrementTap: ControlEvent<Void> { self.decrementQuantityButton.rx.tap }
     var deleteTap: ControlEvent<Void> { self.deleteButton.rx.tap }
+    var delegate: ShoppingCartViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCell()
-
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
     
     private func setupCell() {
@@ -58,8 +55,8 @@ class ShoppingCartTableViewCell: UITableViewCell {
         self.productImageCart.layer.borderWidth = 0.5
         self.productImageCart.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
     }
-        
-
+    
+    
     
     private(set) var disposeBag = DisposeBag()
     override func prepareForReuse() {
@@ -68,6 +65,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
     }
     
 }
+
 
 extension ShoppingCartTableViewCell {
     
@@ -78,23 +76,32 @@ extension ShoppingCartTableViewCell {
         productNameCart.text = viewModel.name
         productPriceCart.text = viewModel.price
         quantityLabel.text = viewModel.count
-
+        
         self.incrementTap
             .map { viewModel.product }
             .bind(to: incrementObserver)
             .disposed(by: disposeBag)
-
+        
         self.decrementTap
             .map { viewModel.product }
             .bind(to: decrementObserver)
             .disposed(by: disposeBag)
         
         self.deleteTap
-            .map{ viewModel.product }
+            .withUnretained(self)
+            .flatMapLatest{ s, _ in s.deleteItem()}
+            .filter { $0 == .default}
+            .map{ _ in viewModel.product }
             .bind(to: deleteObserver)
             .disposed(by: disposeBag)
     }
+    fileprivate func deleteItem() -> Observable<UIViewController.AlertAction> {
+        guard let delegate = delegate else { fatalError()}
+        return delegate.alert(title: "Delete Item",
+                     message: "Would you like to delete this item?",
+                     defaultTitle: "OK",
+                     cancelTitle: "Cancel")
+    }
 }
-
 
 

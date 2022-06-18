@@ -8,10 +8,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol ShoppingCartNavigationFlow: AnyObject {
-    func goToAddAddressScreen()
-    func goToPaymentScreen(itemsPrice:Double)
-}
 enum CartAction {
     case increment(SavedProductItem)
     case decrement(SavedProductItem)
@@ -34,7 +30,7 @@ struct CartOutput {
 
 
 final class CartViewModel {
-    private weak var shoppingCartNavigationFlow: ShoppingCartNavigationFlow!
+    private weak var shoppingCartNavigationFlow: ShoppingCartNavigationFlow?
     private let incrementProductSubject = PublishSubject<SavedProductItem>()
     private let decrementProductSubject = PublishSubject<SavedProductItem>()
     private let deleteProductSubject = PublishSubject<SavedProductItem>()
@@ -44,6 +40,7 @@ final class CartViewModel {
     var deleteProduct: AnyObserver<SavedProductItem> { deleteProductSubject.asObserver() }
     let ordersProvider: OrdersProvider
     let disposeBag = DisposeBag()
+    
     init(shoppingCartNavigationFlow: ShoppingCartNavigationFlow,ordersProvider: OrdersProvider = OrdersClient()) {
         self.shoppingCartNavigationFlow = shoppingCartNavigationFlow
         self.ordersProvider = ordersProvider
@@ -68,18 +65,24 @@ final class CartViewModel {
             }
         }
     }
-    func checkUserExists() -> Bool{
+    
+    func checkUserExists() -> Bool {
         let user = getUserFromUserDefaults()
         if(user != nil) {
             return true
         }else {
             return false
         }
-       
     }
-    func goToAddAddressScreen() {
-        shoppingCartNavigationFlow.goToAddAddressScreen()
+    
+    func goToGuestTab() {
+        shoppingCartNavigationFlow?.goToGuestTab()
     }
+    
+    func goToAddressesScreen() {
+        shoppingCartNavigationFlow?.goToAddressesScreen()
+    }
+    
     private func getUserFromUserDefaults() -> User? {
         do {
             return try UserDefaults.standard.getObject(forKey: "user", castTo: User.self)

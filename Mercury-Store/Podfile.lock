@@ -34,6 +34,8 @@ PODS:
     - Braintree/UnionPay (~> 5.9)
     - Braintree/Venmo (~> 5.9)
   - Differentiator (5.0.0)
+  - DropDown (2.3.13)
+  - lottie-ios (3.3.0)
   - ProgressHUD (13.6)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
@@ -58,6 +60,8 @@ DEPENDENCIES:
   - Braintree/DataCollector
   - Braintree/Venmo
   - BraintreeDropIn
+  - DropDown
+  - lottie-ios
   - ProgressHUD
   - RxCocoa (= 6.5.0)
   - RxDataSources (~> 5.0)
@@ -73,6 +77,8 @@ SPEC REPOS:
     - Braintree
     - BraintreeDropIn
     - Differentiator
+    - DropDown
+    - lottie-ios
     - ProgressHUD
     - RxCocoa
     - RxDataSources
@@ -88,6 +94,8 @@ SPEC CHECKSUMS:
   Braintree: a4df29b5453664ea01f89a04e0ae97397021c92f
   BraintreeDropIn: 31882df3fd8d5cb627339c3ecc857e480d8ef7b8
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
+  lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
   ProgressHUD: 4bdaa0d2ddf676b23324b199f9facffb5c3a1620
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
@@ -98,6 +106,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: b238f10146d8dcfa18ef6bb35e5a99305778ecd6
+PODFILE CHECKSUM: d216d4ffac1b429b323638a0418c30adba040067
 
 COCOAPODS: 1.11.3

@@ -11,6 +11,8 @@ import Alamofire
 enum AddressAPI: URLRequestBuilder {
     case postAddress(Int,AddressRequest)
     case getAddress(Int)
+    case putAddress(Int,Int,AddressRequestPut)
+   
 }
 
 extension AddressAPI {
@@ -20,6 +22,8 @@ extension AddressAPI {
             return "/customers/\(id)/addresses.json"
         case .getAddress(let id):
             return  "/customers/\(id)/addresses.json"
+        case .putAddress(let customerId, let addressId, _):
+            return "/customers/\(customerId)/addresses/\(addressId).json"
         }
     }
 }
@@ -29,6 +33,8 @@ extension AddressAPI {
         switch self {
         case .postAddress(_, let addressRequest):
             return try! addressRequest.asDictionary()
+        case .putAddress(_, _, let addressRequestPut):
+            return try! addressRequestPut.asDictionary()
         case .getAddress(let id):
             return [:]
             
@@ -43,6 +49,8 @@ extension AddressAPI {
             return .post
        case .getAddress:
             return .get
+        case .putAddress:
+            return .put
         }
     }
 }

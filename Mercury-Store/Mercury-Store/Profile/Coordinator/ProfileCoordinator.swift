@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 
-class ProfileCoordinator: Coordinator {
+class ProfileCoordinator: Coordinator{
+    
     weak var parentCoordinator: Coordinator?
     var children: [Coordinator] = []
     
@@ -44,7 +45,9 @@ extension ProfileCoordinator: ProfileNavigationFlow {
     }
     
     func goToMyAddressesScreen() {
-        let myAddressesVC = AddressViewController(nibName: String(describing: AddressViewController.self), bundle: nil)
+        let addressesViewModel : AddressViewModelType = AddressViewModel(addressNavigationFlow: self)
+       
+      let myAddressesVC = AddressViewController(addressesViewModel)
         
         self.navigationController.pushViewController(myAddressesVC, animated: true)
         
@@ -62,6 +65,30 @@ extension ProfileCoordinator: ProfileNavigationFlow {
         appC.childDidFinish(self)
     }
     
+}
+
+extension ProfileCoordinator: UpdateAddressNavigationFlow {
+    func goToAddAddressScreen() {
+        let addressViewModel: AddressViewModelType = AddressViewModel(addressNavigationFlow: self)
+        let newAddressVC = CreateAddressDetailsViewController(with: addressViewModel)
+        navigationController.setNavigationBarHidden(true, animated: false)
+        navigationController.pushViewController(newAddressVC, animated: true)
+    }
+    
+    func goToUpdateAddressScreen(with address: CustomerAddress) {
+        let addressViewModel: AddressViewModelType = AddressViewModel(addressNavigationFlow: self)
+        let newAddressVC = UpdateAddressViewController(with: addressViewModel, selectedAddress: address)
+        
+        navigationController.pushViewController(newAddressVC, animated: true)
+        
+    }
+    
+    func popEditController() {
+        navigationController.setNavigationBarHidden(false, animated: false)
+        navigationController.popViewController(animated: true)
+    }
+}
+    
 
     
-}
+

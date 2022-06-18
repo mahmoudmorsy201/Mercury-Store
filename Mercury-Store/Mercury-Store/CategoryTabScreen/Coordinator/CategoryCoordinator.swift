@@ -42,6 +42,7 @@ extension CategoryCoordinator: FilteredProductsNavigationFlow {
     func goToProductDetail(with product: Product) {
         let viewModel = ProductsDetailViewModel(with: self,product: product)
         let productDetailsVC = ProductDetailsViewController(with: viewModel)
+        navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.pushViewController(productDetailsVC, animated: true)
     }
 
@@ -51,5 +52,10 @@ extension CategoryCoordinator: FilteredProductsNavigationFlow {
 }
 
 extension CategoryCoordinator: ProductDetailsNavigationFlow {
+    func popViewController() {
+        navigationController.popViewController(animated: true)
+        navigationController.setNavigationBarHidden(false, animated: false)
+    }
+    
     
 }

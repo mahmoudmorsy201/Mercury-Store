@@ -11,10 +11,13 @@ import RxSwift
 import RxDataSources
 
 class ShoppingCartViewController: UIViewController {
-    
+    @IBOutlet weak var subTotalLabel: UILabel!
+    @IBOutlet weak var containerViewForShadow: UIView!
+    @IBOutlet weak var emptyView: UIView!
+    @IBOutlet weak var containerViewForSubTotalAndProceedToCheckout: UIView!
     @IBOutlet weak private var totalPriceLabel: UILabel!
     @IBOutlet weak var checkoutBTN: UIButton!
-    
+    @IBOutlet weak var emptyImageView: UIImageView!
     @IBOutlet weak private var shoppingCartTableView: UITableView! {
         didSet {
             shoppingCartTableView.register(UINib(nibName: ShoppingCartTableViewCell.reuseIdentifier(), bundle: nil), forCellReuseIdentifier: ShoppingCartTableViewCell.reuseIdentifier())
@@ -33,10 +36,11 @@ class ShoppingCartViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: -Life Cycle
+    //MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
         bind()
         bindProceedToCheckoutTapped()
     }
@@ -44,6 +48,19 @@ class ShoppingCartViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.viewModel.viewDidDisappear()
+    }
+    
+    private func setupUI() {
+        containerViewForSubTotalAndProceedToCheckout.makeCorners(corners: [.topLeft , .topRight], radius: 18)
+        containerViewForShadow.applyShadow()
+        checkoutBTN.tintColor = ColorsPalette.labelColors
+        subTotalLabel.textColor = ColorsPalette.darkBlue
+        checkoutBTN.configuration?.background.backgroundColor = ColorsPalette.lightColor
+        containerViewForSubTotalAndProceedToCheckout.applyShadow()
+        totalPriceLabel.textColor = ColorsPalette.lightColor
+        containerViewForSubTotalAndProceedToCheckout.backgroundColor = ColorsPalette.labelColors
+        let emptyCartGif = UIImage.gifImageWithName("emptyCart")
+        emptyImageView.image = emptyCartGif
     }
     
     private func bind() {
@@ -55,6 +72,10 @@ class ShoppingCartViewController: UIViewController {
         shoppingCartTableView.delegate = nil
         shoppingCartTableView.dataSource = nil
         shoppingCartTableView.rx.setDelegate(self).disposed(by: disposeBag)
+        shoppingCartTableView.rx.itemSelected
+          .subscribe(onNext: { [weak self] indexPath in
+              self?.shoppingCartTableView.deselectRow(at: indexPath, animated: true)
+          }).disposed(by: disposeBag)
         
         let output = viewModel.bind(CartInput(viewLoaded: inputData))
     
@@ -71,8 +92,9 @@ class ShoppingCartViewController: UIViewController {
         } onError: { error in
             print(error)
         }.disposed(by: disposeBag)
-
-        output.cartEmpty.bind(to: shoppingCartTableView.rx.isEmpty(message: "Your cart is empty"))
+        
+        
+        output.cartEmpty.bind(to: emptyView.rx.isEmpty())
             .disposed(by: disposeBag)
         
         output.cartTotal.bind(to: totalPriceLabel.rx.text)
@@ -80,30 +102,24 @@ class ShoppingCartViewController: UIViewController {
     }
     
     func bindProceedToCheckoutTapped() {
-        
-
-        
         checkoutBTN.rx.tap
             .subscribe {[weak self] _ in
                 guard let `self` = self else {fatalError()}
                 if(self.viewModel.checkUserExists()) {
-                    self.viewModel.goToAddAddressScreen()
+                    self.viewModel.goToAddressesScreen()
                 } else {
                     AlertView.showAlertBox(title: "Login Alert", message: "Please you have to login first") { [weak self] action in
-                        
-                    }.present(on: self) { [weak self] in
-                        
-                    }
+                        self?.viewModel.goToGuestTab()
+                    }.present(on: self)
                 }
                 
             }.disposed(by: disposeBag)
         
     }
-    
 }
 
 
-//MARK: Private handlers
+//MARK: -Private handlers
 
 extension ShoppingCartViewController {
     
@@ -116,13 +132,14 @@ extension ShoppingCartViewController {
                       incrementObserver: viewModel.incrementProduct,
                       decrementObserver: viewModel.decrementProduct,
                       deleteObserver: viewModel.deleteProduct)
+            cell.delegate = self
            
             return cell
         }
     }
 }
 
-//MARK: Delegates
+//MARK: -Delegates
 
 extension ShoppingCartViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
