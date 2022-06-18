@@ -16,6 +16,7 @@
                 <outlet property="emptyImageView" destination="GHH-Jj-kME" id="5ls-ou-evu"/>
                 <outlet property="emptyView" destination="e7w-RQ-eam" id="Xs4-bZ-8Rg"/>
                 <outlet property="shoppingCartTableView" destination="TpL-0z-g1M" id="Olz-js-rG8"/>
+                <outlet property="subTotalLabel" destination="XVd-EH-Syz" id="gfz-ZH-owV"/>
                 <outlet property="totalPriceLabel" destination="xCd-fC-aG4" id="8s5-PB-cLT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

@@ -23,7 +23,7 @@ class MainCategoryCellTableViewCell: UITableViewCell {
     func designSelected(selected:Bool){
         if selected {
             self.categoryItem.textColor = .white
-            self.cellContainerView.backgroundColor = UIColor(hexString: "#ed05f5")
+            self.cellContainerView.backgroundColor = ColorsPalette.lightColor
         }
         else{
             self.categoryItem.textColor = .black
