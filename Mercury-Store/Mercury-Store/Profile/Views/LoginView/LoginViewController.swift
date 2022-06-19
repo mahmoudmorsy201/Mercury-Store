@@ -24,7 +24,7 @@ class LoginViewController: UIViewController {
     //
     private var loginViewModel: LoginViewModelType!
     private let disposeBag = DisposeBag ()
-    
+    let connection = NetworkReachability.shared
     // MARK: - Set up
     //
     init(_ loginViewModel: LoginViewModelType) {
@@ -49,7 +49,10 @@ class LoginViewController: UIViewController {
         bindActivity()
         setUpUI()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        connection.checkNetwork(target: self)
+    }
     private func setUpUI() {
         self.loginButton.tintColor = ColorsPalette.labelColors
         self.loginButton.configuration?.background.backgroundColor = ColorsPalette.lightColor

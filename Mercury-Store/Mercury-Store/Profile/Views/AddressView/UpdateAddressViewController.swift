@@ -25,6 +25,7 @@ class UpdateAddressViewController: UIViewController {
     private var viewModel: AddressViewModelType!
     private var selectedAddress: CustomerAddress!
     private let disposeBag = DisposeBag ()
+    let connection = NetworkReachability.shared
     // MARK: - Set up
     //
     init(with viewModel: AddressViewModelType, selectedAddress: CustomerAddress) {
@@ -45,7 +46,10 @@ class UpdateAddressViewController: UIViewController {
         setupBindings()
         observeViewModelOnValid()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        connection.checkNetwork(target: self)
+    }
     // MARK: - Private handlers
     //
     func setupBindings() {

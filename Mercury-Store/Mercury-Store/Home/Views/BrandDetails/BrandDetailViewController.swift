@@ -26,8 +26,7 @@ class BrandDetailViewController: UIViewController, UIScrollViewDelegate {
     //
     private let disposeBag = DisposeBag()
     private var viewModel: BrandDetailsViewModelType!
-
-    
+    let connection = NetworkReachability.shared
     // MARK: - Set up
     //
     init(with viewModel: BrandDetailsViewModelType) {
@@ -46,12 +45,10 @@ class BrandDetailViewController: UIViewController, UIScrollViewDelegate {
         self.configure()    
         
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        connection.checkNetwork(target: self)
     }
-
 }
 
 // MARK: - Extensions

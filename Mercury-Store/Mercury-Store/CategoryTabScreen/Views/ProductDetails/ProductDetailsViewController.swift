@@ -31,7 +31,6 @@ class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
     private var viewModel: ProductsDetailViewModelType!
     private let disposeBag = DisposeBag()
     private let collectionViewFrame = ReplaySubject<CGRect>.create(bufferSize: 1)
-    
     // MARK: - Set up
     init(with viewModel: ProductsDetailViewModelType) {
         super.init(nibName: nil, bundle: nil)

@@ -29,6 +29,7 @@ class ShoppingCartViewController: UIViewController {
     //
     private var viewModel: CartViewModel!
     private let disposeBag = DisposeBag()
+    let connection = NetworkReachability.shared
     // MARK: - Set up
     //
     init(with viewModel: CartViewModel) {
@@ -47,6 +48,10 @@ class ShoppingCartViewController: UIViewController {
         setupUI()
         bind()
         bindProceedToCheckoutTapped()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        connection.checkNetwork(target: self)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
