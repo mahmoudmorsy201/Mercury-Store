@@ -27,7 +27,7 @@ class RegisterViewController: UIViewController {
     //
     private var registerViewModel: RegisterViewModelType!
     private let disposeBag = DisposeBag()
-    
+    let connection = NetworkReachability.shared
     //MARK: - Init
     //
     init(_ registerViewModel: RegisterViewModelType) {
@@ -53,7 +53,10 @@ class RegisterViewController: UIViewController {
         bindActivity()
         setUpUI()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        connection.checkNetwork(target: self)
+    }
     //MARK: - Private Handlers
     //
     private func bindActivity() {

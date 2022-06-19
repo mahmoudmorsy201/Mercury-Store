@@ -25,6 +25,7 @@ class CreateAddressDetailsViewController: UIViewController {
     //
     private var viewModel: AddressViewModelType!
     private let disposeBag = DisposeBag()
+    let connection = NetworkReachability.shared
     // MARK: - Set up
     //
     init(with viewModel: AddressViewModelType) {
@@ -43,6 +44,10 @@ class CreateAddressDetailsViewController: UIViewController {
         observeViewModelOnValid()
         bindCloseButton()
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        connection.checkNetwork(target: self)
     }
     private func setUpUI() {
         self.addAddressBtn.tintColor = ColorsPalette.labelColors

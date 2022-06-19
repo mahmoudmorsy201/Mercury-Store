@@ -35,6 +35,7 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
     private let dropDown = DropDown()
     private var filterIsPressed = true
     private var myButton: UIButton!
+    let connection = NetworkReachability.shared
     // MARK: - Set up
     //
     init(with viewModel: ProductSearchViewModel) {
@@ -60,6 +61,10 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
         bind()
         bindEmptyViewHidden()
         emptyView.isHidden = true
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        connection.checkNetwork(target: self)
     }
     // MARK: - Private handlers
     //

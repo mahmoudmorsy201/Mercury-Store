@@ -22,6 +22,7 @@ class AddressViewController: UIViewController, UIScrollViewDelegate{
     //
     let disposeBag = DisposeBag()
     private var viewModel: AddressViewModelType!
+    let connection = NetworkReachability.shared
     // MARK: - Set up
     //
     init(_  viewModel: AddressViewModelType){
@@ -38,9 +39,9 @@ class AddressViewController: UIViewController, UIScrollViewDelegate{
         super.viewDidLoad()
         self.configure()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        connection.checkNetwork(target: self)
         self.viewModel?.getAddress()
     }
     

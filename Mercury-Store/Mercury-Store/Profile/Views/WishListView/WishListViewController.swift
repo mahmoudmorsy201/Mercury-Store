@@ -25,7 +25,6 @@ class WishListViewController: UIViewController {
         tableView.register(UINib(nibName: "WishListCell", bundle: nil), forCellReuseIdentifier: WishListCell.identifier)
         tableDataSource()
     }
-   
 
 }
 // MARK: - Extensions

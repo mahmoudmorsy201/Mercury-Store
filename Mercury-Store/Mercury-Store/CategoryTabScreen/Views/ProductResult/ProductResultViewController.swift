@@ -18,6 +18,7 @@ class ProductResultViewController: UIViewController {
     //
     private let disposeBag = DisposeBag()
     private var viewModel:FilteredProductsViewModelType?
+    let connection = NetworkReachability.shared
     // MARK: - Set up
     //
     init(with viewModel: FilteredProductsViewModelType) {
@@ -37,6 +38,10 @@ class ProductResultViewController: UIViewController {
         bindActivity()
         bindSearchBtn()
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        connection.checkNetwork(target: self)
     }
     private func setupUI() {
         self.searchButton.tintColor = ColorsPalette.lightColor

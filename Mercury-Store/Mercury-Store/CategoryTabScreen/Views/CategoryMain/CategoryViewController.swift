@@ -21,6 +21,7 @@ class CategoryViewController: UIViewController {
     //
     private let disposeBag = DisposeBag()
     private var viewModel: CategoriesScreenViewModel!
+    let connection = NetworkReachability.shared
     // MARK: - Set up
     //
     init(with viewModel: CategoriesScreenViewModel) {
@@ -38,6 +39,10 @@ class CategoryViewController: UIViewController {
         setupCollection()
         initTableView()
         bindActivity()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        connection.checkNetwork(target: self)
     }
     
 }

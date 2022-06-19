@@ -21,6 +21,7 @@ class AddressesCheckViewController: UIViewController {
     //
     private var viewModel: AddressViewModelType!
     private let disposeBag = DisposeBag()
+    let connection = NetworkReachability.shared
     // MARK: - Set up
     //
     init(with viewModel: AddressViewModelType! ) {
@@ -40,6 +41,7 @@ class AddressesCheckViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        connection.checkNetwork(target: self)
         self.viewModel?.getAddress()
     }
 }
