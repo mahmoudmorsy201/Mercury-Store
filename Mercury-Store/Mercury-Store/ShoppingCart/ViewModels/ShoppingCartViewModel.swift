@@ -36,15 +36,22 @@ final class CartViewModel {
     private let decrementProductSubject = PublishSubject<SavedProductItem>()
     private let deleteProductSubject = PublishSubject<SavedProductItem>()
     private let cartOrderSubject = PublishSubject<DraftOrderResponseTest>()
+    private let editCustomerSubject = PublishSubject<RegisterResponse>()
     var incrementProduct: AnyObserver<SavedProductItem> { incrementProductSubject.asObserver() }
     var decrementProduct: AnyObserver<SavedProductItem> { decrementProductSubject.asObserver() }
     var deleteProduct: AnyObserver<SavedProductItem> { deleteProductSubject.asObserver() }
     let ordersProvider: OrdersProvider
+    let customerProvider: CustomerProvider
+    
     let disposeBag = DisposeBag()
     
-    init(shoppingCartNavigationFlow: ShoppingCartNavigationFlow,ordersProvider: OrdersProvider = OrdersClient()) {
+    init(shoppingCartNavigationFlow: ShoppingCartNavigationFlow,
+         ordersProvider: OrdersProvider = OrdersClient(),
+         customerProvider: CustomerProvider = CustomerClient()
+    ) {
         self.shoppingCartNavigationFlow = shoppingCartNavigationFlow
         self.ordersProvider = ordersProvider
+        self.customerProvider = customerProvider
     }
     
     func viewDidDisappear() {
@@ -57,14 +64,33 @@ final class CartViewModel {
             if(user!.cartId != 0) {
                 let savedItemsInCart = CartCoreDataManager.shared.getDataFromCoreData()
                 let coreDataLineDraft = savedItemsInCart.map { LineItemDraft(quantity: $0.productQTY, variantID: $0.variantId)}
+                if(!savedItemsInCart.isEmpty) {
+                    self.ordersProvider.modifyExistingOrder(with: user!.cartId, and: PutOrderRequest(draftOrder: ModifyDraftOrderRequest(dratOrderId: user!.cartId, lineItems: coreDataLineDraft)))
+                        .subscribe(onNext: {[weak self] result in
+                            guard let `self` = self else {fatalError()}
+                            self.cartOrderSubject.onNext(result)
+                        }).disposed(by: disposeBag)
+                }else {
+                    self.ordersProvider.deleteExistingOrder(with: user!.cartId)
+                        .subscribe { _ in
+                           
+                        }.disposed(by: disposeBag)
+                    self.modifyCustomerData(draftOrderId: 0)
+                }
                 
-                self.ordersProvider.modifyExistingOrder(with: user!.cartId, and: PutOrderRequest(draftOrder: ModifyDraftOrderRequest(dratOrderId: user!.cartId, lineItems: coreDataLineDraft)))
-                    .subscribe(onNext: {[weak self] result in
-                        guard let `self` = self else {fatalError()}
-                        self.cartOrderSubject.onNext(result)
-                    }).disposed(by: disposeBag)
             }
         }
+    }
+    
+    private func modifyCustomerData(draftOrderId: Int) {
+        let user = getUserFromUserDefaults()
+        self.customerProvider.editCustomer(id: user!.id , editCustomer: EditCustomer(customer: EditCustomerItem(id: user!.id, email: user!.email, firstName: user!.username, password: user!.password, cartId: "\(draftOrderId)", favouriteId: "0")))
+            .subscribe(onNext: {[weak self] userResult in
+                guard let `self` = self else {fatalError()}
+                self.editCustomerSubject.onNext(userResult)
+                let newUser = User(id: user!.id , email: user!.email, username: user!.username, isLoggedIn: true, isDiscount: false, password: user!.password, cartId: Int(userResult.customer.cartId) ?? 0 , favouriteId: user!.favouriteId)
+                try! UserDefaults.standard.setObject(newUser, forKey: "user")
+            }).disposed(by: self.disposeBag)
     }
     
     func checkUserExists() -> Bool {

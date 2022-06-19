@@ -50,7 +50,6 @@ extension CoreDataModel: StorageInputs {
         var resultItems = [SavedProductItem]()
         do {
             let fetchedItems = try managedObjectContext.fetch(fetchRequest)
-            
             for itemMO in fetchedItems {
                 let tmpItem: SavedProductItem = SavedProductItem(
                     inventoryQuantity: itemMO.value(forKey:productCoredataAttr.inventoryQuantity.rawValue) as! Int,
@@ -126,6 +125,20 @@ extension CoreDataModel: StorageInputs {
             return true
         } catch _ as NSError {
             return false
+        }
+    }
+    
+    func deleteAllWithState(productState:productStates) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: self.entity)
+        fetchRequest.predicate =  NSPredicate(format: "\(productCoredataAttr.state.rawValue) = %@ OR \(productCoredataAttr.state.rawValue)  = %@", argumentArray: [productState.rawValue, 2])
+        do {
+            let fetchedItems = try managedObjectContext.fetch(fetchRequest)
+            for object in fetchedItems {
+                self.managedObjectContext.delete(object as! NSManagedObject)
+            }
+            try self.managedObjectContext.save()
+        } catch {
+            print(error.localizedDescription)
         }
     }
     
