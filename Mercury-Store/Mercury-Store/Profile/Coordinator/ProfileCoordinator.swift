@@ -59,6 +59,7 @@ extension ProfileCoordinator: ProfileNavigationFlow {
     
     func goToMainTab() {
         UserDefaults.standard.removeObject(forKey: "user")
+        CartCoreDataManager.shared.deleteAll()
         let appC = self.parentCoordinator?.parentCoordinator as! ApplicationCoordinator
         appC.goToHomeTabbar()
         appC.childDidFinish(self)
