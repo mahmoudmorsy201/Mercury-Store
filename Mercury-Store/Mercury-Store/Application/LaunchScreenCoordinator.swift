@@ -43,6 +43,4 @@ extension LaunchScreenCoordinator: LaunchScreenNavigationFlow {
         navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.pushViewController(pagesViewController, animated: true)
     }
-    
-    
 }
