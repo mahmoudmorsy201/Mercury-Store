@@ -10,9 +10,12 @@ import RxSwift
 import RxCocoa
 
 class BannerCollectionViewCell: UICollectionViewCell {
-    
+    // MARK: - IBOutlets
+    //
     @IBOutlet weak var imageCard: UIImageView!
     @IBOutlet weak var cellCOntainer: UIView!
+    // MARK: - Properties
+    //
     private var viewModel:PriceRoleCellViewModelType!
     private let disposeBag = DisposeBag()
     
@@ -36,6 +39,8 @@ class BannerCollectionViewCell: UICollectionViewCell {
             }
         }
     }
+    // MARK: - Set up
+    //
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -44,7 +49,8 @@ class BannerCollectionViewCell: UICollectionViewCell {
         super.init(coder: coder)
         viewModel = PriceRoleCellViewModel(_userDefaults: UserDefaults())
     }
-    
+    // MARK: - Life cycle
+    //
     func setupCellData(item:PriceRule){
         let tapGesture = UITapGestureRecognizer()
         cellCOntainer.addGestureRecognizer(tapGesture)
@@ -61,6 +67,8 @@ class BannerCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
     }
+    // MARK: - Private handlers
+    //
     func presentSavingState(){
         let msgPart2 = "your coupon was saved Succefully\n"
         let msgPart1 = "\(item!.title)\n"

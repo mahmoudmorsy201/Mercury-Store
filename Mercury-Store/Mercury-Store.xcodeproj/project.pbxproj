@@ -136,6 +136,9 @@
 		4D911856284AB91600F07638 /* ManagedObjectTypeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D911855284AB91600F07638 /* ManagedObjectTypeProtocol.swift */; };
 		4D911858284ABBCB00F07638 /* CoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D911857284ABBCB00F07638 /* CoreDataModel.swift */; };
 		4D91185A284ABDD700F07638 /* StorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D911859284ABDD700F07638 /* StorageProtocol.swift */; };
+		4D96F460285F678B00D43DC1 /* DefaultImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D96F45F285F678B00D43DC1 /* DefaultImageView.swift */; };
+		4D96F462285F679500D43DC1 /* DefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D96F461285F679500D43DC1 /* DefaultView.swift */; };
+		4D96F466285F689100D43DC1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D96F465285F689100D43DC1 /* NetworkManager.swift */; };
 		4D98CE3828555A2B00A00737 /* BannerCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D98CE3728555A2B00A00737 /* BannerCollectionViewModel.swift */; };
 		4DB39DC228583CA400EB8B42 /* RadioButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB39DC028583CA400EB8B42 /* RadioButtonCell.swift */; };
 		4DB39DC328583CA400EB8B42 /* RadioButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DB39DC128583CA400EB8B42 /* RadioButtonCell.xib */; };
@@ -372,6 +375,9 @@
 		4D911855284AB91600F07638 /* ManagedObjectTypeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedObjectTypeProtocol.swift; sourceTree = "<group>"; };
 		4D911857284ABBCB00F07638 /* CoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModel.swift; sourceTree = "<group>"; };
 		4D911859284ABDD700F07638 /* StorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageProtocol.swift; sourceTree = "<group>"; };
+		4D96F45F285F678B00D43DC1 /* DefaultImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultImageView.swift; sourceTree = "<group>"; };
+		4D96F461285F679500D43DC1 /* DefaultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultView.swift; sourceTree = "<group>"; };
+		4D96F465285F689100D43DC1 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4D98CE3728555A2B00A00737 /* BannerCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewModel.swift; sourceTree = "<group>"; };
 		4DB39DC028583CA400EB8B42 /* RadioButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonCell.swift; sourceTree = "<group>"; };
 		4DB39DC128583CA400EB8B42 /* RadioButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RadioButtonCell.xib; sourceTree = "<group>"; };
@@ -862,6 +868,7 @@
 		4D8D2B7F285F2C130014F066 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				4D96F465285F689100D43DC1 /* NetworkManager.swift */,
 				4D8D2B80285F2C130014F066 /* Constants.swift */,
 				4D8D2B81285F2C130014F066 /* ApplicationEnviroment.swift */,
 				4D8D2B82285F2C130014F066 /* APIError.swift */,
@@ -893,6 +900,8 @@
 		4D8D2BAA285F2C2E0014F066 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4D96F461285F679500D43DC1 /* DefaultView.swift */,
+				4D96F45F285F678B00D43DC1 /* DefaultImageView.swift */,
 				4D8D2BAB285F2C2E0014F066 /* UIButton+RoundedCorners.swift */,
 				4D8D2BAC285F2C2E0014F066 /* UIImageView+Shadow.swift */,
 				4D8D2BAD285F2C2E0014F066 /* UIImageView+SDWebImage.swift */,
@@ -1726,6 +1735,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D96F466285F689100D43DC1 /* NetworkManager.swift in Sources */,
 				4D8D2BDD285F2C450014F066 /* LaunchScreenCoordinator.swift in Sources */,
 				C4C04EE72833328A002EC367 /* BannerTableViewCell.swift in Sources */,
 				C410292B2849C31B007045F8 /* CategoriesNavigationFlow.swift in Sources */,
@@ -1767,6 +1777,7 @@
 				C4C04EEB28333299002EC367 /* BrandsTableViewCell.swift in Sources */,
 				C4A1E7F5285BD7CC008E30EE /* ShoppingCartNavigationFlow.swift in Sources */,
 				4D8D2BCC285F2C2E0014F066 /* UserDefaults+ObjectSavable.swift in Sources */,
+				4D96F462285F679500D43DC1 /* DefaultView.swift in Sources */,
 				4D8D2B99285F2C130014F066 /* HomeScreenAPIs.swift in Sources */,
 				4D8D2B9B285F2C130014F066 /* AddressRequest.swift in Sources */,
 				C4C04EE328333278002EC367 /* LogoTableViewCell.swift in Sources */,
@@ -1842,6 +1853,7 @@
 				4D8D2B9A285F2C130014F066 /* PostOrderRequest.swift in Sources */,
 				4D8D2BA3285F2C130014F066 /* Service.swift in Sources */,
 				C410293E284AAF29007045F8 /* BrandDetailViewController.swift in Sources */,
+				4D96F460285F678B00D43DC1 /* DefaultImageView.swift in Sources */,
 				C410292F2849C3B7007045F8 /* ProductDetailsViewModel.swift in Sources */,
 				C40BD720283EE63F0081E15B /* CategoryCoordinator.swift in Sources */,
 				4D8D2B9F285F2C130014F066 /* ErrorResponse.swift in Sources */,

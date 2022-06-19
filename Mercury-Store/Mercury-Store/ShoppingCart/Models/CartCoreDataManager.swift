@@ -39,5 +39,9 @@ class CartCoreDataManager {
         //coreDataModel.delete(updateitem: item)
         let _ = coreDataModel.deleteCartItem(productID: Int(truncating: NSDecimalNumber(decimal: item.productID)) )
     }
+    
+    func deleteAll() {
+        coreDataModel.deleteAllWithState(productState: productStates.cart)
+    }
 }
 

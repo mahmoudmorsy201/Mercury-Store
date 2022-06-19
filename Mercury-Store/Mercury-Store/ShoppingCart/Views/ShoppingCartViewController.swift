@@ -11,6 +11,8 @@ import RxSwift
 import RxDataSources
 
 class ShoppingCartViewController: UIViewController {
+    // MARK: - IBOutlets
+    //
     @IBOutlet weak var subTotalLabel: UILabel!
     @IBOutlet weak var containerViewForShadow: UIView!
     @IBOutlet weak var emptyView: UIView!
@@ -23,10 +25,12 @@ class ShoppingCartViewController: UIViewController {
             shoppingCartTableView.register(UINib(nibName: ShoppingCartTableViewCell.reuseIdentifier(), bundle: nil), forCellReuseIdentifier: ShoppingCartTableViewCell.reuseIdentifier())
         }
     }
-  
+    // MARK: - Properties
+    //
     private var viewModel: CartViewModel!
     private let disposeBag = DisposeBag()
-    
+    // MARK: - Set up
+    //
     init(with viewModel: CartViewModel) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
@@ -62,7 +66,8 @@ class ShoppingCartViewController: UIViewController {
         let emptyCartGif = UIImage.gifImageWithName("emptyCart")
         emptyImageView.image = emptyCartGif
     }
-    
+    // MARK: - Private handlers
+    //
     private func bind() {
         guard let viewModel = self.viewModel else {fatalError("Couldn't unwrap viewModel")}
         
@@ -119,10 +124,12 @@ class ShoppingCartViewController: UIViewController {
 }
 
 
-//MARK: -Private handlers
 
+// MARK: - Extensions
 extension ShoppingCartViewController {
     
+    //MARK: -Private handlers
+    //
     private func dataSource() -> RxTableViewSectionedReloadDataSource<CartSection> {
         .init {[weak self] datasource, tableView, indexPath, row in
             let cell: ShoppingCartTableViewCell = tableView.dequeueReusableCell(withIdentifier: ShoppingCartTableViewCell.reuseIdentifier(), for: indexPath) as! ShoppingCartTableViewCell
