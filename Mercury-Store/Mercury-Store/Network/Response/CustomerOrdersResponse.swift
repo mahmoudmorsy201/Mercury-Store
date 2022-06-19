@@ -1,18 +1,17 @@
 //
-//  DraftOrders.swift
+//  CustomerOrdersResponse.swift
 //  Mercury-Store
 //
-//  Created by Rain Moustfa on 10/06/2022.
+//  Created by Rain Moustfa on 19/06/2022.
 //
+
 import Foundation
-
-
-/*
-struct OrderList: Codable {
-    let orders: [OrderItem]
+struct CustomerOrdersList: Codable {
+    let orders: [CustomerOrders]
 }
+
 // MARK: - Order
-struct OrderItem: Codable {
+struct CustomerOrders: Codable {
     let id: Int
     let adminGraphqlAPIID: String
     let appID: JSONNull?
@@ -209,68 +208,11 @@ struct Set: Codable {
 // MARK: - Money
 struct Money: Codable {
     let amount: String
-    let currencyCode: String
+    let currencyCode: Currency
 
     enum CodingKeys: String, CodingKey {
         case amount
         case currencyCode = "currency_code"
-    }
-}
-
-// MARK: - Customer
-struct CustomerOrder: Codable {
-    let id: Int
-    let email: String
-    let acceptsMarketing: Bool
-    let createdAt, updatedAt: Date
-    let firstName, lastName, state: String
-    let note: JSONNull?
-    let verifiedEmail: Bool
-    let multipassIdentifier: JSONNull?
-    let taxExempt: Bool
-    let phone, tags: String
-    let currency: Currency
-    let acceptsMarketingUpdatedAt: Date
-    let marketingOptInLevel: JSONNull?
-    let taxExemptions: [JSONAny]
-    let emailMarketingConsent: EmailMarketingConsent
-    let smsMarketingConsent, smsTransactionalConsent: JSONNull?
-    let adminGraphqlAPIID: String
-    let defaultAddress: Address
-
-    enum CodingKeys: String, CodingKey {
-        case id, email
-        case acceptsMarketing = "accepts_marketing"
-        case createdAt = "created_at"
-        case updatedAt = "updated_at"
-        case firstName = "first_name"
-        case lastName = "last_name"
-        case state, note
-        case verifiedEmail = "verified_email"
-        case multipassIdentifier = "multipass_identifier"
-        case taxExempt = "tax_exempt"
-        case phone, tags, currency
-        case acceptsMarketingUpdatedAt = "accepts_marketing_updated_at"
-        case marketingOptInLevel = "marketing_opt_in_level"
-        case taxExemptions = "tax_exemptions"
-        case emailMarketingConsent = "email_marketing_consent"
-        case smsMarketingConsent = "sms_marketing_consent"
-        case smsTransactionalConsent = "sms_transactional_consent"
-        case adminGraphqlAPIID = "admin_graphql_api_id"
-        case defaultAddress = "default_address"
-    }
-}
-
-// MARK: - EmailMarketingConsent
-struct EmailMarketingConsent: Codable {
-    let state: String
-    let optInLevel: JSONNull?
-    let consentUpdatedAt: Date
-
-    enum CodingKeys: String, CodingKey {
-        case state
-        case optInLevel = "opt_in_level"
-        case consentUpdatedAt = "consent_updated_at"
     }
 }
 
@@ -305,7 +247,7 @@ struct Fulfillment: Codable {
     let originAddress: OriginAddress
     let receipt: Receipt
     let service: String
-    let shipmentStatus: String?
+    let shipmentStatus: JSONNull?
     let status, trackingCompany, trackingNumber: String
     let trackingNumbers: [String]
     let trackingURL: String
@@ -334,59 +276,6 @@ struct Fulfillment: Codable {
     }
 }
 
-// MARK: - LineItem
-struct LineItem: Codable {
-    let id: Int
-    let adminGraphqlAPIID: String
-    let fulfillableQuantity: Int
-    let fulfillmentService: String
-    let fulfillmentStatus: JSONNull?
-    let giftCard: Bool
-    let grams: Int
-    let name, price: String
-    let priceSet: Set
-    let productExists: Bool
-    let productID: Int
-    let properties: [NoteAttribute]
-    let quantity: Int
-    let requiresShipping: Bool
-    let sku: String
-    let taxable: Bool
-    let title, totalDiscount: String
-    let totalDiscountSet: Set
-    let variantID: Int
-    let variantInventoryManagement, variantTitle: String
-    let vendor: JSONNull?
-    let taxLines: [TaxLine]
-    let duties: [JSONAny]
-    let discountAllocations: [DiscountAllocation]
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case adminGraphqlAPIID = "admin_graphql_api_id"
-        case fulfillableQuantity = "fulfillable_quantity"
-        case fulfillmentService = "fulfillment_service"
-        case fulfillmentStatus = "fulfillment_status"
-        case giftCard = "gift_card"
-        case grams, name, price
-        case priceSet = "price_set"
-        case productExists = "product_exists"
-        case productID = "product_id"
-        case properties, quantity
-        case requiresShipping = "requires_shipping"
-        case sku, taxable, title
-        case totalDiscount = "total_discount"
-        case totalDiscountSet = "total_discount_set"
-        case variantID = "variant_id"
-        case variantInventoryManagement = "variant_inventory_management"
-        case variantTitle = "variant_title"
-        case vendor
-        case taxLines = "tax_lines"
-        case duties
-        case discountAllocations = "discount_allocations"
-    }
-}
-
 // MARK: - DiscountAllocation
 struct DiscountAllocation: Codable {
     let amount: String
@@ -403,22 +292,6 @@ struct DiscountAllocation: Codable {
 // MARK: - NoteAttribute
 struct NoteAttribute: Codable {
     let name, value: String
-}
-
-// MARK: - TaxLine
-struct TaxLine: Codable {
-    let channelLiable: Bool?
-    let price: String
-    let priceSet: Set
-    let rate: Double
-    let title: String
-
-    enum CodingKeys: String, CodingKey {
-        case channelLiable = "channel_liable"
-        case price
-        case priceSet = "price_set"
-        case rate, title
-    }
 }
 
 // MARK: - OriginAddress
@@ -817,5 +690,4 @@ class JSONAny: Codable {
             try JSONAny.encode(to: &container, value: self.value)
         }
     }
-}*/
-
+}

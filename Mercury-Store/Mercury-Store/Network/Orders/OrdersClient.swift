@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol OrdersProvider: AnyObject {
-    //func getOrderList(with customerId: Int) -> Observable<OrderList>
+    func getOrderList(with customerId: Int) -> Observable<CustomerOrdersList>
     func postDraftOrder(order: DraftOrdersRequest) -> Observable<DraftOrderResponseTest>
     func modifyExistingOrder(with orderId: Int, and putOrderRequest: PutOrderRequest) -> Observable<DraftOrderResponseTest>
     func deleteExistingOrder(with orderId: Int) -> Observable<EmptyObject>
@@ -17,6 +17,10 @@ protocol OrdersProvider: AnyObject {
 }
 
 class OrdersClient: OrdersProvider {
+    func getOrderList(with customerId: Int) -> Observable<CustomerOrdersList> {
+        NetworkService().execute(OrdersAPI.getCustomerOrders(customerId))
+    }
+    
     func postOrder(order: PostOrderRequest)-> Observable<PostOrderResponseTest> {
         NetworkService().execute(OrdersAPI.postOrder(order))
     }
@@ -32,9 +36,5 @@ class OrdersClient: OrdersProvider {
     func postDraftOrder(order: DraftOrdersRequest)  -> Observable<DraftOrderResponseTest>{
         NetworkService().execute(OrdersAPI.postDraftOrder(order))
     }
-    
-//    func getOrderList(with customerId: Int) -> Observable<OrderList> {
-//        NetworkService().execute(OrdersAPI.getOrders(customerId))
-//    }
     
 }
