@@ -11,8 +11,9 @@ import RxCocoa
 import Toast_Swift
 
 class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
-    @IBOutlet weak var containerViewForAddToCartButton: UIView!
     
+    // MARK: - IBOutlets
+    @IBOutlet weak var containerViewForAddToCartButton: UIView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var productDescription: UILabel!
     @IBOutlet weak var productTitleLabel: UILabel!
@@ -24,35 +25,28 @@ class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
             productImagesCollectionView.register(UINib(nibName: ProductDetailsImageCollectionCell.reuseIdentifier(), bundle: nil), forCellWithReuseIdentifier: ProductDetailsImageCollectionCell.reuseIdentifier())
         }
     }
-    
     @IBOutlet weak var favoriteBtn: UIButton!
     
+    // MARK: - Properties
     private var viewModel: ProductsDetailViewModelType!
     private let disposeBag = DisposeBag()
-    
     private let collectionViewFrame = ReplaySubject<CGRect>.create(bufferSize: 1)
     
+    // MARK: - Set up
     init(with viewModel: ProductsDetailViewModelType) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUi()
         setUpUI()
         collectionViewFrame.onNext(self.productImagesCollectionView.frame)
-    }
-    private func bindCloseButton() {
-        closeButton.rx.tap
-            .subscribe {[weak self] _ in
-                self?.viewModel.popViewController()
-            }.disposed(by: disposeBag)
-
     }
     private func setUpUI() {
         self.containerViewForAddToCartButton.makeCorners(corners: [.topLeft,.topRight], radius: 12)
@@ -67,9 +61,21 @@ class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
         productDescription.text = viewModel.product.bodyHTML
         self.configure()
     }
+    
+    // MARK: - Private handlers
+    private func bindCloseButton() {
+        closeButton.rx.tap
+            .subscribe {[weak self] _ in
+                self?.viewModel.popViewController()
+            }.disposed(by: disposeBag)
+
+    }
+  
 }
 
+// MARK: - Extensions
 extension ProductDetailsViewController {
+    // MARK: - Private handlers
     private func bindCollectionView() {
         productImagesCollectionView.dataSource = nil
         productImagesCollectionView.delegate = nil
@@ -106,7 +112,9 @@ extension ProductDetailsViewController {
     }
 }
 
+// MARK: - Extensions
 extension ProductDetailsViewController  {
+    // MARK: - Private handlers
     private func configure() {
         self.bindCollectionView()
         self.bindPageController()
@@ -117,7 +125,9 @@ extension ProductDetailsViewController  {
         self.bindCloseButton()
     }
 }
+// MARK: - Extensions
 extension ProductDetailsViewController{
+    // MARK: - Private handlers
     func bindFavouriteButton(){
         favoriteBtn.favouriteState(state: viewModel.isProductFavourite )
     }
@@ -129,7 +139,9 @@ extension ProductDetailsViewController{
         }).disposed(by: disposeBag)
     }
 }
+// MARK: - Extensions
 extension ProductDetailsViewController{
+    // MARK: - Private handlers
     private func addToCartTapBinding(){
         addToCart.rx.tap.subscribe { [weak self] _ in
             self!.view.makeToast("Added to Bag", duration: 3.0, position: .bottom)
@@ -141,6 +153,7 @@ extension ProductDetailsViewController{
 
     }
 }
+// MARK: - Extensions
 extension ProductDetailsViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0

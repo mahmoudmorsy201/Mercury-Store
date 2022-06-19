@@ -13,8 +13,9 @@ import ProgressHUD
 import DropDown
 
 class SearchViewController: UIViewController, UIScrollViewDelegate {
+    // MARK: - IBOutlets
+    //
     @IBOutlet weak var emptyView: UIView!
-    
     @IBOutlet weak var emptyImageView: UIImageView!
     @IBOutlet weak var minimumPrice: UILabel!
     @IBOutlet weak var maximumPrice: UILabel!
@@ -27,13 +28,15 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
             productListCollectionView.register(UINib(nibName: BrandProductsCollectionViewCell.reuseIdentifier(), bundle: nil), forCellWithReuseIdentifier: BrandProductsCollectionViewCell.reuseIdentifier())
         }
     }
-
+    // MARK: - Properties
+    //
     private var viewModel: ProductSearchViewModel!
     private var bag = DisposeBag()
     private let dropDown = DropDown()
     private var filterIsPressed = true
     private var myButton: UIButton!
-    
+    // MARK: - Set up
+    //
     init(with viewModel: ProductSearchViewModel) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
@@ -41,7 +44,8 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-     
+    // MARK: - Life cycle
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
         createSortBarButton()
@@ -57,6 +61,8 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
         bindEmptyViewHidden()
         emptyView.isHidden = true
     }
+    // MARK: - Private handlers
+    //
     private func bindEmptyViewHidden() {
         let emptySearchGif = UIImage.gifImageWithName("emptySearch")
         emptyImageView.image = emptySearchGif
@@ -165,9 +171,10 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 }
-
+// MARK: - Extensions
 extension SearchViewController {
-    
+    // MARK: - Private handlers
+    //
     private func dataSource() -> RxCollectionViewSectionedReloadDataSource<SearchSection> {
         .init {datasource, collectionView, indexPath, row in
             let cell: BrandProductsCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: BrandProductsCollectionViewCell.reuseIdentifier(), for: indexPath) as! BrandProductsCollectionViewCell

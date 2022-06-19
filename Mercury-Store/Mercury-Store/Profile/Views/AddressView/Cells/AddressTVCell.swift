@@ -10,13 +10,14 @@ import RxSwift
 import RxCocoa
 
 class AddressTVCell: UITableViewCell {
-
+    
+    // MARK: - IBOutlets
+    //
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var edit: UIImageView!
-    
     @IBOutlet weak var cityLabel: UILabel!
-    
-    
+    // MARK: - Properties
+    //
     var address: CustomerAddress? {
         didSet {
             guard let address = address else {
@@ -26,15 +27,14 @@ class AddressTVCell: UITableViewCell {
             cityLabel.text = address.city
         }
     }
-   
+    // MARK: - Life cycle
+    //
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        
     }
    
     

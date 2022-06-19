@@ -10,18 +10,29 @@ import RxSwift
 import RxCocoa
 
 class BannerTableViewCell: UITableViewCell {
-    
+    // MARK: - IBOutlets
+    //
     @IBOutlet weak private var containerViewForBannerCollectionView: UIView!
-    
     @IBOutlet weak private var bannerCollectionView: UICollectionView! {
         didSet {
             bannerCollectionView.register(UINib(nibName: BannerCollectionViewCell.reuseIdentifier(), bundle: nil), forCellWithReuseIdentifier: BannerCollectionViewCell.reuseIdentifier())
         }
     }
-    
     @IBOutlet weak private var bannerImageViewPageControl: UIPageControl!
+    // MARK: - Properties
+    //
+    private let disposeBag = DisposeBag()
     
+    private let collectionViewFrame = ReplaySubject<CGRect>.create(bufferSize: 1)
     
+    var viewModel: BannerViewModel? {
+        didSet {
+            self.configure()
+        }
+    }
+    
+    // MARK: - Life cycle
+    //
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCell()
@@ -40,19 +51,11 @@ class BannerTableViewCell: UITableViewCell {
 
     }
     
-    private let disposeBag = DisposeBag()
-    
-    private let collectionViewFrame = ReplaySubject<CGRect>.create(bufferSize: 1)
-    
-    var viewModel: BannerViewModel? {
-        didSet {
-            self.configure()
-        }
-    }
-    
 }
-
+// MARK: - Extensions
 extension BannerTableViewCell {
+    // MARK: - Private handlers
+    //
     private func bindCollectionView() {
         bannerCollectionView.dataSource = nil
         bannerCollectionView.delegate = nil
@@ -88,15 +91,17 @@ extension BannerTableViewCell {
             
     }
 }
-
+// MARK: - Extensions
 extension BannerTableViewCell {
+    // MARK: - Private handlers
+    //
     private func configure() {
         self.bindCollectionView()
         self.bindPageController()
         self.bindCollectionViewToPageControll()
     }
 }
-
+// MARK: - Extensions
 extension BannerTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0

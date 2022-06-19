@@ -8,20 +8,21 @@
 import UIKit
 
 class ViewController: UIViewController, UIScrollViewDelegate {
-
+    
+    // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pagecontrol: UIPageControl!
     @IBOutlet weak var getStartedBtn: UIButton!
-
+    
+    // MARK: - Properties
     var scrollWidth: CGFloat! = 0.0
     var scrollHeight: CGFloat! = 0.0
-    
-    //data for the slides
-        var titles = ["Explore many products","Choose and checkout","Get it delivered"]
-        var descs = ["Best Prices on your favourite brands","search latest products for the desired","Just Choose it!"]
-        var imgs = ["shop1","shop2","shop3"]
+    var titles = ["Explore many products","Choose and checkout","Get it delivered"]
+    var descs = ["Best Prices on your favourite brands","search latest products for the desired","Just Choose it!"]
+    var imgs = ["shop1","shop2","shop3"]
     private weak var pageNavigationFlow: LaunchScreenNavigationFlow?
     
+    // MARK: - Set up
     init(_ pageNavigationFlow: LaunchScreenNavigationFlow?) {
         super.init(nibName: nil, bundle: nil)
         self.pageNavigationFlow = pageNavigationFlow
@@ -31,7 +32,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-        //get dynamic width and height of scrollview and save it
+    // MARK: - Life cycle
         override func viewDidLayoutSubviews() {
             scrollWidth = scrollView.frame.size.width
             scrollHeight = scrollView.frame.size.height
@@ -40,16 +41,13 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         override func viewDidLoad() {
             super.viewDidLoad()
             self.view.layoutIfNeeded()
-            //to call viewDidLayoutSubviews() and get dynamic width and height of scrollview
             UserDefaults.standard.set(true, forKey: "hasSeenOnBoard")
             self.scrollView.delegate = self
             scrollView.isPagingEnabled = true
             scrollView.showsHorizontalScrollIndicator = false
             scrollView.showsVerticalScrollIndicator = false
 
-            //crete the slides and add them
             var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-
             for index in 0..<titles.count {
                 frame.origin.x = scrollWidth * CGFloat(index)
                 frame.size = CGSize(width: scrollWidth, height: scrollHeight)
@@ -78,8 +76,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
                 slide.addSubview(txt1)
                 slide.addSubview(txt2)
                 scrollView.addSubview(slide)
-               
-
             }
 
             //set width of scrollview to accomodate all the slides
@@ -93,7 +89,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             pagecontrol.currentPage = 0
 
         }
-
+    // MARK:  handlers
         //indicator
         @IBAction func pageChanged(_ sender: Any) {
             scrollView!.scrollRectToVisible(CGRect(x: scrollWidth * CGFloat ((pagecontrol?.currentPage)!), y: 0, width: scrollWidth, height: scrollHeight), animated: true)
@@ -107,7 +103,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             let page = (scrollView?.contentOffset.x)!/scrollWidth
             pagecontrol?.currentPage = Int(page)
         }
-    
+   // MARK: - IBActions
     @IBAction func getStartedAction(_ sender: Any) {
         
         self.pageNavigationFlow?.goToHomeTabbar()

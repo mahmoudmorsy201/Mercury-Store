@@ -13,14 +13,16 @@ import ProgressHUD
 
 class CategoryViewController: UIViewController {
     
+    // MARK: - IBOutlets
+    //
     @IBOutlet weak var mainCategoryItems: UITableView!
-    
-    
     @IBOutlet var categoriesCollectionView: UICollectionView!
-    
+    // MARK: - Properties
+    //
     private let disposeBag = DisposeBag()
     private var viewModel: CategoriesScreenViewModel!
-    
+    // MARK: - Set up
+    //
     init(with viewModel: CategoriesScreenViewModel) {
         super.init(nibName: String(describing: CategoryViewController.self), bundle: nil)
         self.viewModel = viewModel
@@ -29,7 +31,8 @@ class CategoryViewController: UIViewController {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
+    // MARK: - Life cycle
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollection()
@@ -38,8 +41,9 @@ class CategoryViewController: UIViewController {
     }
     
 }
-
+// MARK: - Extensions
 extension CategoryViewController :UITableViewDelegate{
+    
     private func initTableView(){
         mainCategoryItems.delegate = nil
         mainCategoryItems.dataSource = nil
@@ -55,7 +59,8 @@ extension CategoryViewController :UITableViewDelegate{
         let cell = tableView.cellForRow(at: indexPath) as! MainCategoryCellTableViewCell
         viewModel.categoryDetails.categoryID = cell.item?.id ?? 0
     }
-    
+    // MARK: - Private handlers
+    //
     private func setupReactiveMainCategoryTableData(){
         viewModel.categories.drive(mainCategoryItems.rx.items(cellIdentifier: MainCategoryCellTableViewCell.identifier, cellType: MainCategoryCellTableViewCell.self)){ index , element , cell in
             cell.config(item: element )
@@ -67,6 +72,7 @@ extension CategoryViewController :UITableViewDelegate{
         .disposed(by: disposeBag)
     }
 }
+// MARK: - Extensions
 extension CategoryViewController : UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     
     func setupCollection(){
