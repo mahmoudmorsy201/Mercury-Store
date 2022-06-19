@@ -67,7 +67,7 @@ class CreateAddressDetailsViewController: UIViewController {
     func  observeViewModelOnValid(){
         viewModel.isValidForm.bind(to: addAddressBtn.rx.isEnabled).disposed(by: disposeBag)
     }
-    
+    // MARK: - IBActions
     @IBAction func didPressedOnAddAddress(_ sender: Any) {
         let user = viewModel.getUserFromUserDefaults()
         viewModel.postAddress(AddressRequestItem(address1: AddressTxt!.text!, address2: AddressTxt!.text!, city: cityTxt!.text!, company: "iti", firstName:user!.username, lastName: user!.username, phone: phoneTxt!.text!, province: cityTxt!.text!, country: countryTxt!.text!, zip: "G1R 4P5", name: "\(user!.username)", provinceCode: "Cairo", countryCode: "EG", countryName: "Egypt"))

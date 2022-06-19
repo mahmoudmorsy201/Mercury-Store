@@ -39,15 +39,16 @@ class ProfileViewController: UIViewController {
         configureSectionModel()
         self.loadUserData()
     }
+    
+    // MARK: - IBActions
+    @IBAction func logoutAction(_ sender: Any) {
+        self.viewModel.goToMainTab()
+    }
     // MARK: - Private handlers
     private func loadUserData(){
         let user = viewModel.getUserInfo()
         userName.text = user?.username
         userEmail.text = user?.email
-    }
-   
-    @IBAction func logoutAction(_ sender: Any) {
-        self.viewModel.goToMainTab()
     }
     private func configureSectionModel() {
         // 1

@@ -68,6 +68,7 @@ class UpdateAddressViewController: UIViewController {
         self.updateAddrBtn.configuration?.background.backgroundColor = ColorsPalette.lightColor
        
     }
+    // MARK: - IBActions
     @IBAction func updateAddrBtn(_ sender: Any) {
         let user = viewModel.getUserFromUserDefaults()
         viewModel.updateAddress(AddressRequestItemPut(address1: addressTxt!.text!, address2: addressTxt!.text!, city: cityTxt!.text!, company: "iti", firstName: user!.username, lastName: user!.username, phone: phoneTxt!.text!, province: cityTxt!.text!, country: countryTxt!.text!, zip: "G1R 4P5", name: "\(user!.username)", provinceCode: "Cairo", countryCode: "EG", countryName: "Egypt", id: selectedAddress.id))

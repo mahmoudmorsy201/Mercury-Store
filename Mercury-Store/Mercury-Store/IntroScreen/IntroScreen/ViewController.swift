@@ -103,7 +103,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             let page = (scrollView?.contentOffset.x)!/scrollWidth
             pagecontrol?.currentPage = Int(page)
         }
-    
+   // MARK: - IBActions
     @IBAction func getStartedAction(_ sender: Any) {
         
         self.pageNavigationFlow?.goToHomeTabbar()
