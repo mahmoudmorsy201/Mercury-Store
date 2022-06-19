@@ -10,20 +10,16 @@ import RxSwift
 import Toast_Swift
 
 class BrandProductsCollectionViewCell: UICollectionViewCell {
-
-    
+    // MARK: - IBOutlets
+    //
     @IBOutlet weak private var containerViewForBrandProductsCell: UIView!
-    
-    
     @IBOutlet weak private var productForBrandImage: UIImageView!
-    
     @IBOutlet weak private var favouriteButton: UIButton!
-    
     @IBOutlet weak private var productForBrandName: UILabel!
-    
     @IBOutlet weak private var currencyLabel: UILabel!
-    
     @IBOutlet weak private var productForBrandPrice: UILabel!
+    // MARK: - Properties
+    //
     let viewModel:ProductCellViewModelType = ProductCellViewModel()
     let disposeBag = DisposeBag()
     var item: Product? {
@@ -34,7 +30,8 @@ class BrandProductsCollectionViewCell: UICollectionViewCell {
             configProductCell(item: item)
         }
     }
-    
+    // MARK: - Life cycle
+    //
     func configProductCell(item:Product){
         guard let url = URL(string: item.image.src) else {
             return

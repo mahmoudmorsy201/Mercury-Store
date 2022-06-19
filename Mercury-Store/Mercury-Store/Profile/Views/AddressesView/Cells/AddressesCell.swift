@@ -8,15 +8,14 @@
 import UIKit
 
 class AddressesCell: UITableViewCell {
-    
+    // MARK: - IBOutlets
+    //
     @IBOutlet weak var addressLabel: UILabel!
-    
     @IBOutlet weak var cityLabel: UILabel!
-    
     @IBOutlet weak var CountryLabel: UILabel!
-    
     @IBOutlet weak var isCheckedAddr: UIImageView!
-
+    // MARK: - Properties
+    //
     var address: CustomerAddress? {
         didSet {
             guard let address = address else {
@@ -27,17 +26,13 @@ class AddressesCell: UITableViewCell {
             CountryLabel.text = address.countryName
         }
     }
-    
-    
+    // MARK: - Life cycle
+    //
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 }

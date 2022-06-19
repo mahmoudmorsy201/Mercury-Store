@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="Mercury_Store" customModuleProvider="target">
             <connections>
+                <outlet property="logoutBtn" destination="qOL-wl-Yka" id="TY5-aq-3l3"/>
                 <outlet property="tableView" destination="7R5-XE-Mg8" id="oji-hz-a0d"/>
                 <outlet property="userEmail" destination="pDd-8n-YVj" id="zoG-UV-AUV"/>
                 <outlet property="userName" destination="TZo-iq-PLP" id="Swq-3A-yX8"/>

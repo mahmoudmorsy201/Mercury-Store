@@ -8,10 +8,13 @@
 import UIKit
 
 class MyOrdersViewCell: UITableViewCell {
+    // MARK: - IBOutlets
+    //
     @IBOutlet weak var createdAt: UILabel!
-    
     @IBOutlet weak var paid: UILabel!
     @IBOutlet weak var price: UILabel!
+    // MARK: - Life cycle
+    //
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
