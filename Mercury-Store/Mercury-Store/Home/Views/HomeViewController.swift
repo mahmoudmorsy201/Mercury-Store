@@ -29,7 +29,7 @@ class HomeViewController: UIViewController {
     private var viewModel: HomeViewModel!
     private var brandViewModel: BrandsViewModel!
     private var categoryViewModel: CategoriesViewModel!
-    
+    let connection = NetworkReachability.shared
     init(with viewModel: HomeViewModel, and brandViewModel: BrandsViewModel, categoryViewModel: CategoriesViewModel) {
         super.init(nibName: String(describing: HomeViewController.self), bundle: nil)
         self.viewModel = viewModel
@@ -50,7 +50,12 @@ class HomeViewController: UIViewController {
         bindTableView()
         bindActivity()
         bindCartBadgeValue()
-        self.viewModel.getAllProductsFromApi() 
+        self.viewModel.getAllProductsFromApi()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        connection.checkNetwork(target: self)
     }
     
     private func bindCartBadgeValue() {

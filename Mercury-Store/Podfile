@@ -23,6 +23,9 @@ target 'Mercury-Store' do
 
   #DropDown
   pod 'DropDown'
+  
+  #Reachability
+  pod 'ReachabilitySwift'
 
  #pods for textfield effects
  pod 'TextFieldEffects'

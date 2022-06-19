@@ -23,6 +23,14 @@ class LaunchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showAnimation()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    private func showAnimation() {
         let animationView = AnimationView()
         animationView.animation = Animation.named("E-commerce")
         animationView.frame = view.bounds
@@ -44,6 +52,5 @@ class LaunchViewController: UIViewController {
             }
            
         }
-
     }
 }

@@ -23,6 +23,7 @@ class BrandDetailViewController: UIViewController, UIScrollViewDelegate {
     
     private let disposeBag = DisposeBag()
     private var viewModel: BrandDetailsViewModelType!
+
     
     init(with viewModel: BrandDetailsViewModelType) {
         super.init(nibName: nil, bundle: nil)
@@ -38,6 +39,11 @@ class BrandDetailViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()    
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
     }
 
