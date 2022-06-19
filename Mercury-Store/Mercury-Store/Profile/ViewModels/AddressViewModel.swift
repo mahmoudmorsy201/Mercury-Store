@@ -26,6 +26,7 @@ protocol AddressViewModelType {
     func goToEditAddressScreen(with address: CustomerAddress)
     func popViewController()
     func goToAddAddressScreen()
+    func goToPaymentFromSelectedAddress(_ selectedAddress: CustomerAddress)
 }
 class AddressViewModel: AddressViewModelType {
     
@@ -42,6 +43,7 @@ class AddressViewModel: AddressViewModelType {
     private let showErrorMessage = PublishSubject<String?>()
     private let showErrorLabelSubject = BehaviorSubject<Bool>(value: true)
     private weak var addressNavigationFlow : UpdateAddressNavigationFlow?
+    private weak var cartNavigationFlow: ShoppingCartNavigationFlow?
     private let emptySubject = BehaviorRelay<Bool>(value: true)
     
     var empty: Driver<Bool> {
@@ -69,9 +71,13 @@ class AddressViewModel: AddressViewModelType {
     
     var showErrorLabelObserver: Observable<Bool> { showErrorLabelSubject.asObservable() }
     
-    init(_ addressProvider: AddressProvider = AddressClient(),addressNavigationFlow: UpdateAddressNavigationFlow) {
+    init(_ addressProvider: AddressProvider = AddressClient(),
+         addressNavigationFlow: UpdateAddressNavigationFlow,
+         cartNavigationFlow: ShoppingCartNavigationFlow
+    ) {
         self.addressProvider = addressProvider
         self.addressNavigationFlow = addressNavigationFlow
+        self.cartNavigationFlow = cartNavigationFlow
         addresses = addressRequestGett.asDriver(onErrorJustReturn: [])
 
     }
@@ -146,5 +152,8 @@ class AddressViewModel: AddressViewModelType {
     
     func popViewController() {
         self.addressNavigationFlow?.popEditController()
+    }
+    func goToPaymentFromSelectedAddress(_ selectedAddress: CustomerAddress) {
+        self.cartNavigationFlow?.goToPaymentScreen(selectedAddress: selectedAddress)
     }
 }
