@@ -70,9 +70,14 @@ extension AddressesCheckViewController {
         viewModel.addresses
             .drive(tableView.rx.items(cellIdentifier: AddressesCell.reuseIdentifier(), cellType: AddressesCell.self)) {indexPath, item , cell in
                 cell.address = item
-            }
-            .disposed(by: disposeBag)
+            }.disposed(by: disposeBag)
         self.viewModel?.getAddress()
+        
+        self.tableView.rx.modelSelected(CustomerAddress.self)
+            .subscribe { [weak self] selectedAddress in
+                self?.viewModel.goToPaymentFromSelectedAddress(selectedAddress)
+            }.disposed(by: disposeBag)
+
     }
     
     private func bindEmptyView() {

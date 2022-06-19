@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - DraftOrder
+
 struct DraftOrdersRequest: Codable {
     let draftOrder: DraftOrderItem
 
@@ -14,17 +16,16 @@ struct DraftOrdersRequest: Codable {
         case draftOrder = "draft_order"
     }
 }
-struct PostOrderRequest: Codable {
-    let order: OrderItem
-}
+// MARK: - DraftOrderItem
+
 struct OrderItem: Codable{
     let lineItems: [LineItemDraft]
     let customer: CustomerId
-    let useCustomerDefaultAddress: Bool
     let current_subtotal_price: String
     let current_total_discounts: String
     let total_price: String
     let financial_status: String
+    
     enum CodingKeys: String, CodingKey {
         case lineItems = "line_items"
         case customer
@@ -32,7 +33,6 @@ struct OrderItem: Codable{
         case current_total_discounts
         case total_price
         case financial_status
-        case useCustomerDefaultAddress = "use_customer_default_address"
     }
 }
 // MARK: - DraftOrder
@@ -80,3 +80,32 @@ struct ModifyDraftOrderRequest: Codable {
         case dratOrderId = "id"
     }
 }
+
+// MARK: - Orders
+//
+struct PostOrderRequest: Codable {
+    let order: OrderItemTest
+}
+
+// MARK: - OrderItem
+//
+struct OrderItemTest: Codable {
+    let lineItems: [LineItemDraft]
+    let customer: CustomerId
+    let current_subtotal_price: String
+    let current_total_discounts: String
+    let total_price: String
+    let financial_status: String
+    let shippingAddress: AddressRequestItem
+    
+    enum CodingKeys: String, CodingKey {
+        case lineItems = "line_items"
+        case customer
+        case current_subtotal_price
+        case current_total_discounts
+        case total_price
+        case financial_status
+        case shippingAddress = "shipping_address"
+    }
+}
+

@@ -29,9 +29,13 @@ class ShoppingCartCoordinator: Coordinator{
 }
 
 extension ShoppingCartCoordinator: ShoppingCartNavigationFlow {
+    func popToRoot() {
+        navigationController.popToRootViewController(animated: true)
+    }
+    
     
     func goToAddressesScreen() {
-        let addressViewModel: AddressViewModelType = AddressViewModel(addressNavigationFlow: self)
+        let addressViewModel: AddressViewModelType = AddressViewModel(addressNavigationFlow: self, cartNavigationFlow: self)
         let addressesCheckVC = AddressesCheckViewController(with: addressViewModel)
         navigationController.pushViewController(addressesCheckVC, animated: true)
     }
@@ -39,11 +43,17 @@ extension ShoppingCartCoordinator: ShoppingCartNavigationFlow {
     func goToGuestTab() {
         self.navigationController.tabBarController?.selectedIndex = 3
     }
+    
+    func goToPaymentScreen(selectedAddress: CustomerAddress) {
+        let viewModel: PaymentViewModelType = PaymentViewModel(shippingAddress: selectedAddress, navigationFlow: self)
+        let paymentAddressVC = PaymentViewViewController(nibName: "PaymentViewViewController", bundle: nil ,  viewModel: viewModel)
+        navigationController.pushViewController(paymentAddressVC, animated: true)
+    }
 }
 
 extension ShoppingCartCoordinator: UpdateAddressNavigationFlow {
     func goToAddAddressScreen() {
-        let addressViewModel: AddressViewModelType = AddressViewModel(addressNavigationFlow: self)
+        let addressViewModel: AddressViewModelType = AddressViewModel(addressNavigationFlow: self, cartNavigationFlow: self)
         let newAddressVC = CreateAddressDetailsViewController(with: addressViewModel)
         navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.pushViewController(newAddressVC, animated: true)
@@ -57,10 +67,4 @@ extension ShoppingCartCoordinator: UpdateAddressNavigationFlow {
     func goToUpdateAddressScreen(with address: CustomerAddress) {
         
     }
-    func goToPaymentScreen(itemsPrice:Double){
-        navigationController.dismiss(animated: true)
-        let paymentAddressVC = PaymentViewViewController(nibName: "PaymentViewViewController", bundle: nil , subCartFeees: itemsPrice)
-        navigationController.pushViewController(paymentAddressVC, animated: true)
-    }
-    
 }

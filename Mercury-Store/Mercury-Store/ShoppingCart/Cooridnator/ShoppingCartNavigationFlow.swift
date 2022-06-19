@@ -10,4 +10,6 @@ import Foundation
 protocol ShoppingCartNavigationFlow: AnyObject {
     func goToAddressesScreen()
     func goToGuestTab()
+    func goToPaymentScreen(selectedAddress: CustomerAddress)
+    func popToRoot()
 }

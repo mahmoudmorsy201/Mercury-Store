@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 
-class ProfileCoordinator: Coordinator{
-    
+class ProfileCoordinator: Coordinator {
+
     weak var parentCoordinator: Coordinator?
     var children: [Coordinator] = []
     
@@ -34,12 +34,6 @@ extension ProfileCoordinator: ProfileNavigationFlow {
         
     }
     
-    func goToPaymentScreen() {
-        let paymentVC = PaymentViewViewController(nibName: String(describing: PaymentViewViewController.self), bundle: nil, subCartFeees: 50.5)
-        self.navigationController.pushViewController(paymentVC, animated: true)
-    }
-    
-    
     func goToMyWishListScreen() {
         let myWishListVC = WishListViewController(nibName: String(describing: WishListViewController.self), bundle: nil)
         
@@ -47,7 +41,7 @@ extension ProfileCoordinator: ProfileNavigationFlow {
     }
     
     func goToMyAddressesScreen() {
-        let addressesViewModel : AddressViewModelType = AddressViewModel(addressNavigationFlow: self)
+        let addressesViewModel : AddressViewModelType = AddressViewModel(addressNavigationFlow: self, cartNavigationFlow: self)
        
       let myAddressesVC = AddressViewController(addressesViewModel)
         
@@ -72,14 +66,14 @@ extension ProfileCoordinator: ProfileNavigationFlow {
 
 extension ProfileCoordinator: UpdateAddressNavigationFlow {
     func goToAddAddressScreen() {
-        let addressViewModel: AddressViewModelType = AddressViewModel(addressNavigationFlow: self)
+        let addressViewModel: AddressViewModelType = AddressViewModel(addressNavigationFlow: self, cartNavigationFlow: self)
         let newAddressVC = CreateAddressDetailsViewController(with: addressViewModel)
         navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.pushViewController(newAddressVC, animated: true)
     }
     
     func goToUpdateAddressScreen(with address: CustomerAddress) {
-        let addressViewModel: AddressViewModelType = AddressViewModel(addressNavigationFlow: self)
+        let addressViewModel: AddressViewModelType = AddressViewModel(addressNavigationFlow: self, cartNavigationFlow: self)
         let newAddressVC = UpdateAddressViewController(with: addressViewModel, selectedAddress: address)
         
         navigationController.pushViewController(newAddressVC, animated: true)
@@ -89,6 +83,24 @@ extension ProfileCoordinator: UpdateAddressNavigationFlow {
     func popEditController() {
         navigationController.setNavigationBarHidden(false, animated: false)
         navigationController.popViewController(animated: true)
+    }
+}
+
+extension ProfileCoordinator : ShoppingCartNavigationFlow {
+    func popToRoot() {
+        
+    }
+    
+    func goToAddressesScreen() {
+        
+    }
+    
+    func goToGuestTab() {
+        
+    }
+    
+    func goToPaymentScreen(selectedAddress: CustomerAddress) {
+        
     }
 }
     

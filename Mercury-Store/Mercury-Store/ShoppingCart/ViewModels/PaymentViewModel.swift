@@ -30,7 +30,7 @@ class PaymentViewModel:PaymentViewModelType{
     private let errorSubject = BehaviorRelay<String?>(value: nil)
     private var braintreeClient: BTAPIClient?
     private let ordersProvider: OrdersProvider
-    
+    private weak var navigationFlow: ShoppingCartNavigationFlow!
     var CouponLoading: Driver<Bool>
     var CouponInfo: Driver<PriceRule>
     var CouponError: Driver<String?>
@@ -41,11 +41,15 @@ class PaymentViewModel:PaymentViewModelType{
     
     var paymentMethod: paymentOptions
     
-    init(_userDefaults:UserDefaults = UserDefaults() ,paymentMethod:paymentOptions = .cashOnDelivery , ordersProvider: OrdersProvider = OrdersClient() ) {
+    private let shippingAddress: CustomerAddress
+    
+    init(_userDefaults:UserDefaults = UserDefaults() ,paymentMethod:paymentOptions = .cashOnDelivery , ordersProvider: OrdersProvider = OrdersClient(),  shippingAddress: CustomerAddress,navigationFlow: ShoppingCartNavigationFlow) {
         userDefaults = _userDefaults
+        self.shippingAddress = shippingAddress
+        self.navigationFlow = navigationFlow
         CouponInfo = couponSubject.asDriver(onErrorJustReturn: PriceRule() )
         CouponLoading = isLoadingSubject.asDriver(onErrorJustReturn: false)
-        CouponError = errorSubject.asDriver(onErrorJustReturn: "Somthing went wrong")
+        CouponError = errorSubject.asDriver(onErrorJustReturn: "Something went wrong")
         self.ordersProvider = ordersProvider
         total = BehaviorSubject<Double>(value: 0)
         self.subTotal = 0
@@ -120,13 +124,17 @@ class PaymentViewModel:PaymentViewModelType{
         let user = getUserFromUserDefaults()
         let lineItems = getLineItems().map { LineItemDraft(quantity: $0.productQTY, variantID: $0.variantId)}
         let discountValue = couponSubject.value
-        let order = try! OrderItem(lineItems: lineItems, customer: CustomerId(id: user!.id), useCustomerDefaultAddress: true, current_subtotal_price: "\(subTotal)", current_total_discounts: "\(discountValue)", total_price: "\(total.value())", financial_status: financial_status)
+        let order = try! OrderItemTest(lineItems: lineItems, customer: CustomerId(id: user!.id), current_subtotal_price: "\(subTotal)", current_total_discounts: "\(discountValue)", total_price: "\(total.value())", financial_status: financial_status, shippingAddress: AddressRequestItem(address1: shippingAddress.address1, address2: shippingAddress.address2, city: shippingAddress.city, company: shippingAddress.company, firstName: shippingAddress.firstName, lastName: shippingAddress.lastName, phone: shippingAddress.phone, province: shippingAddress.province, country: shippingAddress.country, zip: shippingAddress.zip, name: shippingAddress.name, provinceCode: shippingAddress.provinceCode, countryCode: shippingAddress.countryCode, countryName: shippingAddress.countryName))
+
         if (user != nil) {
             let newOrderRequest = PostOrderRequest(order: order)
         self.ordersProvider.postOrder(order: newOrderRequest)
             .subscribe(onNext: {[weak self] result in
                 guard let `self` = self else {fatalError()}
                 print(result)
+                CartCoreDataManager.shared.deleteAll()
+                self.navigationFlow.popToRoot()
+                
             }).disposed(by: disposeBag)
         }
     }

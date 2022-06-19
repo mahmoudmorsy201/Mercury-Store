@@ -9,8 +9,6 @@ import UIKit
 import RxSwift
 
 class PaymentViewViewController: UIViewController {
-    let disposeBag:DisposeBag = DisposeBag()
-    private var viewModel:PaymentViewModelType!
     @IBOutlet weak var selectPaymentTable: UITableView!
     @IBOutlet weak var validateCoupon: UIButton!
     @IBOutlet weak var couponInput: UITextField!
@@ -19,6 +17,11 @@ class PaymentViewViewController: UIViewController {
     @IBOutlet weak var shippingFees: UILabel!
     @IBOutlet weak var confirmOrder: UIButton!
     @IBOutlet weak var subTotal: UILabel!
+    
+    
+    private let disposeBag = DisposeBag()
+    private var viewModel: PaymentViewModelType!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initTable()
@@ -27,9 +30,9 @@ class PaymentViewViewController: UIViewController {
         confirmAction()
     }
     
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle? , subCartFeees:Double) {
+    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle? ,viewModel: PaymentViewModelType) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        self.viewModel = PaymentViewModel()
+        self.viewModel = viewModel
     }
     
     required init?(coder: NSCoder) {
@@ -43,7 +46,7 @@ extension PaymentViewViewController{
             guard let element = item.element else{ return }
             self.couponInput.text = element.title
             self.discountValue.text = element.value
-        }
+        }.disposed(by: disposeBag)
     }
     
     func confirmAction(){
@@ -57,7 +60,7 @@ extension PaymentViewViewController{
         shippingFees.text = "0 USD"
         viewModel.total.asObserver().subscribe{ item in
             self.totalMoney.text = "\(item.element!) USD"
-        }
+        }.disposed(by: disposeBag)
     }
 }
 
@@ -83,7 +86,7 @@ extension PaymentViewViewController:UITableViewDelegate ,UITableViewDataSource{
         let cell = selectPaymentTable.dequeueReusableCell(withIdentifier: RadioButtonCell.reuseIdentifier()) as! RadioButtonCell
         cell.paymentSubject.subscribe{ event in
             self.viewModel.paymentMethod = event.element!
-        }
+        }.disposed(by: disposeBag)
         return cell
     }
     

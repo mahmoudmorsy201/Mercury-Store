@@ -16,10 +16,6 @@ struct DraftOrderResponseTest: Codable {
         case draftOrder = "draft_order"
     }
 }
-struct PostOrderResponseTest: Codable{
-    let order: DraftOrderTest
-}
-
 
 // MARK: - DraftOrder
 struct DraftOrderTest: Codable {
@@ -162,3 +158,51 @@ struct TaxLine: Codable {
 struct EmptyObject: Codable {
     
 }
+
+
+// MARK: - OrderTest
+struct PostOrderResponseTest: Codable{
+    let order: OrdersTest
+}
+
+
+struct OrdersTest: Codable {
+    let id: Int
+    let note: String?
+    let email: String
+    let taxesIncluded: Bool
+    let currency: String
+    let createdAt, updatedAt: Date
+    let taxExempt: Bool
+    let name, status: String
+    let lineItems: [LineItem]
+    let invoiceURL: String
+    let taxLines: [TaxLine]
+    let tags: String
+    let totalPrice, subtotalPrice, totalTax: String
+    let adminGraphqlAPIID: String
+    let customer: CustomerDraftTest
+    let shippingAddress: CustomerAddress
+
+    enum CodingKeys: String, CodingKey {
+        case id, note, email
+        case taxesIncluded = "taxes_included"
+        case currency
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case taxExempt = "tax_exempt"
+        case name, status
+        case lineItems = "line_items"
+        case invoiceURL = "invoice_url"
+        case taxLines = "tax_lines"
+        case tags
+        case totalPrice = "total_price"
+        case subtotalPrice = "subtotal_price"
+        case totalTax = "total_tax"
+        case adminGraphqlAPIID = "admin_graphql_api_id"
+        case customer
+        case shippingAddress = "shipping_address"
+    }
+}
+
+
