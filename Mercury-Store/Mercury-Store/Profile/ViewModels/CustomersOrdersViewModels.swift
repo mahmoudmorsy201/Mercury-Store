@@ -9,23 +9,22 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-/*
-protocol DraftOrdersViewModelsType {
+protocol CustomersOrdersViewModelsType {
     var isLoading: Driver<Bool> { get }
     var error: Driver<String?> { get }
     var user: User? { get}
-    var orders: Driver<[OrderItem]>{get}
+    var orders: Driver<[CustomerOrders]>{get}
 }
 
-class DraftOrdersViewModels:DraftOrdersViewModelsType {
-    private let typesSubject = BehaviorRelay<[OrderItem]>(value: [])
+class CustomersOrdersViewModels:CustomersOrdersViewModelsType {
+    private let typesSubject = BehaviorRelay<[CustomerOrders]>(value: [])
     private let isLoadingSubject = BehaviorRelay<Bool>(value: false)
     private let errorSubject = BehaviorRelay<String?>(value: nil)
     private let ordersProvider :OrdersProvider
     private let disposeBag = DisposeBag()
     private let userDefaults: UserDefaults
     
-    var orders: Driver<[OrderItem]>
+    var orders: Driver<[CustomerOrders]>
     var isLoading: Driver<Bool>
     var error: Driver<String?>
     
@@ -53,6 +52,7 @@ class DraftOrdersViewModels:DraftOrdersViewModelsType {
             .subscribe {[weak self] (result) in
                 guard let self = self else{return}
                 self.isLoadingSubject.accept(false)
+                print(result)
                 self.typesSubject.accept(result.orders)
             } onError: {[weak self] (error) in
                 self?.isLoadingSubject.accept(false)
@@ -68,4 +68,4 @@ class DraftOrdersViewModels:DraftOrdersViewModelsType {
             return nil
         }
     }
-}*/
+}

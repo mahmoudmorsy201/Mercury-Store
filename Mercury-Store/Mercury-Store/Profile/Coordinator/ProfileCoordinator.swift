@@ -29,6 +29,8 @@ class ProfileCoordinator: Coordinator{
 
 extension ProfileCoordinator: ProfileNavigationFlow {
     func goToMyOrdersScreen() {
+        let customersOrderScreen = myOrdersTableViewController(CustomersOrdersViewModels())
+        self.navigationController.pushViewController(customersOrderScreen, animated: true)
         
     }
     

@@ -26,7 +26,7 @@ extension DataResponse {
 
 class NetworkService {
     func execute<T: Codable>(_ urlRequest: URLRequestConvertible) -> Observable<T> {
-        AF.request(urlRequest).responseString{ data in
+        AF.request(urlRequest).responseString { data in
             print(data)
         }
         return Observable<T>.create { observer in

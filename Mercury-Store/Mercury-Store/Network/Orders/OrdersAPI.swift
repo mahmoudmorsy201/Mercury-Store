@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 enum OrdersAPI: URLRequestBuilder {
-    case getOrders(Int)
+    case getCustomerOrders(Int)
     case postDraftOrder(DraftOrdersRequest)
     case modifyExistingOrder(Int, PutOrderRequest)
     case deleteDraftOrder(Int)
@@ -18,7 +18,7 @@ enum OrdersAPI: URLRequestBuilder {
 extension OrdersAPI {
     var path: String {
         switch self {
-        case .getOrders(let id):
+        case .getCustomerOrders(let id):
             return Constants.Paths.Customers.customerOrders + "/\(id)/orders.json"
             
         case .postDraftOrder:
@@ -36,7 +36,7 @@ extension OrdersAPI {
 extension OrdersAPI {
     var parameters: Parameters? {
         switch self {
-        case .getOrders:
+        case .getCustomerOrders:
             return [:]
         case .postDraftOrder(let order):
             return try! order.asDictionary()
@@ -53,8 +53,8 @@ extension OrdersAPI {
 extension OrdersAPI {
     var method: HTTPMethod {
         switch self {
-        case .getOrders:
-            return HTTPMethod.get
+        case .getCustomerOrders:
+            return .get
         case .postDraftOrder:
             return HTTPMethod.post
         case .modifyExistingOrder:
