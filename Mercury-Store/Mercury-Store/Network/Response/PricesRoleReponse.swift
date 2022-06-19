@@ -15,6 +15,13 @@ struct PricesRoleResponse: Codable {
     }
 }
 
+struct SinglePriceRoleResponse: Codable{
+    let priceRule: PriceRule
+
+    enum CodingKeys: String, CodingKey {
+        case priceRule = "price_rule"
+    }
+}
 // MARK: - PriceRule
 struct PriceRule: Codable {
     let id: Int
@@ -57,5 +64,32 @@ struct PriceRule: Codable {
         case prerequisiteCustomerIDS = "prerequisite_customer_ids"
         case title
         case adminGraphqlAPIID = "admin_graphql_api_id"
+    }
+    init(){
+        id = 0
+        valueType = ""
+        value = ""
+        customerSelection = ""
+        targetType = ""
+        targetSelection = ""
+        allocationMethod = ""
+        allocationLimit = 0
+        oncePerCustomer = false
+        usageLimit = 0
+        startsAt = Date()
+        endsAt = Date()
+        createdAt = Date()
+        updatedAt =  Date()
+        entitledProductIDS = []
+        entitledVariantIDS = []
+        entitledCollectionIDS = []
+        entitledCountryIDS =  []
+        prerequisiteProductIDS = []
+        prerequisiteVariantIDS = []
+        prerequisiteCollectionIDS = []
+        customerSegmentPrerequisiteIDS = []
+        prerequisiteCustomerIDS = []
+        title = ""
+        adminGraphqlAPIID = ""
     }
 }

@@ -10,9 +10,10 @@ import Alamofire
 
 enum OrdersAPI: URLRequestBuilder {
     case getOrders(Int)
-    case postOrder(DraftOrdersRequest)
+    case postDraftOrder(DraftOrdersRequest)
     case modifyExistingOrder(Int, PutOrderRequest)
     case deleteDraftOrder(Int)
+    case postOrder(PostOrderRequest)
 }
 extension OrdersAPI {
     var path: String {
@@ -20,12 +21,14 @@ extension OrdersAPI {
         case .getOrders(let id):
             return Constants.Paths.Customers.customerOrders + "/\(id)/orders.json"
             
-        case .postOrder:
-            return Constants.Paths.Order.postOrder
+        case .postDraftOrder:
+            return Constants.Paths.Order.postDraftOrder
         case .modifyExistingOrder(let id, _):
             return Constants.Paths.Order.modifyExistingOrder + "/\(id).json"
         case .deleteDraftOrder(let id):
             return Constants.Paths.Order.modifyExistingOrder + "/\(id).json"
+        case .postOrder:
+            return Constants.Paths.Order.postOrder
         }
     }
 }
@@ -35,12 +38,14 @@ extension OrdersAPI {
         switch self {
         case .getOrders:
             return [:]
-        case .postOrder(let order):
+        case .postDraftOrder(let order):
             return try! order.asDictionary()
         case .modifyExistingOrder(_, let order):
             return try! order.asDictionary()
         case .deleteDraftOrder:
             return [:]
+        case .postOrder(let order):
+            return try! order.asDictionary()
         }
     }
 }
@@ -50,12 +55,14 @@ extension OrdersAPI {
         switch self {
         case .getOrders:
             return HTTPMethod.get
-        case .postOrder:
+        case .postDraftOrder:
             return HTTPMethod.post
         case .modifyExistingOrder:
             return .put
         case .deleteDraftOrder:
             return .delete
+        case .postOrder(_):
+            return .post
         }
     }
 }

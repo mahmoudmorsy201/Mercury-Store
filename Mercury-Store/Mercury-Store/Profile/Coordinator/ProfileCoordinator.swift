@@ -28,13 +28,15 @@ class ProfileCoordinator: Coordinator{
 }
 
 extension ProfileCoordinator: ProfileNavigationFlow {
-    
     func goToMyOrdersScreen() {
-        //let viewModel = DraftOrdersViewModels()
-        //let myOrdersVC = myOrdersTableViewController(viewModel)
         
-        //self.navigationController.pushViewController(myOrdersVC, animated: true)
     }
+    
+    func goToPaymentScreen() {
+        let paymentVC = PaymentViewViewController(nibName: String(describing: PaymentViewViewController.self), bundle: nil, subCartFeees: 50.5)
+        self.navigationController.pushViewController(paymentVC, animated: true)
+    }
+    
     
     func goToMyWishListScreen() {
         let myWishListVC = WishListViewController(nibName: String(describing: WishListViewController.self), bundle: nil)
@@ -56,7 +58,6 @@ extension ProfileCoordinator: ProfileNavigationFlow {
         
         self.navigationController.pushViewController(aboutUsVC, animated: true)
     }
-    
     func goToMainTab() {
         UserDefaults.standard.removeObject(forKey: "user")
         CartCoreDataManager.shared.deleteAll()

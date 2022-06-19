@@ -57,6 +57,10 @@ extension ShoppingCartCoordinator: UpdateAddressNavigationFlow {
     func goToUpdateAddressScreen(with address: CustomerAddress) {
         
     }
-    
+    func goToPaymentScreen(itemsPrice:Double){
+        navigationController.dismiss(animated: true)
+        let paymentAddressVC = PaymentViewViewController(nibName: "PaymentViewViewController", bundle: nil , subCartFeees: itemsPrice)
+        navigationController.pushViewController(paymentAddressVC, animated: true)
+    }
     
 }

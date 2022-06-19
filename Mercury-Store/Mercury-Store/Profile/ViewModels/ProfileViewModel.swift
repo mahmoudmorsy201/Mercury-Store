@@ -39,7 +39,6 @@ class ProfileViewModel {
                 
             ])
         ]
-        
         _sectionModels.onNext(sections)
     }
     func getUserInfo() -> User? {
@@ -54,7 +53,6 @@ class ProfileViewModel {
 
 
 extension ProfileViewModel: ProfileNavigationFlow {
-    
     func goToMyOrdersScreen() {
         self.profileNavigationFlow.goToMyOrdersScreen()
     }

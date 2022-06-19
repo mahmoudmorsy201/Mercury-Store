@@ -10,10 +10,16 @@ import RxSwift
 
 protocol PricesRulesProvider: AnyObject {
     func getPricesRules() -> Observable<PricesRoleResponse>
+    func getSinglePriceData(id:Int) -> Observable<SinglePriceRoleResponse>
 }
 
 class PricesRulesApi: PricesRulesProvider {
+    
     func getPricesRules() -> Observable<PricesRoleResponse> {
         NetworkService().execute(PricesRules.getPricesRules)
+    }
+    
+    func getSinglePriceData(id:Int) -> Observable<SinglePriceRoleResponse>{
+        NetworkService().execute(PricesRules.getCoupon(id))
     }
 }

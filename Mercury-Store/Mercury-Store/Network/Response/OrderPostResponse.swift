@@ -16,6 +16,9 @@ struct DraftOrderResponseTest: Codable {
         case draftOrder = "draft_order"
     }
 }
+struct PostOrderResponseTest: Codable{
+    let order: DraftOrderTest
+}
 
 
 // MARK: - DraftOrder
