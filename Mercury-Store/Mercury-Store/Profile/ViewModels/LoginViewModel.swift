@@ -81,6 +81,7 @@ class LoginViewModel: LoginViewModelType {
                 self.checkResult(result, password: password)
             }, onError: { [weak self] error in
                 guard let `self` = self else {fatalError()}
+                self.isLoadingSubject.accept(false)
                 self.customerRequestPostError.onNext(error)
             }).disposed(by: disposeBag)
     }
@@ -101,6 +102,7 @@ extension LoginViewModel {
         if(!result.customers.isEmpty) {
             checkPassword(password, result)
         } else {
+            self.isLoadingSubject.accept(false)
             self.showErrorLabelSubject.onNext(false)
             self.showErrorMessage.onNext(CustomerErrors.emailNotExists.rawValue)
         }
@@ -118,6 +120,7 @@ extension LoginViewModel {
             self.goToProfileScreen(customer.id)
             self.isLoadingSubject.accept(false)
         }else {
+            self.isLoadingSubject.accept(false)
             self.showErrorLabelSubject.onNext(false)
             self.showErrorMessage.onNext(CustomerErrors.checkYourCredentials.rawValue)
         }
