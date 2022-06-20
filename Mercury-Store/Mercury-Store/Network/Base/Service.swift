@@ -27,7 +27,7 @@ extension DataResponse {
 class NetworkService {
     func execute<T: Codable>(_ urlRequest: URLRequestConvertible) -> Observable<T> {
         AF.request(urlRequest).responseString { data in
-            print(data)
+          //  print(data)
         }
         return Observable<T>.create { observer in
             let request = AF.request(urlRequest).responseData { (response) in
@@ -37,8 +37,8 @@ class NetworkService {
                         let item = try newJSONDecoder().decode(T.self, from: data)
                         observer.onNext(item)
                         observer.onCompleted()
-                    } catch {
-                        print(APIError.parsingError)
+                    } catch (let error){
+                        print(error)
                         observer.onError(APIError.parsingError)
                     }
                 case .failure(let error):
