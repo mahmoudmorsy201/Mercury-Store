@@ -33,29 +33,26 @@ class ProductResultViewController: UIViewController {
     //
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
         setupCollectionView()
         bindActivity()
-        bindSearchBtn()
-        
+        createSearchBarButton()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         connection.checkNetwork(target: self)
     }
-    private func setupUI() {
-        self.searchButton.tintColor = ColorsPalette.lightColor
-       
+    
+    private func createSearchBarButton() {
+        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchBtnTapped))
+        self.navigationItem.rightBarButtonItem = search
+    }
+    
+    @objc func searchBtnTapped() {
+        viewModel?.goToSearchScreen()
     }
     
     // MARK: - Private handlers
     //
-    private func bindSearchBtn() {
-        searchButton.rx.tap
-            .subscribe {[weak self] _ in
-                self?.viewModel?.goToSearchScreen()
-            }.disposed(by: disposeBag)
-    }
     private func setupCollectionView(){
         productCollectionView.delegate = nil
         productCollectionView.dataSource = nil

@@ -39,10 +39,20 @@ class CategoryViewController: UIViewController {
         setupCollection()
         initTableView()
         bindActivity()
+        createSearchBarButton()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         connection.checkNetwork(target: self)
+    }
+    
+    private func createSearchBarButton() {
+        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchBtnTapped))
+        self.navigationItem.rightBarButtonItem = search
+    }
+    
+    @objc func searchBtnTapped() {
+        viewModel.goToSearchViewController()
     }
     
 }
