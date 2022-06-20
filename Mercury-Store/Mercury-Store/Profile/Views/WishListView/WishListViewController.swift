@@ -13,6 +13,10 @@ class WishListViewController: UIViewController {
     // MARK: - IBOutlets
     //
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var emptyImageView: UIImageView!
+    
+    @IBOutlet weak var emptyView: UIView!
+    
     // MARK: - Properties
     //
     let viewModel:WishListViewModelType = WishListViewModel()
@@ -24,6 +28,16 @@ class WishListViewController: UIViewController {
         // Do any additional setup after loading the view.
         tableView.register(UINib(nibName: "WishListCell", bundle: nil), forCellReuseIdentifier: WishListCell.identifier)
         tableDataSource()
+        emptyView.isHidden = true
+        bindEmptyView()
+    }
+    
+    private func bindEmptyView() {
+        let emptyCartGif = UIImage.gifImageWithName("emptyWishlist")
+        emptyImageView.image = emptyCartGif
+        self.viewModel.emptyView
+            .drive(emptyView.rx.isHidden)
+            .disposed(by: disposeBag)
     }
 
 }
