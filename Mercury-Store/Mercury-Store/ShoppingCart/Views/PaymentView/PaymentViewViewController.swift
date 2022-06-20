@@ -56,6 +56,8 @@ class PaymentViewViewController: UIViewController {
         self.validateCoupon.tintColor = ColorsPalette.labelColors
         self.validateCoupon.configuration?.background.backgroundColor = ColorsPalette.lightColor
         
+        self.couponInput.isUserInteractionEnabled = false
+        
        
     }
 }

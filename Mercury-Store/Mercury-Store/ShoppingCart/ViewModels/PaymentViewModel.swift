@@ -131,7 +131,7 @@ class PaymentViewModel:PaymentViewModelType{
         self.ordersProvider.postOrder(order: newOrderRequest)
             .subscribe(onNext: {[weak self] result in
                 guard let `self` = self else {fatalError()}
-                print(result)
+               // print(result)
                 CartCoreDataManager.shared.deleteAll()
                 self.navigationFlow.popToRoot()
                 
