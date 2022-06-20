@@ -8,6 +8,7 @@
 import Foundation
 protocol PriceRoleCellViewModelType{
     func savePriceRole(itemId:Int)->Bool
+    func isUserLogged()->Bool
 }
 
 class PriceRoleCellViewModel:PriceRoleCellViewModelType{
@@ -23,6 +24,13 @@ class PriceRoleCellViewModel:PriceRoleCellViewModelType{
             return false
         }
     }
-    
-
+    func isUserLogged()->Bool{
+        do{
+            let x = try? userDefaults.getObject(forKey: "user", castTo: User.self)
+            guard x != nil else { return false }
+            return true
+        }catch (_){
+            return false
+        }
+    }
 }
