@@ -56,10 +56,14 @@ class BannerCollectionViewCell: UICollectionViewCell {
         cellCOntainer.addGestureRecognizer(tapGesture)
         tapGesture.rx.event.subscribe(onNext: {[weak self] _ in
             guard let self = self else{return}
-            if(self.viewModel.savePriceRole(itemId: self.item!.id)){
-                self.presentSavingState()
+            if(self.viewModel.isUserLogged()){
+                if(self.viewModel.savePriceRole(itemId: self.item!.id)){
+                    self.presentSavingState()
+                }else{
+                    self.presentErrorSAvingData()
+                }
             }else{
-                self.presentErrorSAvingData()
+                self.showNotLogedDialog()
             }
         }).disposed(by: disposeBag)
     }
@@ -80,6 +84,13 @@ class BannerCollectionViewCell: UICollectionViewCell {
     }
     func presentErrorSAvingData(){
         let dialogMessage = UIAlertController(title: "", message: "something went wrong while savong coupon", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+        dialogMessage.addAction(ok)
+        guard let parentVC = self.parentViewController else { return }
+        parentVC.present(dialogMessage, animated: true, completion: nil)
+    }
+    func showNotLogedDialog(){
+        let dialogMessage = UIAlertController(title: "", message: "please login to get this coupons", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
         dialogMessage.addAction(ok)
         guard let parentVC = self.parentViewController else { return }
