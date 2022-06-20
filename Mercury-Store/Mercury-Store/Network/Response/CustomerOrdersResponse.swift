@@ -52,7 +52,8 @@ struct CustomerOrders: Codable {
     let totalTipReceived: String?
     let totalWeight: Int?
     let updatedAt: Date?
-    let billingAddress: Address?
+    let billingAddress: OrderAddressInfo?
+    let shippingAddress: OrderAddressInfo?
     let lineItems: [OrdersInfoLineItem]
     let shippingLines: [ShippingLine]
 
@@ -62,6 +63,7 @@ struct CustomerOrders: Codable {
         case checkoutID = "checkout_id"
         case checkoutToken = "checkout_token"
         case confirmed
+        case shippingAddress = "shipping_address"
         case contactEmail = "contact_email"
         case createdAt = "created_at"
         case currency
@@ -140,6 +142,31 @@ struct ShippingLine: Codable {
         case discountedPrice = "discounted_price"
         case price
         case source, title
+    }
+}
+struct OrderAddressInfo: Codable {
+    let firstName: String?
+    let address1, phone, city, zip: String?
+    let province, country: String?
+    let lastName: String?
+    let address2: String
+    let latitude, longitude: Double?
+    let name, countryCode, provinceCode: String?
+    let id, customerID: Int?
+    let countryName: String?
+    let addressDefault: Bool?
+
+    enum CodingKeys: String, CodingKey {
+        case firstName = "first_name"
+        case address1, phone, city, zip, province, country
+        case lastName = "last_name"
+        case address2, latitude, longitude, name
+        case countryCode = "country_code"
+        case provinceCode = "province_code"
+        case id
+        case customerID = "customer_id"
+        case countryName = "country_name"
+        case addressDefault = "default"
     }
 }
 struct OrdersInfoLineItem: Codable {
