@@ -68,12 +68,15 @@ final class HomeViewModel {
                     .subscribe(onNext:  {[weak self] result in
                         guard let `self` = self else {fatalError()}
                         let variantIdsFromDraftOrderResponse = result.draftOrder.lineItems.map{ $0.variantID }
+                        let quantitates = result.draftOrder.lineItems.map{ $0.quantity }
+                        var index = 0
                         let filteredProducts = self.filter(items: products, contains: variantIdsFromDraftOrderResponse)
                         
                         if(self.fetchedItemsFromCoreData.isEmpty) {
                             for item in filteredProducts {
-                                let newSaved = SavedProductItem(inventoryQuantity: item.variants[0].inventoryQuantity, variantId: item.variants[0].id, productID: Decimal(item.id), productTitle: item.title, productImage: item.image.src, productPrice: Double(item.variants[0].price)!, productQTY: 4, producrState: 1)
-                              let _ = CoreDataModel.coreDataInstatnce.insertCartProduct(product: newSaved)
+                                let newSaved = SavedProductItem(inventoryQuantity: item.variants[0].inventoryQuantity, variantId: item.variants[0].id, productID: Decimal(item.id), productTitle: item.title, productImage: item.image.src, productPrice: Double(item.variants[0].price)!, productQTY: quantitates[index], producrState: 1)
+                                let _ = CoreDataModel.coreDataInstatnce.insertCartProduct(product: newSaved)
+                                index += 1
                             }
                         }
                     }).disposed(by: disposeBag)
