@@ -180,7 +180,7 @@
 		C49A1D3A28333D800081F874 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A1D3828333D800081F874 /* CategoriesCollectionViewCell.swift */; };
 		C49A1D3B28333D800081F874 /* CategoriesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C49A1D3928333D800081F874 /* CategoriesCollectionViewCell.xib */; };
 		C49A1D3D283349D30081F874 /* TableConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A1D3C283349D30081F874 /* TableConfigurator.swift */; };
-		C49C316F28603F420025AC72 /* emptyWishlist.gif in Resources */ = {isa = PBXBuildFile; fileRef = C49C316E28603F420025AC72 /* emptyWishlist.gif */; };
+		C49C3171286040C00025AC72 /* emptyWishlist.gif in Resources */ = {isa = PBXBuildFile; fileRef = C49C3170286040BF0025AC72 /* emptyWishlist.gif */; };
 		C4A1E7F5285BD7CC008E30EE /* ShoppingCartNavigationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A1E7F4285BD7CC008E30EE /* ShoppingCartNavigationFlow.swift */; };
 		C4B9828728532B1400242415 /* ObjectSavable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9828628532B1400242415 /* ObjectSavable.swift */; };
 		C4B9828928532B2300242415 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9828828532B2300242415 /* User.swift */; };
@@ -422,7 +422,7 @@
 		C49A1D3828333D800081F874 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		C49A1D3928333D800081F874 /* CategoriesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesCollectionViewCell.xib; sourceTree = "<group>"; };
 		C49A1D3C283349D30081F874 /* TableConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableConfigurator.swift; sourceTree = "<group>"; };
-		C49C316E28603F420025AC72 /* emptyWishlist.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = emptyWishlist.gif; sourceTree = "<group>"; };
+		C49C3170286040BF0025AC72 /* emptyWishlist.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = emptyWishlist.gif; sourceTree = "<group>"; };
 		C4A1E7F4285BD7CC008E30EE /* ShoppingCartNavigationFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartNavigationFlow.swift; sourceTree = "<group>"; };
 		C4B9828628532B1400242415 /* ObjectSavable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectSavable.swift; sourceTree = "<group>"; };
 		C4B9828828532B2300242415 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -1327,7 +1327,7 @@
 		C4CDB93F2830E3300000519A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C49C316E28603F420025AC72 /* emptyWishlist.gif */,
+				C49C3170286040BF0025AC72 /* emptyWishlist.gif */,
 				C48A4C07285BD466008546A0 /* emptyCart.gif */,
 				C48A4C06285BD466008546A0 /* emptySearch.gif */,
 				02E1C1CF285B92EB00D60813 /* E-commerce.json */,
@@ -1580,6 +1580,7 @@
 				C48A4C08285BD466008546A0 /* emptySearch.gif in Resources */,
 				4D8D2B4E285F2AFA0014F066 /* RegisterViewController.xib in Resources */,
 				C4CDB9182830E3210000519A /* Assets.xcassets in Resources */,
+				C49C3171286040C00025AC72 /* emptyWishlist.gif in Resources */,
 				C4951243283EED9E00E313EB /* ProductCell.xib in Resources */,
 				C49A1D3B28333D800081F874 /* CategoriesCollectionViewCell.xib in Resources */,
 				4D8D2B58285F2AFA0014F066 /* GuestProfileViewController.xib in Resources */,
@@ -1603,7 +1604,6 @@
 				4D8D2B3E285F2AFA0014F066 /* myOrdersTableViewController.xib in Resources */,
 				C4BA734B2839F8BF00A5F3AB /* BrandsCollectionViewCell.xib in Resources */,
 				0292A8AF2849CAE6001BC74F /* ProductDetailsImageCollectionCell.xib in Resources */,
-				C49C316F28603F420025AC72 /* emptyWishlist.gif in Resources */,
 				C4CFBA72283C1914009C2840 /* BannerCollectionViewCell.xib in Resources */,
 				C4C08BBE28321D5A00364704 /* SearchViewController.xib in Resources */,
 				02E1C1CE285B8C5A00D60813 /* LaunchViewController.xib in Resources */,
