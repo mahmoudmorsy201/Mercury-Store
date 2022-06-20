@@ -90,14 +90,17 @@ extension RegisterViewModel {
                 guard let `self` = self else {fatalError()}
                 if(result.customers.isEmpty) {
                     self.postCustomer(firstName: firstName, lastName: lastName, email: email, password: password)
+                    self.isLoadingSubject.accept(false)
                 } else {
                     self.showErrorLabelSubject.onNext(false)
+                    self.isLoadingSubject.accept(false)
                     self.showErrorMessage.onNext(CustomerErrors.emailExists.rawValue)
                 }
                 
             }, onError: { [weak self] error in
                 guard let `self` = self else {fatalError()}
                 self.customerRequestPostError.onNext(error)
+                self.isLoadingSubject.accept(false)
             }).disposed(by: disposeBag)
     }
     
@@ -125,6 +128,7 @@ extension RegisterViewModel {
             self.isLoadingSubject.accept(false)
         }, onError: { [weak self] error in
             guard let `self` = self else {fatalError()}
+            self.isLoadingSubject.accept(false)
             self.customerRequestPostError.onNext(error)
         })
         .disposed(by: disposeBag)

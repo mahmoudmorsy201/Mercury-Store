@@ -62,9 +62,14 @@ final class CartViewModel {
         if(user != nil) {
             if(user!.cartId != 0) {
                 let savedItemsInCart = CartCoreDataManager.shared.getDataFromCoreData()
-                let coreDataLineDraft = savedItemsInCart.map { LineItemDraft(quantity: $0.productQTY, variantID: $0.variantId)}
+                var newArray: [LineItemDraft] = []
+                for item in savedItemsInCart {
+                    let newItem = LineItemDraft(quantity: item.productQTY, variantID: item.variantId)
+                    newArray.append(newItem)
+                }
+
                 if(!savedItemsInCart.isEmpty) {
-                    self.ordersProvider.modifyExistingOrder(with: user!.cartId, and: PutOrderRequest(draftOrder: ModifyDraftOrderRequest(dratOrderId: user!.cartId, lineItems: coreDataLineDraft)))
+                    self.ordersProvider.modifyExistingOrder(with: user!.cartId, and: PutOrderRequest(draftOrder: ModifyDraftOrderRequest(dratOrderId: user!.cartId, lineItems: newArray)))
                         .subscribe(onNext: {[weak self] result in
                             guard let `self` = self else {fatalError()}
                             self.cartOrderSubject.onNext(result)
