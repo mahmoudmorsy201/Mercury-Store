@@ -9,6 +9,8 @@ import UIKit
 import RxSwift
 
 class PaymentViewViewController: UIViewController {
+    // MARK: - IBOutlets
+    //
     @IBOutlet weak var selectPaymentTable: UITableView!
     @IBOutlet weak var validateCoupon: UIButton!
     @IBOutlet weak var couponInput: UITextField!
@@ -18,18 +20,13 @@ class PaymentViewViewController: UIViewController {
     @IBOutlet weak var confirmOrder: UIButton!
     @IBOutlet weak var subTotal: UILabel!
     
-    
+    //MARK: - Properties
+    //
     private let disposeBag = DisposeBag()
     private var viewModel: PaymentViewModelType!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        initTable()
-        readCoupon()
-        totalFees()
-        confirmAction()
-    }
-    
+    let connection = NetworkReachability.shared
+    // MARK: - Set up
+    //
     init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle? ,viewModel: PaymentViewModelType) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         self.viewModel = viewModel
@@ -38,9 +35,34 @@ class PaymentViewViewController: UIViewController {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-}
-extension PaymentViewViewController{
+    //MARK: - Life Cycle
+    //
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpUI()
+        initTable()
+        readCoupon()
+        totalFees()
+        confirmAction()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        connection.checkNetwork(target: self)
+    }
     
+    private func setUpUI() {
+        self.confirmOrder.tintColor = ColorsPalette.labelColors
+        self.confirmOrder.configuration?.background.backgroundColor = ColorsPalette.lightColor
+        self.validateCoupon.tintColor = ColorsPalette.labelColors
+        self.validateCoupon.configuration?.background.backgroundColor = ColorsPalette.lightColor
+        
+       
+    }
+}
+// MARK: - Extensions
+extension PaymentViewViewController{
+    // MARK: - Private handlers
+    //
     func readCoupon(){
         viewModel.CouponInfo.asObservable().subscribe { item in
             guard let element = item.element else{ return }
@@ -63,9 +85,10 @@ extension PaymentViewViewController{
         }.disposed(by: disposeBag)
     }
 }
-
+// MARK: - Extensions
 extension PaymentViewViewController:UITableViewDelegate ,UITableViewDataSource{
-    
+    // MARK: - Private handlers
+    //
     private func initTable(){
         selectPaymentTable.register(UINib(nibName: "RadioButtonCell", bundle: nil), forCellReuseIdentifier: RadioButtonCell.reuseIdentifier())
         selectPaymentTable.delegate = self

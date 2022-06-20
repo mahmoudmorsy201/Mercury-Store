@@ -86,9 +86,9 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUh-OI-9zY">
-                                    <rect key="frame" x="267" y="184" width="67" height="31"/>
+                                    <rect key="frame" x="267" y="184" width="115.5" height="31"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="tinted" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="tinted" title="Apply Coupon"/>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -120,9 +120,10 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pjz-SC-qJV">
-                            <rect key="frame" x="8" y="464" width="398" height="32.5"/>
-                            <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <color key="tintColor" systemColor="systemBackgroundColor"/>
+                            <rect key="frame" x="8" y="464" width="398" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="ejw-EJ-xDy"/>
+                            </constraints>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain">
                                 <attributedString key="attributedTitle">
