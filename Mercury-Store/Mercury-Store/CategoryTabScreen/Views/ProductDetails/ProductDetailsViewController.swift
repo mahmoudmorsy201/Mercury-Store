@@ -16,6 +16,7 @@ class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet weak var containerViewForAddToCartButton: UIView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var productDescription: UILabel!
+    @IBOutlet weak var descLabel: UILabel!
     @IBOutlet weak var productTitleLabel: UILabel!
     @IBOutlet weak var productPriceLabel: UILabel!
     @IBOutlet weak var imageControl: UIPageControl!
@@ -51,8 +52,9 @@ class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
         self.containerViewForAddToCartButton.makeCorners(corners: [.topLeft,.topRight], radius: 12)
         self.addToCart.tintColor = ColorsPalette.labelColors
         self.addToCart.configuration?.background.backgroundColor = ColorsPalette.lightColor
-        closeButton.tintColor = ColorsPalette.labelColors
+        closeButton.tintColor = ColorsPalette.lightColor
         productPriceLabel.textColor = ColorsPalette.lightColor
+        self.descLabel.tintColor = ColorsPalette.lightColor
     }
     private func updateUi(){
         productTitleLabel.text = viewModel.product.title
