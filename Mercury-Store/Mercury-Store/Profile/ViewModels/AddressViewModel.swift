@@ -10,14 +10,15 @@ import RxCocoa
 
 protocol AddressViewModelType {
     
-    var countryObservable: AnyObserver<String?> { get }
     var cityObservable: AnyObserver<String?> { get }
     var addressObservable: AnyObserver<String?> { get }
     var phoneObservable: AnyObserver<String?> { get }
     var isValidForm: Observable<Bool> { get }
+    var isNotEmptyAddress: Observable<Bool> { get }
+    var isNotValidPhone: Observable<Bool> { get }
+    var isNotValidCity: Observable<Bool>  { get }
     var addresses: Driver<[CustomerAddress]> {get}
-    var addressErrorMessage: Observable<String?> { get }
-    var showErrorLabelObserver: Observable<Bool> { get }
+    var addressErrorMessage: AnyObserver<String?> { get }
     var empty: Driver<Bool> { get }
     func postAddress(_ address:AddressRequestItem)
     func getAddress()
@@ -27,10 +28,10 @@ protocol AddressViewModelType {
     func popViewController()
     func goToAddAddressScreen()
     func goToPaymentFromSelectedAddress(_ selectedAddress: CustomerAddress)
+    func acceptTitle(_ title: String)
 }
 class AddressViewModel: AddressViewModelType {
     
-    private let countrySubject = BehaviorSubject<String?>(value: "")
     private let citySubject = BehaviorSubject<String?>(value: "")
     private let addressSubject = BehaviorSubject<String?>(value: "")
     private let phoneSubject = BehaviorSubject<String?>(value: "")
@@ -40,7 +41,7 @@ class AddressViewModel: AddressViewModelType {
     private let addressRequestPost:PublishSubject<AddressResponse> = PublishSubject<AddressResponse>()
     private let addressRequestGett:PublishSubject = PublishSubject<[CustomerAddress]>()
     private let addressRequestPostError = PublishSubject<Error>()
-    private let showErrorMessage = PublishSubject<String?>()
+    private let showErrorMessage = BehaviorSubject<String?>(value: "")
     private let showErrorLabelSubject = BehaviorSubject<Bool>(value: true)
     private weak var addressNavigationFlow : UpdateAddressNavigationFlow?
     private weak var cartNavigationFlow: ShoppingCartNavigationFlow?
@@ -51,25 +52,39 @@ class AddressViewModel: AddressViewModelType {
             .asDriver(onErrorJustReturn: true)
     }
     
-    var countryObservable: AnyObserver<String?> { countrySubject.asObserver() }
-    
     var cityObservable: AnyObserver<String?> { citySubject.asObserver() }
     
     var addressObservable: AnyObserver<String?> { addressSubject.asObserver() }
     
     var phoneObservable: AnyObserver<String?> { phoneSubject.asObserver() }
+    var addressErrorMessage: AnyObserver<String?> { showErrorMessage.asObserver() }
     
     var isValidForm: Observable<Bool> {
-        return Observable.combineLatest( countrySubject, citySubject,addressSubject, phoneSubject) { country, city, address, phone in
-            guard country != nil && city != nil && address != nil && phone != nil  else {
+        return Observable.combineLatest( citySubject,addressSubject, phoneSubject) { city, address, phone in
+            guard city != nil && address != nil && phone != nil  else {
                 return false
             }
-            return !(country!.isEmpty) &&  !(city!.isEmpty) && !(phone!.isEmpty) && !(address!.isEmpty)
+            return !(city!.isEmpty) && !(phone!.isEmpty) && !(address!.isEmpty) && phone!.validatePhone()
         }
     }
-    var addressErrorMessage: Observable<String?> { showErrorMessage.asObservable() }
     
-    var showErrorLabelObserver: Observable<Bool> { showErrorLabelSubject.asObservable() }
+    var isNotEmptyAddress: Observable<Bool> {
+        return Observable.combineLatest(addressSubject,showErrorMessage) { address,errorMessage  in
+            return !(address!.isEmpty)
+        }
+    }
+    
+    var isNotValidPhone: Observable<Bool> {
+        return Observable.combineLatest(phoneSubject,showErrorMessage) { phone,errorMessage  in
+            return  !(phone!.isEmpty) && phone!.validatePhone()
+        }
+    }
+    
+    var isNotValidCity: Observable<Bool> {
+        return Observable.combineLatest(citySubject,showErrorMessage) { city,errorMessage  in
+            return !(city!.isEmpty)
+        }
+    }
     
     init(_ addressProvider: AddressProvider = AddressClient(),
          addressNavigationFlow: UpdateAddressNavigationFlow,
@@ -79,7 +94,10 @@ class AddressViewModel: AddressViewModelType {
         self.addressNavigationFlow = addressNavigationFlow
         self.cartNavigationFlow = cartNavigationFlow
         addresses = addressRequestGett.asDriver(onErrorJustReturn: [])
-
+    }
+    
+    func acceptTitle(_ title: String) {
+        citySubject.onNext(title)
     }
     
     func goToEditAddress(with address: CustomerAddress) {

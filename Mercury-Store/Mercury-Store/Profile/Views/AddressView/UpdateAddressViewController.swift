@@ -40,7 +40,7 @@ class UpdateAddressViewController: UIViewController {
     //
     override func viewDidLoad() {
         super.viewDidLoad()
-       updateAddrBtn.setTitleColor(.gray, for: .disabled)
+        updateAddrBtn.setTitleColor(.gray, for: .disabled)
         setupUI()
         setupBindings()
         observeViewModelOnValid()
@@ -53,7 +53,6 @@ class UpdateAddressViewController: UIViewController {
     //
     func setupBindings() {
         cityTxt.rx.text.bind(to: viewModel.cityObservable).disposed(by: disposeBag)
-        countryTxt.rx.text.bind(to: viewModel.countryObservable).disposed(by: disposeBag)
         addressTxt.rx.text.bind(to: viewModel.addressObservable).disposed(by: disposeBag)
         phoneTxt.rx.text.bind(to: viewModel.phoneObservable).disposed(by: disposeBag)
     }
@@ -61,7 +60,7 @@ class UpdateAddressViewController: UIViewController {
     func  observeViewModelOnValid(){
         viewModel.isValidForm.bind(to: updateAddrBtn.rx.isEnabled).disposed(by: disposeBag)
     }
-
+    
     private func setupUI() {
         self.countryTxt.text = selectedAddress.country
         self.cityTxt.text = selectedAddress.city
@@ -69,7 +68,7 @@ class UpdateAddressViewController: UIViewController {
         self.phoneTxt.text = selectedAddress.phone
         self.updateAddrBtn.tintColor = ColorsPalette.labelColors
         self.updateAddrBtn.configuration?.background.backgroundColor = ColorsPalette.lightColor
-       
+        
     }
     // MARK: - IBActions
     @IBAction func updateAddrBtn(_ sender: Any) {
