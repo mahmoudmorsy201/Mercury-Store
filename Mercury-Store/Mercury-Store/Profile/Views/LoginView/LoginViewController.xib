@@ -47,7 +47,7 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zEa-hs-AHT" customClass="AkiraTextField" customModule="TextFieldEffects">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zEa-hs-AHT">
                                     <rect key="frame" x="12" y="401" width="390" height="89.5"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="89.5" id="KDc-j1-lTC"/>
@@ -86,7 +86,7 @@
                                     <color key="textColor" systemColor="systemRedColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Mi-16-BKf" customClass="AkiraTextField" customModule="TextFieldEffects">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Mi-16-BKf">
                                     <rect key="frame" x="12" y="514.5" width="390" height="100.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -177,10 +177,10 @@
     </objects>
     <designables>
         <designable name="1Mi-16-BKf">
-            <size key="intrinsicContentSize" width="77.5" height="22"/>
+            <size key="intrinsicContentSize" width="105.5" height="32"/>
         </designable>
         <designable name="zEa-hs-AHT">
-            <size key="intrinsicContentSize" width="43" height="23"/>
+            <size key="intrinsicContentSize" width="71" height="33"/>
         </designable>
     </designables>
     <resources>

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import TextFieldEffects
 import RxCocoa
 import RxSwift
 import ProgressHUD
@@ -14,11 +13,11 @@ import ProgressHUD
 class RegisterViewController: UIViewController {
     
     //MARK: - Outlets
-    @IBOutlet weak var firstNameTextField: AkiraTextField!
-    @IBOutlet weak var lastNameTextField: AkiraTextField!
-    @IBOutlet weak var emailTextField: AkiraTextField!
-    @IBOutlet weak var passwordTextField: AkiraTextField!
-    @IBOutlet weak var confirmPasswordTextField: AkiraTextField!
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var signUpBtn: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var errorMessageLabel: UILabel!
@@ -117,6 +116,7 @@ class RegisterViewController: UIViewController {
         registerViewModel.showErrorLabelObserver
             .bind(to: errorMessageLabel.rx.isHidden)
             .disposed(by: disposeBag)
+        
     }
     
     private func bindLoginButton() {

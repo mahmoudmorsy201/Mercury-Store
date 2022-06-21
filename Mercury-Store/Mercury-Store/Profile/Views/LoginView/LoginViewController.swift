@@ -8,15 +8,14 @@ import UIKit
 import RxCocoa
 import RxSwift
 import ProgressHUD
-import TextFieldEffects
 
 class LoginViewController: UIViewController {
     
     // MARK: - IBOutlets
     //
-    @IBOutlet weak var emailTextField: AkiraTextField!
+    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var signupBtn: UIButton!
-    @IBOutlet weak var passwordTextField: AkiraTextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var errorMessageLabel: UILabel!
     

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import TextFieldEffects
 import Toast_Swift
 import RxSwift
 import RxCocoa
@@ -15,10 +14,10 @@ class UpdateAddressViewController: UIViewController {
     
     // MARK: - IBOutlets
     //
-    @IBOutlet weak var countryTxt: AkiraTextField!
-    @IBOutlet weak var cityTxt: AkiraTextField!
-    @IBOutlet weak var addressTxt: AkiraTextField!
-    @IBOutlet weak var phoneTxt: AkiraTextField!
+    @IBOutlet weak var countryTxt: UITextField!
+    @IBOutlet weak var cityTxt: UITextField!
+    @IBOutlet weak var addressTxt: UITextField!
+    @IBOutlet weak var phoneTxt: UITextField!
     @IBOutlet weak var updateAddrBtn: UIButton!
     // MARK: - Properties
     //

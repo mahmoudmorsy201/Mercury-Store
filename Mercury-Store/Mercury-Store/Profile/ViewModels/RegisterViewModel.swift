@@ -103,6 +103,16 @@ extension RegisterViewModel {
                 self.isLoadingSubject.accept(false)
             }).disposed(by: disposeBag)
     }
+   func validateEmailCorrect(email:String){
+        if(email.validateEmail()) {
+            
+        } else {
+            self.showErrorLabelSubject.onNext(false)
+            self.showErrorMessage.onNext(CustomerErrors.emailIsNotValid.rawValue)
+        }
+        
+    }
+    
     
     // MARK: - Navigation
     //
