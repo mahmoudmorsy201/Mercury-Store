@@ -109,19 +109,24 @@ class CreateAddressDetailsViewController: UIViewController {
                 self?.selectCityButton.titleLabel?.text = item
                 self?.viewModel.acceptTitle(item)
             }
-            
+            self?.dropDown.cancelAction = { [unowned self] in
+                self?.viewModel.acceptTitle("")
+            }
             self?.dropDown.width = self?.view.bounds.width
             self?.dropDown.direction = .bottom
             self?.dropDown.show()
         }).disposed(by: disposeBag)
-
+        
     }
     // MARK: - IBActions
     @IBAction func didPressedOnAddAddress(_ sender: Any) {
         let user = viewModel.getUserFromUserDefaults()
-        viewModel.postAddress(AddressRequestItem(address1: AddressTxt!.text!, address2: AddressTxt!.text!, city: (selectCityButton.titleLabel?.text)!, company: "iti", firstName:user!.username, lastName: user!.username, phone: phoneTxt!.text!, province: (selectCityButton.titleLabel?.text)!, country: countryTxt!.text!, zip: "G1R 4P5", name: "\(user!.username)", provinceCode: "Cairo", countryCode: "EG", countryName: "Egypt"))
-          self.view.makeToast("You Have Created address!", duration: 3.0, position: .bottom)
-
+        self.dropDown.selectionAction = {[weak self] (index: Int, item: String) in
+            self?.viewModel.postAddress(AddressRequestItem(address1: (self?.AddressTxt!.text!)!, address2: (self?.AddressTxt!.text!)!, city: item, company: "iti", firstName:user!.username, lastName: user!.username, phone: (self?.phoneTxt!.text!)!, province: item, country: (self?.countryTxt!.text!)!, zip: "G1R 4P5", name: "\(user!.username)", provinceCode: "Cairo", countryCode: "EG", countryName: "Egypt"))
+            self?.view.makeToast("You Have Created address!", duration: 3.0, position: .bottom)
+        }
+        
+        
     }
     
     

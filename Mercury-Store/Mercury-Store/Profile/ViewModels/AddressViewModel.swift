@@ -82,7 +82,7 @@ class AddressViewModel: AddressViewModelType {
     
     var isNotValidCity: Observable<Bool> {
         return Observable.combineLatest(citySubject,showErrorMessage) { city,errorMessage  in
-            return  !(city!.isEmpty) && city != "Select a city"
+            return !(city!.isEmpty)
         }
     }
     
@@ -94,7 +94,6 @@ class AddressViewModel: AddressViewModelType {
         self.addressNavigationFlow = addressNavigationFlow
         self.cartNavigationFlow = cartNavigationFlow
         addresses = addressRequestGett.asDriver(onErrorJustReturn: [])
-
     }
     
     func acceptTitle(_ title: String) {
