@@ -12,4 +12,6 @@ enum CustomerErrors: String {
     case emailNotExists = "Your email does not exist, please try to register first."
     case checkYourCredentials = "Something went wrong, email or password is wrong."
     case newAddressError = "Something went wrong, please try again later."
+    case emailIsNotValid = "Please, enter valid email"
+    case passwordIsNotValid = "Please, enter valid password"
 }

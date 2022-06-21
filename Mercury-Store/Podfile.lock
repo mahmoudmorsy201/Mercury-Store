@@ -52,7 +52,6 @@ PODS:
     - SDWebImage/Core (= 5.12.5)
   - SDWebImage/Core (5.12.5)
   - SwiftLint (0.47.1)
-  - TextFieldEffects (1.6.0)
   - Toast-Swift (5.0.1)
 
 DEPENDENCIES:
@@ -70,7 +69,6 @@ DEPENDENCIES:
   - RxSwift (= 6.5.0)
   - SDWebImage (= 5.12.5)
   - SwiftLint (= 0.47.1)
-  - TextFieldEffects
   - Toast-Swift (~> 5.0.1)
 
 SPEC REPOS:
@@ -89,7 +87,6 @@ SPEC REPOS:
     - RxSwift
     - SDWebImage
     - SwiftLint
-    - TextFieldEffects
     - Toast-Swift
 
 SPEC CHECKSUMS:
@@ -107,9 +104,8 @@ SPEC CHECKSUMS:
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
   SwiftLint: f80f1be7fa96d30e0aa68e58d45d4ea1ccaac519
-  TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 3aa0ae189fc787cfcac1056fc87c4120e31ed296
+PODFILE CHECKSUM: 84333fac1c3eed7dc877fe5c4ee8f95a21271b90
 
 COCOAPODS: 1.11.3

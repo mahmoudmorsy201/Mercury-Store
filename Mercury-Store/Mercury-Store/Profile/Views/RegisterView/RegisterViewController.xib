@@ -50,7 +50,7 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="first name:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ccr-md-Ahu" customClass="AkiraTextField" customModule="TextFieldEffects">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="First name:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ccr-md-Ahu">
                                     <rect key="frame" x="12" y="303" width="390" height="89.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -66,7 +66,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mcK-SE-ZLp" customClass="AkiraTextField" customModule="TextFieldEffects">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mcK-SE-ZLp">
                                     <rect key="frame" x="12" y="404.5" width="390" height="89"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -82,7 +82,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b6Y-PI-XcN" customClass="AkiraTextField" customModule="TextFieldEffects">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b6Y-PI-XcN">
                                     <rect key="frame" x="12" y="505.5" width="390" height="89.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
@@ -98,7 +98,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7He-tl-LTR" customClass="AkiraTextField" customModule="TextFieldEffects">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7He-tl-LTR">
                                     <rect key="frame" x="12" y="607" width="390" height="89.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -114,7 +114,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eNt-Yv-aKW" customClass="AkiraTextField" customModule="TextFieldEffects">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eNt-Yv-aKW">
                                     <rect key="frame" x="12" y="708.5" width="390" height="89.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -233,19 +233,19 @@
     </objects>
     <designables>
         <designable name="7He-tl-LTR">
-            <size key="intrinsicContentSize" width="77.5" height="22"/>
+            <size key="intrinsicContentSize" width="105.5" height="32"/>
         </designable>
         <designable name="b6Y-PI-XcN">
-            <size key="intrinsicContentSize" width="42.5" height="23"/>
+            <size key="intrinsicContentSize" width="71" height="33"/>
         </designable>
         <designable name="ccr-md-Ahu">
-            <size key="intrinsicContentSize" width="85" height="23"/>
+            <size key="intrinsicContentSize" width="117" height="33"/>
         </designable>
         <designable name="eNt-Yv-aKW">
-            <size key="intrinsicContentSize" width="143.5" height="22"/>
+            <size key="intrinsicContentSize" width="174.5" height="32"/>
         </designable>
         <designable name="mcK-SE-ZLp">
-            <size key="intrinsicContentSize" width="77.5" height="23"/>
+            <size key="intrinsicContentSize" width="111.5" height="33"/>
         </designable>
     </designables>
     <resources>

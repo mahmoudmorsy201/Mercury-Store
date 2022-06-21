@@ -21,8 +21,7 @@ target 'Mercury-Store' do
   #Toast_Swift
   pod 'Toast-Swift', '~> 5.0.1'
 
-  #pods for textfield effects
-  pod 'TextFieldEffects'
+
   # Includes Cards and PayPal
   pod 'Braintree'
   pod 'BraintreeDropIn'
@@ -38,9 +37,7 @@ target 'Mercury-Store' do
   #Reachability
   pod 'ReachabilitySwift'
 
- #pods for textfield effects
- pod 'TextFieldEffects'
-
+ 
  #ProgressHud
  pod 'ProgressHUD'
  

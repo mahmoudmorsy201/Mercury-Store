@@ -58,8 +58,8 @@ class LoginViewModel: LoginViewModelType {
             guard  email != nil && password != nil else {
                 return false
             }
-            
             return  email!.validateEmail() && password!.count >= self.minPasswordCharacters
+           
         }
     }
     
@@ -101,6 +101,7 @@ extension LoginViewModel {
     private func checkResult(_ result: AllCustomers, password: String) {
         if(!result.customers.isEmpty) {
             checkPassword(password, result)
+            
         } else {
             self.isLoadingSubject.accept(false)
             self.showErrorLabelSubject.onNext(false)
@@ -125,7 +126,6 @@ extension LoginViewModel {
             self.showErrorMessage.onNext(CustomerErrors.checkYourCredentials.rawValue)
         }
     }
-    
     private func saveCredentialsInUserDefaults(customer: CustomerResponse) {
         let user = fromCustomerToUser(customer)
         do {

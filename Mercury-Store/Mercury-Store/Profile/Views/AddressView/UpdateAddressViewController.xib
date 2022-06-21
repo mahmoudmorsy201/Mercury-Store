@@ -47,7 +47,7 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="country" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cD0-61-vYD" customClass="AkiraTextField" customModule="TextFieldEffects">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Country" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cD0-61-vYD">
                                     <rect key="frame" x="12" y="406.5" width="390" height="89"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -63,7 +63,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="city" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oSv-kJ-yDM" customClass="AkiraTextField" customModule="TextFieldEffects">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oSv-kJ-yDM">
                                     <rect key="frame" x="12" y="507.5" width="390" height="89"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
@@ -79,7 +79,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ve-XX-Zx9" customClass="AkiraTextField" customModule="TextFieldEffects">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ve-XX-Zx9">
                                     <rect key="frame" x="12" y="608.5" width="390" height="89"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -95,7 +95,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eeb-Vb-HCA" customClass="AkiraTextField" customModule="TextFieldEffects">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eeb-Vb-HCA">
                                     <rect key="frame" x="12" y="709.5" width="390" height="89"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -190,16 +190,16 @@
     </objects>
     <designables>
         <designable name="0ve-XX-Zx9">
-            <size key="intrinsicContentSize" width="64.5" height="23"/>
+            <size key="intrinsicContentSize" width="94" height="33"/>
         </designable>
         <designable name="Eeb-Vb-HCA">
-            <size key="intrinsicContentSize" width="51" height="23"/>
+            <size key="intrinsicContentSize" width="79.5" height="33"/>
         </designable>
         <designable name="cD0-61-vYD">
-            <size key="intrinsicContentSize" width="62" height="23"/>
+            <size key="intrinsicContentSize" width="92.5" height="33"/>
         </designable>
         <designable name="oSv-kJ-yDM">
-            <size key="intrinsicContentSize" width="29" height="23"/>
+            <size key="intrinsicContentSize" width="60" height="33"/>
         </designable>
     </designables>
     <resources>

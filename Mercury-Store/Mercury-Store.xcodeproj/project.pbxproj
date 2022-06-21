@@ -707,11 +707,11 @@
 		4D8D2B18285F2AF90014F066 /* AddressView */ = {
 			isa = PBXGroup;
 			children = (
-				4D8D2B19285F2AF90014F066 /* UpdateAddressViewController.swift */,
 				4D8D2B1A285F2AF90014F066 /* Cells */,
 				4D8D2B1D285F2AF90014F066 /* CreateAddressDetailsViewController.swift */,
 				4D8D2B1E285F2AF90014F066 /* CreateAddressDetailsViewController.xib */,
 				4D8D2B1F285F2AF90014F066 /* UpdateAddressViewController.xib */,
+				4D8D2B19285F2AF90014F066 /* UpdateAddressViewController.swift */,
 				4D8D2B20285F2AF90014F066 /* AddressViewController.xib */,
 				4D8D2B21285F2AF90014F066 /* AddressViewController.swift */,
 			);
