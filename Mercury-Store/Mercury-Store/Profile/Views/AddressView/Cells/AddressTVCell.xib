@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,42 +23,49 @@
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zKb-mc-iQY">
-                        <rect key="frame" x="278" y="64.5" width="30" height="31.5"/>
-                        <color key="tintColor" systemColor="systemRedColor"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="30" id="Sue-Ak-KbQ"/>
-                            <constraint firstAttribute="height" constant="30" id="dSd-2R-G2s"/>
-                        </constraints>
-                        <imageReference key="image" image="pencil" catalog="system" symbolScale="large"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBH-ps-HAw">
-                        <rect key="frame" x="12" y="120.5" width="54" height="27.5"/>
+                        <rect key="frame" x="12" y="117" width="54" height="31"/>
                         <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="23"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7F2-eU-fbb">
+                        <rect key="frame" x="271" y="117" width="49" height="31"/>
+                        <color key="tintColor" systemColor="systemRedColor"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LK6-xD-jOE">
+                        <rect key="frame" x="271" y="64.5" width="49" height="31"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="Edit"/>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="zKb-mc-iQY" secondAttribute="trailing" constant="24" id="IXH-7T-uiQ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="LK6-xD-jOE" secondAttribute="trailing" constant="12" id="6Hk-e4-Z9g"/>
+                    <constraint firstItem="7F2-eU-fbb" firstAttribute="top" secondItem="CBH-ps-HAw" secondAttribute="top" id="6Sj-bh-wdK"/>
+                    <constraint firstItem="7F2-eU-fbb" firstAttribute="trailing" secondItem="LK6-xD-jOE" secondAttribute="trailing" id="AVl-no-nj6"/>
+                    <constraint firstItem="7F2-eU-fbb" firstAttribute="leading" secondItem="LK6-xD-jOE" secondAttribute="leading" id="BO9-3F-P9p"/>
                     <constraint firstItem="HKG-Dv-OiT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="LeS-Lv-ATK"/>
                     <constraint firstItem="HKG-Dv-OiT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="NaA-9f-QHW"/>
-                    <constraint firstItem="zKb-mc-iQY" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="W7w-pg-v1d"/>
                     <constraint firstItem="CBH-ps-HAw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="bdC-rs-nFE"/>
                     <constraint firstAttribute="bottom" secondItem="CBH-ps-HAw" secondAttribute="bottom" constant="12" id="cVW-lK-9cW"/>
+                    <constraint firstItem="7F2-eU-fbb" firstAttribute="bottom" secondItem="CBH-ps-HAw" secondAttribute="bottom" id="cxF-jj-85x"/>
+                    <constraint firstItem="LK6-xD-jOE" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="gT3-Md-woo"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="addressLabel" destination="HKG-Dv-OiT" id="mZ8-GT-klj"/>
                 <outlet property="cityLabel" destination="CBH-ps-HAw" id="Cpj-zZ-Bdn"/>
-                <outlet property="edit" destination="zKb-mc-iQY" id="imA-T4-wcB"/>
+                <outlet property="deleteButton" destination="7F2-eU-fbb" id="M8j-fK-iiW"/>
+                <outlet property="editButton" destination="LK6-xD-jOE" id="VrC-ej-1rB"/>
             </connections>
             <point key="canvasLocation" x="-46.376811594202906" y="120.53571428571428"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

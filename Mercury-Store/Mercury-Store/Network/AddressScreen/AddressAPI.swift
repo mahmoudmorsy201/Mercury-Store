@@ -12,7 +12,8 @@ enum AddressAPI: URLRequestBuilder {
     case postAddress(Int,AddressRequest)
     case getAddress(Int)
     case putAddress(Int,Int,AddressRequestPut)
-   
+    case deleteAddress(Int,Int)
+    
 }
 
 extension AddressAPI {
@@ -23,6 +24,8 @@ extension AddressAPI {
         case .getAddress(let id):
             return  "/customers/\(id)/addresses.json"
         case .putAddress(let customerId, let addressId, _):
+            return "/customers/\(customerId)/addresses/\(addressId).json"
+        case .deleteAddress(let customerId, let addressId):
             return "/customers/\(customerId)/addresses/\(addressId).json"
         }
     }
@@ -35,9 +38,10 @@ extension AddressAPI {
             return try! addressRequest.asDictionary()
         case .putAddress(_, _, let addressRequestPut):
             return try! addressRequestPut.asDictionary()
-        case .getAddress(let id):
+        case .getAddress:
             return [:]
-            
+        case .deleteAddress(_, _):
+            return [:]
         }
     }
 }
@@ -47,10 +51,12 @@ extension AddressAPI {
         switch self {
         case .postAddress:
             return .post
-       case .getAddress:
+        case .getAddress:
             return .get
         case .putAddress:
             return .put
+        case .deleteAddress:
+            return .delete
         }
     }
 }

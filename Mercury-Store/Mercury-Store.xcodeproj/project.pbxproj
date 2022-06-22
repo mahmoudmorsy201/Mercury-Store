@@ -41,8 +41,6 @@
 		4D8D2B3F285F2AFA0014F066 /* MyOrdersViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D8D2B00285F2AF90014F066 /* MyOrdersViewCell.xib */; };
 		4D8D2B40285F2AFA0014F066 /* MyOrdersViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2B01285F2AF90014F066 /* MyOrdersViewCell.swift */; };
 		4D8D2B41285F2AFA0014F066 /* myOrdersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2B02285F2AF90014F066 /* myOrdersTableViewController.swift */; };
-		4D8D2B42285F2AFA0014F066 /* AddressesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2B05285F2AF90014F066 /* AddressesCell.swift */; };
-		4D8D2B43285F2AFA0014F066 /* AddressesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D8D2B06285F2AF90014F066 /* AddressesCell.xib */; };
 		4D8D2B44285F2AFA0014F066 /* AddressesCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2B07285F2AF90014F066 /* AddressesCheckViewController.swift */; };
 		4D8D2B45285F2AFA0014F066 /* AddressesCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D8D2B08285F2AF90014F066 /* AddressesCheckViewController.xib */; };
 		4D8D2B46285F2AFA0014F066 /* MyOrderDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2B0A285F2AF90014F066 /* MyOrderDetailsController.swift */; };
@@ -181,6 +179,8 @@
 		C49A1D3B28333D800081F874 /* CategoriesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C49A1D3928333D800081F874 /* CategoriesCollectionViewCell.xib */; };
 		C49A1D3D283349D30081F874 /* TableConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A1D3C283349D30081F874 /* TableConfigurator.swift */; };
 		C49C3171286040C00025AC72 /* emptyWishlist.gif in Resources */ = {isa = PBXBuildFile; fileRef = C49C3170286040BF0025AC72 /* emptyWishlist.gif */; };
+		C49F4A3A28635BFB0098512B /* CheckAddressesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F4A3828635BFB0098512B /* CheckAddressesTableViewCell.swift */; };
+		C49F4A3B28635BFB0098512B /* CheckAddressesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C49F4A3928635BFB0098512B /* CheckAddressesTableViewCell.xib */; };
 		C4A1E7F5285BD7CC008E30EE /* ShoppingCartNavigationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A1E7F4285BD7CC008E30EE /* ShoppingCartNavigationFlow.swift */; };
 		C4B9828728532B1400242415 /* ObjectSavable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9828628532B1400242415 /* ObjectSavable.swift */; };
 		C4B9828928532B2300242415 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9828828532B2300242415 /* User.swift */; };
@@ -284,8 +284,6 @@
 		4D8D2B00285F2AF90014F066 /* MyOrdersViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrdersViewCell.xib; sourceTree = "<group>"; };
 		4D8D2B01285F2AF90014F066 /* MyOrdersViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrdersViewCell.swift; sourceTree = "<group>"; };
 		4D8D2B02285F2AF90014F066 /* myOrdersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myOrdersTableViewController.swift; sourceTree = "<group>"; };
-		4D8D2B05285F2AF90014F066 /* AddressesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressesCell.swift; sourceTree = "<group>"; };
-		4D8D2B06285F2AF90014F066 /* AddressesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressesCell.xib; sourceTree = "<group>"; };
 		4D8D2B07285F2AF90014F066 /* AddressesCheckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressesCheckViewController.swift; sourceTree = "<group>"; };
 		4D8D2B08285F2AF90014F066 /* AddressesCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressesCheckViewController.xib; sourceTree = "<group>"; };
 		4D8D2B0A285F2AF90014F066 /* MyOrderDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrderDetailsController.swift; sourceTree = "<group>"; };
@@ -424,6 +422,8 @@
 		C49A1D3928333D800081F874 /* CategoriesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesCollectionViewCell.xib; sourceTree = "<group>"; };
 		C49A1D3C283349D30081F874 /* TableConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableConfigurator.swift; sourceTree = "<group>"; };
 		C49C3170286040BF0025AC72 /* emptyWishlist.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = emptyWishlist.gif; sourceTree = "<group>"; };
+		C49F4A3828635BFB0098512B /* CheckAddressesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckAddressesTableViewCell.swift; sourceTree = "<group>"; };
+		C49F4A3928635BFB0098512B /* CheckAddressesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckAddressesTableViewCell.xib; sourceTree = "<group>"; };
 		C4A1E7F4285BD7CC008E30EE /* ShoppingCartNavigationFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartNavigationFlow.swift; sourceTree = "<group>"; };
 		C4B9828628532B1400242415 /* ObjectSavable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectSavable.swift; sourceTree = "<group>"; };
 		C4B9828828532B2300242415 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -653,8 +653,8 @@
 		4D8D2B04285F2AF90014F066 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				4D8D2B05285F2AF90014F066 /* AddressesCell.swift */,
-				4D8D2B06285F2AF90014F066 /* AddressesCell.xib */,
+				C49F4A3828635BFB0098512B /* CheckAddressesTableViewCell.swift */,
+				C49F4A3928635BFB0098512B /* CheckAddressesTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1571,7 +1571,6 @@
 				C4951233283EEB6800E313EB /* CategoryViewController.xib in Resources */,
 				C4C04EEC28333299002EC367 /* BrandsTableViewCell.xib in Resources */,
 				C48A4C09285BD466008546A0 /* emptyCart.gif in Resources */,
-				4D8D2B43285F2AFA0014F066 /* AddressesCell.xib in Resources */,
 				4D21DF252846DE5A00582E43 /* MainCategoryCellTableViewCell.xib in Resources */,
 				C4102940284AAF29007045F8 /* BrandProductsCollectionViewCell.xib in Resources */,
 				C4C04EE82833328A002EC367 /* BannerTableViewCell.xib in Resources */,
@@ -1605,6 +1604,7 @@
 				4D8D2B54285F2AFA0014F066 /* CreateAddressDetailsViewController.xib in Resources */,
 				4DF2005228576C2100D49B59 /* PaymentViewViewController.xib in Resources */,
 				4D8D2B3E285F2AFA0014F066 /* myOrdersTableViewController.xib in Resources */,
+				C49F4A3B28635BFB0098512B /* CheckAddressesTableViewCell.xib in Resources */,
 				C4BA734B2839F8BF00A5F3AB /* BrandsCollectionViewCell.xib in Resources */,
 				0292A8AF2849CAE6001BC74F /* ProductDetailsImageCollectionCell.xib in Resources */,
 				C4CFBA72283C1914009C2840 /* BannerCollectionViewCell.xib in Resources */,
@@ -1791,13 +1791,13 @@
 				C4C04EE328333278002EC367 /* LogoTableViewCell.swift in Sources */,
 				4D8D2B34285F2AFA0014F066 /* AddressViewModel.swift in Sources */,
 				4D8D2BA7285F2C130014F066 /* CustomerAPI.swift in Sources */,
+				C49F4A3A28635BFB0098512B /* CheckAddressesTableViewCell.swift in Sources */,
 				021A8CCA285C0CB100EA67AC /* ViewController.swift in Sources */,
 				4DF070FD285907E20075DC60 /* PaymentViewModel.swift in Sources */,
 				4DD82609285AEB6300F5B63C /* PaymentModel.swift in Sources */,
 				C4CDB9162830E31D0000519A /* Mercury_Store.xcdatamodeld in Sources */,
 				4D8D2B53285F2AFA0014F066 /* CreateAddressDetailsViewController.swift in Sources */,
 				4D8D2B90285F2C130014F066 /* BrandsCollectionResponse.swift in Sources */,
-				4D8D2B42285F2AFA0014F066 /* AddressesCell.swift in Sources */,
 				4D8D2B33285F2AFA0014F066 /* WishListViewModel.swift in Sources */,
 				4DB39DC228583CA400EB8B42 /* RadioButtonCell.swift in Sources */,
 				C48A4C05285BC35A008546A0 /* LaunchScreenNavigationFlow.swift in Sources */,

@@ -121,10 +121,9 @@ class CreateAddressDetailsViewController: UIViewController {
     // MARK: - IBActions
     @IBAction func didPressedOnAddAddress(_ sender: Any) {
         let user = viewModel.getUserFromUserDefaults()
-        self.dropDown.selectionAction = {[weak self] (index: Int, item: String) in
-            self?.viewModel.postAddress(AddressRequestItem(address1: (self?.AddressTxt!.text!)!, address2: (self?.AddressTxt!.text!)!, city: item, company: "iti", firstName:user!.username, lastName: user!.username, phone: (self?.phoneTxt!.text!)!, province: item, country: (self?.countryTxt!.text!)!, zip: "G1R 4P5", name: "\(user!.username)", provinceCode: "Cairo", countryCode: "EG", countryName: "Egypt"))
-            self?.view.makeToast("You Have Created address!", duration: 3.0, position: .bottom)
-        }
+        
+        self.viewModel.postAddress(AddressRequestItem(address1: (self.AddressTxt!.text)!, address2: (self.AddressTxt!.text)!, city: dropDown.selectedItem!, company: "iti", firstName:user!.username, lastName: user!.username, phone: (self.phoneTxt!.text!), province: dropDown.selectedItem! , country: (self.countryTxt!.text!), zip: "G1R 4P5", name: "\(user!.username)", provinceCode: "Cairo", countryCode: "EG", countryName: "Egypt"))
+        self.view.makeToast("You Have Created address!", duration: 3.0, position: .bottom)
         
         
     }

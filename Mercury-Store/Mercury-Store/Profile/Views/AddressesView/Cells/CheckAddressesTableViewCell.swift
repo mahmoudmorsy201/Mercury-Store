@@ -1,23 +1,23 @@
 //
-//  AddressTVCell.swift
+//  CheckAddressesTableViewCell.swift
 //  Mercury-Store
 //
-//  Created by Esraa Khaled   on 21/05/2022.
+//  Created by mac hub on 22/06/2022.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
 
-class AddressTVCell: UITableViewCell {
-    
-    // MARK: - IBOutlets
+class CheckAddressesTableViewCell: UITableViewCell {
+    // MARK: - Outlets
     //
     @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var edit: UIImageView!
+    @IBOutlet weak var countryLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
+    
     
     
     // MARK: - Properties
@@ -25,7 +25,6 @@ class AddressTVCell: UITableViewCell {
     private(set) var disposeBag = DisposeBag()
     var deleteTap: ControlEvent<Void> { self.deleteButton.rx.tap }
     var editTap: ControlEvent<Void> {self.editButton.rx.tap }
-    
     var address: CustomerAddress? {
         didSet {
             guard let address = address else {
@@ -33,6 +32,7 @@ class AddressTVCell: UITableViewCell {
             }
             addressLabel.text = address.address1
             cityLabel.text = address.city
+            countryLabel.text = address.countryName
         }
     }
     // MARK: - Life cycle
@@ -40,7 +40,6 @@ class AddressTVCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -49,7 +48,4 @@ class AddressTVCell: UITableViewCell {
         disposeBag = DisposeBag()
     }
     
-
-    
 }
-
