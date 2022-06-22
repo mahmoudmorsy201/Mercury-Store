@@ -99,6 +99,7 @@ class PaymentViewModel:PaymentViewModelType{
                 if let element = items.element{
                     if element.isEmpty{
                         self.couponSubject.accept(PriceRule())
+                        self.handleCouponDiscount(discountValue: 0.0)
                     }else{
                         self.couponSubject.accept(element[0])
                         self.handleCouponDiscount(discountValue: abs(Double(element[0].value) ?? 0.0))
@@ -128,9 +129,10 @@ class PaymentViewModel:PaymentViewModelType{
         do{
             let temp = try total.value()
             if discountValue > temp{
-                total.onNext(0)
+                total.onNext(1)
             }else{
-                total.onNext(temp - discountValue)
+                self.totalItemsPrice()
+                total.onNext(subTotal - discountValue)
             }
         }catch(_){
         }
