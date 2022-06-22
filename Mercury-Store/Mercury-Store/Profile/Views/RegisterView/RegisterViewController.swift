@@ -113,7 +113,7 @@ class RegisterViewController: UIViewController {
     private func bindSignUpBtn() {
         signupBtn.rx.tap
             .subscribe {[weak self] _ in
-                self?.registerViewModel.checkCustomerExists(firstName: self!.firstNameTextField.text!, lastName: self!.lastNameTextField.text!, email: self!.emailTextField.text!, password: self!.passwordTextField.text!)
+                self?.registerViewModel.checkCustomerExists(firstName: self!.firstNameTxt.text!, lastName: self!.lastNameTxt.text!, email: self!.emailTxt.text!, password: self!.passwordTxt.text!)
         }.disposed(by: disposeBag)
         
     }
@@ -130,7 +130,7 @@ class RegisterViewController: UIViewController {
     }
     
     private func bindLoginButton() {
-        loginButton.rx.tap.subscribe { [weak self] _ in
+        signInBtn.rx.tap.subscribe { [weak self] _ in
             self?.registerViewModel.goToLoginScreen()
         }.disposed(by: disposeBag)
     }

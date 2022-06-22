@@ -95,9 +95,9 @@ extension LoginViewController {
         }).disposed(by: disposeBag)
     }
     private func bindLoginBtn(){
-        loginButton.rx.tap.subscribe(onNext: { [weak self] _ in
+        loginBtn.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let `self` = self else {fatalError()}
-            self.loginViewModel.checkCustomerExists(email:self.emailTextField.text!, password:self.passwordTextField.text!)
+            self.loginViewModel.checkCustomerExists(email:self.emailTxt.text!, password:self.passwordTxt.text!)
         }).disposed(by: disposeBag)
     }
     
