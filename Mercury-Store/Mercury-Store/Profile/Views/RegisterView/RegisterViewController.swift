@@ -103,8 +103,7 @@ class RegisterViewController: UIViewController {
     private func bindSignUpBtn() {
         signUpBtn.rx.tap
             .subscribe {[weak self] _ in
-            guard let `self` = self else {fatalError()}
-            self.registerViewModel.checkCustomerExists(firstName: self.firstNameTextField.text!, lastName: self.lastNameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!)
+                self?.registerViewModel.checkCustomerExists(firstName: self!.firstNameTextField.text!, lastName: self!.lastNameTextField.text!, email: self!.emailTextField.text!, password: self!.passwordTextField.text!)
         }.disposed(by: disposeBag)
     }
     
@@ -121,8 +120,7 @@ class RegisterViewController: UIViewController {
     
     private func bindLoginButton() {
         loginButton.rx.tap.subscribe { [weak self] _ in
-            guard let `self` = self else {fatalError()}
-            self.registerViewModel.goToLoginScreen()
+            self?.registerViewModel.goToLoginScreen()
         }.disposed(by: disposeBag)
     }
     

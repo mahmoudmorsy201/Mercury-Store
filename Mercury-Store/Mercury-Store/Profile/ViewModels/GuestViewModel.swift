@@ -14,7 +14,7 @@ protocol GuestViewModelType {
 
 final class GuestViewModel: GuestViewModelType {
 
-    private weak var guestFlow: (GuestNavigationFlow)?
+    private weak var guestFlow: GuestNavigationFlow?
     
     init(_ guestFlow: GuestNavigationFlow) {
         self.guestFlow = guestFlow
