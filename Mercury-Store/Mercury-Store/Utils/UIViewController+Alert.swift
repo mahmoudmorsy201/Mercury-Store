@@ -17,6 +17,7 @@ extension UIViewController {
     func alert(title: String? = nil, message: String, defaultTitle: String, cancelTitle: String = "Cancel") -> Observable<AlertAction> {
         return Observable.create { [weak self] observable in
             let vc = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
             vc.addAction(UIAlertAction(title: defaultTitle, style: .default, handler: { _ in
                 observable.onNext(.default)
                 observable.onCompleted()

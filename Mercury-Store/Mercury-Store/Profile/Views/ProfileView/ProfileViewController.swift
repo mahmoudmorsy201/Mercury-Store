@@ -25,8 +25,7 @@ class ProfileViewController: UIViewController {
     init(with viewModel: ProfileViewModel) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
-        let user = try! UserDefaults.standard.getObject(forKey: "user", castTo: User.self)
-        title = "\(user.username)"
+        title = "Profile"
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
