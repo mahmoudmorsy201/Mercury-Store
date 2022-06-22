@@ -20,6 +20,7 @@ protocol RegisterViewModelType {
     var isNotValidEmail: Observable<Bool> { get }
     var isNotValidPassword: Observable<Bool>  { get }
     var isNotValidConfirmPassword: Observable<Bool>  { get }
+    var errorMessage: AnyObserver<String?> { get }
     var registerErrorMessage: AnyObserver<String?> { get }
     var isLoading: Driver<Bool> { get }
     var emailCheckErrorMessage: Observable<String?> { get }
@@ -47,6 +48,7 @@ class RegisterViewModel: RegisterViewModelType {
     private let sharedInstance: UserDefaults
     private let isLoadingSubject = BehaviorRelay<Bool> (value: false)
     private let emptySubject = BehaviorRelay<Bool>(value: true)
+    private let showError = BehaviorSubject<String?>(value: "")
     
   
     //MARK: - Public properties
@@ -72,7 +74,9 @@ class RegisterViewModel: RegisterViewModelType {
     var showErrorLabelObserver: Observable<Bool> { showErrorLabelSubject.asObservable() }
     
     var isLoading: Driver<Bool> { isLoadingSubject.asDriver(onErrorJustReturn: false) }
-
+    
+    var errorMessage: AnyObserver<String?> { showError.asObserver() }
+    
     var isValidForm: Observable<Bool> {
         return Observable.combineLatest( firstNameSubject, secondNameSubject,emailSubject, passwordSubject,confirmPasswordSubject) { firstName, secondName, email, password, confirmPassword in
             guard firstName != nil && secondName != nil && email != nil && password != nil && confirmPassword != nil else {
@@ -82,30 +86,30 @@ class RegisterViewModel: RegisterViewModelType {
         }
     }
     var isNotEmptyFirstname: Observable<Bool> {
-        return Observable.combineLatest(firstNameSubject,showErrorMessage) { firstName,errorMessage  in
+        return Observable.combineLatest(firstNameSubject,showError) { firstName,errorMessage  in
             return !(firstName!.isEmpty)
         }
     }
     
     var isNotEmptyLastname: Observable<Bool> {
-        return Observable.combineLatest(secondNameSubject,showErrorMessage) { lastName,errorMessage  in
+        return Observable.combineLatest(secondNameSubject,showError) { lastName,errorMessage  in
             return  !(lastName!.isEmpty)
         }
     }
     
     var isNotValidEmail: Observable<Bool> {
-        return Observable.combineLatest(emailSubject,showErrorMessage) { email,errorMessage  in
-            return !(email!.isEmpty) && !(email!.validateEmail())
+        return Observable.combineLatest(emailSubject,showError) { email,errorMessage  in
+            return !(email!.isEmpty) && (email!.validateEmail())
         }
     }
     var isNotValidPassword: Observable<Bool> {
-        return Observable.combineLatest(passwordSubject,showErrorMessage) { password,errorMessage  in
-            return !( password!.isEmpty) && password!.count <= self.minPasswordCharacters
+        return Observable.combineLatest(passwordSubject,showError) { password,errorMessage  in
+            return !( password!.isEmpty) && password!.count >= self.minPasswordCharacters
         }
     }
     var isNotValidConfirmPassword: Observable<Bool> {
-        return Observable.combineLatest(confirmPasswordSubject,showErrorMessage) { confirmPassword,errorMessage  in
-            return !(confirmPassword!.isEmpty) && confirmPassword!.count <= self.minPasswordCharacters
+        return Observable.combineLatest(confirmPasswordSubject, showError, passwordSubject) { confirmPassword,errorMessage, password  in
+            return !(confirmPassword!.isEmpty) && password == confirmPassword
         }
     }
     //MARK: - Initialiser

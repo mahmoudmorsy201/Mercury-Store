@@ -71,7 +71,7 @@ extension AddressesCheckViewController {
             .drive(tableView.rx.items(cellIdentifier: CheckAddressesTableViewCell.reuseIdentifier(), cellType: CheckAddressesTableViewCell.self)) {[weak self] indexPath, item , cell in
                 guard let `self` = self else {fatalError()}
                 cell.address = item
-                if(indexPath != 0) {
+                if(item.customerAddressDefault == false) {
                     cell.deleteTap
                         .withUnretained(self)
                         .flatMapLatest{ s, _ in s.deleteItem() }
@@ -92,7 +92,7 @@ extension AddressesCheckViewController {
                 }
                 
                 cell.editTap.subscribe(onNext: { _ in
-                    self.viewModel.goToEditAddressScreen(with: item)
+                    self.viewModel.goToEditAddressFromCart(with: item)
                 }).disposed(by: cell.disposeBag)
             }.disposed(by: disposeBag)
         self.viewModel?.getAddress()

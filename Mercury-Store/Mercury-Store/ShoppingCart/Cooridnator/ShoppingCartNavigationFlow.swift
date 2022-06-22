@@ -12,4 +12,5 @@ protocol ShoppingCartNavigationFlow: AnyObject {
     func goToGuestTab()
     func goToPaymentScreen(selectedAddress: CustomerAddress)
     func popToRoot()
+    func goToEditAddressScreen(with selectedAddress: CustomerAddress)
 }

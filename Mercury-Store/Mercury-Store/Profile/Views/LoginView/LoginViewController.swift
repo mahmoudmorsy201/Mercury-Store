@@ -20,6 +20,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var errorLabelOnPassword: UILabel!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var signupBtn: UIButton!
+    
     // MARK: - Properties
     //
     private var loginViewModel: LoginViewModelType!
