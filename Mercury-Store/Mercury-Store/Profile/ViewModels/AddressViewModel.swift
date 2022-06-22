@@ -68,7 +68,7 @@ class AddressViewModel: AddressViewModelType {
             guard city != nil && address != nil && phone != nil  else {
                 return false
             }
-            return !(city!.isEmpty) && !(phone!.isEmpty) && !(address!.isEmpty) && phone!.validatePhone()
+            return !(city!.isEmpty) && !(phone!.isEmpty) && !(address!.isEmpty) && phone!.isValidPhone()
         }
     }
     
@@ -80,7 +80,7 @@ class AddressViewModel: AddressViewModelType {
     
     var isNotValidPhone: Observable<Bool> {
         return Observable.combineLatest(phoneSubject,showErrorMessage) { phone,errorMessage  in
-            return  !(phone!.isEmpty) && phone!.validatePhone()
+            return  !(phone!.isEmpty) && phone!.isValidPhone()
         }
     }
     
