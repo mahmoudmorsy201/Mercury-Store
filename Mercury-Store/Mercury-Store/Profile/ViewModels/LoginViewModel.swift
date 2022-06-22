@@ -15,6 +15,10 @@ protocol LoginViewModelType {
     var emailObservable: AnyObserver<String?> { get }
     var passwordObservable: AnyObserver<String?> { get }
     var isValidForm: Observable<Bool> { get }
+    var isNotValidEmail: Observable<Bool> { get }
+    var isNotValidPassword: Observable<Bool>  { get }
+    var loginErrorMessage: AnyObserver<String?> { get }
+    var empty: Driver<Bool> { get }
     var emailCheckErrorMessage: Observable<String?> { get }
     var showErrorLabelObserver: Observable<Bool> { get }
     var isLoading: Driver<Bool> { get }
@@ -25,6 +29,7 @@ protocol LoginViewModelType {
 // MARK: - ViewModel
 //
 class LoginViewModel: LoginViewModelType {
+    
     
     // MARK: - Private properties
     //
@@ -39,6 +44,12 @@ class LoginViewModel: LoginViewModelType {
     private let showErrorLabelSubject = BehaviorSubject<Bool>(value: true)
     private let sharedInstance: UserDefaults
     private let isLoadingSubject = BehaviorRelay<Bool> (value: false)
+    private let emptySubject = BehaviorRelay<Bool>(value: true)
+    
+    var empty: Driver<Bool> {
+        return emptySubject
+            .asDriver(onErrorJustReturn: true)
+    }
     
     // MARK: - Public properties
     //
@@ -46,12 +57,14 @@ class LoginViewModel: LoginViewModelType {
     
     var passwordObservable: AnyObserver<String?> { passwordSubject.asObserver() }
     
+    var addressErrorMessage: AnyObserver<String?> { showErrorMessage.asObserver() }
+    
     var emailCheckErrorMessage: Observable<String?> { showErrorMessage.asObservable() }
     
     var showErrorLabelObserver: Observable<Bool> { showErrorLabelSubject.asObservable() }
     
     var isLoading: Driver<Bool> { isLoadingSubject.asDriver(onErrorJustReturn: false) }
-    
+    var loginErrorMessage: AnyObserver<String?> { showErrorMessage.asObserver() }
     var isValidForm: Observable<Bool> {
         
         return Observable.combineLatest( emailSubject, passwordSubject) {  email, password in
@@ -60,6 +73,18 @@ class LoginViewModel: LoginViewModelType {
             }
             return  email!.validateEmail() && password!.count >= self.minPasswordCharacters
            
+        }
+    }
+    var isNotValidEmail: Observable<Bool> {
+        return Observable.combineLatest(emailSubject,showErrorMessage) { email,errorMessage  in
+            return  !(email!.isEmpty) && email!.validateEmail()
+        }
+    }
+    
+    var isNotValidPassword: Observable<Bool> {
+        return Observable.combineLatest(passwordSubject,showErrorMessage) {password,errorMessage  in
+            return !(password!.isEmpty) && password!.count <= self.minPasswordCharacters
+    
         }
     }
     

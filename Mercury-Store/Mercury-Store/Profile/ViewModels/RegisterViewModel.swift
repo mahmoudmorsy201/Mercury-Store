@@ -15,6 +15,12 @@ protocol RegisterViewModelType {
     var passwordObservable: AnyObserver<String?> { get }
     var confirmPasswordObservable: AnyObserver<String?> { get }
     var isValidForm: Observable<Bool> { get }
+    var isNotEmptyFirstname: Observable<Bool> { get }
+    var isNotEmptyLastname: Observable<Bool> { get }
+    var isNotValidEmail: Observable<Bool> { get }
+    var isNotValidPassword: Observable<Bool>  { get }
+    var isNotValidConfirmPassword: Observable<Bool>  { get }
+    var registerErrorMessage: AnyObserver<String?> { get }
     var isLoading: Driver<Bool> { get }
     var emailCheckErrorMessage: Observable<String?> { get }
     var showErrorLabelObserver: Observable<Bool> { get }
@@ -40,9 +46,15 @@ class RegisterViewModel: RegisterViewModelType {
     private let showErrorLabelSubject = BehaviorSubject<Bool>(value: true)
     private let sharedInstance: UserDefaults
     private let isLoadingSubject = BehaviorRelay<Bool> (value: false)
+    private let emptySubject = BehaviorRelay<Bool>(value: true)
     
+  
     //MARK: - Public properties
     //
+    var empty: Driver<Bool> {
+        return emptySubject
+            .asDriver(onErrorJustReturn: true)
+    }
     var firstNameObservable: AnyObserver<String?> { firstNameSubject.asObserver() }
     
     var secondNameObservable: AnyObserver<String?> { secondNameSubject.asObserver() }
@@ -52,6 +64,8 @@ class RegisterViewModel: RegisterViewModelType {
     var passwordObservable: AnyObserver<String?> { passwordSubject.asObserver() }
     
     var confirmPasswordObservable: AnyObserver<String?> { confirmPasswordSubject.asObserver() }
+    
+    var registerErrorMessage: AnyObserver<String?> { showErrorMessage.asObserver() }
     
     var emailCheckErrorMessage: Observable<String?> { showErrorMessage.asObservable() }
     
@@ -67,7 +81,33 @@ class RegisterViewModel: RegisterViewModelType {
             return !(firstName!.isEmpty) &&  !(secondName!.isEmpty) && email!.validateEmail() && password!.count >= self.minPasswordCharacters && confirmPassword!.count >= self.minPasswordCharacters
         }
     }
-        
+    var isNotEmptyFirstname: Observable<Bool> {
+        return Observable.combineLatest(firstNameSubject,showErrorMessage) { firstName,errorMessage  in
+            return !(firstName!.isEmpty)
+        }
+    }
+    
+    var isNotEmptyLastname: Observable<Bool> {
+        return Observable.combineLatest(secondNameSubject,showErrorMessage) { lastName,errorMessage  in
+            return  !(lastName!.isEmpty)
+        }
+    }
+    
+    var isNotValidEmail: Observable<Bool> {
+        return Observable.combineLatest(emailSubject,showErrorMessage) { email,errorMessage  in
+            return !(email!.isEmpty) && !(email!.validateEmail())
+        }
+    }
+    var isNotValidPassword: Observable<Bool> {
+        return Observable.combineLatest(passwordSubject,showErrorMessage) { password,errorMessage  in
+            return !( password!.isEmpty) && password!.count <= self.minPasswordCharacters
+        }
+    }
+    var isNotValidConfirmPassword: Observable<Bool> {
+        return Observable.combineLatest(confirmPasswordSubject,showErrorMessage) { confirmPassword,errorMessage  in
+            return !(confirmPassword!.isEmpty) && confirmPassword!.count <= self.minPasswordCharacters
+        }
+    }
     //MARK: - Initialiser
     //
     init(_ customerProvider: CustomerProvider = CustomerClient(), flow: GuestNavigationFlow, sharedInstance: UserDefaults = UserDefaults.standard) {

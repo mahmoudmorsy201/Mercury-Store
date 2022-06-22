@@ -13,9 +13,5 @@ extension String {
         let predicate = NSPredicate(format:"SELF MATCHES %@", emailRegex)
         return predicate.evaluate(with: self)
     }
-    func validatePhone() -> Bool {
-        let phoneRegex = "^(\01|01|00201)[0-2,5]{1}[0-9]{8}"
-        let predicate = NSPredicate(format:"SELF MATCHES %@", phoneRegex)
-        return predicate.evaluate(with: self)
-    }
+    
 }
