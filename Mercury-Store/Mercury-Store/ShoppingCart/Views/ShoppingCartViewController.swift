@@ -63,7 +63,7 @@ class ShoppingCartViewController: UIViewController {
         containerViewForSubTotalAndProceedToCheckout.makeCorners(corners: [.topLeft , .topRight], radius: 18)
         containerViewForShadow.applyShadow()
         checkoutBTN.tintColor = ColorsPalette.labelColors
-        subTotalLabel.textColor = ColorsPalette.darkBlue
+        subTotalLabel.textColor = ColorsPalette.lightColor
         checkoutBTN.configuration?.background.backgroundColor = ColorsPalette.lightColor
         containerViewForSubTotalAndProceedToCheckout.applyShadow()
         totalPriceLabel.textColor = ColorsPalette.lightColor

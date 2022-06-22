@@ -34,7 +34,7 @@ final class ProductSearchViewModel {
     var searchByName: AnyObserver<String?> { searchBarBehavior.asObserver()}
     var isLoadingData: Driver<Bool> {isLoadingSubject.asDriver(onErrorJustReturn: false)}
     let value = BehaviorRelay<Int>(value:0)
-    let sortArray = ["Price: High to Low" , "Price: Low to High", "Sort alphabetically"]
+    let sortArray = ["Price: High to Low" , "Price: Low to High", "Sort from A to Z"]
     
     init(provider: SearchProvider = SearchClient(),searchFlowNavigation : SearchFlowNavigation) {
         self.provider = provider

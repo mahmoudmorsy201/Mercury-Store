@@ -46,7 +46,6 @@
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ioa-vz-9sk">
                                     <rect key="frame" x="12" y="114" width="374" height="54"/>
-                                    <color key="tintColor" red="0.3921568627" green="0.17254901959999999" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="filled" title="PROCEED TO CHEEKOUT" cornerStyle="capsule"/>
                                 </button>

@@ -37,7 +37,6 @@ class LaunchViewController: UIViewController {
         animationView.animation = Animation.named("E-commerce")
         animationView.frame = view.bounds
         animationView.center = view.center
-        animationView.frame = view.bounds
         animationView.backgroundColor = .white
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = .playOnce
