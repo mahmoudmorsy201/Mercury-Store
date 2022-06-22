@@ -20,6 +20,9 @@ target 'Mercury-Store' do
 
   #Toast_Swift
   pod 'Toast-Swift', '~> 5.0.1'
+  
+  #Cosmos
+  pod 'Cosmos', '~> 23.0'
 
 
   # Includes Cards and PayPal

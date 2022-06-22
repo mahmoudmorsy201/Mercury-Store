@@ -33,6 +33,7 @@ PODS:
     - Braintree/ThreeDSecure (~> 5.9)
     - Braintree/UnionPay (~> 5.9)
     - Braintree/Venmo (~> 5.9)
+  - Cosmos (23.0.0)
   - Differentiator (5.0.0)
   - DropDown (2.3.13)
   - lottie-ios (3.3.0)
@@ -60,6 +61,7 @@ DEPENDENCIES:
   - Braintree/DataCollector
   - Braintree/Venmo
   - BraintreeDropIn
+  - Cosmos (~> 23.0)
   - DropDown
   - lottie-ios
   - ProgressHUD
@@ -76,6 +78,7 @@ SPEC REPOS:
     - Alamofire
     - Braintree
     - BraintreeDropIn
+    - Cosmos
     - Differentiator
     - DropDown
     - lottie-ios
@@ -93,6 +96,7 @@ SPEC CHECKSUMS:
   Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
   Braintree: a4df29b5453664ea01f89a04e0ae97397021c92f
   BraintreeDropIn: 31882df3fd8d5cb627339c3ecc857e480d8ef7b8
+  Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
@@ -106,6 +110,6 @@ SPEC CHECKSUMS:
   SwiftLint: f80f1be7fa96d30e0aa68e58d45d4ea1ccaac519
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 84333fac1c3eed7dc877fe5c4ee8f95a21271b90
+PODFILE CHECKSUM: de154c8fb8489c6aa1df1ef9736828ba2b055a0f
 
 COCOAPODS: 1.11.3
