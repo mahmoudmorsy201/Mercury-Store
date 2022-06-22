@@ -21,14 +21,14 @@ class MeCoordinator: Coordinator {
     }
     
     func start() {
+        let guestCoordinator = GuestCoordinator(navigationController: navigationController)
+        self.children.append(guestCoordinator)
+        let profileCoordinator = ProfileCoordinator(navigationController: navigationController)
+        self.children.append(profileCoordinator)
         if getUserFromUserDefaults() {
-            let profileCoordinator = ProfileCoordinator(navigationController: navigationController)
-            self.children.append(profileCoordinator)
             profileCoordinator.parentCoordinator = self
             profileCoordinator.start()
         } else {
-            let guestCoordinator = GuestCoordinator(navigationController: navigationController)
-            self.children.append(guestCoordinator)
             guestCoordinator.parentCoordinator = self
             guestCoordinator.start()
         }

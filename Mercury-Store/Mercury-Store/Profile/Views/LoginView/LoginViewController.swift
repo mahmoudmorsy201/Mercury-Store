@@ -95,10 +95,10 @@ extension LoginViewController {
         }).disposed(by: disposeBag)
     }
     private func bindLoginBtn(){
-        loginBtn.rx.tap.subscribe { [weak self] _ in
+        loginButton.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let `self` = self else {fatalError()}
-            self.loginViewModel.checkCustomerExists(email:self.emailTxt.text!, password:self.passwordTxt.text!)
-        }.disposed(by: disposeBag)
+            self.loginViewModel.checkCustomerExists(email:self.emailTextField.text!, password:self.passwordTextField.text!)
+        }).disposed(by: disposeBag)
     }
     
      private func bindErrorLabel() {
@@ -113,8 +113,7 @@ extension LoginViewController {
     
     private func bindSignupBtn(){
         signupBtn.rx.tap.subscribe { [weak self] _ in
-            guard let `self` = self else {fatalError()}
-            self.loginViewModel.goToRegisterScreen()
+            self?.loginViewModel.goToRegisterScreen()
         }.disposed(by: disposeBag)
     }
 }
