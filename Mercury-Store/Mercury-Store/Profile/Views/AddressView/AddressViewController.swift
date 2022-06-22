@@ -54,20 +54,36 @@ extension AddressViewController {
         tableView.dataSource = nil
         tableView.delegate = nil
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
-        
         viewModel.addresses
-            .drive(tableView.rx.items(cellIdentifier: AddressTVCell.reuseIdentifier(), cellType: AddressTVCell.self)) {indexPath, item , cell in
+            .drive(tableView.rx.items(cellIdentifier: AddressTVCell.reuseIdentifier(), cellType: AddressTVCell.self)) {[weak self] indexPath, item , cell in
+                guard let `self` = self else {fatalError()}
                 cell.address = item
+                if(indexPath != 0) {
+                    cell.deleteTap
+                        .withUnretained(self)
+                        .flatMapLatest{ s, _ in s.deleteItem() }
+                        .filter { $0 == .default}
+                        .map{ _ in item }
+                        .subscribe(onNext: { _ in
+                            self.viewModel.deleteAddress(with: item)
+                        }).disposed(by: cell.disposeBag)
+                }else {
+                    cell.deleteTap
+                        .withUnretained(self)
+                        .flatMapLatest{ s, _ in s.deleteDefault() }
+                        .filter { $0 == .default}
+                        .map{ _ in item }
+                        .subscribe(onNext: { _ in
+                            
+                        }).disposed(by: cell.disposeBag)
+                }
+                
+                cell.editTap.subscribe(onNext: { _ in
+                    self.viewModel.goToEditAddressScreen(with: item)
+                }).disposed(by: cell.disposeBag)
             }
             .disposed(by: disposeBag)
         self.viewModel?.getAddress()
-        
-        
-        tableView.rx.modelSelected(CustomerAddress.self)
-            .subscribe(onNext:{ type in
-                self.viewModel.goToEditAddressScreen(with: type)
-            }).disposed(by: disposeBag)
-        
     }
     
     private func bindEmptyView() {
@@ -91,5 +107,20 @@ extension AddressViewController: UITableViewDelegate {
         return 140
     }
     
+}
+
+extension AddressViewController {
+    fileprivate func deleteItem() -> Observable<UIViewController.AlertAction> {
+        return alert(title: "Delete Address",
+                     message: "Would you like to delete this address?",
+                     defaultTitle: "OK",
+                     cancelTitle: "Cancel")
+    }
+    
+    fileprivate func deleteDefault() -> Observable<UIViewController.AlertAction> {
+        return alertWithOneButton(title: "Delete Address",
+                     message: "You cannot delete your default address",
+                     defaultTitle: "OK")
+    }
 }
 

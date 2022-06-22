@@ -60,8 +60,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
 
 // MARK: - Extensions
 extension ShoppingCartTableViewCell {
-    // MARK: - Private handlers
-    //
+
     func bind(viewModel: CartCellViewModel, incrementObserver: AnyObserver<SavedProductItem>, decrementObserver: AnyObserver<SavedProductItem>, deleteObserver: AnyObserver<SavedProductItem>) {
         guard let image = viewModel.image else {return}
         guard let url = URL(string: image) else {fatalError()}

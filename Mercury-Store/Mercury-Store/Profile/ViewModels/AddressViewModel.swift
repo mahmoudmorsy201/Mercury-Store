@@ -19,6 +19,7 @@ protocol AddressViewModelType {
     var isNotValidCity: Observable<Bool>  { get }
     var addresses: Driver<[CustomerAddress]> {get}
     var addressErrorMessage: AnyObserver<String?> { get }
+    var deleteAddress: AnyObserver<CustomerAddress> { get }
     var empty: Driver<Bool> { get }
     func postAddress(_ address:AddressRequestItem)
     func getAddress()
@@ -29,6 +30,7 @@ protocol AddressViewModelType {
     func goToAddAddressScreen()
     func goToPaymentFromSelectedAddress(_ selectedAddress: CustomerAddress)
     func acceptTitle(_ title: String)
+    func deleteAddress(with address: CustomerAddress)
 }
 class AddressViewModel: AddressViewModelType {
     
@@ -46,6 +48,8 @@ class AddressViewModel: AddressViewModelType {
     private weak var addressNavigationFlow : UpdateAddressNavigationFlow?
     private weak var cartNavigationFlow: ShoppingCartNavigationFlow?
     private let emptySubject = BehaviorRelay<Bool>(value: true)
+    private let deleteAddressSubject = PublishSubject<CustomerAddress>()
+    
     
     var empty: Driver<Bool> {
         return emptySubject
@@ -86,6 +90,8 @@ class AddressViewModel: AddressViewModelType {
         }
     }
     
+    var deleteAddress: AnyObserver<CustomerAddress> { deleteAddressSubject.asObserver() }
+    
     init(_ addressProvider: AddressProvider = AddressClient(),
          addressNavigationFlow: UpdateAddressNavigationFlow,
          cartNavigationFlow: ShoppingCartNavigationFlow
@@ -107,6 +113,7 @@ class AddressViewModel: AddressViewModelType {
     func goToAddAddressScreen() {
         self.addressNavigationFlow?.goToAddAddressScreen()
     }
+    
     func postAddress( _ address:AddressRequestItem){
         let user = getUserFromUserDefaults()
         addressProvider.postAddress(with: user!.id, addressRequest: AddressRequest(address: address))
@@ -153,6 +160,17 @@ class AddressViewModel: AddressViewModelType {
                 self.addressRequestPostError.onNext(error)
             })
             .disposed(by: disposeBag)
+    }
+    
+    func deleteAddress(with address: CustomerAddress) {
+        let user = getUserFromUserDefaults()
+        deleteAddressSubject.onNext(address)
+        addressProvider.deleteAddress(with: user!.id, and: address.id)
+            .subscribe { [weak self] _ in
+                guard let `self` = self else {fatalError()}
+                self.getAddress()
+            }.disposed(by: disposeBag)
+
     }
     
     func getUserFromUserDefaults() -> User? {

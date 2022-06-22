@@ -14,9 +14,9 @@ class AddressesCheckViewController: UIViewController {
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var imageForEmptyAddress: UIImageView!
     @IBOutlet weak var tableView: UITableView!{
-    didSet {
-        tableView.register(UINib(nibName: AddressesCell.reuseIdentifier(), bundle: nil), forCellReuseIdentifier: AddressesCell.reuseIdentifier())
-    }}
+        didSet {
+            tableView.register(UINib(nibName: CheckAddressesTableViewCell.reuseIdentifier(), bundle: nil), forCellReuseIdentifier: CheckAddressesTableViewCell.reuseIdentifier())
+        }}
     // MARK: - Properties
     //
     private var viewModel: AddressViewModelType!
@@ -24,7 +24,7 @@ class AddressesCheckViewController: UIViewController {
     let connection = NetworkReachability.shared
     // MARK: - Set up
     //
-    init(with viewModel: AddressViewModelType! ) {
+    init(with viewModel: AddressViewModelType) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
     }
@@ -42,7 +42,7 @@ class AddressesCheckViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         connection.checkNetwork(target: self)
-        self.viewModel?.getAddress()
+        self.viewModel.getAddress()
     }
 }
 // MARK: - Extensions
@@ -68,8 +68,32 @@ extension AddressesCheckViewController {
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
         
         viewModel.addresses
-            .drive(tableView.rx.items(cellIdentifier: AddressesCell.reuseIdentifier(), cellType: AddressesCell.self)) {indexPath, item , cell in
+            .drive(tableView.rx.items(cellIdentifier: CheckAddressesTableViewCell.reuseIdentifier(), cellType: CheckAddressesTableViewCell.self)) {[weak self] indexPath, item , cell in
+                guard let `self` = self else {fatalError()}
                 cell.address = item
+                if(indexPath != 0) {
+                    cell.deleteTap
+                        .withUnretained(self)
+                        .flatMapLatest{ s, _ in s.deleteItem() }
+                        .filter { $0 == .default}
+                        .map{ _ in item }
+                        .subscribe(onNext: { _ in
+                            self.viewModel.deleteAddress(with: item)
+                        }).disposed(by: cell.disposeBag)
+                }else {
+                    cell.deleteTap
+                        .withUnretained(self)
+                        .flatMapLatest{ s, _ in s.deleteDefault() }
+                        .filter { $0 == .default}
+                        .map{ _ in item }
+                        .subscribe(onNext: { _ in
+                            
+                        }).disposed(by: cell.disposeBag)
+                }
+                
+                cell.editTap.subscribe(onNext: { _ in
+                    self.viewModel.goToEditAddressScreen(with: item)
+                }).disposed(by: cell.disposeBag)
             }.disposed(by: disposeBag)
         self.viewModel?.getAddress()
         
@@ -77,7 +101,7 @@ extension AddressesCheckViewController {
             .subscribe { [weak self] selectedAddress in
                 self?.viewModel.goToPaymentFromSelectedAddress(selectedAddress)
             }.disposed(by: disposeBag)
-
+        
     }
     
     private func bindEmptyView() {
@@ -90,6 +114,21 @@ extension AddressesCheckViewController {
 extension AddressesCheckViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 160
+    }
+}
+
+extension AddressesCheckViewController {
+    fileprivate func deleteItem() -> Observable<UIViewController.AlertAction> {
+        return alert(title: "Delete Address",
+                     message: "Would you like to delete this address?",
+                     defaultTitle: "OK",
+                     cancelTitle: "Cancel")
+    }
+    
+    fileprivate func deleteDefault() -> Observable<UIViewController.AlertAction> {
+        return alertWithOneButton(title: "Delete Address",
+                                  message: "You cannot delete your default address",
+                                  defaultTitle: "OK")
     }
 }
 
