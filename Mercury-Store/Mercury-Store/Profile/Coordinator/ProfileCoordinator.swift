@@ -75,7 +75,7 @@ extension ProfileCoordinator: UpdateAddressNavigationFlow {
     func goToUpdateAddressScreen(with address: CustomerAddress) {
         let addressViewModel: AddressViewModelType = AddressViewModel(addressNavigationFlow: self, cartNavigationFlow: self)
         let newAddressVC = UpdateAddressViewController(with: addressViewModel, selectedAddress: address)
-        
+        navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.pushViewController(newAddressVC, animated: true)
         
     }
@@ -87,6 +87,10 @@ extension ProfileCoordinator: UpdateAddressNavigationFlow {
 }
 
 extension ProfileCoordinator : ShoppingCartNavigationFlow {
+    func goToEditAddressScreen(with selectedAddress: CustomerAddress) {
+        
+    }
+    
     func popToRoot() {
         
     }

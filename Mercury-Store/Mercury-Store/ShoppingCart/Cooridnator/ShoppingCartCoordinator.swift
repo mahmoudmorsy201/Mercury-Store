@@ -49,6 +49,13 @@ extension ShoppingCartCoordinator: ShoppingCartNavigationFlow {
         let paymentAddressVC = PaymentViewViewController(nibName: "PaymentViewViewController", bundle: nil ,  viewModel: viewModel)
         navigationController.pushViewController(paymentAddressVC, animated: true)
     }
+    
+    func goToEditAddressScreen(with selectedAddress: CustomerAddress) {
+        let addressViewModel: AddressViewModelType = AddressViewModel(addressNavigationFlow: self, cartNavigationFlow: self)
+        let newAddressVC = UpdateAddressViewController(with: addressViewModel, selectedAddress: selectedAddress)
+        navigationController.setNavigationBarHidden(true, animated: false)
+        navigationController.pushViewController(newAddressVC, animated: true)
+    }
 }
 
 extension ShoppingCartCoordinator: UpdateAddressNavigationFlow {

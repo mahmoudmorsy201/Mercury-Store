@@ -31,6 +31,7 @@ protocol AddressViewModelType {
     func goToPaymentFromSelectedAddress(_ selectedAddress: CustomerAddress)
     func acceptTitle(_ title: String)
     func deleteAddress(with address: CustomerAddress)
+    func goToEditAddressFromCart(with address: CustomerAddress)
 }
 class AddressViewModel: AddressViewModelType {
     
@@ -108,7 +109,9 @@ class AddressViewModel: AddressViewModelType {
     
     func goToEditAddress(with address: CustomerAddress) {
         self.addressNavigationFlow?.goToUpdateAddressScreen(with: address)
-        
+    }
+    func goToEditAddressFromCart(with address: CustomerAddress) {
+        self.cartNavigationFlow?.goToEditAddressScreen(with: address)
     }
     func goToAddAddressScreen() {
         self.addressNavigationFlow?.goToAddAddressScreen()

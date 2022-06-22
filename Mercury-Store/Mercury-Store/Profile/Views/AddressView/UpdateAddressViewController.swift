@@ -28,7 +28,7 @@ class UpdateAddressViewController: UIViewController {
     //
     private var viewModel: AddressViewModelType!
     private var selectedAddress: CustomerAddress!
-    private let disposeBag = DisposeBag ()
+    private let disposeBag = DisposeBag()
     private let dropDown = DropDown()
     let connection = NetworkReachability.shared
     // MARK: - Set up
@@ -71,6 +71,11 @@ class UpdateAddressViewController: UIViewController {
         dropDown.dataSource = EgyptCitiesArray.EgyptCities
         self.AddressTxt.text = selectedAddress.address1
         self.phoneTxt.text = selectedAddress.phone
+        let index = dropDown.dataSource.firstIndex(of: selectedAddress.city)
+        dropDown.selectRow(at: index!)
+        self.selectCityButton.titleLabel?.text = selectedAddress.city
+        self.viewModel.acceptTitle(selectedAddress.city)
+            
         
     }
     // MARK: - Private handlers
@@ -125,11 +130,7 @@ class UpdateAddressViewController: UIViewController {
     // MARK: - IBActions
     @IBAction func updateAddrBtn(_ sender: Any) {
         let user = viewModel.getUserFromUserDefaults()
-        self.dropDown.selectionAction = {[weak self] (index: Int, item: String) in
-            self?.viewModel.updateAddress(AddressRequestItemPut(address1: (self?.AddressTxt!.text!)!, address2: (self?.AddressTxt!.text!)!, city: item, company: "iti", firstName: user!.username, lastName: user!.username, phone: (self?.phoneTxt!.text!)!, province: (self?.AddressTxt!.text!)!, country: (self?.countryTxt!.text!)!, zip: "G1R 4P5", name: "\(user!.username)", provinceCode: "Cairo", countryCode: "EG", countryName: "Egypt", id: (self?.selectedAddress.id)!))
-         self?.view.makeToast("You Have Updated address!", duration: 3.0, position: .bottom)
-            
+        self.viewModel.updateAddress(AddressRequestItemPut(address1: (self.AddressTxt!.text!), address2: (self.AddressTxt!.text!), city: dropDown.selectedItem!, company: "iti", firstName: user!.username, lastName: user!.username, phone: (self.phoneTxt!.text!), province: dropDown.selectedItem!, country: (self.countryTxt!.text!), zip: "G1R 4P5", name: "\(user!.username)", provinceCode: "Cairo", countryCode: "EG", countryName: "Egypt", id: (self.selectedAddress.id)))
+        self.view.makeToast("You Have Updated address!", duration: 3.0, position: .bottom)
     }
-    
-}
 }
