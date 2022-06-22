@@ -89,6 +89,10 @@ class PaymentViewModel:PaymentViewModelType{
     }
     
     func getItemByTitle(title:String ){
+        if title.trimmingCharacters(in: .whitespaces).isEmpty {
+            errorSubject.accept("please Enter Coupon Code")
+            return
+        }
         Coupons.asObservable().map{
             $0.filter{
                 $0.title == title
@@ -100,9 +104,11 @@ class PaymentViewModel:PaymentViewModelType{
                     if element.isEmpty{
                         self.couponSubject.accept(PriceRule())
                         self.handleCouponDiscount(discountValue: 0.0)
+                        self.errorSubject.accept("please enter avalid coupon ")
                     }else{
                         self.couponSubject.accept(element[0])
                         self.handleCouponDiscount(discountValue: abs(Double(element[0].value) ?? 0.0))
+                        self.errorSubject.accept(nil)
                     }
                 }
         }

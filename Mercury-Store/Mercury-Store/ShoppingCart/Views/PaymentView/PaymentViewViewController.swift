@@ -22,6 +22,7 @@ class PaymentViewViewController: UIViewController {
     @IBOutlet weak var subTotal: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var couponError: UILabel!
     //MARK: - Properties
     //
     private let disposeBag = DisposeBag()
@@ -58,11 +59,12 @@ class PaymentViewViewController: UIViewController {
         self.confirmOrder.configuration?.background.backgroundColor = ColorsPalette.lightColor
         self.validateCoupon.tintColor = ColorsPalette.labelColors
         self.validateCoupon.configuration?.background.backgroundColor = ColorsPalette.lightColor
-        self.couponInput.isUserInteractionEnabled = true
         self.validateCoupon.rx.tap.bind{
-            //3SN4V909M7EQ
+            let couponTitle = self.couponInput.text!.trimmingCharacters(in: .whitespaces)
             self.viewModel.getItemByTitle(title: self.couponInput.text ?? "")
         }
+        self.viewModel.CouponError
+            .asObservable().map{$0}.bind(to: couponError.rx.text).disposed(by: disposeBag)
     }
 }
 // MARK: - Extensions
@@ -72,7 +74,9 @@ extension PaymentViewViewController{
     func readCoupon(){
         viewModel.CouponInfo.asObservable().subscribe { item in
             guard let element = item.element else{ return }
-            self.couponInput.text = element.title
+            if element.title != ""{
+                self.couponInput.text = element.title
+            }
             self.discountValue.text = element.value
         }.disposed(by: disposeBag)
     }
