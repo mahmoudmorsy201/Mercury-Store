@@ -23,9 +23,13 @@ class LaunchViewController: UIViewController {
     }
     
     // MARK: - Life cycle
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showAnimation()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        showAnimation()
     }
     
     override func viewWillAppear(_ animated: Bool) {

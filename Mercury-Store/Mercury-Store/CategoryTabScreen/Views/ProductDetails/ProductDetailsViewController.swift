@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Toast_Swift
+import Cosmos
 
 class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
     
@@ -27,6 +28,11 @@ class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
         }
     }
     @IBOutlet weak var favoriteBtn: UIButton!
+    @IBOutlet weak var reviewImageView: UIImageView!
+    @IBOutlet weak var reviewDate: UILabel!
+    @IBOutlet weak var reviewContentLabel: UILabel!
+    @IBOutlet weak var reviewMailLabel: UILabel!
+    @IBOutlet weak var reviewRating: CosmosView!
     
     // MARK: - Properties
     private var viewModel: ProductsDetailViewModelType!
@@ -55,6 +61,14 @@ class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
         closeButton.tintColor = ColorsPalette.lightColor
         productPriceLabel.textColor = ColorsPalette.lightColor
         self.descLabel.tintColor = ColorsPalette.lightColor
+        let randomNumber = Int.random(in: 0..<ReviewRepository.reviewsArray.count)
+        let item = ReviewRepository.reviewsArray[randomNumber]
+        reviewImageView.image = UIImage(named: item.imageName)
+        reviewDate.text = item.date
+        reviewMailLabel.text = item.email
+        reviewContentLabel.text = item.reviewContent
+        reviewRating.rating = item.rating
+        
     }
     private func updateUi(){
         productTitleLabel.text = viewModel.product.title
