@@ -34,11 +34,15 @@ class ProfileViewController: UIViewController {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpUI()
         configureTableView()
         configureSectionModel()
         self.loadUserData()
     }
-    
+    private func setUpUI() {
+        self.logoutBtn.tintColor = ColorsPalette.lightColor
+      
+    }
     // MARK: - IBActions
     @IBAction func logoutAction(_ sender: Any) {
         self.viewModel.goToMainTab()
@@ -98,7 +102,8 @@ extension ProfileViewController {
                 let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "cell")
                      cell.selectionStyle = .none
                      cell.backgroundColor = .clear
-                cell.imageView?.tintColor = .label
+               // cell.imageView?.tintColor = .label
+                cell.imageView?.tintColor = ColorsPalette.lightColor
                      cell.textLabel?.text = title
                      cell.imageView?.image = image
                      cell.accessoryType = .disclosureIndicator
@@ -107,7 +112,8 @@ extension ProfileViewController {
                 let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "cell")
                 cell.selectionStyle = .none
                 cell.backgroundColor = .clear
-                cell.imageView?.tintColor = .label
+                //cell.imageView?.tintColor = .label
+                cell.imageView?.tintColor = ColorsPalette.lightColor
                 cell.textLabel?.text = title
                 cell.imageView?.image = image
                 cell.accessoryType = .disclosureIndicator

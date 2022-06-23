@@ -39,6 +39,7 @@ class CheckAddressesTableViewCell: UITableViewCell {
     //
     override func awakeFromNib() {
         super.awakeFromNib()
+        setUpUI()
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -46,6 +47,9 @@ class CheckAddressesTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag()
+    }
+    private func setUpUI() {
+        self.editButton.tintColor = ColorsPalette.lightColor
     }
     
 }
