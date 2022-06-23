@@ -18,6 +18,7 @@ protocol PaymentViewModelType{
     var subTotal: Double{ get }
     var total: BehaviorSubject<Double>{ get }
     func confirmOrder()
+    func getItemByTitle(title:String)
 }
 
 class PaymentViewModel:PaymentViewModelType{
@@ -25,7 +26,10 @@ class PaymentViewModel:PaymentViewModelType{
     
     var subTotal: Double
     
+    var Coupons:Driver<[PriceRule]>
+    
     private let couponSubject = BehaviorRelay<PriceRule>(value: PriceRule() )
+    private let couponsSubject = BehaviorRelay<[PriceRule]>(value: [])
     private let isLoadingSubject = BehaviorRelay<Bool>(value: false)
     private let errorSubject = BehaviorRelay<String?>(value: nil)
     private var braintreeClient: BTAPIClient?
@@ -50,6 +54,7 @@ class PaymentViewModel:PaymentViewModelType{
         CouponInfo = couponSubject.asDriver(onErrorJustReturn: PriceRule() )
         CouponLoading = isLoadingSubject.asDriver(onErrorJustReturn: false)
         CouponError = errorSubject.asDriver(onErrorJustReturn: "Something went wrong")
+        Coupons = couponsSubject.asDriver(onErrorJustReturn: [])
         self.ordersProvider = ordersProvider
         total = BehaviorSubject<Double>(value: 0)
         self.subTotal = 0
@@ -67,29 +72,73 @@ class PaymentViewModel:PaymentViewModelType{
         }
     }
     
+    private func resetCoupon(){
+        userDefaults.removeObject(forKey: "discountId")
+    }
+    
     func fetchCouponData(){
-        guard let couponID = checkIfHasCoupon() else { return  }
-        self.couponApi.getSinglePriceData(id: couponID)
+        self.couponApi.getPricesRules()
             .observe(on: MainScheduler.asyncInstance)
-                    .subscribe {[weak self] (result) in
-                        guard let self = self else{ return }
-                        self.isLoadingSubject.accept(false)
-                        self.couponSubject.accept(result.priceRule)
-                        self.handleCouponDiscount(discountValue: abs(Double(result.priceRule.value) ?? 0.0) )
-                    } onError: {[weak self] (error) in
-                        guard let self = self else{ return }
-                        self.isLoadingSubject.accept(false)
-                        self.errorSubject.accept(error.localizedDescription)
-                    }.disposed(by: disposeBag)
+            .subscribe{[weak self] (result) in
+                guard let self = self else{ return }
+                if let items = result.element{
+                    self.couponsSubject.accept(items.priceRules)
+                    self.getItemsById()
+                }
+            }
+    }
+    
+    func getItemByTitle(title:String ){
+        if title.trimmingCharacters(in: .whitespaces).isEmpty {
+            errorSubject.accept("please Enter Coupon Code")
+            return
+        }
+        Coupons.asObservable().map{
+            $0.filter{
+                $0.title == title
+            }
+        }.observe(on: MainScheduler.asyncInstance).subscribe{[weak self] items in
+            guard let self = self else{return}
+            self.isLoadingSubject.accept(false)
+                if let element = items.element{
+                    if element.isEmpty{
+                        self.couponSubject.accept(PriceRule())
+                        self.handleCouponDiscount(discountValue: 0.0)
+                        self.errorSubject.accept("please enter avalid coupon ")
+                    }else{
+                        self.couponSubject.accept(element[0])
+                        self.handleCouponDiscount(discountValue: abs(Double(element[0].value) ?? 0.0))
+                        self.errorSubject.accept(nil)
+                    }
+                }
+        }
+    }
+    
+    func getItemsById(){
+        guard let couponID = checkIfHasCoupon() else { return  }
+        Coupons.asObservable().map{
+            $0.filter{
+                $0.id == couponID
+            }
+        }.observe(on: MainScheduler.asyncInstance)
+            .subscribe{[weak self] items in
+            guard let self = self else{return}
+            self.isLoadingSubject.accept(false)
+                if let element = items.element{
+                    self.couponSubject.accept(element[0])
+                    self.handleCouponDiscount(discountValue: abs(Double(element[0].value) ?? 0.0))
+                }
+        }
     }
     
     func handleCouponDiscount(discountValue:Double){
         do{
             let temp = try total.value()
             if discountValue > temp{
-                total.onNext(0)
+                total.onNext(1)
             }else{
-                total.onNext(temp - discountValue)
+                self.totalItemsPrice()
+                total.onNext(subTotal - discountValue)
             }
         }catch(_){
         }
@@ -131,7 +180,7 @@ class PaymentViewModel:PaymentViewModelType{
         self.ordersProvider.postOrder(order: newOrderRequest)
             .subscribe(onNext: {[weak self] result in
                 guard let `self` = self else {fatalError()}
-               // print(result)
+                self.resetCoupon()
                 CartCoreDataManager.shared.deleteAll()
                 self.navigationFlow.popToRoot()
                 
