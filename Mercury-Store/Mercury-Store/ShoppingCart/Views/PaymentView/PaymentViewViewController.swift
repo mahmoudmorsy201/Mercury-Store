@@ -7,7 +7,8 @@
 
 import UIKit
 import RxSwift
-
+import RxCocoa
+import RxRelay
 class PaymentViewViewController: UIViewController {
     // MARK: - IBOutlets
     //
@@ -19,7 +20,9 @@ class PaymentViewViewController: UIViewController {
     @IBOutlet weak var shippingFees: UILabel!
     @IBOutlet weak var confirmOrder: UIButton!
     @IBOutlet weak var subTotal: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var couponError: UILabel!
     //MARK: - Properties
     //
     private let disposeBag = DisposeBag()
@@ -40,6 +43,7 @@ class PaymentViewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        initScrollView()
         initTable()
         readCoupon()
         totalFees()
@@ -55,10 +59,12 @@ class PaymentViewViewController: UIViewController {
         self.confirmOrder.configuration?.background.backgroundColor = ColorsPalette.lightColor
         self.validateCoupon.tintColor = ColorsPalette.labelColors
         self.validateCoupon.configuration?.background.backgroundColor = ColorsPalette.lightColor
-        
-        self.couponInput.isUserInteractionEnabled = false
-        
-       
+        self.validateCoupon.rx.tap.bind{
+            let couponTitle = self.couponInput.text!.trimmingCharacters(in: .whitespaces)
+            self.viewModel.getItemByTitle(title: self.couponInput.text ?? "")
+        }
+        self.viewModel.CouponError
+            .asObservable().map{$0}.bind(to: couponError.rx.text).disposed(by: disposeBag)
     }
 }
 // MARK: - Extensions
@@ -68,7 +74,9 @@ extension PaymentViewViewController{
     func readCoupon(){
         viewModel.CouponInfo.asObservable().subscribe { item in
             guard let element = item.element else{ return }
-            self.couponInput.text = element.title
+            if element.title != ""{
+                self.couponInput.text = element.title
+            }
             self.discountValue.text = element.value
         }.disposed(by: disposeBag)
     }
@@ -88,7 +96,7 @@ extension PaymentViewViewController{
     }
 }
 // MARK: - Extensions
-extension PaymentViewViewController:UITableViewDelegate ,UITableViewDataSource{
+extension PaymentViewViewController:UITableViewDelegate ,UITableViewDataSource {
     // MARK: - Private handlers
     //
     private func initTable(){
@@ -97,6 +105,16 @@ extension PaymentViewViewController:UITableViewDelegate ,UITableViewDataSource{
         selectPaymentTable.dataSource = self
         selectPaymentTable.tableFooterView = UIView(frame: .zero)
         selectPaymentTable.separatorStyle = .none
+    }
+    
+    func initScrollView(){
+        scrollView.delegate = self
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.x != 0 {
+                scrollView.contentOffset.x = 0
+            }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
