@@ -15,4 +15,10 @@ struct ColorsPalette {
     static let redColor = UIColor(hexString: "#D62828")
     static let darkBlue = UIColor(hexString: "#003049")
     static let labelColors = UIColor(hexString: "#232f3e")
+    // MARK: - Darkmode colors
+    static let primaryOrange = UIColor(hexString: "#ff9900")
+    
+    
+
+    
 }
