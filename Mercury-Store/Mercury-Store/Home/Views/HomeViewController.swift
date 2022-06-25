@@ -54,7 +54,7 @@ class HomeViewController: UIViewController {
         bindTableView()
         bindActivity()
         bindCartBadgeValue()
-        self.viewModel.getAllProductsFromApi()
+        viewModel.getDraftOrderById()
     }
     
     override func viewWillAppear(_ animated: Bool) {

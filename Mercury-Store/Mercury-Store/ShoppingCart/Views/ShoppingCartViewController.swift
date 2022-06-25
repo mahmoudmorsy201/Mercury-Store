@@ -55,8 +55,7 @@ class ShoppingCartViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.viewModel.viewDidDisappear()
+        self.viewModel.modifyOrderInCartApi()
     }
     
     private func setupUI() {
