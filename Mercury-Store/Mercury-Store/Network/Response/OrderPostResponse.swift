@@ -73,7 +73,8 @@ struct LineItem: Codable {
     let taxLines: [TaxLine]
     let name: String
     let price, adminGraphqlAPIID: String
-
+    let properties: [PropertyDraft]
+    
     enum CodingKeys: String, CodingKey {
         case id
         case variantID = "variant_id"
@@ -89,6 +90,7 @@ struct LineItem: Codable {
         case taxLines = "tax_lines"
         case name, price
         case adminGraphqlAPIID = "admin_graphql_api_id"
+        case properties
     }
 }
 

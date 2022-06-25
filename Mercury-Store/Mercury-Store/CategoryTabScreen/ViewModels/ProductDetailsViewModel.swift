@@ -13,6 +13,7 @@ protocol ProductsDetailViewModelType: AnyObject{
     var product : Product{get}
     var bannerObservable: Driver<[ProductImage]> {get}
     var variantsObservable: Driver<[String]> { get }
+    var colorsObservable: Driver<[String]> { get }
     var priceObservable: Observable<String> { get }
     var inventoryQuantityObservable: Observable<Int> { get }
     func sendImagesToCollection()
@@ -24,6 +25,7 @@ protocol ProductsDetailViewModelType: AnyObject{
     func setPriceForSelectedVariantIndex()
     func setInventoryQuantity()
     var indexSubject: BehaviorSubject<Int> { get }
+    func sendColorsToCollection()
 }
 
 final class ProductsDetailViewModel: ProductsDetailViewModelType {
@@ -39,6 +41,7 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
     private let variantsSubject = PublishSubject<[String]>()
     private let priceSubject = PublishSubject<String>()
     private let inventoryQuantitySubject = BehaviorSubject<Int>(value: 0)
+    private let colorsSubject = PublishSubject<[String]>()
     var product: Product
     var countForPageControll: Observable<Int>
     var bannerObservable: Driver<[ProductImage]>
@@ -46,7 +49,7 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
     var priceObservable: Observable<String> { priceSubject.asObserver() }
     var inventoryQuantityObservable: Observable<Int> { inventoryQuantitySubject.asObserver() }
     var indexSubject = BehaviorSubject<Int>(value: 0)
-    
+    var colorsObservable: Driver<[String]> { colorsSubject.asDriver(onErrorJustReturn: [])}
     
     init(with productDetailsNavigationFlow: ProductDetailsNavigationFlow,product:Product, coreDataShared: CoreDataModel = CoreDataModel.coreDataInstatnce,ordersProvider: OrdersProvider = OrdersClient(),
          userDefaults: UserDefaults = UserDefaults.standard, customerProvider: CustomerProvider = CustomerClient()) {
@@ -80,7 +83,9 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
     func popViewController() {
         productDetailsNavigationFlow?.popViewController()
     }
-    
+    func sendColorsToCollection() {
+        colorsSubject.onNext(product.options[1].values)
+    }
     private func saveToCart() {
         if(try! product.variants[indexSubject.value()].inventoryQuantity != 0) {
             let _ = try! coreDataShared.insertCartProduct(product: SavedProductItem(inventoryQuantity: product.variants[indexSubject.value()].inventoryQuantity, variantId: product.variants[indexSubject.value()].id, productID: Decimal(product.id), productTitle: product.title, productImage: product.image.src , productPrice: Double(product.variants[indexSubject.value()].price) ?? 0 , productQTY: 1 , producrState: productStates.cart.rawValue))
@@ -96,18 +101,12 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
     func setInventoryQuantity() {
         try! inventoryQuantitySubject.onNext(product.variants[indexSubject.value()].inventoryQuantity)
     }
-
     
     private func postOrderIntoCart(_ product: Product, variant: Variant) {
         let user = getUserFromUserDefaults()
         if (user != nil) {
-            let newItemDraft = LineItemDraft(quantity: 1, variantID: variant.id, properties: [PropertyDraft(imageName: product.image.src, inventoryQuantity: "\(variant.inventoryQuantity)")])
-            let savedItemsInCart = CartCoreDataManager.shared.getDataFromCoreData()
-            let coreDataLineDraft = savedItemsInCart.map { LineItemDraft(quantity: $0.productQTY, variantID: $0.variantId, properties: [PropertyDraft(imageName: $0.productImage, inventoryQuantity: "\($0.inventoryQuantity)")])}
-            var coreDataLineDraftWithNewElement = coreDataLineDraft
-            coreDataLineDraftWithNewElement.append(newItemDraft)
-            
-            let newOrderRequest = DraftOrdersRequest(draftOrder: DraftOrderItem(lineItems: coreDataLineDraftWithNewElement, customer: CustomerId(id: user!.id), useCustomerDefaultAddress: true))
+            let newLineItemDraft = LineItemDraft(quantity: 1, variantID: variant.id, properties: [PropertyDraft(imageName: product.image.src, inventoryQuantity: "\(variant.inventoryQuantity)")])
+            let newOrderRequest = DraftOrdersRequest(draftOrder: DraftOrderItem(lineItems: [newLineItemDraft], customer: CustomerId(id: user!.id), useCustomerDefaultAddress: true))
             self.ordersProvider.postDraftOrder(order: newOrderRequest)
                 .subscribe(onNext: {[weak self] result in
                     guard let `self` = self else {fatalError()}
@@ -130,18 +129,11 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
                 }).disposed(by: self.disposeBag)
         }
     }
-    
+  
     func modifyOrderInCartIfCartIdIsNil(_ product: Product, variant: Variant) {
         let user = getUserFromUserDefaults()
         if(user != nil) {
-            if(user!.cartId != 0) {
-                self.ordersProvider.modifyExistingOrder(with: user!.cartId, and: PutOrderRequest(draftOrder: ModifyDraftOrderRequest(dratOrderId: user!.cartId, lineItems: [LineItemDraft(quantity: 1, variantID: variant.id, properties: [PropertyDraft(imageName: product.image.src, inventoryQuantity: "\(variant.inventoryQuantity)")])])))
-                    .subscribe(onNext: {[weak self] result in
-                        guard let `self` = self else {fatalError()}
-                        self.cartOrderSubject.onNext(result)
-                        self.modifyCustomerData(draftOrderId: user!.cartId)
-                    }).disposed(by: disposeBag)
-            } else {
+            if(user!.cartId == 0) {
                 self.postOrderIntoCart(product, variant: variant)
             }
         }

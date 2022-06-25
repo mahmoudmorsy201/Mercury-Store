@@ -55,14 +55,6 @@ struct CustomerId: Codable {
 
 // MARK: - LineItem
 struct LineItemDraft: Codable {
-    /*
-     "properties": [
-           {
-             "name": "custom engraving",
-             "value": "Happy Birthday Mom!"
-           }
-         ]
-     */
     let quantity, variantID: Int
     let properties: [PropertyDraft]
     

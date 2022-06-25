@@ -53,35 +53,25 @@ final class CartViewModel {
         self.customerProvider = customerProvider
     }
     
-    func viewDidDisappear() {
-        modifyOrderInCartApi()
-    }
-    
-    private func modifyOrderInCartApi() {
+    func modifyOrderInCartApi() {
         let user = getUserFromUserDefaults()
-        if(user != nil) {
-            if(user!.cartId != 0) {
-                let savedItemsInCart = CartCoreDataManager.shared.getDataFromCoreData()
-                var newArray: [LineItemDraft] = []
-                for item in savedItemsInCart {
-                    let newItem = LineItemDraft(quantity: item.productQTY, variantID: item.variantId, properties: [PropertyDraft(imageName: item.productImage, inventoryQuantity: "\(item.inventoryQuantity)")])
-                    newArray.append(newItem)
-                }
-
-                if(!savedItemsInCart.isEmpty) {
-                    self.ordersProvider.modifyExistingOrder(with: user!.cartId, and: PutOrderRequest(draftOrder: ModifyDraftOrderRequest(dratOrderId: user!.cartId, lineItems: newArray)))
-                        .subscribe(onNext: {[weak self] result in
-                            guard let `self` = self else {fatalError()}
-                            self.cartOrderSubject.onNext(result)
-                        }).disposed(by: disposeBag)
-                }else {
-                    self.ordersProvider.deleteExistingOrder(with: user!.cartId)
-                        .subscribe { _ in
-                           
-                        }.disposed(by: disposeBag)
-                    self.modifyCustomerData(draftOrderId: 0)
-                }
-                
+        if(user != nil && user!.cartId != 0) {
+            let savedItemsInCart = CartCoreDataManager.shared.getDataFromCoreData()
+            if(!savedItemsInCart.isEmpty) {
+                let putDraftOrder = PutOrderRequest(draftOrder: ModifyDraftOrderRequest(dratOrderId: user!.cartId, lineItems: savedItemsInCart.map { item in
+                    return LineItemDraft(quantity: item.productQTY, variantID: item.variantId, properties: [PropertyDraft(imageName: item.productImage, inventoryQuantity: "\(item.inventoryQuantity)")])
+                }))
+                self.ordersProvider.modifyExistingOrder(with: user!.cartId, and: putDraftOrder)
+                    .subscribe(onNext: {[weak self] result in
+                        guard let `self` = self else {fatalError()}
+                        self.cartOrderSubject.onNext(result)
+                    }).disposed(by: disposeBag)
+            }else {
+                self.ordersProvider.deleteExistingOrder(with: user!.cartId)
+                    .subscribe { _ in
+                        
+                    }.disposed(by: disposeBag)
+                self.modifyCustomerData(draftOrderId: 0)
             }
         }
     }
@@ -124,7 +114,7 @@ final class CartViewModel {
     }
     
     func bind(_ input: CartInput) -> CartOutput {
-         let cart = Observable
+        let cart = Observable
             .merge(
                 input.viewLoaded.map{CartAction.viewIsLoaded},
                 incrementProductSubject.map { CartAction.increment($0) },
@@ -145,7 +135,7 @@ final class CartViewModel {
             checkoutVisible: cart.map(checkoutVisible())
                 .startWith((visible: false, animated: false)))
     }
-        
+    
     func cartTotal() -> (_ cart: [CartSection]) -> String? {
         {  "EGP \($0[safe: 0]?.sectionTotal ?? 0)" }
     }

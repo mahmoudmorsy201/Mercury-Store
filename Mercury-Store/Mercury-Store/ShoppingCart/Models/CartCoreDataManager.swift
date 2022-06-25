@@ -18,7 +18,6 @@ class CartCoreDataManager {
     func getDataFromCoreData() -> [SavedProductItem] {
         let items = self.coreDataModel.getItems(productState: productStates.cart)
         if(items.1 == nil) {
-            
             return items.0
         }else {
             print(items.1!.localizedDescription)
@@ -35,8 +34,6 @@ class CartCoreDataManager {
     }
     
     func deleteItem(with item: SavedProductItem) {
-        //mahmoud
-        //coreDataModel.delete(updateitem: item)
         let _ = coreDataModel.deleteCartItem(productID: Int(truncating: NSDecimalNumber(decimal: item.productID)) )
     }
     

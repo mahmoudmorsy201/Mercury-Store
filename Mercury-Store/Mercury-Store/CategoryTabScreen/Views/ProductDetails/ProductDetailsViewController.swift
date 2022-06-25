@@ -46,6 +46,9 @@ class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet weak var heightForVariantCollectionView: NSLayoutConstraint!
     @IBOutlet weak var inventoryQuantityLabel: UILabel!
     
+    @IBOutlet weak var heightForColorCollectionView: NSLayoutConstraint!
+    
+    
     // MARK: - Properties
     private var viewModel: ProductsDetailViewModelType!
     private let disposeBag = DisposeBag()
@@ -66,9 +69,16 @@ class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
         updateUi()
         setUpUI()
         collectionViewFrame.onNext(self.productImagesCollectionView.frame)
+        addObserverOnHeight()
+    }
+    private func addObserverOnHeight() {
         contentSizeObservation = variantsCollectionView.observe(\.contentSize, options: .new, changeHandler: { [weak self] (cv, _) in
             guard let self = self else { return }
             self.heightForVariantCollectionView.constant = cv.collectionViewLayout.collectionViewContentSize.height
+        })
+        contentSizeObservation = colorsCollectionView.observe(\.contentSize, options: .new, changeHandler: { [weak self] (cv, _) in
+            guard let self = self else { return }
+            self.heightForColorCollectionView.constant = cv.collectionViewLayout.collectionViewContentSize.height
         })
     }
     private func setUpUI() {
@@ -187,9 +197,20 @@ extension ProductDetailsViewController {
                 self?.viewModel.setInventoryQuantity()
                 self?.viewModel.setPriceForSelectedVariantIndex()
             }).disposed(by: disposeBag)
-        
-        
     }
+    private func bindColorsCollectionView() {
+        colorsCollectionView.dataSource = nil
+        colorsCollectionView.delegate = nil
+        colorsCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
+        
+        viewModel.colorsObservable
+            .drive(colorsCollectionView.rx.items(cellIdentifier:  ColorsCollectionViewCell.reuseIdentifier(), cellType:  ColorsCollectionViewCell.self)) {indexPath, item, cell in
+                cell.item = item
+            }
+            .disposed(by: disposeBag)
+        viewModel.sendColorsToCollection()
+    }
+    
 }
 
 // MARK: - Extensions
@@ -204,6 +225,7 @@ extension ProductDetailsViewController  {
         self.bindFavouriteButton()
         self.bindCloseButton()
         self.bindVariantsCollectionView()
+        self.bindColorsCollectionView()
     }
 }
 // MARK: - Extensions
@@ -245,6 +267,8 @@ extension ProductDetailsViewController : UICollectionViewDelegateFlowLayout {
             return 0.0
         case variantsCollectionView:
             return 8.0
+        case colorsCollectionView:
+            return 8.0
         default:
             return 0.0
         }
@@ -254,6 +278,8 @@ extension ProductDetailsViewController : UICollectionViewDelegateFlowLayout {
         case productImagesCollectionView:
             return 0.0
         case variantsCollectionView:
+            return 8.0
+        case colorsCollectionView:
             return 8.0
         default:
             return 0.0
@@ -265,6 +291,8 @@ extension ProductDetailsViewController : UICollectionViewDelegateFlowLayout {
             return CGSize(width:productImagesCollectionView.frame.width, height: productImagesCollectionView.frame.height)
         case variantsCollectionView:
             return CGSize(width: (self.view.frame.width)/4, height: 28)
+        case colorsCollectionView:
+            return CGSize(width: (self.view.frame.width)/12, height: (self.view.frame.width)/12)
         default:
             return CGSize(width:productImagesCollectionView.frame.width, height: productImagesCollectionView.frame.height)
         }
@@ -275,6 +303,8 @@ extension ProductDetailsViewController : UICollectionViewDelegateFlowLayout {
         case productImagesCollectionView:
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         case variantsCollectionView:
+            return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        case colorsCollectionView:
             return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         default:
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)

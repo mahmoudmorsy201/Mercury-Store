@@ -85,7 +85,7 @@ class PaymentViewModel:PaymentViewModelType{
                     self.couponsSubject.accept(items.priceRules)
                     self.getItemsById()
                 }
-            }
+            }.disposed(by: disposeBag)
     }
     
     func getItemByTitle(title:String ){
@@ -111,7 +111,7 @@ class PaymentViewModel:PaymentViewModelType{
                         self.errorSubject.accept(nil)
                     }
                 }
-        }
+        }.disposed(by: disposeBag)
     }
     
     func getItemsById(){
@@ -128,7 +128,7 @@ class PaymentViewModel:PaymentViewModelType{
                     self.couponSubject.accept(element[0])
                     self.handleCouponDiscount(discountValue: abs(Double(element[0].value) ?? 0.0))
                 }
-        }
+            }.disposed(by: disposeBag)
     }
     
     func handleCouponDiscount(discountValue:Double){
