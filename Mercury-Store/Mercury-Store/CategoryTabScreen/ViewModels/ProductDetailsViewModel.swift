@@ -12,11 +12,18 @@ protocol ProductsDetailViewModelType: AnyObject{
     var countForPageControll: Observable<Int> { get }
     var product : Product{get}
     var bannerObservable: Driver<[ProductImage]> {get}
+    var variantsObservable: Driver<[String]> { get }
+    var priceObservable: Driver<String> { get }
+    
+    var inventoryQuantityObservable: Driver<Int> { get }
     func sendImagesToCollection()
     func toggleFavourite()->Bool
     var isProductFavourite:Bool{get}
     func modifyOrderInCartIfCartIdIsNil(_ variantId: Int)
     func popViewController()
+    func sendVariantsToCollection()
+    func setPriceForSelectedVariantIndex(index: Int)
+    func setInventoryQuantity(index: Int)
 }
 
 final class ProductsDetailViewModel: ProductsDetailViewModelType {
@@ -29,9 +36,16 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
     private let disposeBag = DisposeBag()
     private let customerProvider: CustomerProvider
     private let editCustomerSubject = PublishSubject<RegisterResponse>()
+    private let variantsSubject = PublishSubject<[String]>()
+    private let priceSubject = PublishSubject<String>()
+    private let inventoryQuantitySubject = BehaviorRelay<Int>(value: 0)
     var product: Product
     var countForPageControll: Observable<Int>
     var bannerObservable: Driver<[ProductImage]>
+    var variantsObservable: Driver<[String]> { variantsSubject.asDriver(onErrorJustReturn: []) }
+    var priceObservable: Driver<String> { priceSubject.asDriver(onErrorJustReturn: "")}
+    var inventoryQuantityObservable: Driver<Int> { inventoryQuantitySubject.asDriver(onErrorJustReturn: 0) }
+    
     
     init(with productDetailsNavigationFlow: ProductDetailsNavigationFlow,product:Product, coreDataShared: CoreDataModel = CoreDataModel.coreDataInstatnce,ordersProvider: OrdersProvider = OrdersClient(),
          userDefaults: UserDefaults = UserDefaults.standard, customerProvider: CustomerProvider = CustomerClient()) {
@@ -47,10 +61,10 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
     func sendImagesToCollection() {
         productImagesSubject.onNext(product.images)
     }
-    var isProductFavourite:Bool{
+    var isProductFavourite: Bool{
         return CoreDataModel.coreDataInstatnce.isProductFavourite(id: product.id)
     }
-    func toggleFavourite()->Bool  {
+    func toggleFavourite() -> Bool  {
         return coreDataShared.toggleFavourite(product: SavedProductItem(
             inventoryQuantity: product.variants[0].inventoryQuantity, variantId: product.variants[0].id,
             productID: Decimal(product.id),
@@ -59,7 +73,9 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
             productPrice: Double(product.variants[0].price) ?? 0 ,
             productQTY: 0 , producrState: productStates.favourite.rawValue))
     }
-    
+    func sendVariantsToCollection() {
+        variantsSubject.onNext(product.options[0].values)
+    }
     func popViewController() {
         productDetailsNavigationFlow?.popViewController()
     }
@@ -69,6 +85,14 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
         
         coreDataShared.observeProductCount()
     }
+    func setPriceForSelectedVariantIndex(index: Int) {
+        priceSubject.onNext(product.variants[index].price)
+    }
+    
+    func setInventoryQuantity(index: Int) {
+        inventoryQuantitySubject.accept(product.variants[index].inventoryQuantity)
+    }
+
     
     private func postOrderIntoCart(_ variantId: Int) {
         let user = getUserFromUserDefaults()
@@ -86,7 +110,7 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
                     self.cartOrderSubject.onNext(result)
                     self.modifyCustomerData(draftOrderId: result.draftOrder.id)
                 }).disposed(by: disposeBag)
-
+            
         }
     }
     
