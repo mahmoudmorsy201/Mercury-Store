@@ -69,9 +69,9 @@ extension CoreDataModel{
         }
     }
     
-    func getItemsByUserID(userId:Int)-> ([SavedProductItem], Error?){
+    func getItemsByUserID()-> ([SavedProductItem], Error?){
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entity)
-        let userPredicate = NSPredicate(format: "%@ IN %K", userId, productCoredataAttr.userIds.rawValue)
+        let userPredicate = NSPredicate(format: "%@ IN %K", getCurrentUserId()!, productCoredataAttr.userIds.rawValue)
         let favouritePredicate = NSPredicate(format: "\(productCoredataAttr.state.rawValue) = %@ OR \(productCoredataAttr.state.rawValue)  = %@", argumentArray: [productStates.both.rawValue ,productStates.favourite.rawValue])
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [userPredicate , favouritePredicate])
         
