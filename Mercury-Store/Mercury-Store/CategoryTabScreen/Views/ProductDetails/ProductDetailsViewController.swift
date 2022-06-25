@@ -86,12 +86,24 @@ class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
         reviewContentLabel.text = item.reviewContent
         reviewRating.rating = item.rating
         self.variantsCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .left)
-
     }
     private func updateUi(){
         productTitleLabel.text = viewModel.product.title
-        productPriceLabel.text = "\(viewModel.product.variants[0].price )EGP"
+        viewModel.priceObservable.subscribe (onNext: {[weak self] value in
+            self?.productPriceLabel.text = "EGP \(value)"
+        }).disposed(by: disposeBag)
+        
         productDescription.text = viewModel.product.bodyHTML
+        viewModel.inventoryQuantityObservable.subscribe (onNext: {[weak self] value in
+            if(value == 0) {
+                self?.inventoryQuantityLabel.text = "Out of stock"
+                self?.inventoryQuantityLabel.textColor = .red
+            }else {
+                self?.inventoryQuantityLabel.attributedText = self?.attributedText(withString: "\(value) available in stock", boldString: "\(value)", font: UIFont(name: "Optima Regular", size: 13.0)!)
+                self?.inventoryQuantityLabel.textColor = .green
+            }
+        }).disposed(by: disposeBag)
+        
         self.configure()
     }
     
@@ -102,6 +114,15 @@ class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
                 self?.viewModel.popViewController()
             }.disposed(by: disposeBag)
         
+    }
+    
+    private func attributedText(withString string: String, boldString: String, font: UIFont) -> NSAttributedString {
+        let attributedString = NSMutableAttributedString(string: string,
+                                                         attributes: [NSAttributedString.Key.font: font])
+        let boldFontAttribute: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: font.pointSize)]
+        let range = (string as NSString).range(of: boldString)
+        attributedString.addAttributes(boldFontAttribute, range: range)
+        return attributedString
     }
     
     deinit {
@@ -157,6 +178,17 @@ extension ProductDetailsViewController {
             }
             .disposed(by: disposeBag)
         viewModel.sendVariantsToCollection()
+        viewModel.setInventoryQuantity()
+        viewModel.setPriceForSelectedVariantIndex()
+        
+        variantsCollectionView.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                self?.viewModel.indexSubject.onNext(indexPath.row)
+                self?.viewModel.setInventoryQuantity()
+                self?.viewModel.setPriceForSelectedVariantIndex()
+            }).disposed(by: disposeBag)
+        
+        
     }
 }
 
@@ -193,13 +225,16 @@ extension ProductDetailsViewController{
     // MARK: - Private handlers
     private func addToCartTapBinding(){
         addToCart.rx.tap.subscribe { [weak self] _ in
-            self!.view.makeToast("Added to Bag", duration: 3.0, position: .bottom)
             guard let self = self else { return }
-            self.viewModel.modifyOrderInCartIfCartIdIsNil(self.viewModel.product.variants[0].id)
+            if(try! self.viewModel.product.variants[self.viewModel.indexSubject.value()].inventoryQuantity != 0) {
+                self.view.makeToast("Added to Cart", duration: 3.0, position: .bottom)
+                try! self.viewModel.modifyOrderInCartIfCartIdIsNil(self.viewModel.product, variant: self.viewModel.product.variants[self.viewModel.indexSubject.value()])
+            } else {
+                self.view.makeToast("Sorry this item is out of stock", duration: 3.0, position: .bottom)
+                
+            }
+
         }.disposed(by: disposeBag)
-        
-        
-        
     }
 }
 // MARK: - Extensions

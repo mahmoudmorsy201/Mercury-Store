@@ -58,27 +58,27 @@
                                     <color key="pageIndicatorTintColor" systemColor="systemGrayColor"/>
                                     <color key="currentPageIndicatorTintColor" systemColor="systemOrangeColor"/>
                                 </pageControl>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xI-Mk-SoX">
-                                    <rect key="frame" x="12" y="832" width="390" height="30"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xI-Mk-SoX">
+                                    <rect key="frame" x="12" y="844" width="390" height="30"/>
                                     <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASICS TIGER | GEL-LYTE V '30 YEARS OF GEL' PACK" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Pi-UZ-Tup">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="ASICS TIGER | GEL-LYTE V '30 YEARS OF GEL' PACK" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Pi-UZ-Tup">
                                     <rect key="frame" x="12" y="693" width="390" height="55"/>
                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="23"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sst-kl-peU">
-                                    <rect key="frame" x="12" y="874" width="390" height="218.5"/>
+                                    <rect key="frame" x="12" y="886" width="390" height="206.5"/>
                                     <string key="text">LabelLabelLabelLabelLabelLabelLabelLabelvLabelLabelvLabelLabelvLabelLabelvLabelvvLabelvLabelLabelvLabelLabelvLabelLabelvLabelvvLabelvLabelLabelvLabelvLabelLabelvLabelLabelvvLabelvvLabelLabelvvLabelvvLabelvLabelLabelvLabelLabelvLabelLabelvLabelvvLabelvLabelLabelvLabel</string>
                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="23"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="150.00 USD" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gk6-1y-75i">
-                                    <rect key="frame" x="12" y="760" width="135" height="30"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="150.00 USD" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gk6-1y-75i">
+                                    <rect key="frame" x="12" y="772" width="135" height="30"/>
                                     <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -194,7 +194,7 @@
                                     </collectionViewFlowLayout>
                                 </collectionView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19 available in stock " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xA3-Mt-KQ5">
-                                    <rect key="frame" x="283.5" y="767.5" width="118.5" height="15.5"/>
+                                    <rect key="frame" x="283.5" y="779.5" width="118.5" height="15.5"/>
                                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="13"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -206,7 +206,7 @@
                                 <constraint firstAttribute="bottom" secondItem="C7z-Wi-AIl" secondAttribute="bottom" constant="82" id="1va-hs-wVq"/>
                                 <constraint firstAttribute="trailing" secondItem="4Pi-UZ-Tup" secondAttribute="trailing" constant="12" id="1xw-kz-ASk"/>
                                 <constraint firstAttribute="trailing" secondItem="jmX-DB-K9A" secondAttribute="trailing" constant="12" id="4So-6k-mvX"/>
-                                <constraint firstItem="gk6-1y-75i" firstAttribute="top" secondItem="4Pi-UZ-Tup" secondAttribute="bottom" constant="12" id="6jb-ni-WHp"/>
+                                <constraint firstItem="gk6-1y-75i" firstAttribute="top" relation="greaterThanOrEqual" secondItem="4Pi-UZ-Tup" secondAttribute="bottom" constant="24" id="6jb-ni-WHp"/>
                                 <constraint firstItem="QxP-vK-VmV" firstAttribute="top" secondItem="tnd-aH-pcy" secondAttribute="top" constant="24" id="7lX-xk-h6p"/>
                                 <constraint firstItem="EpU-5I-188" firstAttribute="leading" secondItem="tnd-aH-pcy" secondAttribute="leading" constant="12" id="8vQ-PC-KnI"/>
                                 <constraint firstItem="jmX-DB-K9A" firstAttribute="top" relation="greaterThanOrEqual" secondItem="X3I-jl-yeg" secondAttribute="bottom" constant="12" id="CrK-BJ-NMz"/>
@@ -235,7 +235,7 @@
                                 <constraint firstItem="6xI-Mk-SoX" firstAttribute="leading" secondItem="gk6-1y-75i" secondAttribute="leading" id="na9-3l-8cE"/>
                                 <constraint firstItem="xA3-Mt-KQ5" firstAttribute="centerY" secondItem="gk6-1y-75i" secondAttribute="centerY" id="uod-uT-Obs"/>
                                 <constraint firstItem="tbY-cN-hfZ" firstAttribute="leading" secondItem="tnd-aH-pcy" secondAttribute="leading" id="w0B-db-Vsv"/>
-                                <constraint firstItem="6xI-Mk-SoX" firstAttribute="top" secondItem="gk6-1y-75i" secondAttribute="bottom" constant="42" id="xVD-uA-Vbj"/>
+                                <constraint firstItem="6xI-Mk-SoX" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gk6-1y-75i" secondAttribute="bottom" constant="42" id="xVD-uA-Vbj"/>
                                 <constraint firstItem="C7z-Wi-AIl" firstAttribute="leading" secondItem="sst-kl-peU" secondAttribute="leading" id="zDU-vi-cBP"/>
                             </constraints>
                         </view>

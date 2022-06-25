@@ -29,10 +29,10 @@ final class HomeViewModel {
         .BannerSection(items: [
             .BannerTableViewItem
         ]),
-
-        .BrandsSection(items: [
-            .BrandsCell
-        ])
+        
+            .BrandsSection(items: [
+                .BrandsCell
+            ])
     ])
     
     init(with homeNavigationFlow: HomeFlowNavigation, allProductsProvider: ProductsProvider = HomeScreenClient(),draftOrderProvider: DraftOrderProvider = HomeScreenClient()) {
@@ -45,7 +45,7 @@ final class HomeViewModel {
     func goToSearchViewController() {
         homeNavigation.goToSearchViewController()
     }
-
+    
     
     func getAllProductsFromApi() {
         self.isLoadingSubject.accept(true)
@@ -71,6 +71,7 @@ final class HomeViewModel {
                         let quantitates = result.draftOrder.lineItems.map{ $0.quantity }
                         var index = 0
                         let filteredProducts = self.filter(items: products, contains: variantIdsFromDraftOrderResponse)
+                        let filteredVariants = self.filter(items: self.filterProducts(items: products), contains: variantIdsFromDraftOrderResponse)
                         
                         if(self.fetchedItemsFromCoreData.isEmpty) {
                             for item in filteredProducts {
@@ -82,20 +83,42 @@ final class HomeViewModel {
                     }).disposed(by: disposeBag)
             }
         }
-
-    }
         
+    }
+    
+    
     func filter(items: [Product], contains tags: [Int]) -> [Product] {
         var filteredProducts: [Product] = []
         for product in items {
+            var index = 0
             for tag in tags {
-                if(product.variants[0].id == tag) {
+                if(product.variants[index].id == tag) {
                     filteredProducts.append(product)
                 }
             }
+            index += 1
         }
         return filteredProducts
-   }
+    }
+    
+    func filterProducts(items: [Product]) -> [Variant]{
+        let variants = items.map{$0.variants}
+        var filteredVariants: [Variant] = []
+        for(_, item) in variants.enumerated() {
+            for variant in item {
+                filteredVariants.append(variant)
+            }
+        }
+        return filteredVariants
+    }
+    func filter(items: [Variant], contains tags: [Int]) -> [Variant] {
+        let filteredArr = items.filter { meeting in
+            return tags.contains(where: { booking in
+                return booking == meeting.id
+            })
+        }
+        return filteredArr
+    }
     
     private func getUserFromUserDefaults() -> User? {
         do {

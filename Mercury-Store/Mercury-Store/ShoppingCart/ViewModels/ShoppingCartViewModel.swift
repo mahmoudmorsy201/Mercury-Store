@@ -64,7 +64,7 @@ final class CartViewModel {
                 let savedItemsInCart = CartCoreDataManager.shared.getDataFromCoreData()
                 var newArray: [LineItemDraft] = []
                 for item in savedItemsInCart {
-                    let newItem = LineItemDraft(quantity: item.productQTY, variantID: item.variantId)
+                    let newItem = LineItemDraft(quantity: item.productQTY, variantID: item.variantId, properties: [PropertyDraft(imageName: item.productImage, inventoryQuantity: "\(item.inventoryQuantity)")])
                     newArray.append(newItem)
                 }
 
