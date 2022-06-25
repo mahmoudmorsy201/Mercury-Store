@@ -29,10 +29,10 @@ final class HomeViewModel {
         .BannerSection(items: [
             .BannerTableViewItem
         ]),
-
-        .BrandsSection(items: [
-            .BrandsCell
-        ])
+        
+            .BrandsSection(items: [
+                .BrandsCell
+            ])
     ])
     
     init(with homeNavigationFlow: HomeFlowNavigation, allProductsProvider: ProductsProvider = HomeScreenClient(),draftOrderProvider: DraftOrderProvider = HomeScreenClient()) {
@@ -45,21 +45,8 @@ final class HomeViewModel {
     func goToSearchViewController() {
         homeNavigation.goToSearchViewController()
     }
-
     
-    func getAllProductsFromApi() {
-        self.isLoadingSubject.accept(true)
-        allProductsProvider.getAllProducts()
-            .subscribe(onNext: {[weak self] result in
-                guard let `self` = self else {fatalError()}
-                //self.productsSubject.onNext(result.products)
-                self.getDraftOrderById(result.products)
-                self.isLoadingSubject.accept(false)
-                
-            }).disposed(by: disposeBag)
-    }
-    
-    func getDraftOrderById(_ products: [Product]) {
+    func getDraftOrderById() {
         let user = getUserFromUserDefaults()
         if (user != nil) {
             if(user!.cartId != 0) {
@@ -67,36 +54,17 @@ final class HomeViewModel {
                 self.draftOrderProvider.getDraftOrder(with: user!.cartId)
                     .subscribe(onNext:  {[weak self] result in
                         guard let `self` = self else {fatalError()}
-                        let variantIdsFromDraftOrderResponse = result.draftOrder.lineItems.map{ $0.variantID }
-                        let quantitates = result.draftOrder.lineItems.map{ $0.quantity }
-                        var index = 0
-                        let filteredProducts = self.filter(items: products, contains: variantIdsFromDraftOrderResponse)
-                        
                         if(self.fetchedItemsFromCoreData.isEmpty) {
-                            for item in filteredProducts {
-                                let newSaved = SavedProductItem(inventoryQuantity: item.variants[0].inventoryQuantity, variantId: item.variants[0].id, productID: Decimal(item.id), productTitle: item.title, productImage: item.image.src, productPrice: Double(item.variants[0].price)!, productQTY: quantitates[index], producrState: 1)
+                            for item in result.draftOrder.lineItems {
+                                let newSaved = SavedProductItem(inventoryQuantity: Int(item.properties[0].inventoryQuantity)!, variantId: item.variantID, productID: Decimal(item.productID), productTitle: item.title, productImage: item.properties[0].imageName, productPrice: Double(item.price)!, productQTY: item.quantity, producrState: 1)
                                 let _ = CoreDataModel.coreDataInstatnce.insertCartProduct(product: newSaved)
-                                index += 1
                             }
                         }
                     }).disposed(by: disposeBag)
             }
         }
-
-    }
         
-    func filter(items: [Product], contains tags: [Int]) -> [Product] {
-        var filteredProducts: [Product] = []
-        for product in items {
-            for tag in tags {
-                if(product.variants[0].id == tag) {
-                    filteredProducts.append(product)
-                }
-            }
-        }
-        return filteredProducts
-   }
-    
+    }
     private func getUserFromUserDefaults() -> User? {
         do {
             return try UserDefaults.standard.getObject(forKey: "user", castTo: User.self)

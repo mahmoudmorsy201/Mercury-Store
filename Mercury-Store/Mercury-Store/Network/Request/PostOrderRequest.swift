@@ -56,10 +56,24 @@ struct CustomerId: Codable {
 // MARK: - LineItem
 struct LineItemDraft: Codable {
     let quantity, variantID: Int
+    let properties: [PropertyDraft]
+    
 
     enum CodingKeys: String, CodingKey {
         case quantity
         case variantID = "variant_id"
+        case properties
+    }
+}
+
+struct PropertyDraft: Codable {
+    let imageName: String
+    let inventoryQuantity: String
+    
+
+    enum CodingKeys: String, CodingKey {
+        case imageName = "name"
+        case inventoryQuantity = "value"
     }
 }
 

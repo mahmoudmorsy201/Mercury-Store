@@ -20,11 +20,10 @@ extension OrdersAPI {
         switch self {
         case .getCustomerOrders(let id):
             return Constants.Paths.Customers.customerOrders + "/\(id)/orders.json"
-            
         case .postDraftOrder:
             return Constants.Paths.Order.postDraftOrder
         case .modifyExistingOrder(let id, _):
-            return Constants.Paths.Order.modifyExistingOrder + "/\(id).json"
+            return "/draft_orders/\(id).json"
         case .deleteDraftOrder(let id):
             return Constants.Paths.Order.modifyExistingOrder + "/\(id).json"
         case .postOrder:
@@ -66,4 +65,3 @@ extension OrdersAPI {
         }
     }
 }
-
