@@ -69,6 +69,37 @@ extension CoreDataModel{
         }
     }
     
+    func getItemsByUserID(userId:Int)-> ([SavedProductItem], Error?){
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entity)
+        let userPredicate = NSPredicate(format: "%@ IN %K", userId, productCoredataAttr.userIds.rawValue)
+        let favouritePredicate = NSPredicate(format: "\(productCoredataAttr.state.rawValue) = %@ OR \(productCoredataAttr.state.rawValue)  = %@", argumentArray: [productStates.both.rawValue ,productStates.favourite.rawValue])
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [userPredicate , favouritePredicate])
+        
+        var resultItems = [SavedProductItem]()
+        do {
+            let fetchedItems = try managedObjectContext.fetch(fetchRequest)
+            for itemMO in fetchedItems {
+                let tmpItem: SavedProductItem = SavedProductItem(
+                    inventoryQuantity: itemMO.value(forKey:productCoredataAttr.inventoryQuantity.rawValue) as! Int,
+                    variantId: itemMO.value(forKey: productCoredataAttr.variantId.rawValue) as! Int,
+                    productID: itemMO.value(forKey: productCoredataAttr.id.rawValue) as! Decimal,
+                    productTitle: itemMO.value(forKey: productCoredataAttr.title.rawValue) as! String,
+                    productImage: itemMO.value(forKey: productCoredataAttr.image.rawValue) as! String ,
+                    productPrice: itemMO.value(forKey: productCoredataAttr.price.rawValue) as! Double,
+                    productQTY: itemMO.value(forKey: productCoredataAttr.quantity.rawValue) as! Int,
+                    producrState: itemMO.value(forKey: productCoredataAttr.state.rawValue) as! Int,
+                    user_id: itemMO.value(forKey: productCoredataAttr.userIds.rawValue ) as! [Int]
+                )
+                resultItems.append(tmpItem)
+            }
+            
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            return(resultItems , error)
+        }
+        return (resultItems, nil)
+    }
+    
     func getCurrentUserId()->Int?{
         let sharedInstance: UserDefaults = UserDefaults.standard
         do{
