@@ -19,6 +19,7 @@ protocol ProductsDetailViewModelType: AnyObject{
     func sendImagesToCollection()
     func toggleFavourite()->Bool
     var isProductFavourite:Bool{get}
+    var isLogged:Bool{get}
     func modifyOrderInCartIfCartIdIsNil(_ product: Product, variant: Variant)
     func popViewController()
     func sendVariantsToCollection()
@@ -29,6 +30,10 @@ protocol ProductsDetailViewModelType: AnyObject{
 }
 
 final class ProductsDetailViewModel: ProductsDetailViewModelType {
+    var isLogged: Bool{
+        getCurrentUserId() != nil
+    }
+    
     private let productImagesSubject = PublishSubject<[ProductImage]>()
     private weak var productDetailsNavigationFlow: ProductDetailsNavigationFlow?
     private let coreDataShared: CoreDataModel
@@ -62,20 +67,33 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
         self.customerProvider = customerProvider
         self.productDetailsNavigationFlow = productDetailsNavigationFlow
     }
+    
     func sendImagesToCollection() {
         productImagesSubject.onNext(product.images)
     }
+    
     var isProductFavourite: Bool{
-        return CoreDataModel.coreDataInstatnce.isProductFavourite(id: product.id)
+        if getCurrentUserId() != nil{
+            return CoreDataModel.coreDataInstatnce.isProductFavourite(id: product.id)
+        }else {
+            return false
+        }
     }
+    
     func toggleFavourite() -> Bool  {
-        return coreDataShared.toggleFavourite(product: SavedProductItem(
+        let product = SavedProductItem(
             inventoryQuantity: product.variants[0].inventoryQuantity, variantId: product.variants[0].id,
             productID: Decimal(product.id),
             productTitle: product.title,
             productImage: product.image.src ,
             productPrice: Double(product.variants[0].price) ?? 0 ,
-            productQTY: 0 , producrState: productStates.favourite.rawValue))
+            productQTY: 0 , producrState: productStates.favourite.rawValue)
+        
+        if getCurrentUserId() != nil{
+             return CoreDataModel.coreDataInstatnce.toggleFavourite(product: product)
+        }else {
+            return false
+        }
     }
     func sendVariantsToCollection() {
         try! variantsSubject.onNext(product.options[indexSubject.value()].values)

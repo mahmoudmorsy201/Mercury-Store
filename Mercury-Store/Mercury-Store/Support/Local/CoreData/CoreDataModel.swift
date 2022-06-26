@@ -25,12 +25,14 @@ enum productCoredataAttr:String{
     case price = "price"
     case quantity = "quantity"
     case state = "state"
+    case userIds = "userIds"
 }
 final class CoreDataModel: StorageProtocol {
     fileprivate  var itemsPrivate: PublishSubject<SavedProductItem?>
     static let coreDataInstatnce = CoreDataModel()
     let managedObjectContext:NSManagedObjectContext
     let entity:String = "ProductsCoreData"
+    let favEntity:String = "Favourite"
     private let countSubject = PublishSubject<String?>()
     var count: Observable<String?>?
     
@@ -59,7 +61,8 @@ extension CoreDataModel: StorageInputs {
                     productImage: itemMO.value(forKey: productCoredataAttr.image.rawValue) as! String ,
                     productPrice: itemMO.value(forKey: productCoredataAttr.price.rawValue) as! Double,
                     productQTY: itemMO.value(forKey: productCoredataAttr.quantity.rawValue) as! Int,
-                    producrState: itemMO.value(forKey: productCoredataAttr.state.rawValue) as! Int
+                    producrState: itemMO.value(forKey: productCoredataAttr.state.rawValue) as! Int,
+                    user_id: itemMO.value(forKey: productCoredataAttr.userIds.rawValue ) as! [Int]
                 )
                 resultItems.append(tmpItem)
             }
@@ -82,6 +85,7 @@ extension CoreDataModel: StorageInputs {
         product.setValue(item.productQTY , forKey: productCoredataAttr.quantity.rawValue)
         product.setValue(item.producrState , forKey: productCoredataAttr.state.rawValue)
         product.setValue(item.inventoryQuantity, forKey: productCoredataAttr.inventoryQuantity.rawValue)
+        product.setValue(item.user_id , forKey: productCoredataAttr.userIds.rawValue)
         do{
             try managedObjectContext.save()
         }catch _ as NSError {
@@ -104,6 +108,7 @@ extension CoreDataModel: StorageInputs {
                 product?.setValue(updateitem.productQTY, forKey: productCoredataAttr.quantity.rawValue)
                 product?.setValue(updateitem.producrState, forKey: productCoredataAttr.state.rawValue)
                 product?.setValue(updateitem.inventoryQuantity, forKey: productCoredataAttr.inventoryQuantity.rawValue)
+                product?.setValue(updateitem.user_id, forKey: productCoredataAttr.userIds.rawValue)
                 try self.managedObjectContext.save()
                 return (updateitem, true)
             }
@@ -113,6 +118,7 @@ extension CoreDataModel: StorageInputs {
         }
         return (updateitem , true)
     }
+    
     func delete(itemID:Int) -> Bool{
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: self.entity)
         fetchRequest.predicate = NSPredicate(format: "\(productCoredataAttr.id.rawValue) = %@", NSNumber(value: itemID))
@@ -156,6 +162,7 @@ extension CoreDataModel{
         }
         return !results.isEmpty
     }
+    
     func isProductExist(id :Int)->Bool{
         var results: [NSManagedObject] = []
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: self.entity)
@@ -168,6 +175,7 @@ extension CoreDataModel{
         }
         return !results.isEmpty
     }
+    
     func getItemByID(productID:Int)->SavedProductItem{
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entity)
         fetchRequest.predicate =  NSPredicate(format: "\(productCoredataAttr.id.rawValue) = %@", argumentArray: [productID])
@@ -181,7 +189,8 @@ extension CoreDataModel{
                 productImage: fetchedItems.value(forKey: productCoredataAttr.image.rawValue) as! String,
                 productPrice: fetchedItems.value(forKey: productCoredataAttr.price.rawValue) as! Double,
                 productQTY: fetchedItems.value(forKey: productCoredataAttr.quantity.rawValue) as! Int,
-                producrState: fetchedItems.value(forKey: productCoredataAttr.state.rawValue) as! Int
+                producrState: fetchedItems.value(forKey: productCoredataAttr.state.rawValue) as! Int,
+                user_id: fetchedItems.value(forKey: productCoredataAttr.userIds.rawValue) as! [Int]
             )
             return itemMO
         }

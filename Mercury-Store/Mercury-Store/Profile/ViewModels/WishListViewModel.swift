@@ -39,7 +39,7 @@ class WishListViewModel:WishListViewModelType{
     func getFavouriteItems() {
         self.productSubject.accept([])
         self.errorSubject.accept(nil)
-        let items = self.coreDataModel.getItems(productState: productStates.favourite)
+        let items = self.coreDataModel.getItemsByUserID()
         if(items.0.isEmpty) {
             self.emptyViewSubject.accept(false)
         }else {

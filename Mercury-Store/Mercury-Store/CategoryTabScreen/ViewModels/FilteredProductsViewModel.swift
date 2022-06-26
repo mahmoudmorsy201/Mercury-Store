@@ -64,9 +64,15 @@ final class FilteredProductsViewModel: FilteredProductsViewModelType {
                 self?.errorSubject.accept(error.localizedDescription)
             }.disposed(by: disposeBag)
     }
+    
     func isProductFavourite(id:Int) -> Bool{
-        return CoreDataModel.coreDataInstatnce.isProductFavourite(id: id)
+        if let user =  getCurrentUserId(){
+            return CoreDataModel.coreDataInstatnce.isProductFavourite(id: id)
+        }else {
+            return false
+        }
     }
+    
 }
 
 extension FilteredProductsViewModel {

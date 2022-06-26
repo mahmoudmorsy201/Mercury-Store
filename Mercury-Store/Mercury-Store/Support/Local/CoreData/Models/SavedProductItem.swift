@@ -15,6 +15,19 @@ struct SavedProductItem{
     var productPrice:Double
     var productQTY:Int
     var producrState:Int
+    var user_id:[Int]
+    
+    init(inventoryQuantity: Int , variantId: Int ,productID:Decimal ,productTitle:String ,productImage:String ,productPrice:Double ,productQTY:Int ,producrState:Int , user_id:[Int] = []){
+        self.inventoryQuantity = inventoryQuantity
+        self.variantId = variantId
+        self.productID = productID
+        self.productTitle = productTitle
+        self.productImage = productImage
+        self.productPrice = productPrice
+        self.productQTY = productQTY
+        self.producrState = producrState
+        self.user_id = user_id
+    }
 }
 extension SavedProductItem {
     init() {
@@ -27,6 +40,7 @@ extension SavedProductItem {
         producrState = 0
         variantId = 0
         inventoryQuantity = 0
+        user_id = []
     }
 }
 
