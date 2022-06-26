@@ -41,12 +41,8 @@ class BrandProductsCollectionViewCell: UICollectionViewCell {
         productForBrandPrice.text = item.variants[0].price
         favouriteButton.favouriteState(state: viewModel.getFavouriteState(productID: item.id))
         favouriteButton.rx.tap.throttle(.milliseconds(5000), latest: false, scheduler: MainScheduler.instance).subscribe(onNext: { [ weak self ] in
-            self!.makeToast("Added to Favourite", duration: 3.0, position: .top)
             guard let self = self else{return}
-            let savedValue = SavedProductItem(inventoryQuantity: item.variants[0].inventoryQuantity, variantId: item.variants[0].id, productID: Decimal(item.id), productTitle: item.title, productImage: item.image.src, productPrice: Double(item.variants[0].price )! , productQTY: 0, producrState: productStates.favourite.rawValue)
-            let favourite = self.viewModel.toggleFavourite(product: savedValue)
-            self.favouriteButton.favouriteState(state: favourite)
-            
+            self.handleToggleFavourite()
         }).disposed(by: disposeBag)
     }
     
@@ -64,5 +60,26 @@ extension BrandProductsCollectionViewCell {
         containerViewForBrandProductsCell.layer.borderColor = UIColor.gray.withAlphaComponent(0.3).cgColor
         containerViewForBrandProductsCell.layer.cornerRadius = 12
         containerViewForBrandProductsCell.layer.masksToBounds = true
+    }
+    
+    func handleToggleFavourite(){
+        if viewModel.userID != nil {
+            guard let item = item else { return  }
+            let savedValue = SavedProductItem(inventoryQuantity: item.variants[0].inventoryQuantity, variantId: item.variants[0].id, productID: Decimal(item.id), productTitle: item.title, productImage: item.image.src, productPrice: Double(item.variants[0].price )! , productQTY: 0, producrState: productStates.favourite.rawValue)
+            let favourite = self.viewModel.toggleFavourite(product: savedValue)
+            self.favouriteButton.favouriteState(state: favourite)
+            self.makeToast("Added to Favourite", duration: 3.0, position: .top)
+        }
+        else {
+            self.showNotLogedDialog()
+        }
+    }
+    
+    func showNotLogedDialog(){
+        let dialogMessage = UIAlertController(title: "", message: "please login to add items to favourite", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "ok", style: .cancel, handler: nil)
+        dialogMessage.addAction(ok)
+        guard let parentVC = self.parentViewController else { return }
+        parentVC.present(dialogMessage, animated: true, completion: nil)
     }
 }

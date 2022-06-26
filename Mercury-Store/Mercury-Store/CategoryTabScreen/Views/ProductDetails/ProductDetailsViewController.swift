@@ -81,6 +81,7 @@ class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
             self.heightForColorCollectionView.constant = cv.collectionViewLayout.collectionViewContentSize.height
         })
     }
+
     private func setUpUI() {
         self.containerViewForAddToCartButton.makeCorners(corners: [.topLeft,.topRight], radius: 12)
         self.addToCart.tintColor = ColorsPalette.labelColors
@@ -234,12 +235,28 @@ extension ProductDetailsViewController{
     func bindFavouriteButton(){
         favoriteBtn.favouriteState(state: viewModel.isProductFavourite )
     }
+    
     func addToFavourite(){
         favoriteBtn.rx.tap.subscribe(onNext: { [weak self] in
             self!.view.makeToast("Added to Favorites", duration: 3.0, position: .top)
             guard let self = self else {return}
-            self.favoriteBtn.favouriteState(state:  self.viewModel.toggleFavourite() )
+            self.handleFavouriteAction()
         }).disposed(by: disposeBag)
+    }
+    
+    func handleFavouriteAction(){
+        if viewModel.isLogged {
+            self.favoriteBtn.favouriteState(state:  self.viewModel.toggleFavourite() )
+        }else{
+            showNotLogedDialog()
+        }
+    }
+    
+    func showNotLogedDialog(){
+        let dialogMessage = UIAlertController(title: "", message: "please login to add items to favourite", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "ok", style: .cancel, handler: nil)
+        dialogMessage.addAction(ok)
+        self.present(dialogMessage, animated: true, completion: nil)
     }
 }
 // MARK: - Extensions

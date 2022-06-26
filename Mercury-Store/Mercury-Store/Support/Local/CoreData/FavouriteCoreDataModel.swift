@@ -30,6 +30,7 @@ extension CoreDataModel{
         }
         return false
     }
+    
     func toggleFavourite(product:SavedProductItem)->Bool{
         let isFavorite = isProductFavourite(id: Int(truncating: NSDecimalNumber(decimal: product.productID) ))
         if isFavorite {
@@ -41,17 +42,18 @@ extension CoreDataModel{
     }
     
     func isProductFavourite (id :Int) -> Bool {
-            var results: [NSManagedObject] = []
-            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: self.entity)
-        fetchRequest.predicate =  NSPredicate(format: "\(productCoredataAttr.id.rawValue) = %@ AND (\(productCoredataAttr.state.rawValue)  = %@ OR \(productCoredataAttr.state.rawValue) = %@)", argumentArray: [id as CVarArg, productStates.favourite.rawValue , productStates.both.rawValue])
-            do {
-                results = try managedObjectContext.fetch(fetchRequest)
-            }
-            catch {
-                print("error executing fetch request: \(error)")
-            }
-        return !results.isEmpty
+        var results: [NSManagedObject] = []
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: self.entity)
+        let favouritePredicate =  NSPredicate(format: "\(productCoredataAttr.id.rawValue) = %@ AND (\(productCoredataAttr.state.rawValue)  = %@ OR \(productCoredataAttr.state.rawValue) = %@)", argumentArray: [id as CVarArg, productStates.favourite.rawValue , productStates.both.rawValue])
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [favouritePredicate])
+        do {
+            results = try managedObjectContext.fetch(fetchRequest)
+            results = results.filter{($0.value(forKey: productCoredataAttr.userIds.rawValue)as! [Int]).contains(getCurrentUserId()!) }
+        }catch {
+            print("error executing fetch request: \(error)")
         }
+    return !results.isEmpty
+    }
     
     func insertFavouriteProduct(product:SavedProductItem)->Bool{
         if isProductExist(id: Int(truncating: NSDecimalNumber(decimal: product.productID))){
@@ -65,15 +67,16 @@ extension CoreDataModel{
             return insert(item: item).1
         }
         else{
-            return insert(item: product).1
+            var item = product
+            item.user_id.append(getCurrentUserId()!)
+            return insert(item: item).1
         }
     }
     
     func getItemsByUserID()-> ([SavedProductItem], Error?){
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entity)
-        let userPredicate = NSPredicate(format: "%@ IN %K", getCurrentUserId()!, productCoredataAttr.userIds.rawValue)
         let favouritePredicate = NSPredicate(format: "\(productCoredataAttr.state.rawValue) = %@ OR \(productCoredataAttr.state.rawValue)  = %@", argumentArray: [productStates.both.rawValue ,productStates.favourite.rawValue])
-        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [userPredicate , favouritePredicate])
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [favouritePredicate])
         
         var resultItems = [SavedProductItem]()
         do {
@@ -97,16 +100,8 @@ extension CoreDataModel{
             print("Could not fetch. \(error), \(error.userInfo)")
             return(resultItems , error)
         }
+        
+        resultItems = resultItems.filter{$0.user_id.contains(getCurrentUserId()!) }
         return (resultItems, nil)
-    }
-    
-    func getCurrentUserId()->Int?{
-        let sharedInstance: UserDefaults = UserDefaults.standard
-        do{
-            let user:User = try sharedInstance.getObject(forKey: "user", castTo: User.self)
-            return user.id
-        }catch( _){
-            return nil
-        }
     }
 }

@@ -23,6 +23,7 @@
 		4D17769F283FB27000B0E726 /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D17769D283FB27000B0E726 /* FilterViewController.xib */; };
 		4D21DF242846DE5A00582E43 /* MainCategoryCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D21DF222846DE5A00582E43 /* MainCategoryCellTableViewCell.swift */; };
 		4D21DF252846DE5A00582E43 /* MainCategoryCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D21DF232846DE5A00582E43 /* MainCategoryCellTableViewCell.xib */; };
+		4D26A2962867CCE4008E94B6 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D26A2952867CCE4008E94B6 /* Helper.swift */; };
 		4D7E510D2849AECB00BA92A0 /* HomeFlowNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7E510C2849AECB00BA92A0 /* HomeFlowNavigation.swift */; };
 		4D8D2B31285F2AFA0014F066 /* GuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2AED285F2AF90014F066 /* GuestViewModel.swift */; };
 		4D8D2B32285F2AFA0014F066 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2AEE285F2AF90014F066 /* LoginViewModel.swift */; };
@@ -272,6 +273,7 @@
 		4D17769D283FB27000B0E726 /* FilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterViewController.xib; sourceTree = "<group>"; };
 		4D21DF222846DE5A00582E43 /* MainCategoryCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCategoryCellTableViewCell.swift; sourceTree = "<group>"; };
 		4D21DF232846DE5A00582E43 /* MainCategoryCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCategoryCellTableViewCell.xib; sourceTree = "<group>"; };
+		4D26A2952867CCE4008E94B6 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		4D7E510C2849AECB00BA92A0 /* HomeFlowNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeFlowNavigation.swift; sourceTree = "<group>"; };
 		4D8D2AED285F2AF90014F066 /* GuestViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuestViewModel.swift; sourceTree = "<group>"; };
 		4D8D2AEE285F2AF90014F066 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -946,6 +948,7 @@
 				C4D2BD0A2861FE2600753B39 /* EgyptCityArray.swift */,
 				C49F4A3C2863AF460098512B /* ReviewRepository.swift */,
 				C4C9461A2866D0EA004638B3 /* UIView+Border.swift */,
+				4D26A2952867CCE4008E94B6 /* Helper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1876,6 +1879,7 @@
 				4D8D2BC3285F2C2E0014F066 /* UILabel+AppStyle.swift in Sources */,
 				4DF2005128576C2100D49B59 /* PaymentViewViewController.swift in Sources */,
 				4DCA17B2284EF2E000F0CF3A /* CartCoreData.swift in Sources */,
+				4D26A2962867CCE4008E94B6 /* Helper.swift in Sources */,
 				4D8D2B92285F2C130014F066 /* OrderPostResponse.swift in Sources */,
 				C4CFBA71283C1914009C2840 /* BannerCollectionViewCell.swift in Sources */,
 				4D8D2B3B285F2AFA0014F066 /* GuestCoordinator.swift in Sources */,
