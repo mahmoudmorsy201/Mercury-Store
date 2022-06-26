@@ -64,7 +64,7 @@ extension CoreDataModel{
             if !item.user_id.contains(getCurrentUserId()!){
                 item.user_id.append(getCurrentUserId()!)
             }
-            return insert(item: item).1
+            return update(updateitem: item).1
         }
         else{
             var item = product
