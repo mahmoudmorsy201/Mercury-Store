@@ -102,8 +102,7 @@
 		4D8D2BA8285F2C130014F066 /* AddressAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2B8A285F2C130014F066 /* AddressAPI.swift */; };
 		4D8D2BA9285F2C130014F066 /* AddressClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2B8B285F2C130014F066 /* AddressClient.swift */; };
 		4D8D2BC0285F2C2E0014F066 /* UIButton+RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BAB285F2C2E0014F066 /* UIButton+RoundedCorners.swift */; };
-		4D8D2BC1285F2C2E0014F066 /* UIImageView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BAC285F2C2E0014F066 /* UIImageView+Shadow.swift */; };
-		4D8D2BC2285F2C2E0014F066 /* UIImageView+SDWebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BAD285F2C2E0014F066 /* UIImageView+SDWebImage.swift */; };
+		4D8D2BC1285F2C2E0014F066 /* UIImageView+Shadow_SDWebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BAC285F2C2E0014F066 /* UIImageView+Shadow_SDWebImage.swift */; };
 		4D8D2BC3285F2C2E0014F066 /* UILabel+AppStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BAE285F2C2E0014F066 /* UILabel+AppStyle.swift */; };
 		4D8D2BC4285F2C2E0014F066 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BAF285F2C2E0014F066 /* UIViewController+Alert.swift */; };
 		4D8D2BC5285F2C2E0014F066 /* Collection+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BB0285F2C2E0014F066 /* Collection+Safe.swift */; };
@@ -352,8 +351,7 @@
 		4D8D2B8A285F2C130014F066 /* AddressAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressAPI.swift; sourceTree = "<group>"; };
 		4D8D2B8B285F2C130014F066 /* AddressClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressClient.swift; sourceTree = "<group>"; };
 		4D8D2BAB285F2C2E0014F066 /* UIButton+RoundedCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+RoundedCorners.swift"; sourceTree = "<group>"; };
-		4D8D2BAC285F2C2E0014F066 /* UIImageView+Shadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Shadow.swift"; sourceTree = "<group>"; };
-		4D8D2BAD285F2C2E0014F066 /* UIImageView+SDWebImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+SDWebImage.swift"; sourceTree = "<group>"; };
+		4D8D2BAC285F2C2E0014F066 /* UIImageView+Shadow_SDWebImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Shadow_SDWebImage.swift"; sourceTree = "<group>"; };
 		4D8D2BAE285F2C2E0014F066 /* UILabel+AppStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+AppStyle.swift"; sourceTree = "<group>"; };
 		4D8D2BAF285F2C2E0014F066 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		4D8D2BB0285F2C2E0014F066 /* Collection+Safe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Safe.swift"; sourceTree = "<group>"; };
@@ -925,8 +923,7 @@
 				4D96F461285F679500D43DC1 /* DefaultView.swift */,
 				4D96F45F285F678B00D43DC1 /* DefaultImageView.swift */,
 				4D8D2BAB285F2C2E0014F066 /* UIButton+RoundedCorners.swift */,
-				4D8D2BAC285F2C2E0014F066 /* UIImageView+Shadow.swift */,
-				4D8D2BAD285F2C2E0014F066 /* UIImageView+SDWebImage.swift */,
+				4D8D2BAC285F2C2E0014F066 /* UIImageView+Shadow_SDWebImage.swift */,
 				4D8D2BAE285F2C2E0014F066 /* UILabel+AppStyle.swift */,
 				4D8D2BAF285F2C2E0014F066 /* UIViewController+Alert.swift */,
 				4D8D2BB0285F2C2E0014F066 /* Collection+Safe.swift */,
@@ -1795,7 +1792,7 @@
 				4D8D2BCA285F2C2E0014F066 /* JSONDecoder+AlmofireResponse.swift in Sources */,
 				026C7FDE284BEF0C00A562AE /* ProductSearchViewModel.swift in Sources */,
 				4D8D2B46285F2AFA0014F066 /* MyOrderDetailsController.swift in Sources */,
-				4D8D2BC1285F2C2E0014F066 /* UIImageView+Shadow.swift in Sources */,
+				4D8D2BC1285F2C2E0014F066 /* UIImageView+Shadow_SDWebImage.swift in Sources */,
 				C4102943284AAF52007045F8 /* BrandDetailsViewModel.swift in Sources */,
 				4D8D2B98285F2C130014F066 /* HomeClient.swift in Sources */,
 				C4C08B9D283216D000364704 /* ShoppingCartViewModel.swift in Sources */,
@@ -1865,7 +1862,6 @@
 				4D8D2B36285F2AFA0014F066 /* ProfileViewModel.swift in Sources */,
 				4D911854284AACD100F07638 /* SavedProductItem.swift in Sources */,
 				C4E6718C2839E7BD000572A7 /* CategoriesViewModel.swift in Sources */,
-				4D8D2BC2285F2C2E0014F066 /* UIImageView+SDWebImage.swift in Sources */,
 				4D8D2BA6285F2C130014F066 /* CustomerClient.swift in Sources */,
 				C4C04EEF283332AD002EC367 /* CategoriesTableViewCell.swift in Sources */,
 				4D8D2B4D285F2AFA0014F066 /* ProfileViewController.swift in Sources */,
