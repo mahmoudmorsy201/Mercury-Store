@@ -41,8 +41,8 @@ class ProfileViewController: UIViewController {
     }
     private func setUpUI() {
         self.logoutBtn.tintColor = ColorsPalette.lightColor
-      
     }
+    
     // MARK: - IBActions
     @IBAction func logoutAction(_ sender: Any) {
         self.viewModel.goToMainTab()

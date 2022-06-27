@@ -56,8 +56,9 @@ final class HomeViewModel {
                         guard let `self` = self else {fatalError()}
                         if(self.fetchedItemsFromCoreData.isEmpty) {
                             for item in result.draftOrder.lineItems {
-                                let newSaved = SavedProductItem(inventoryQuantity: Int(item.properties[0].inventoryQuantity)!, variantId: item.variantID, productID: Decimal(item.productID), productTitle: item.title, productImage: item.properties[0].imageName, productPrice: Double(item.price)!, productQTY: item.quantity, producrState: 1)
+                                let newSaved = SavedProductItem(inventoryQuantity: Int(item.properties[0].inventoryQuantity) ?? 0, variantId: item.variantID, productID: Decimal(item.productID), productTitle: item.title, productImage: item.properties[0].imageName, productPrice: Double(item.price)!, productQTY: item.quantity, producrState: 1)
                                 let _ = CoreDataModel.coreDataInstatnce.insertCartProduct(product: newSaved)
+                                CoreDataModel.coreDataInstatnce.observeProductCount()
                             }
                         }
                     }).disposed(by: disposeBag)

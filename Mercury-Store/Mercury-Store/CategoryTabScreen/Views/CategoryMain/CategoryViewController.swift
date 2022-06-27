@@ -40,6 +40,7 @@ class CategoryViewController: UIViewController {
         initTableView()
         bindActivity()
         createSearchBarButton()
+        mainCategoryItems.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
