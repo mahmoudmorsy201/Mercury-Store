@@ -92,7 +92,10 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
             productQTY: 0 , producrState: productStates.favourite.rawValue)
         
         if getCurrentUserId() != nil{
-             return CoreDataModel.coreDataInstatnce.toggleFavourite(product: product)
+            if CoreDataModel.coreDataInstatnce.toggleFavourite(product: product){
+                return true
+            }
+            return false
         }else {
             return false
         }
@@ -214,6 +217,3 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
         }
     }
 }
-
-
-

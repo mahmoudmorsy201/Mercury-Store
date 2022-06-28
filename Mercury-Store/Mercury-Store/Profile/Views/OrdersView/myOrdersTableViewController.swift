@@ -8,8 +8,10 @@
 import UIKit
 import RxSwift
 
-class myOrdersTableViewController: UITableViewController {
+class myOrdersTableViewController: UIViewController {
     
+    @IBOutlet weak var emptyView: UIView!
+    @IBOutlet weak var orderTableView: UITableView!
     private var ordersViewModel:CustomersOrdersViewModelsType!
     let disposeBag = DisposeBag()
 
@@ -24,17 +26,23 @@ class myOrdersTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTable()
+        self.bindEmptyView()
     }
 }
-extension myOrdersTableViewController{
+extension myOrdersTableViewController: UITableViewDelegate{
     private func setupTable(){
-        tableView.register(UINib(nibName: "MyOrdersViewCell", bundle: nil), forCellReuseIdentifier: "myOrderCell")
-        tableView.dataSource = nil
-        tableView.delegate = nil
-        tableView.rx.setDelegate(self).disposed(by: disposeBag)
-        ordersViewModel.orders.drive(tableView.rx.items(
+        orderTableView.register(UINib(nibName: "MyOrdersViewCell", bundle: nil), forCellReuseIdentifier: "myOrderCell")
+        orderTableView.dataSource = nil
+        orderTableView.delegate = nil
+        orderTableView.rx.setDelegate(self).disposed(by: disposeBag)
+        ordersViewModel.orders.drive(orderTableView.rx.items(
             cellIdentifier: "myOrderCell", cellType: MyOrdersViewCell.self)){index , element ,cell in
                 cell.setupCell(order: element)
             }.disposed(by: disposeBag)
+    }
+    private func bindEmptyView() {
+        self.ordersViewModel.empty
+            .drive(emptyView.rx.isHidden)
+            .disposed(by: disposeBag)
     }
 }
