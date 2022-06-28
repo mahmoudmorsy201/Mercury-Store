@@ -17,6 +17,7 @@ final class HomeViewModel {
     private let productsSubject = PublishSubject<[Product]>()
     private let isLoadingSubject = BehaviorRelay<Bool> (value: false)
     private let fetchedItemsFromCoreData = CoreDataModel.coreDataInstatnce.getItems(productState: productStates.cart).0
+    private let fetchedItemsFromCoreDataFav = CoreDataModel.coreDataInstatnce.getItems(productState: productStates.favourite).0
     
     var isLoading: Driver<Bool>
     let items = BehaviorSubject<[HomeTableViewSection]>(value: [
@@ -75,7 +76,7 @@ final class HomeViewModel {
                 self.draftOrderProvider.getDraftOrder(with: user!.favouriteId)
                     .subscribe(onNext:  {[weak self] result in
                         guard let `self` = self else {fatalError()}
-                        if(self.fetchedItemsFromCoreData.isEmpty) {
+                        if(self.fetchedItemsFromCoreDataFav.isEmpty) {
                             for item in result.draftOrder.lineItems {
                                 let newSaved = SavedProductItem(inventoryQuantity: Int(item.properties[0].inventoryQuantity) ?? 0, variantId: item.variantID, productID: Decimal(item.productID), productTitle: item.title, productImage: item.properties[0].imageName, productPrice: Double(item.price)!, productQTY: item.quantity, producrState: 0)
                                 let _ = CoreDataModel.coreDataInstatnce.insertFavouriteProduct(product: newSaved)
