@@ -245,8 +245,13 @@ extension ProductDetailsViewController{
     
     func handleFavouriteAction() {
         if viewModel.isLogged {
-            self.view.makeToast("Added to Favorites", duration: 3.0, position: .top)
-            self.favoriteBtn.favouriteState(state:  self.viewModel.toggleFavourite() )
+            if self.viewModel.toggleFavourite() {
+                self.view.makeToast("Added to Favorites", duration: 3.0, position: .top)
+                self.favoriteBtn.favouriteState(state:  true)
+            }else{
+                self.view.makeToast("Deleted from Favorites", duration: 3.0, position: .top)
+                self.favoriteBtn.favouriteState(state:  false )
+            }
             try! self.viewModel.modifyOrderInWishIfFavIdIsNil(self.viewModel.product, variant: self.viewModel.product.variants[self.viewModel.indexSubject.value()])
         }else{
             showNotLogedDialog()

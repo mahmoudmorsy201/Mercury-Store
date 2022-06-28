@@ -160,6 +160,7 @@ class PaymentViewModel:PaymentViewModelType{
         request.currencyCode = PaymentModel.currencyCode
         payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
             if let tokenizedPayPalAccount = tokenizedPayPalAccount {
+                print(tokenizedPayPalAccount)
                 self.postOrder(financial_status: "paid")
             } else if let error = error {
                 print(error)
@@ -167,6 +168,7 @@ class PaymentViewModel:PaymentViewModelType{
                 print("the user canceled")
             }
         }
+        
     }
     
     private func postOrder(financial_status:String = "authorized") {
