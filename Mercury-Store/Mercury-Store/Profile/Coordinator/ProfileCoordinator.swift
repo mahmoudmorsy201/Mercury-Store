@@ -28,6 +28,7 @@ class ProfileCoordinator: Coordinator {
 }
 
 extension ProfileCoordinator: ProfileNavigationFlow {
+
     func goToMyOrdersScreen() {
         let customersOrderScreen = myOrdersTableViewController(CustomersOrdersViewModels())
         self.navigationController.pushViewController(customersOrderScreen, animated: true)
@@ -60,6 +61,10 @@ extension ProfileCoordinator: ProfileNavigationFlow {
         let appC = self.parentCoordinator?.parentCoordinator as! ApplicationCoordinator
         appC.goToHomeTabbar()
         appC.childDidFinish(self)
+    }
+    func goToMySettingsScreens() {
+        let mySettingsVC = MySettingsViewController()
+        self.navigationController.pushViewController(mySettingsVC, animated: true)
     }
     
 }

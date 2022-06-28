@@ -73,6 +73,8 @@ class ProfileViewController: UIViewController {
                     self?.viewModel.goToMyWishListScreen()
                 case 2:
                     self?.viewModel.goToMyAddressesScreen()
+                case 3:
+                    self?.viewModel.goToMySettingsScreens()
                 default:
                     break
                 }
