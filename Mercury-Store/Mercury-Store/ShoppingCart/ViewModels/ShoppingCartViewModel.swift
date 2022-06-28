@@ -52,7 +52,9 @@ final class CartViewModel {
         self.ordersProvider = ordersProvider
         self.customerProvider = customerProvider
     }
-    
+    func viewWillAppear() {
+        shoppingCartNavigationFlow?.viewWillAppear()
+    }
     func modifyOrderInCartApi() {
         let user = getUserFromUserDefaults()
         if(user != nil && user!.cartId != 0) {

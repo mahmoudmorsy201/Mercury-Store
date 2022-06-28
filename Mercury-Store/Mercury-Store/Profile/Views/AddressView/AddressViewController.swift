@@ -38,6 +38,8 @@ class AddressViewController: UIViewController, UIScrollViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
+        createAddBarButtonItem()
+
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -124,3 +126,16 @@ extension AddressViewController {
     }
 }
 
+// MARK: - Extensions
+extension AddressViewController {
+    // MARK: - Private handlers
+    //
+    private func createAddBarButtonItem() {
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBtnTapped))
+        self.navigationItem.rightBarButtonItem = add
+    }
+    
+    @objc func addBtnTapped() {
+        self.viewModel.goToAddAddressScreen()
+    }
+}

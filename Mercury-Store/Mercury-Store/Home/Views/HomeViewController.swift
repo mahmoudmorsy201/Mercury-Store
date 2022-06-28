@@ -53,8 +53,8 @@ class HomeViewController: UIViewController {
         createSearchBarButton()
         bindTableView()
         bindActivity()
-        bindCartBadgeValue()
         viewModel.getDraftOrderById()
+        bindCartBadgeValue()
     }
     
     override func viewWillAppear(_ animated: Bool) {

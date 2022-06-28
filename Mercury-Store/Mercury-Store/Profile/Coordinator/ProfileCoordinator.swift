@@ -87,6 +87,10 @@ extension ProfileCoordinator: UpdateAddressNavigationFlow {
 }
 
 extension ProfileCoordinator : ShoppingCartNavigationFlow {
+    func viewWillAppear() {
+        
+    }
+    
     func goToEditAddressScreen(with selectedAddress: CustomerAddress) {
         
     }
