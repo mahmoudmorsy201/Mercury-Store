@@ -90,7 +90,7 @@ extension HomeCoordinator: SearchFlowNavigation{
     func  goToProductDetailFromSearch(with item:Product){
         let viewModel = ProductsDetailViewModel(with: self,product: item)
         let productDetailsVC = ProductDetailsViewController(with: viewModel)
-        navigationController.setNavigationBarHidden(true, animated: false)
+        navigationController.setNavigationBarHidden(false, animated: false)
         navigationController.pushViewController(productDetailsVC, animated: true)
     }
 }

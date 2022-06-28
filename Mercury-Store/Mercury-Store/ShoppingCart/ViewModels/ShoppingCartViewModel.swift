@@ -140,7 +140,8 @@ final class CartViewModel {
     }
     
     func cartTotal() -> (_ cart: [CartSection]) -> String? {
-        {  "EGP \($0[safe: 0]?.sectionTotal ?? 0)" }
+        {String(format: "EGP %.2f", $0[safe: 0]?.sectionTotal ?? 0)}
+        //{  "EGP \($0[safe: 0]?.sectionTotal ?? 0)" }
     }
     
     func cartTotalCount() -> (_ cart: [CartSection]) -> String? {

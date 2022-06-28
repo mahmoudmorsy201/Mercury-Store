@@ -32,6 +32,11 @@ class WishListViewController: UIViewController {
         bindEmptyView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.getFavouriteItems()
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.viewModel.modifyOrderInFavApi()
