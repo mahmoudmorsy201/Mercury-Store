@@ -36,11 +36,12 @@ final class CartViewModel {
     private let deleteProductSubject = PublishSubject<SavedProductItem>()
     private let cartOrderSubject = PublishSubject<DraftOrderResponseTest>()
     private let editCustomerSubject = PublishSubject<RegisterResponse>()
+    private let ordersProvider: OrdersProvider
+    private let customerProvider: CustomerProvider
     var incrementProduct: AnyObserver<SavedProductItem> { incrementProductSubject.asObserver() }
     var decrementProduct: AnyObserver<SavedProductItem> { decrementProductSubject.asObserver() }
     var deleteProduct: AnyObserver<SavedProductItem> { deleteProductSubject.asObserver() }
-    let ordersProvider: OrdersProvider
-    let customerProvider: CustomerProvider
+
     
     let disposeBag = DisposeBag()
     

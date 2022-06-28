@@ -66,6 +66,26 @@ final class HomeViewModel {
         }
         
     }
+    
+    func getDraftOrderFav() {
+        let user = getUserFromUserDefaults()
+        if (user != nil) {
+            if(user!.favouriteId != 0) {
+                self.isLoadingSubject.accept(true)
+                self.draftOrderProvider.getDraftOrder(with: user!.favouriteId)
+                    .subscribe(onNext:  {[weak self] result in
+                        guard let `self` = self else {fatalError()}
+                        if(self.fetchedItemsFromCoreData.isEmpty) {
+                            for item in result.draftOrder.lineItems {
+                                let newSaved = SavedProductItem(inventoryQuantity: Int(item.properties[0].inventoryQuantity) ?? 0, variantId: item.variantID, productID: Decimal(item.productID), productTitle: item.title, productImage: item.properties[0].imageName, productPrice: Double(item.price)!, productQTY: item.quantity, producrState: 0)
+                                let _ = CoreDataModel.coreDataInstatnce.insertFavouriteProduct(product: newSaved)
+                            }
+                        }
+                    }).disposed(by: disposeBag)
+            }
+        }
+    }
+    
     private func getUserFromUserDefaults() -> User? {
         do {
             return try UserDefaults.standard.getObject(forKey: "user", castTo: User.self)
