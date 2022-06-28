@@ -32,6 +32,11 @@ class WishListViewController: UIViewController {
         bindEmptyView()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.viewModel.modifyOrderInFavApi()
+    }
+    
     private func bindEmptyView() {
         let emptyCartGif = UIImage.gifImageWithName("emptyWishlist")
         emptyImageView.image = emptyCartGif

@@ -55,6 +55,7 @@ class HomeViewController: UIViewController {
         bindActivity()
         viewModel.getDraftOrderById()
         bindCartBadgeValue()
+        viewModel.getDraftOrderFav()
     }
     
     override func viewWillAppear(_ animated: Bool) {
