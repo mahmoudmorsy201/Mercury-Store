@@ -33,7 +33,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DpT-qz-ExN">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="1126"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="address" translatesAutoresizingMaskIntoConstraints="NO" id="CrS-hI-aml">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addr2" translatesAutoresizingMaskIntoConstraints="NO" id="CrS-hI-aml">
                                     <rect key="frame" x="12" y="12" width="390" height="200"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="200" id="BMU-1W-Znb"/>
@@ -269,7 +269,7 @@
         </view>
     </objects>
     <resources>
-        <image name="address" width="256" height="256"/>
+        <image name="addr2" width="860" height="853"/>
         <image name="xmark.app" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

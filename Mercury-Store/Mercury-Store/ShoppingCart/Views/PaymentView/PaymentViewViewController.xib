@@ -142,7 +142,7 @@
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" cornerStyle="large">
                                 <attributedString key="attributedTitle">
-                                    <fragment content="Confirm Order">
+                                    <fragment content="Place Orders">
                                         <attributes>
                                             <font key="NSFont" size="16" name="Helvetica-Bold"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
