@@ -238,7 +238,6 @@ extension ProductDetailsViewController{
     
     func addToFavourite(){
         favoriteBtn.rx.tap.subscribe(onNext: { [weak self] in
-            self!.view.makeToast("Added to Favorites", duration: 3.0, position: .top)
             guard let self = self else {return}
             self.handleFavouriteAction()
         }).disposed(by: disposeBag)
@@ -247,6 +246,7 @@ extension ProductDetailsViewController{
     func handleFavouriteAction(){
         if viewModel.isLogged {
             self.favoriteBtn.favouriteState(state:  self.viewModel.toggleFavourite() )
+            self.view.makeToast("Added to Favorites", duration: 3.0, position: .top)
         }else{
             showNotLogedDialog()
         }

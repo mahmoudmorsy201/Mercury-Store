@@ -101,22 +101,19 @@
 		4D8D2BA7285F2C130014F066 /* CustomerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2B88285F2C130014F066 /* CustomerAPI.swift */; };
 		4D8D2BA8285F2C130014F066 /* AddressAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2B8A285F2C130014F066 /* AddressAPI.swift */; };
 		4D8D2BA9285F2C130014F066 /* AddressClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2B8B285F2C130014F066 /* AddressClient.swift */; };
-		4D8D2BC0285F2C2E0014F066 /* UIButton+RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BAB285F2C2E0014F066 /* UIButton+RoundedCorners.swift */; };
-		4D8D2BC1285F2C2E0014F066 /* UIImageView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BAC285F2C2E0014F066 /* UIImageView+Shadow.swift */; };
-		4D8D2BC2285F2C2E0014F066 /* UIImageView+SDWebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BAD285F2C2E0014F066 /* UIImageView+SDWebImage.swift */; };
+		4D8D2BC0285F2C2E0014F066 /* UIButton+RoundedCorners+favouriteState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BAB285F2C2E0014F066 /* UIButton+RoundedCorners+favouriteState.swift */; };
+		4D8D2BC1285F2C2E0014F066 /* UIImageView+Shadow_SDWebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BAC285F2C2E0014F066 /* UIImageView+Shadow_SDWebImage.swift */; };
 		4D8D2BC3285F2C2E0014F066 /* UILabel+AppStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BAE285F2C2E0014F066 /* UILabel+AppStyle.swift */; };
 		4D8D2BC4285F2C2E0014F066 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BAF285F2C2E0014F066 /* UIViewController+Alert.swift */; };
 		4D8D2BC5285F2C2E0014F066 /* Collection+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BB0285F2C2E0014F066 /* Collection+Safe.swift */; };
 		4D8D2BC6285F2C2E0014F066 /* UITableView+EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BB1285F2C2E0014F066 /* UITableView+EmptyState.swift */; };
 		4D8D2BC7285F2C2E0014F066 /* UIColor+HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BB2285F2C2E0014F066 /* UIColor+HexColor.swift */; };
-		4D8D2BC8285F2C2E0014F066 /* String+isValidEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BB3285F2C2E0014F066 /* String+isValidEmail.swift */; };
-		4D8D2BC9285F2C2E0014F066 /* String+isValidPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BB4285F2C2E0014F066 /* String+isValidPhone.swift */; };
+		4D8D2BC8285F2C2E0014F066 /* String+isValidEmail+isValidPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BB3285F2C2E0014F066 /* String+isValidEmail+isValidPhone.swift */; };
 		4D8D2BCA285F2C2E0014F066 /* JSONDecoder+AlmofireResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BB5285F2C2E0014F066 /* JSONDecoder+AlmofireResponse.swift */; };
 		4D8D2BCB285F2C2E0014F066 /* UIFonts+AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BB6285F2C2E0014F066 /* UIFonts+AppFonts.swift */; };
 		4D8D2BCC285F2C2E0014F066 /* UserDefaults+ObjectSavable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BB7285F2C2E0014F066 /* UserDefaults+ObjectSavable.swift */; };
 		4D8D2BCD285F2C2E0014F066 /* UIViewController+UIAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BB8285F2C2E0014F066 /* UIViewController+UIAlert.swift */; };
 		4D8D2BCE285F2C2E0014F066 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BB9285F2C2E0014F066 /* ShadowView.swift */; };
-		4D8D2BCF285F2C2E0014F066 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BBA285F2C2E0014F066 /* UIButton.swift */; };
 		4D8D2BD0285F2C2E0014F066 /* UIImage+GifLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BBB285F2C2E0014F066 /* UIImage+GifLoader.swift */; };
 		4D8D2BD1285F2C2E0014F066 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BBC285F2C2E0014F066 /* Colors.swift */; };
 		4D8D2BD2285F2C2E0014F066 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D2BBD285F2C2E0014F066 /* UIView+Shadow.swift */; };
@@ -351,22 +348,19 @@
 		4D8D2B88285F2C130014F066 /* CustomerAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerAPI.swift; sourceTree = "<group>"; };
 		4D8D2B8A285F2C130014F066 /* AddressAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressAPI.swift; sourceTree = "<group>"; };
 		4D8D2B8B285F2C130014F066 /* AddressClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressClient.swift; sourceTree = "<group>"; };
-		4D8D2BAB285F2C2E0014F066 /* UIButton+RoundedCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+RoundedCorners.swift"; sourceTree = "<group>"; };
-		4D8D2BAC285F2C2E0014F066 /* UIImageView+Shadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Shadow.swift"; sourceTree = "<group>"; };
-		4D8D2BAD285F2C2E0014F066 /* UIImageView+SDWebImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+SDWebImage.swift"; sourceTree = "<group>"; };
+		4D8D2BAB285F2C2E0014F066 /* UIButton+RoundedCorners+favouriteState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+RoundedCorners+favouriteState.swift"; sourceTree = "<group>"; };
+		4D8D2BAC285F2C2E0014F066 /* UIImageView+Shadow_SDWebImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Shadow_SDWebImage.swift"; sourceTree = "<group>"; };
 		4D8D2BAE285F2C2E0014F066 /* UILabel+AppStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+AppStyle.swift"; sourceTree = "<group>"; };
 		4D8D2BAF285F2C2E0014F066 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		4D8D2BB0285F2C2E0014F066 /* Collection+Safe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Safe.swift"; sourceTree = "<group>"; };
 		4D8D2BB1285F2C2E0014F066 /* UITableView+EmptyState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+EmptyState.swift"; sourceTree = "<group>"; };
 		4D8D2BB2285F2C2E0014F066 /* UIColor+HexColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+HexColor.swift"; sourceTree = "<group>"; };
-		4D8D2BB3285F2C2E0014F066 /* String+isValidEmail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+isValidEmail.swift"; sourceTree = "<group>"; };
-		4D8D2BB4285F2C2E0014F066 /* String+isValidPhone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+isValidPhone.swift"; sourceTree = "<group>"; };
+		4D8D2BB3285F2C2E0014F066 /* String+isValidEmail+isValidPhone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+isValidEmail+isValidPhone.swift"; sourceTree = "<group>"; };
 		4D8D2BB5285F2C2E0014F066 /* JSONDecoder+AlmofireResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+AlmofireResponse.swift"; sourceTree = "<group>"; };
 		4D8D2BB6285F2C2E0014F066 /* UIFonts+AppFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFonts+AppFonts.swift"; sourceTree = "<group>"; };
 		4D8D2BB7285F2C2E0014F066 /* UserDefaults+ObjectSavable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+ObjectSavable.swift"; sourceTree = "<group>"; };
 		4D8D2BB8285F2C2E0014F066 /* UIViewController+UIAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+UIAlert.swift"; sourceTree = "<group>"; };
 		4D8D2BB9285F2C2E0014F066 /* ShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
-		4D8D2BBA285F2C2E0014F066 /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		4D8D2BBB285F2C2E0014F066 /* UIImage+GifLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+GifLoader.swift"; sourceTree = "<group>"; };
 		4D8D2BBC285F2C2E0014F066 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		4D8D2BBD285F2C2E0014F066 /* UIView+Shadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
@@ -924,22 +918,19 @@
 			children = (
 				4D96F461285F679500D43DC1 /* DefaultView.swift */,
 				4D96F45F285F678B00D43DC1 /* DefaultImageView.swift */,
-				4D8D2BAB285F2C2E0014F066 /* UIButton+RoundedCorners.swift */,
-				4D8D2BAC285F2C2E0014F066 /* UIImageView+Shadow.swift */,
-				4D8D2BAD285F2C2E0014F066 /* UIImageView+SDWebImage.swift */,
+				4D8D2BAB285F2C2E0014F066 /* UIButton+RoundedCorners+favouriteState.swift */,
+				4D8D2BAC285F2C2E0014F066 /* UIImageView+Shadow_SDWebImage.swift */,
 				4D8D2BAE285F2C2E0014F066 /* UILabel+AppStyle.swift */,
 				4D8D2BAF285F2C2E0014F066 /* UIViewController+Alert.swift */,
 				4D8D2BB0285F2C2E0014F066 /* Collection+Safe.swift */,
 				4D8D2BB1285F2C2E0014F066 /* UITableView+EmptyState.swift */,
 				4D8D2BB2285F2C2E0014F066 /* UIColor+HexColor.swift */,
-				4D8D2BB3285F2C2E0014F066 /* String+isValidEmail.swift */,
-				4D8D2BB4285F2C2E0014F066 /* String+isValidPhone.swift */,
+				4D8D2BB3285F2C2E0014F066 /* String+isValidEmail+isValidPhone.swift */,
 				4D8D2BB5285F2C2E0014F066 /* JSONDecoder+AlmofireResponse.swift */,
 				4D8D2BB6285F2C2E0014F066 /* UIFonts+AppFonts.swift */,
 				4D8D2BB7285F2C2E0014F066 /* UserDefaults+ObjectSavable.swift */,
 				4D8D2BB8285F2C2E0014F066 /* UIViewController+UIAlert.swift */,
 				4D8D2BB9285F2C2E0014F066 /* ShadowView.swift */,
-				4D8D2BBA285F2C2E0014F066 /* UIButton.swift */,
 				4D8D2BBB285F2C2E0014F066 /* UIImage+GifLoader.swift */,
 				4D8D2BBC285F2C2E0014F066 /* Colors.swift */,
 				4D8D2BBD285F2C2E0014F066 /* UIView+Shadow.swift */,
@@ -1795,14 +1786,13 @@
 				4D8D2BCA285F2C2E0014F066 /* JSONDecoder+AlmofireResponse.swift in Sources */,
 				026C7FDE284BEF0C00A562AE /* ProductSearchViewModel.swift in Sources */,
 				4D8D2B46285F2AFA0014F066 /* MyOrderDetailsController.swift in Sources */,
-				4D8D2BC1285F2C2E0014F066 /* UIImageView+Shadow.swift in Sources */,
+				4D8D2BC1285F2C2E0014F066 /* UIImageView+Shadow_SDWebImage.swift in Sources */,
 				C4102943284AAF52007045F8 /* BrandDetailsViewModel.swift in Sources */,
 				4D8D2B98285F2C130014F066 /* HomeClient.swift in Sources */,
 				C4C08B9D283216D000364704 /* ShoppingCartViewModel.swift in Sources */,
 				C4BA734A2839F8BF00A5F3AB /* BrandsCollectionViewCell.swift in Sources */,
 				4D8D2BDB285F2C450014F066 /* ApplicationCoordinator.swift in Sources */,
 				4D8D2B97285F2C130014F066 /* CategoryApi.swift in Sources */,
-				4D8D2BC9285F2C2E0014F066 /* String+isValidPhone.swift in Sources */,
 				4DCA17B4284FE77E00F0CF3A /* ProductCellViewModel.swift in Sources */,
 				C4CDB9512831F6FA0000519A /* HomeCoordinator.swift in Sources */,
 				4D8D2B59285F2AFA0014F066 /* GuestProfileViewController.swift in Sources */,
@@ -1861,11 +1851,10 @@
 				4D8D2BC4285F2C2E0014F066 /* UIViewController+Alert.swift in Sources */,
 				4D8D2B5F285F2AFA0014F066 /* AboutUsViewController.swift in Sources */,
 				4D8D2BD4285F2C2E0014F066 /* Array+Equatable.swift in Sources */,
-				4D8D2BC0285F2C2E0014F066 /* UIButton+RoundedCorners.swift in Sources */,
+				4D8D2BC0285F2C2E0014F066 /* UIButton+RoundedCorners+favouriteState.swift in Sources */,
 				4D8D2B36285F2AFA0014F066 /* ProfileViewModel.swift in Sources */,
 				4D911854284AACD100F07638 /* SavedProductItem.swift in Sources */,
 				C4E6718C2839E7BD000572A7 /* CategoriesViewModel.swift in Sources */,
-				4D8D2BC2285F2C2E0014F066 /* UIImageView+SDWebImage.swift in Sources */,
 				4D8D2BA6285F2C130014F066 /* CustomerClient.swift in Sources */,
 				C4C04EEF283332AD002EC367 /* CategoriesTableViewCell.swift in Sources */,
 				4D8D2B4D285F2AFA0014F066 /* ProfileViewController.swift in Sources */,
@@ -1927,9 +1916,8 @@
 				4D8D2BDE285F2C450014F066 /* AppDelegate.swift in Sources */,
 				4D8D2B4F285F2AFA0014F066 /* RegisterViewController.swift in Sources */,
 				4D8E3827284956BC00B22D98 /* CartSection.swift in Sources */,
-				4D8D2BC8285F2C2E0014F066 /* String+isValidEmail.swift in Sources */,
+				4D8D2BC8285F2C2E0014F066 /* String+isValidEmail+isValidPhone.swift in Sources */,
 				C4102941284AAF29007045F8 /* BrandProductsCollectionViewCell.swift in Sources */,
-				4D8D2BCF285F2C2E0014F066 /* UIButton.swift in Sources */,
 				C4CDB95A2832022E0000519A /* HomeViewController.swift in Sources */,
 				4D8D2BCB285F2C2E0014F066 /* UIFonts+AppFonts.swift in Sources */,
 				C49F4A3D2863AF460098512B /* ReviewRepository.swift in Sources */,

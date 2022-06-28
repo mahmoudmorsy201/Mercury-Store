@@ -90,7 +90,11 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
             productQTY: 0 , producrState: productStates.favourite.rawValue)
         
         if getCurrentUserId() != nil{
-             return CoreDataModel.coreDataInstatnce.toggleFavourite(product: product)
+            if CoreDataModel.coreDataInstatnce.toggleFavourite(product: product){
+                try! modifyOrderInFavouriteIdIfIsNil(self.product, variant: self.product.variants[indexSubject.value()])
+                return true
+            }
+            return false
         }else {
             return false
         }
@@ -135,10 +139,37 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
         }
     }
     
+    private func postOrderIntoFavourite(_ product: Product, variant: Variant) {
+        let user = getUserFromUserDefaults()
+        if (user != nil) {
+            let newLineItemDraft = LineItemDraft(quantity: 1, variantID: variant.id, properties: [PropertyDraft(imageName: product.image.src, inventoryQuantity: "\(variant.inventoryQuantity)")])
+            let newOrderRequest = DraftOrdersRequest(draftOrder: DraftOrderItem(lineItems: [newLineItemDraft], customer: CustomerId(id: user!.id), useCustomerDefaultAddress: true))
+            self.ordersProvider.postDraftOrder(order: newOrderRequest)
+                .subscribe(onNext: {[weak self] result in
+                    guard let `self` = self else {fatalError()}
+                    self.modifyCustomerFavouriteData(draftOrderId: result.draftOrder.id)
+                }).disposed(by: disposeBag)
+            
+        }
+    }
+    
     func modifyCustomerData(draftOrderId: Int) {
         let user = getUserFromUserDefaults()
         if(user!.cartId == 0) {
             self.customerProvider.editCustomer(id: user!.id , editCustomer: EditCustomer(customer: EditCustomerItem(id: user!.id, email: user!.email, firstName: user!.username, password: user!.password, cartId: "\(draftOrderId)", favouriteId: "0")))
+                .subscribe(onNext: {[weak self] userResult in
+                    guard let `self` = self else {fatalError()}
+                    self.editCustomerSubject.onNext(userResult)
+                    let newUser = User(id: user!.id , email: user!.email, username: user!.username, isLoggedIn: true, isDiscount: false, password: user!.password, cartId: Int(userResult.customer.cartId) ?? 0 , favouriteId: user!.favouriteId)
+                    try! self.userDefaults.setObject(newUser, forKey: "user")
+                }).disposed(by: self.disposeBag)
+        }
+    }
+    
+    func modifyCustomerFavouriteData(draftOrderId: Int) {
+        let user = getUserFromUserDefaults()
+        if(user!.favouriteId == 0) {
+            self.customerProvider.editCustomer(id: user!.id , editCustomer: EditCustomer(customer: EditCustomerItem(id: user!.id, email: user!.email, firstName: user!.username, password: user!.password, cartId: "0", favouriteId: "\(draftOrderId)")))
                 .subscribe(onNext: {[weak self] userResult in
                     guard let `self` = self else {fatalError()}
                     self.editCustomerSubject.onNext(userResult)
@@ -156,6 +187,15 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
             }
         }
         saveToCart()
+    }
+    
+    func modifyOrderInFavouriteIdIfIsNil(_ product: Product, variant: Variant) {
+        let user = getUserFromUserDefaults()
+        if(user != nil) {
+            if(user!.favouriteId == 0) {
+                self.postOrderIntoFavourite(product, variant: variant)
+            }
+        }
         
     }
     

@@ -14,6 +14,9 @@ class MyOrdersViewCell: UITableViewCell {
     @IBOutlet weak var createdAt: UILabel!
     @IBOutlet weak var paid: UILabel!
     @IBOutlet weak var price: UILabel!
+    static func reuseIdentifier() -> String {
+        return "myOrderCell"
+    }
     // MARK: - Life cycle
     //
     override func awakeFromNib() {
