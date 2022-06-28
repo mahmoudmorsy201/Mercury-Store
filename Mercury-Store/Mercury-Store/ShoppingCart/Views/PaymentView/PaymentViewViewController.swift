@@ -88,10 +88,10 @@ extension PaymentViewViewController{
     }
     
     func totalFees(){
-        subTotal.text = "\(viewModel.subTotal) USD"
-        shippingFees.text = "0 USD"
+        subTotal.text = "\(viewModel.subTotal) EGP"
+        shippingFees.text = "0 EGP"
         viewModel.total.asObserver().subscribe{ item in
-            self.totalMoney.text = "\(item.element!) USD"
+            self.totalMoney.text = "\(item.element!) EGP"
         }.disposed(by: disposeBag)
     }
 }
