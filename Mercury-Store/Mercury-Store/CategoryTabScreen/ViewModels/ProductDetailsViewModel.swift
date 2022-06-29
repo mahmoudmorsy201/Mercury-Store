@@ -48,6 +48,8 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
     private let priceSubject = PublishSubject<String>()
     private let inventoryQuantitySubject = BehaviorSubject<Int>(value: 0)
     private let colorsSubject = PublishSubject<[String]>()
+    private let favOrderSubject = PublishSubject<DraftOrderResponseTest>()
+    
     var product: Product
     var countForPageControll: Observable<Int>
     var bannerObservable: Driver<[ProductImage]>
@@ -173,6 +175,8 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
         if(user != nil) {
             if(user!.favouriteId == 0) {
                 self.postOrderIntoFavorite(product, variant: variant)
+            }else {
+                self.putDraftOrder()
             }
         }
     }
@@ -203,6 +207,23 @@ final class ProductsDetailViewModel: ProductsDetailViewModelType {
                     let newUser = User(id: user!.id , email: user!.email, username: user!.username, isLoggedIn: true, isDiscount: false, password: user!.password, cartId: Int(userResult.customer.cartId) ?? 0 , favouriteId: Int(userResult.customer.cartId) ?? 0)
                     try! self.userDefaults.setObject(newUser, forKey: "user")
                 }).disposed(by: self.disposeBag)
+        }
+    }
+    
+    private func putDraftOrder() {
+        let user = getUserFromUserDefaults()
+        if(user != nil && user!.favouriteId != 0) {
+            let savedItemsInFav = CoreDataModel.coreDataInstatnce.getItemsByUserID().0
+            if(!savedItemsInFav.isEmpty) {
+                let putDraftOrder = PutOrderRequest(draftOrder: ModifyDraftOrderRequest(dratOrderId: user!.favouriteId, lineItems: savedItemsInFav.map { item in
+                    return LineItemDraft(quantity: 1, variantID: item.variantId, properties: [PropertyDraft(imageName: item.productImage, inventoryQuantity: "\(item.inventoryQuantity)")])
+                }))
+                self.ordersProvider.modifyExistingOrder(with: user!.favouriteId, and: putDraftOrder)
+                    .subscribe(onNext: {[weak self] result in
+                        guard let `self` = self else {fatalError()}
+                        self.favOrderSubject.onNext(result)
+                    }).disposed(by: disposeBag)
+            }
         }
     }
     
