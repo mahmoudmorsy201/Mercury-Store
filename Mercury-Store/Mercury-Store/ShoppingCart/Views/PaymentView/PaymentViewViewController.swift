@@ -119,7 +119,7 @@ extension PaymentViewViewController:UITableViewDelegate ,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Payment Options"
+        return "Payment Methods"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

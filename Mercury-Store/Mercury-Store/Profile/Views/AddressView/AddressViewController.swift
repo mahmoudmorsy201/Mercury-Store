@@ -8,11 +8,11 @@
 import UIKit
 import RxCocoa
 import RxSwift
-import Foundation
 
 class AddressViewController: UIViewController, UIScrollViewDelegate{
     // MARK: - IBOutlets
     //
+    @IBOutlet weak var addAddrLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var tableView: UITableView!{
         didSet {
@@ -23,13 +23,6 @@ class AddressViewController: UIViewController, UIScrollViewDelegate{
     let disposeBag = DisposeBag()
     private var viewModel: AddressViewModelType!
     let connection = NetworkReachability.shared
-    lazy var faButton: UIButton = {
-        let button = UIButton(frame: .zero)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .orange
-        button.addTarget(self, action: #selector(fabTapped(_:)), for: .touchUpInside)
-        return button
-    }()
     // MARK: - Set up
     //
     init(_  viewModel: AddressViewModelType){
@@ -45,43 +38,17 @@ class AddressViewController: UIViewController, UIScrollViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
+        createAddBarButtonItem()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let view = UIApplication.shared.keyWindow {
-            view.addSubview(faButton)
-            setupButton()
-        }
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        if let view = UIApplication.shared.keyWindow, faButton.isDescendant(of: view) {
-            faButton.removeFromSuperview()
-        }
-    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         connection.checkNetwork(target: self)
         self.viewModel?.getAddress()
-    }
-    func setupButton() {
-        NSLayoutConstraint.activate([
-            faButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            faButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100),
-            faButton.heightAnchor.constraint(equalToConstant: 110),
-            faButton.widthAnchor.constraint(equalToConstant: 110)
-            ])
-        faButton.setTitle("Add Address", for: .normal)
-        faButton.layer.cornerRadius = 55
-        faButton.layer.masksToBounds = true
-       // faButton.layer.borderColor = UIColor.lightGray.cgColor
-        faButton.viewBorderColor = .white
-        faButton.layer.borderWidth = 3.0
-    }
-
-    @objc func fabTapped(_ button: UIButton) {
-        self.viewModel.goToAddAddressScreen()
     }
     
 }
@@ -144,7 +111,7 @@ extension AddressViewController {
 // MARK: - Extensions
 extension AddressViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 140
+        return 155
     }
     
 }
@@ -163,4 +130,16 @@ extension AddressViewController {
                      defaultTitle: "OK")
     }
 }
+// MARK: - Extensions
+ extension AddressViewController {
+     // MARK: - Private handlers
+     //
+     private func createAddBarButtonItem() {
+         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBtnTapped))
+         self.navigationItem.rightBarButtonItem = add
+     }
 
+     @objc func addBtnTapped() {
+         self.viewModel.goToAddAddressScreen()
+     }
+ }
