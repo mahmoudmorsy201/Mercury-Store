@@ -17,9 +17,11 @@ protocol PaymentViewModelType{
     var paymentMethod:paymentOptions { set get }
     var subTotal: Double{ get }
     var total: BehaviorSubject<Double>{ get }
+    var orderComplete: Driver<Bool>{get }
     func confirmOrder()
     func getItemByTitle(title:String)
     func getItemsById()
+    func clearStack()
     func fetchCouponData()
 }
 
@@ -34,13 +36,14 @@ class PaymentViewModel:PaymentViewModelType{
     private let couponsSubject = BehaviorRelay<[PriceRule]>(value: [])
     private let isLoadingSubject = BehaviorRelay<Bool>(value: false)
     private let errorSubject = BehaviorRelay<String?>(value: nil)
+    private let completOrderSubject = BehaviorRelay<Bool>(value: false)
     private var braintreeClient: BTAPIClient?
     private let ordersProvider: OrdersProvider
     private weak var navigationFlow: ShoppingCartNavigationFlow!
     var CouponLoading: Driver<Bool>
     var CouponInfo: Driver<PriceRule>
     var CouponError: Driver<String?>
-    
+    var orderComplete: Driver<Bool>
     let userDefaults:UserDefaults
     let couponApi:PricesRulesProvider = PricesRulesApi()
     let disposeBag = DisposeBag()
@@ -57,6 +60,7 @@ class PaymentViewModel:PaymentViewModelType{
         CouponLoading = isLoadingSubject.asDriver(onErrorJustReturn: false)
         CouponError = errorSubject.asDriver(onErrorJustReturn: "Something went wrong")
         Coupons = couponsSubject.asDriver(onErrorJustReturn: [])
+        orderComplete = completOrderSubject.asDriver(onErrorJustReturn: false)
         self.ordersProvider = ordersProvider
         total = BehaviorSubject<Double>(value: 0)
         self.subTotal = 0
@@ -163,7 +167,6 @@ class PaymentViewModel:PaymentViewModelType{
         request.currencyCode = PaymentModel.currencyCode
         payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
             if let tokenizedPayPalAccount = tokenizedPayPalAccount {
-                print(tokenizedPayPalAccount)
                 self.postOrder(financial_status: "paid")
             } else if let error = error {
                 print(error)
@@ -187,8 +190,7 @@ class PaymentViewModel:PaymentViewModelType{
                 guard let `self` = self else {fatalError()}
                 self.resetCoupon()
                 CartCoreDataManager.shared.deleteAll()
-                self.navigationFlow.popToRoot()
-                
+                self.completOrderSubject.accept(true)
             }).disposed(by: disposeBag)
         }
     }
@@ -218,4 +220,7 @@ class PaymentViewModel:PaymentViewModelType{
         }
     }
     
+    func clearStack(){
+        self.navigationFlow.popToRoot()
+    }
 }
