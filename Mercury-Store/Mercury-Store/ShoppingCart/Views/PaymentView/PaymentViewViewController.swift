@@ -66,6 +66,11 @@ class PaymentViewViewController: UIViewController {
         }
         self.viewModel.CouponError
             .asObservable().map{$0}.bind(to: couponError.rx.text).disposed(by: disposeBag)
+        self.viewModel.orderComplete.asObservable().subscribe{ item in
+            if item.element! {
+                self.showCompleteChekout()
+            }
+        }
     }
 }
 // MARK: - Extensions
@@ -94,6 +99,16 @@ extension PaymentViewViewController{
         viewModel.total.asObserver().subscribe{ item in
             self.totalMoney.text = CurrencyHelper().checkCurrentCurrency("\(item.element!)")
         }.disposed(by: disposeBag)
+    }
+}
+extension PaymentViewViewController{
+    func showCompleteChekout(){
+        let dialogMessage = UIAlertController(title: "", message: "Thank you for shopping with us \nyour order is Completed", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "ok", style: .cancel, handler: { action in
+            self.viewModel.clearStack()
+        })
+        dialogMessage.addAction(ok)
+        self.present(dialogMessage, animated: true, completion: nil)
     }
 }
 // MARK: - Extensions
