@@ -19,6 +19,8 @@ protocol PaymentViewModelType{
     var total: BehaviorSubject<Double>{ get }
     func confirmOrder()
     func getItemByTitle(title:String)
+    func getItemsById()
+    func fetchCouponData()
 }
 
 class PaymentViewModel:PaymentViewModelType{
@@ -138,7 +140,8 @@ class PaymentViewModel:PaymentViewModelType{
                 total.onNext(1)
             }else{
                 self.totalItemsPrice()
-                total.onNext(subTotal - discountValue)
+                let totalMoney = subTotal - discountValue
+                total.onNext( Double(round(100 * totalMoney) / 100))
             }
         }catch(_){
         }
