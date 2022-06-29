@@ -83,7 +83,7 @@ extension PaymentViewViewController{
             if element.title != ""{
                 self.couponInput.text = element.title
             }
-            self.discountValue.text = element.value
+            self.discountValue.text = CurrencyHelper().checkCurrentCurrency(element.value)
         }.disposed(by: disposeBag)
     }
     
