@@ -66,6 +66,7 @@ extension BrandProductsCollectionViewCell {
         if viewModel.userID != nil {
             guard let item = item else { return  }
             let savedValue = SavedProductItem(inventoryQuantity: item.variants[0].inventoryQuantity, variantId: item.variants[0].id, productID: Decimal(item.id), productTitle: item.title, productImage: item.image.src, productPrice: Double(item.variants[0].price )! , productQTY: 0, producrState: productStates.favourite.rawValue)
+            self.viewModel.modifyOrderInWishIfFavIdIsNil(item, variant: item.variants[0])
             if  self.viewModel.toggleFavourite(product: savedValue) {
                 self.favouriteButton.favouriteState(state: true)
                 self.makeToast("Added to Favourite", duration: 3.0, position: .top)
@@ -86,4 +87,6 @@ extension BrandProductsCollectionViewCell {
         guard let parentVC = self.parentViewController else { return }
         parentVC.present(dialogMessage, animated: true, completion: nil)
     }
+    
+    
 }
