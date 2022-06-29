@@ -47,6 +47,10 @@ final class HomeViewModel {
         homeNavigation.goToSearchViewController()
     }
     
+    func viewWillAppearNavReturn() {
+        homeNavigation.viewWillAppearNavBarReturn()
+    }
+    
     func getDraftOrderById() {
         let user = getUserFromUserDefaults()
         if (user != nil) {

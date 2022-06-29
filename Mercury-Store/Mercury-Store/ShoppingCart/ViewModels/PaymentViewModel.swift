@@ -106,7 +106,7 @@ class PaymentViewModel:PaymentViewModelType{
                     if element.isEmpty{
                         self.couponSubject.accept(PriceRule())
                         self.handleCouponDiscount(discountValue: 0.0)
-                        self.errorSubject.accept("please enter avalid coupon ")
+                        self.errorSubject.accept("please enter a valid coupon ")
                     }else{
                         self.couponSubject.accept(element[0])
                         self.handleCouponDiscount(discountValue: abs(Double(element[0].value) ?? 0.0))

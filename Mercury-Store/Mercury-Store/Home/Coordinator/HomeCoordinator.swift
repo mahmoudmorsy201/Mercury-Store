@@ -8,7 +8,7 @@
 import UIKit
 
 class HomeCoordinator : Coordinator {
-
+    
     weak var parentCoordinator: Coordinator?
     
     var children: [Coordinator] = []
@@ -48,6 +48,10 @@ extension HomeCoordinator: HomeFlowNavigation {
         let searchVC = SearchViewController(with: searchViewModel)
         navigationController.pushViewController(searchVC, animated: true)
     }
+    
+    func viewWillAppearNavBarReturn() {
+        navigationController.setNavigationBarHidden(false, animated: false)
+    }
 }
 extension HomeCoordinator: FilteredProductsNavigationFlow {
     func goToSearchScreen() {
@@ -66,14 +70,16 @@ extension HomeCoordinator: FilteredProductsNavigationFlow {
     func goToFilteredProductScreen() {
         
     }
+    
+    func viewWillAppearNavReturn() {
+        navigationController.setNavigationBarHidden(false, animated: false)
+    }
 }
 extension HomeCoordinator: ProductDetailsNavigationFlow {
     func popViewController() {
         navigationController.popViewController(animated: true)
         navigationController.setNavigationBarHidden(false, animated: false)
     }
-    
-    
 }
 
 extension HomeCoordinator: BrandDetailsNavigationFlow {
