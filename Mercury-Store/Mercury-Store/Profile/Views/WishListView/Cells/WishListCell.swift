@@ -42,6 +42,7 @@ class WishListCell: UITableViewCell {
         guard let deleteCallback = deleteCallback else {
             return
         }
+        
         deleteCallback(savedItem!)
     }
     
