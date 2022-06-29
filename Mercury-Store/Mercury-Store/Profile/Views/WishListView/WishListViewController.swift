@@ -60,7 +60,8 @@ extension WishListViewController : UITableViewDelegate{
         viewModel.products.drive(tableView.rx.items(cellIdentifier: WishListCell.identifier , cellType: WishListCell.self)){ index , element , cell in
                 cell.config(item: element)
             cell.deleteCallback = {[weak self] item in
-                self?.viewModel.deleteItem(item: item)
+                self?.showCinfermationDialogue(item: item)
+              //  self?.viewModel.deleteItem(item: item)
             }
             self.viewModel.isFavouriteItem(productID: (element.productID as NSDecimalNumber).intValue)
         }.disposed(by: disposeBag)
@@ -68,5 +69,15 @@ extension WishListViewController : UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 165
+    }
+    func showCinfermationDialogue(item:SavedProductItem){
+        let dialogMessage = UIAlertController(title: "", message: "are you sure you want to remove item from favourite", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let ok =  UIAlertAction(title: "delete", style: .destructive) { _ in
+            self.viewModel.deleteItem(item: item)
+        }
+        dialogMessage.addAction(ok)
+        dialogMessage.addAction(cancel)
+        self.present(dialogMessage, animated: true, completion: nil)
     }
 }
