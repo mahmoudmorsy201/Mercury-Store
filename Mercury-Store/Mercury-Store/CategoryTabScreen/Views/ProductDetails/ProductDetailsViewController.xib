@@ -310,11 +310,6 @@
             <point key="canvasLocation" x="-1407.2463768115942" y="-1089.5089285714284"/>
         </view>
     </objects>
-    <designables>
-        <designable name="S3U-po-Cq8">
-            <size key="intrinsicContentSize" width="345" height="30"/>
-        </designable>
-    </designables>
     <resources>
         <image name="cart.fill.badge.plus" catalog="system" width="128" height="106"/>
         <image name="heart" catalog="system" width="128" height="109"/>
