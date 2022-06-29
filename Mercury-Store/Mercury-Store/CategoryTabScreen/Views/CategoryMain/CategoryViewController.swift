@@ -45,6 +45,7 @@ class CategoryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         connection.checkNetwork(target: self)
+        viewModel.viewWillAppearNavReturn()
     }
     
     private func createSearchBarButton() {

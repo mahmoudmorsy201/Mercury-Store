@@ -71,6 +71,10 @@ class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
         collectionViewFrame.onNext(self.productImagesCollectionView.frame)
         addObserverOnHeight()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateUi()
+    }
     private func addObserverOnHeight() {
         contentSizeObservation = variantsCollectionView.observe(\.contentSize, options: .new, changeHandler: { [weak self] (cv, _) in
             guard let self = self else { return }
@@ -101,7 +105,7 @@ class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
     private func updateUi(){
         productTitleLabel.text = viewModel.product.title
         viewModel.priceObservable.subscribe (onNext: {[weak self] value in
-            self?.productPriceLabel.text = "EGP \(value)"
+            self?.productPriceLabel.text = CurrencyHelper().checkCurrentCurrency(value)
         }).disposed(by: disposeBag)
         
         productDescription.text = viewModel.product.bodyHTML

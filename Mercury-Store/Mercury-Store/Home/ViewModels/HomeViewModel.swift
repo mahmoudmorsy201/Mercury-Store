@@ -41,11 +41,14 @@ final class HomeViewModel {
         self.allProductsProvider = allProductsProvider
         self.draftOrderProvider = draftOrderProvider
         isLoading = isLoadingSubject.asDriver(onErrorJustReturn: false)
-        try! UserDefaults.standard.setObject("EGP", forKey: "currency")
     }
     
     func goToSearchViewController() {
         homeNavigation.goToSearchViewController()
+    }
+    
+    func viewWillAppearNavReturn() {
+        homeNavigation.viewWillAppearNavBarReturn()
     }
     
     func getDraftOrderById() {

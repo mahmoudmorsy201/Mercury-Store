@@ -12,7 +12,7 @@ struct CartCellViewModel {
     var product: SavedProductItem! { row.products }
     var image: String? { product?.productImage }
     var name: String? { product?.productTitle }
-    var price: String? { String(format: "EGP %.2f", row.rowTotal) }
+    var price: String? { CurrencyHelper().checkCurrentCurrency("\(row.rowTotal)") }
     var count: String { "\(row.products.productQTY)" }
 }
 

@@ -14,7 +14,6 @@ protocol ProfileNavigationFlow: AnyObject {
     func goToMyAddressesScreen()
     func goToAboutUsScreen()
     func goToMainTab()
-    func goToMySettingsScreens()
 }
 
 class ProfileViewModel {
@@ -34,7 +33,8 @@ class ProfileViewModel {
                 .myAccountItem(image: UIImage(systemName: "bag")! , title: "My Orders"),
                 .myAccountItem(image:  UIImage(systemName: "heart")!, title: "My WishList"),
                 .myAccountItem(image:  UIImage(systemName: "homekit")!, title: "My Addresses"),
-                .myAccountItem(image:  UIImage(systemName: "gear")!, title: "Settings")
+                .currencyItem
+                
             ]),
             .aboutSection(title: "About", items: [
                 .aboutItem(image:  UIImage(systemName: "info.circle")!, title: "About Us")
@@ -71,8 +71,5 @@ extension ProfileViewModel: ProfileNavigationFlow {
     }
     func goToMainTab() {
         self.profileNavigationFlow.goToMainTab()
-    }
-    func goToMySettingsScreens() {
-        self.profileNavigationFlow.goToMySettingsScreens()
     }
 }

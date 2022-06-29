@@ -140,8 +140,7 @@ final class CartViewModel {
     }
     
     func cartTotal() -> (_ cart: [CartSection]) -> String? {
-        {String(format: "EGP %.2f", $0[safe: 0]?.sectionTotal ?? 0)}
-        //{  "EGP \($0[safe: 0]?.sectionTotal ?? 0)" }
+        { CurrencyHelper().checkCurrentCurrency("\($0[safe: 0]?.sectionTotal ?? 0)") }
     }
     
     func cartTotalCount() -> (_ cart: [CartSection]) -> String? {

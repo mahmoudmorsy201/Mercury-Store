@@ -11,7 +11,7 @@ extension String {
     func toCurrencyFormatEGP() -> String {
         if let intValue = Double(self){
             let value = intValue * 18.76
-            return "EGP \(value)"
+            return String(format: "EGP %.2f", value)
         }
         return ""
     }
@@ -20,5 +20,16 @@ extension String {
             return "USD \(intValue)"
         }
         return ""
+    }
+}
+
+struct CurrencyHelper {
+    let currentCurrency = UserDefaults.standard.string(forKey: "currency")
+    func checkCurrentCurrency(_ price: String) -> String {
+        if(currentCurrency == "EGP") {
+            return price.toCurrencyFormatEGP()
+        }else {
+            return price.toCurrencyFormatUSD()
+        }
     }
 }

@@ -56,11 +56,13 @@ class HomeViewController: UIViewController {
         viewModel.getDraftOrderById()
         bindCartBadgeValue()
         viewModel.getDraftOrderFav()
+        setDefaultCurrency()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         connection.checkNetwork(target: self)
+        viewModel.viewWillAppearNavReturn()
     }
     // MARK: - Private handlers
     //
@@ -73,6 +75,13 @@ class HomeViewController: UIViewController {
         }
 
         CoreDataModel.coreDataInstatnce.observeProductCount()
+    }
+    
+    private func setDefaultCurrency() {
+        let currentCurrency = UserDefaults.standard.string(forKey: "currency")
+        if(currentCurrency == nil) {
+            UserDefaults.standard.set("EGP", forKey: "currency")
+        }
     }
     
     private func createSearchBarButton() {

@@ -38,7 +38,7 @@ class BrandProductsCollectionViewCell: UICollectionViewCell {
         }
         productForBrandImage.downloadImage(url: url , placeholder: UIImage(named: "placeholder"), imageIndicator: .gray, completion: nil)
         productForBrandName.text = item.title
-        productForBrandPrice.text = item.variants[0].price
+        productForBrandPrice.text = CurrencyHelper().checkCurrentCurrency(item.variants[0].price)
         favouriteButton.favouriteState(state: viewModel.getFavouriteState(productID: item.id))
         favouriteButton.rx.tap.throttle(.milliseconds(5000), latest: false, scheduler: MainScheduler.instance).subscribe(onNext: { [ weak self ] in
             guard let self = self else{return}

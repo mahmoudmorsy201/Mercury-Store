@@ -62,11 +62,6 @@ extension ProfileCoordinator: ProfileNavigationFlow {
         appC.goToHomeTabbar()
         appC.childDidFinish(self)
     }
-    func goToMySettingsScreens() {
-        let mySettingsVC = MySettingsViewController()
-        self.navigationController.pushViewController(mySettingsVC, animated: true)
-    }
-    
 }
 
 extension ProfileCoordinator: UpdateAddressNavigationFlow {

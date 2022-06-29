@@ -38,5 +38,4 @@ final class CategoriesViewModel: CategoriesViewModelType {
     func goToFilteredProductScreen(with id: Int) {
         homeNavigationFlow?.goToFilteredProduct(with: id)
     }
-    
 }
