@@ -66,8 +66,13 @@ extension BrandProductsCollectionViewCell {
         if viewModel.userID != nil {
             guard let item = item else { return  }
             let savedValue = SavedProductItem(inventoryQuantity: item.variants[0].inventoryQuantity, variantId: item.variants[0].id, productID: Decimal(item.id), productTitle: item.title, productImage: item.image.src, productPrice: Double(item.variants[0].price )! , productQTY: 0, producrState: productStates.favourite.rawValue)
-            let favourite = self.viewModel.toggleFavourite(product: savedValue)
-            self.favouriteButton.favouriteState(state: favourite)
+            if  self.viewModel.toggleFavourite(product: savedValue) {
+                self.favouriteButton.favouriteState(state: true)
+                self.makeToast("Added to Favourite", duration: 3.0, position: .top)
+            }else{
+                self.favouriteButton.favouriteState(state: false)
+                self.makeToast("Removed From Favourite", duration: 3.0, position: .top)
+            }
         }
         else {
             self.showNotLogedDialog()
