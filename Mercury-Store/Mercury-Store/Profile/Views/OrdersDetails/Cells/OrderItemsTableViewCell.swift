@@ -19,10 +19,13 @@ class OrderItemsTableViewCell: UITableViewCell {
             guard let item = item else {
                 return
             }
-            orderItemImageView.downloadImage(url: URL(string: item.properties[0].imageName)! , placeholder: UIImage(named: "placeholder"), imageIndicator: .gray , completion: nil)
+            guard let url = URL(string: item.properties[0].imageName) else {
+                return
+            }
+            orderItemImageView.downloadImage(url: url , placeholder: UIImage(named: "placeholder"), imageIndicator: .gray, completion: nil)
             orderItemTitleLabel.text = item.title
             orderItemPrice.text =  item.price
-            orderItemQuantity.text = "\(item.quantity)"
+            orderItemQuantity.text = "quantity: \(item.quantity)"
         }
         
     }
