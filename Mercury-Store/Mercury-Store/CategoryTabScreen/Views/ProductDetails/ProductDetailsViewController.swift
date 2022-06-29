@@ -73,7 +73,6 @@ class ProductDetailsViewController: UIViewController, UIScrollViewDelegate{
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateUi()
     }
     private func addObserverOnHeight() {
         contentSizeObservation = variantsCollectionView.observe(\.contentSize, options: .new, changeHandler: { [weak self] (cv, _) in
