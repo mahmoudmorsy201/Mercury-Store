@@ -13,11 +13,13 @@ class myOrdersTableViewController: UIViewController {
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var orderTableView: UITableView!
     private var ordersViewModel:CustomersOrdersViewModelsType!
-    let disposeBag = DisposeBag()
-
-    init(_ viewModel: CustomersOrdersViewModelsType = CustomersOrdersViewModels()) {
+    private let disposeBag = DisposeBag()
+    private weak var orderDetailNavigation: OrdersNavigationFlow?
+    
+    init(_ viewModel: CustomersOrdersViewModelsType = CustomersOrdersViewModels(),orderDetailNavigation: OrdersNavigationFlow ) {
         super.init(nibName: nil, bundle: nil)
         self.ordersViewModel = viewModel
+        self.orderDetailNavigation = orderDetailNavigation
     }
     
     required init?(coder: NSCoder) {
@@ -39,6 +41,13 @@ extension myOrdersTableViewController: UITableViewDelegate{
             cellIdentifier: "myOrderCell", cellType: MyOrdersViewCell.self)){index , element ,cell in
                 cell.setupCell(order: element)
             }.disposed(by: disposeBag)
+        
+        orderTableView.rx.modelSelected(CustomerOrders.self).subscribe (onNext: {[weak self] item in
+            guard let `self` = self else {return}
+            self.orderDetailNavigation?.goToOrderDetails(with: item)
+        }).disposed(by: disposeBag)
+
+        
     }
     private func bindEmptyView() {
         self.ordersViewModel.empty

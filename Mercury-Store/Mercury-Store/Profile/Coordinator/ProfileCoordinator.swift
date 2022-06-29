@@ -30,7 +30,7 @@ class ProfileCoordinator: Coordinator {
 extension ProfileCoordinator: ProfileNavigationFlow {
 
     func goToMyOrdersScreen() {
-        let customersOrderScreen = myOrdersTableViewController(CustomersOrdersViewModels())
+        let customersOrderScreen = myOrdersTableViewController(orderDetailNavigation: self)
         self.navigationController.pushViewController(customersOrderScreen, animated: true)
         
     }
@@ -84,6 +84,15 @@ extension ProfileCoordinator: UpdateAddressNavigationFlow {
         navigationController.setNavigationBarHidden(false, animated: false)
         navigationController.popViewController(animated: true)
     }
+}
+
+extension ProfileCoordinator: OrdersNavigationFlow {
+    func goToOrderDetails(with order: CustomerOrders) {
+        let orderDetailsVc = OrdersDetailsViewController(order: order)
+        self.navigationController.pushViewController(orderDetailsVc, animated: true)
+    }
+    
+    
 }
 
 extension ProfileCoordinator : ShoppingCartNavigationFlow {
