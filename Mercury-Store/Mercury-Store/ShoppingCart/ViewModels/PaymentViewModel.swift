@@ -180,8 +180,9 @@ class PaymentViewModel:PaymentViewModelType{
     private func postOrder(financial_status:String = "authorized") {
         let user = getUserFromUserDefaults()
         let lineItems = getLineItems().map { LineItemDraft(quantity: $0.productQTY, variantID: $0.variantId, properties: [PropertyDraft(imageName: $0.productImage, inventoryQuantity: "\($0.inventoryQuantity)")])}
-        let discountValue = couponSubject.value
-        let order = try! OrderItemTest(lineItems: lineItems, customer: CustomerId(id: user!.id), current_subtotal_price: "\(subTotal)", current_total_discounts: "\(discountValue)", total_price: "\(total.value())", financial_status: financial_status, shippingAddress: AddressRequestItem(address1: shippingAddress.address1, address2: shippingAddress.address2, city: shippingAddress.city, company: shippingAddress.company, firstName: shippingAddress.firstName, lastName: shippingAddress.lastName, phone: shippingAddress.phone, province: shippingAddress.province, country: shippingAddress.country, zip: shippingAddress.zip, name: shippingAddress.name, provinceCode: shippingAddress.provinceCode, countryCode: shippingAddress.countryCode, countryName: shippingAddress.countryName))
+        let discountValue = abs (Double(couponSubject.value.value)!)
+        print("discount \(discountValue)")
+        let order = try! OrderItemTest(lineItems: lineItems, customer: CustomerId(id: user!.id), totalDiscounts: "\(subTotal)", current_total_discounts: "\(discountValue)", total_price: "\(total.value())", financial_status: financial_status, shippingAddress: AddressRequestItem(address1: shippingAddress.address1, address2: shippingAddress.address2, city: shippingAddress.city, company: shippingAddress.company, firstName: shippingAddress.firstName, lastName: shippingAddress.lastName, phone: shippingAddress.phone, province: shippingAddress.province, country: shippingAddress.country, zip: shippingAddress.zip, name: shippingAddress.name, provinceCode: shippingAddress.provinceCode, countryCode: shippingAddress.countryCode, countryName: shippingAddress.countryName))
 
         if (user != nil) {
             let newOrderRequest = PostOrderRequest(order: order)

@@ -56,10 +56,14 @@ class OrdersDetailsViewController: UIViewController {
     private func setupUI() {
         orderIdLabel.text = "\(order.id)"
         dateLabel.text = "\(order.createdAt.formatted(.dateTime))"
-        paymentStatusLabel.text = order.financialStatus
+        if order.financialStatus == "paid"{
+            paymentStatusLabel.text = "paid with paypal"
+        }else{
+            paymentStatusLabel.text = "cash on Delivery"
+        }
         shippingAddressLabel.text = "\(order.shippingAddress?.city  ?? "") - \(order.shippingAddress?.province ?? "")"
-        totalPriceLabel.text = "\(CurrencyHelper().checkCurrentCurrency("\(order.totalPrice)"))"
-        discountLabel.text = order.currentTotalDiscounts
+        totalPriceLabel.text = "\(order.totalPrice)"
+        discountLabel.text = "\(order.totalDiscounts ?? "0" )"
     }
     
     private func bindItemsTableView() {
@@ -70,8 +74,6 @@ class OrdersDetailsViewController: UIViewController {
             cell.item = item
         }.disposed(by: disposeBag)
     }
-
-
 }
 
 extension OrdersDetailsViewController: UITableViewDelegate {
