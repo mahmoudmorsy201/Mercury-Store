@@ -111,7 +111,7 @@ extension AddressViewController {
 // MARK: - Extensions
 extension AddressViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 155
+        return 150
     }
     
 }

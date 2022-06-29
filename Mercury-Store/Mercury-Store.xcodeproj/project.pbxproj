@@ -650,8 +650,8 @@
 		4D8D2AFD285F2AF90014F066 /* OrdersView */ = {
 			isa = PBXGroup;
 			children = (
-				4D8D2AFE285F2AF90014F066 /* myOrdersTableViewController.xib */,
 				4D8D2AFF285F2AF90014F066 /* Cells */,
+				4D8D2AFE285F2AF90014F066 /* myOrdersTableViewController.xib */,
 				4D8D2B02285F2AF90014F066 /* myOrdersTableViewController.swift */,
 			);
 			path = OrdersView;
