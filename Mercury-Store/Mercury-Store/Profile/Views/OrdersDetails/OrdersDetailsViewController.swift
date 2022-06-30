@@ -62,8 +62,8 @@ class OrdersDetailsViewController: UIViewController {
             paymentStatusLabel.text = "cash on Delivery"
         }
         shippingAddressLabel.text = "\(order.shippingAddress?.city  ?? "") - \(order.shippingAddress?.province ?? "")"
-        totalPriceLabel.text = "\(order.totalPrice)"
-        discountLabel.text = "\(order.totalDiscounts ?? "0" )"
+        totalPriceLabel.text = CurrencyHelper().checkCurrentCurrency("\(order.totalPrice)")
+        discountLabel.text = CurrencyHelper().checkCurrentCurrency("\(order.totalDiscounts ?? "0" )")
     }
     
     private func bindItemsTableView() {

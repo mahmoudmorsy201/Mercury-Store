@@ -24,7 +24,7 @@ class OrderItemsTableViewCell: UITableViewCell {
             }
             orderItemImageView.downloadImage(url: url , placeholder: UIImage(named: "placeholder"), imageIndicator: .gray, completion: nil)
             orderItemTitleLabel.text = item.title
-            orderItemPrice.text =  item.price
+            orderItemPrice.text =  CurrencyHelper().checkCurrentCurrency("\(item.price)")
             orderItemQuantity.text = "quantity: \(item.quantity)"
         }
         
